@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutLarge"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/image_appLarge"
+        android:layout_width="45dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp" />
+
+    <TextView
+        android:id="@+id/titlePlaceNameLarge"
+        style="Custom Notification Title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toEndOf="@+id/image_appLarge"
+        android:layout_toRightOf="@+id/image_appLarge"
+        android:text="Reminder"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14ssp" />
+
+    <TextView
+        android:id="@+id/textNotificationLarge"
+        style="Custom Notification Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titlePlaceNameLarge"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_toEndOf="@+id/image_appLarge"
+        android:layout_toRightOf="@+id/image_appLarge"
+        android:maxLines="2"
+        android:text="text"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12ssp" />
+
+</RelativeLayout>

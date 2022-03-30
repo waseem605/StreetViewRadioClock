@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appMainColor"
+    tools:context=".streetViewFragments.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/guide1"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/todayTx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today"
+            android:textStyle="bold"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/todayDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.STVTextViewBold
+            android:id="@+id/weatherTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:textSize="@dimen/_50ssp"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/todayTx"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/weatherUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
+            app:layout_constraintStart_toEndOf="@id/weatherDegree"/>
+
+        <TextView
+            android:id="@+id/weatherDegree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="o"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
+            app:layout_constraintStart_toEndOf="@id/weatherTemp"/>
+
+        <TextView
+            android:id="@+id/weatherTodayType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_16ssp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@id/weatherTemp"
+            app:layout_constraintStart_toStartOf="@id/weatherTemp"/>
+
+        <ImageView
+            android:id="@+id/locationMarker"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_location_marker"
+            app:layout_constraintTop_toBottomOf="@id/weatherTodayType"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/currentAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="@dimen/_10ssp"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:textColor="@color/white"
+            android:layout_marginEnd="@dimen/_3sdp"
+            app:layout_constraintTop_toTopOf="@id/locationMarker"
+            app:layout_constraintBottom_toBottomOf="@id/locationMarker"
+            app:layout_constraintStart_toEndOf="@id/locationMarker"
+            app:layout_constraintEnd_toStartOf="@id/forwardWeather"/>
+
+        <ImageView
+            android:id="@+id/forwardWeather"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_fast_forward"
+            app:layout_constraintTop_toTopOf="@id/locationMarker"
+            app:layout_constraintBottom_toBottomOf="@id/locationMarker"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bottom_bar_background"
+        android:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guide1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.STVTextViewBold
+                android:id="@+id/popularTx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_20sdp"
+                android:text="@string/popular"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/popularTx"
+                tools:layout_editor_absoluteX="42dp" />
+
+            <com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.STVTextViewBold
+                android:id="@+id/moreTx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="@string/more_for_you"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/topRecyclerView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/moreRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@id/moreTx" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_25sdp"
+                app:layout_constraintTop_toBottomOf="@id/moreRecyclerView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

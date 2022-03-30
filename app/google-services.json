@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "110231284101",
+    "project_id": "live-earth-map-e65eb",
+    "storage_bucket": "live-earth-map-e65eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110231284101:android:a43eecc010f3e631c6bcec",
+        "android_client_info": {
+          "package_name": "com.liveearth.streetview.navigation.map.worldradio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110231284101-i5ml7iup9rm28pr1iicu96s6e5uk7cfu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUyoGnwJuJalToRUBEp880ukNEIa4p_ZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110231284101-i5ml7iup9rm28pr1iicu96s6e5uk7cfu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
