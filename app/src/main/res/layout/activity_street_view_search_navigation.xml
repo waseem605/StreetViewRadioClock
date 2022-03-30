@@ -331,7 +331,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
-                android:backgroundTint="@color/white"
+                android:backgroundTint="@color/appSilverColor"
                 android:background="@drawable/button_background_green"
                 android:src="@drawable/navigation_img_btn"
                 app:layout_constraintBottom_toBottomOf="parent"

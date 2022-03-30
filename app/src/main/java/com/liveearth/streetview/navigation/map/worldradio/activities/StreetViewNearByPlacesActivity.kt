@@ -130,7 +130,7 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun showNearLocationsRecycler(nearLocationData: ArrayList<Result>) {
         //binding.meetMeSearchBtn.visibility = View.GONE
-        val adapter = NearMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
+        val adapterLocations = NearMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
             override fun onLocationInfo(model: Result) {
 
                 val intent =
@@ -145,12 +145,14 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
 
         })
 
-        binding.locationRecycler.setHasFixedSize(true)
-        binding.locationRecycler.layoutManager = LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL, false
-        )
-        binding.locationRecycler.adapter = adapter
+        binding.locationRecycler.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(
+                this@StreetViewNearByPlacesActivity,
+                LinearLayoutManager.HORIZONTAL, false
+            )
+            adapter = adapterLocations
+        }
 
     }
 

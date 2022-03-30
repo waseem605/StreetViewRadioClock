@@ -135,7 +135,7 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             2->{
-                val mainIntent = Intent(requireContext(),StreetViewNavigationMainActivity::class.java)
+                val mainIntent = Intent(requireContext(),StreetViewNearByPlacesActivity::class.java)
                 startActivity(mainIntent)
             }
             7->{
