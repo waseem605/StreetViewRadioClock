@@ -138,6 +138,10 @@ class HomeFragment : Fragment() {
                 val mainIntent = Intent(requireContext(),StreetViewNearByPlacesActivity::class.java)
                 startActivity(mainIntent)
             }
+            3->{
+                val mainIntent = Intent(requireContext(),StreetViewWorldClockActivity::class.java)
+                startActivity(mainIntent)
+            }
             7->{
                 val mainIntent = Intent(requireContext(),StreetViewWeatherDetailsActivity::class.java)
                 mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)

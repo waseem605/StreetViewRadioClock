@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -41,9 +42,16 @@ class NearMeLocationsAdapter(
                 holder.locationAddress.text = model.location.locality
             }*/
             Glide.with(context).load(model.categories.get(0).icon.prefix+"64.png").into(holder.imageView)
-            holder.itemView.setOnClickListener {
+            holder.itemNavigationBtn.setOnClickListener {
                 callBack.onLocationInfo(model)
             }
+            holder.itemFavouriteImg.setOnClickListener {
+                callBack.addToFavouriteLocation(model)
+            }
+            holder.itemShareImg.setOnClickListener {
+                callBack.shareLocation(model)
+            }
+
         } catch (e: Exception) {
         }
     }
@@ -57,6 +65,9 @@ class NearMeLocationsAdapter(
         var imageView = itemView.findViewById<ImageView>(R.id.mainItemImage)
         var locationName = itemView.findViewById<TextView>(R.id.mainItemName)
         var mainItemType = itemView.findViewById<TextView>(R.id.mainItemType)
+        var itemNavigationBtn = itemView.findViewById<CardView>(R.id.itemNavigationBtn)
+        var itemShareImg = itemView.findViewById<ImageView>(R.id.itemShareImg)
+        var itemFavouriteImg = itemView.findViewById<ImageView>(R.id.itemFavouriteImg)
 
     }
 }

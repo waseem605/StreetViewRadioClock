@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="appMainColorTop">#368C6F</color>
+
 
     <color name="appMainColor">#237157</color>
     <color name="appSilverColor">#CDE6DD</color>

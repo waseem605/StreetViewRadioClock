@@ -156,7 +156,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         val maxSpeedFinal:String = DecimalFormat("#.#").format(mMaxSpeed)
         GlobalScope.launch {
             Dispatchers.Main
-            mSpeedViewModel!!.insertSpeed(SpeedModel(id = null,startLocation,mStartLatLong,stopLocation,mEndLatLong,maxSpeedFinal.toString(),mSpeedUnit,date))
+            mSpeedViewModel!!.insertTimeZone(SpeedModel(id = null,startLocation,mStartLatLong,stopLocation,mEndLatLong,maxSpeedFinal.toString(),mSpeedUnit,date))
         }
         Toast.makeText(this,"Saved record", Toast.LENGTH_SHORT).show()
         imageSpeedometer!!.speedTo((0.0).toFloat())

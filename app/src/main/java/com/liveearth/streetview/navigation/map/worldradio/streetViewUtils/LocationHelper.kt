@@ -2,10 +2,12 @@ package com.liveearth.streetview.navigation.map.worldradio.streetViewUtils
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.location.Address
 import android.location.Geocoder
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.startActivity
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -80,12 +82,19 @@ class LocationHelper() {
             return address
         }
 
+        fun shareLocation(context: Context,latitude: Double,longitude: Double){
+            val uri = "https://www.google.com/maps/?q=${latitude},${longitude}"
+            val sharingIntent = Intent(Intent.ACTION_SEND)
+            sharingIntent.type = "text/plain"
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, uri)
+            context.startActivity(Intent.createChooser(sharingIntent, "Share in..."))
+        }
+
         fun midPointLocation(lat1: Double, lon1: Double, lat2: Double, lon2: Double):LatLng {
             var lat1 = lat1
             var lon1 = lon1
             var lat2 = lat2
             val dLon = Math.toRadians(lon2 - lon1)
-
             //convert to radians
             lat1 = Math.toRadians(lat1)
             lat2 = Math.toRadians(lat2)
@@ -141,21 +150,25 @@ class LocationHelper() {
 
         fun getCurrentDateTime(mContext: Context,dateTimeType:Int):String {
             val calendar = Calendar.getInstance()
-            val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm:a")
+            val simpleDateFormat = SimpleDateFormat("E, dd-MMM-yyyy hh:mm:ss:a")
             val dateTime = simpleDateFormat.format(calendar.time).toString()
 
             val delimiter = " "
             val parts = dateTime.split(delimiter)
-            val currentTime = parts[1]
-            val currentDate = parts[0]
+            val currentTime = parts[2]
+            val currentDate = parts[1]
+            val currentDay = parts[0]
+
             var data = ""
             when (dateTimeType) {
                 1 ->
-                    data= "${currentTime} $currentDate"
+                    data= "$currentTime $currentDate"
                 2 ->
-                    data = currentDate
+                    data = "$currentDay $currentDate"
                 3 ->
                     data = currentTime
+                4 ->
+                    data = currentDay
             }
             return data
         }

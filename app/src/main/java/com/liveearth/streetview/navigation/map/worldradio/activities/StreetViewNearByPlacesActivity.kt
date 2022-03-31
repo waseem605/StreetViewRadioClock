@@ -143,6 +143,17 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
 
             }
 
+            override fun shareLocation(model: Result) {
+
+            }
+
+            override fun addToFavouriteLocation(model: Result) {
+            }
+
+            override fun onClickOfItemLocation(model: Result, pos: Int) {
+
+            }
+
         })
 
         binding.locationRecycler.apply {

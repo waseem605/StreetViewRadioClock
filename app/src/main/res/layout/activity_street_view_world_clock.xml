@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.StreetViewWorldClockActivity">
+
+    <include layout="@layout/custom_toolbar"
+        android:id="@+id/toolbarLt"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/top_background"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt"
+        app:layout_constraintBottom_toTopOf="@id/addLayout">
+
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/appSilverColor"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextClock
+            android:id="@+id/currentIme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="@dimen/_35ssp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/currentDate"/>
+
+        <TextView
+            android:id="@+id/countryName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/appSilverColor"
+            app:layout_constraintEnd_toStartOf="@id/countryTimeZone"
+            app:layout_constraintTop_toBottomOf="@id/currentIme"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/countryTimeZone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/appSilverColor"
+            app:layout_constraintStart_toEndOf="@id/countryName"
+            app:layout_constraintTop_toBottomOf="@id/currentIme"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/currentCountryImage"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            app:layout_constraintTop_toBottomOf="@id/countryName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <com.imankur.analogclockview.AnalogClock
+            android:id="@+id/clockView"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_250sdp"
+            app:showSecondHand="true"
+            android:layout_marginTop="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@id/currentCountryImage"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/timeZoneRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/clockView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Bottom Layout-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+        
+        <TextView
+            android:id="@+id/singleTimeZone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Single Time Zone"
+            android:gravity="center"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/addTimeZone"
+            app:layout_constraintTop_toTopOf="@id/addTimeZone"
+            app:layout_constraintBottom_toBottomOf="@id/addTimeZone"/>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addTimeZone"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:cardCornerRadius="@dimen/_26sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/appMainColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/singleTimeZone"
+            app:layout_constraintEnd_toStartOf="@id/allTimeZone"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_add_time_zone"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:id="@+id/allTimeZone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="All Time Zone"
+            android:textSize="@dimen/_12ssp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/addTimeZone"
+            app:layout_constraintTop_toTopOf="@id/addTimeZone"
+            app:layout_constraintBottom_toBottomOf="@id/addTimeZone"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

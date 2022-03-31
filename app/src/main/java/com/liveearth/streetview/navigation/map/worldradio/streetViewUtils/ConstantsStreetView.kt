@@ -14,6 +14,10 @@ object ConstantsStreetView {
     const val WHITE_COLOR = "#FFFFFFFF"
 
 
+    var currentCountryName = "currentCountryName"
+    var currentCountryCode = "currentCountryCode"
+
+
     // Latitude and Longitude intents StringExtra
     const val OriginLatitude = "OriginLatitude"
     const val OriginLongitude = "OriginLongitude"

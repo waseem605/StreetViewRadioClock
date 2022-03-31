@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.navigation:ui:1.5.1@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/05fd75ebfdfcb537f1f314775c3a17e3/transformed/jetified-ui-1.5.1/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6447460186cb8c50abd2b021096e1177/transformed/jetified-ui-1.5.1/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/05fd75ebfdfcb537f1f314775c3a17e3/transformed/jetified-ui-1.5.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/05fd75ebfdfcb537f1f314775c3a17e3/transformed/jetified-ui-1.5.1/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/05fd75ebfdfcb537f1f314775c3a17e3/transformed/jetified-ui-1.5.1/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6447460186cb8c50abd2b021096e1177/transformed/jetified-ui-1.5.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6447460186cb8c50abd2b021096e1177/transformed/jetified-ui-1.5.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6447460186cb8c50abd2b021096e1177/transformed/jetified-ui-1.5.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.navigation/ui/1.5.1/b2463b237069099952c6f193b4b6dbc1eaa5ead3/ui-1.5.1-javadoc.jar!/" />

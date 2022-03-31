@@ -6,6 +6,7 @@ import android.location.Geocoder
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.util.Log
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.mapbox.mapboxsdk.geometry.LatLng
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
@@ -50,8 +51,8 @@ class LiveEarthAddressFromLatLng : CoroutineScope {
                         1
                     ) as ArrayList<Address>
                     if (listAddressed.size > 0) {
-//                        AppConstants.currentCountryCode=listAddressed[0].countryCode
-//                        AppConstants.currentCountryName=listAddressed[0].countryName
+                        ConstantsStreetView.currentCountryCode=listAddressed[0].countryCode
+                        ConstantsStreetView.currentCountryName=listAddressed[0].countryName
                         location = listAddressed[0].getAddressLine(0)
                     }
                 } catch (e: Exception) {

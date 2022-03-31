@@ -14,6 +14,7 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
+        android:paddingStart="@dimen/_10sdp"
         app:layout_constraintBottom_toTopOf="@id/guide1"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -153,7 +154,8 @@
                 android:id="@+id/topRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
                 app:layout_constraintTop_toBottomOf="@id/popularTx"
                 tools:layout_editor_absoluteX="42dp" />
 

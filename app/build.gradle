@@ -73,6 +73,8 @@ dependencies {
     //bottom navigation style
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
 
+    implementation 'com.imankur.library:analogclockview:1.0.0'
+
 
     //google location
     implementation 'com.google.android.gms:play-services-location:18.0.0'

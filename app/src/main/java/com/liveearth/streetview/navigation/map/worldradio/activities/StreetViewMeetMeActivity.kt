@@ -57,16 +57,18 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     private var myStyle: Style? = null
     private var mLocationMarker: Marker? = null
     private var mOtherLocationMarker: Marker? = null
-    private var middleLocationMarker: Marker? =null
-    private var mLocationMarkerDestin: Marker? =null
+    private var middleLocationMarker: Marker? = null
+    private var mLocationMarkerDestin: Marker? = null
     private var mOrigin: Point? = null
     private var mDestination: Point? = null
     var zoom: Int = 16
-    var flagMap: Boolean = true
-    private lateinit var midLaLong:LatLng
+    var destinationFlag: Boolean = false
+    private lateinit var midLaLong: LatLng
     private lateinit var myRepository: LocationRepository
-    lateinit var animationDown : Animation
+    lateinit var animationDown: Animation
     lateinit var animationDownToUp: Animation
+    lateinit var animationTopToDown: Animation
+    lateinit var animationPointToDown: Animation
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,8 +85,12 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun meetMeClickListener() {
 
-        animationDownToUp = AnimationUtils.loadAnimation(this,R.anim.slide_point_up)
-        animationDown = AnimationUtils.loadAnimation(this,R.anim.slide_down_to_point)
+        animationTopToDown = AnimationUtils.loadAnimation(this, R.anim.slide_top_to_down)
+        animationDownToUp = AnimationUtils.loadAnimation(this, R.anim.slide_point_up)
+        animationDown = AnimationUtils.loadAnimation(this, R.anim.slide_down_to_point)
+        animationPointToDown = AnimationUtils.loadAnimation(this, R.anim.slide_point_to_down)
+
+        binding.topLayout.startAnimation(animationTopToDown)
 
         binding.cMeetMeBtn.setOnClickListener {
             getCurrentLocationUser()
@@ -92,6 +98,15 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.meetMeSearchBtn.setOnClickListener {
             streetViewRouteData()
+        }
+
+        binding.meetNavigateBtn.setOnClickListener {
+            val intent = Intent(this@StreetViewMeetMeActivity, StreetViewRouteActivity::class.java)
+            intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
+            intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
+            intent.putExtra(ConstantsStreetView.DestinationLatitude, mLatitudeDest)
+            intent.putExtra(ConstantsStreetView.DestinationLongitude, mLongitudeDest)
+            startActivity(intent)
         }
 
         binding.searchCurrentLocation.setOnClickListener {
@@ -149,11 +164,12 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun streetViewRouteData() {
-        if (mLatitudeDest ==0.0 && mLongitudeDest==0.0 && binding.searchLocationDestination.text.toString() !=""){
-            Toast.makeText(this,"Please enter your destination address",Toast.LENGTH_SHORT).show()
-        }else if(binding.searchLocationDestination.text.toString() ==""){
-            Toast.makeText(this,"your destination not find",Toast.LENGTH_SHORT).show()
-        }else{
+        binding.locationRecycler.visibility = View.GONE
+        if (mLatitudeDest == 0.0 && mLongitudeDest == 0.0 && binding.searchLocationDestination.text.toString() != "") {
+            Toast.makeText(this, "Please enter your destination address", Toast.LENGTH_SHORT).show()
+        } else if (binding.searchLocationDestination.text.toString() == "") {
+            Toast.makeText(this, "your destination not find", Toast.LENGTH_SHORT).show()
+        } else {
             nearMeLocationsMidPoints()
         }
 
@@ -163,49 +179,52 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun nearMeLocationsMidPoints() {
 
         try {
-            midLaLong = LocationHelper.midPointLocation(mLatitude,mLongitude,mLatitudeDest,mLongitudeDest)
+            midLaLong = LocationHelper.midPointLocation(
+                mLatitude,
+                mLongitude,
+                mLatitudeDest,
+                mLongitudeDest
+            )
             midLaLong.let {
-                LiveEarthAddressFromLatLng(this,it,object :LiveEarthAddressFromLatLng.GeoTaskCallback{
-                    override fun onSuccessLocationFetched(fetchedAddress: String?) {
-                        binding.middleAddressTx.text = fetchedAddress
-                        Log.d(TAG, "onSuccessLocationFetched: =========${midLaLong.latitude}============$fetchedAddress")
-                    }
+                LiveEarthAddressFromLatLng(
+                    this,
+                    it,
+                    object : LiveEarthAddressFromLatLng.GeoTaskCallback {
+                        override fun onSuccessLocationFetched(fetchedAddress: String?) {
+                            binding.middleAddressTx.text = fetchedAddress
+                            Log.d(
+                                TAG,
+                                "onSuccessLocationFetched: =========${midLaLong.latitude}============$fetchedAddress"
+                            )
+                        }
 
-                    override fun onFailedLocationFetched() {
-                        Log.d(TAG, "onFailedLocationFetched: fetchedAddress error")
-                    }
+                        override fun onFailedLocationFetched() {
+                            Log.d(TAG, "onFailedLocationFetched: fetchedAddress error")
+                        }
 
-                }).execute()
+                    }).execute()
                 binding.distanceCardInfo.visibility = View.VISIBLE
                 binding.distanceCardInfo.startAnimation(animationDownToUp)
 
                 LocationHelper.setZoomMarker(it.latitude, it.longitude, mapbox, zoom)
-                val distance= LocationHelper.calculationByDistance(LatLng(mLatitude,mLongitude),midLaLong)
+                val distance =
+                    LocationHelper.calculationByDistance(LatLng(mLatitude, mLongitude), midLaLong)
                 binding.distanceKm.text = "${DecimalFormat("#.#").format(distance)} Km"
                 // add marker
                 if (middleLocationMarker != null) {
-                    middleLocationMarker !!.remove()
+                    middleLocationMarker!!.remove()
                 }
                 middleLocationMarker = mapbox.addMarker(
                     MarkerOptions().position(LatLng(it.latitude, it.longitude))
                 )
 
-                // Animation to Hide top layout
-                /*  Handler(Looper.getMainLooper()).postDelayed({
-                        binding.topLayout.visibility = View.GONE
-                    },500)
-                    binding.topLayout.startAnimation(animationDown)*/
+
 
                 binding.nearMeSearchBtn.setOnClickListener {
                     nearMeLocationsAll()
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        binding.distanceCardInfo.visibility = View.GONE
-                    },500)
-                    binding.distanceCardInfo.startAnimation(animationDown)
-
                 }
             } ?: kotlin.run {
-                Toast.makeText(this,"your location is not find",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "your location is not find", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Log.d(TAG, "---------nearMeLocationsMidPoints: ${e.message}")
@@ -215,19 +234,38 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //places all
     private fun nearMeLocationsAll() {
-        val locationServiceApi = StreetViewLocationAPIServices(object :StreetViewNearByCallBack{
+        val locationServiceApi = StreetViewLocationAPIServices(object : StreetViewNearByCallBack {
             override fun onSuccess(data: StreetViewNearPlacesModel) {
-                val nearMeLocationData=data.results
-                binding.distanceCardInfo.visibility = View.GONE
+                val nearMeLocationData = data.results
+
+                Handler(Looper.getMainLooper()).postDelayed({
+                    binding.topLayout.visibility = View.GONE
+                    binding.distanceCardInfo.visibility = View.GONE
+                    binding.locationRecycler.visibility = View.VISIBLE
+                    binding.locationRecycler.startAnimation(animationDownToUp)
+                }, 500)
+                binding.topLayout.startAnimation(animationDown)
+                binding.distanceCardInfo.startAnimation(animationPointToDown)
+
+
                 if (mOtherLocationMarker != null) {
                     mOtherLocationMarker!!.remove()
                 }
                 try {
 
-                    LocationHelper.setZoomMarker(midLaLong.latitude,midLaLong.longitude,mapbox,10)
+                    LocationHelper.setZoomMarker(
+                        midLaLong.latitude,
+                        midLaLong.longitude,
+                        mapbox,
+                        10
+                    )
 
                     for (i in 0 until nearMeLocationData.size) {
-                        onClickNearMeMarkers( nearMeLocationData[i].geocodes.main.latitude,nearMeLocationData[i].geocodes.main.longitude,nearMeLocationData[i].name)
+                        onClickNearMeMarkers(
+                            nearMeLocationData[i].geocodes.main.latitude,
+                            nearMeLocationData[i].geocodes.main.longitude,
+                            nearMeLocationData[i].name
+                        )
                     }
                     showNearLocationsRecycler(data.results as ArrayList<Result>)
                 } catch (e: Exception) {
@@ -235,7 +273,11 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onFailure(userError: String) {
-                Toast.makeText(this@StreetViewMeetMeActivity,"==Failure $userError",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@StreetViewMeetMeActivity,
+                    "==Failure $userError",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onLoading(loading: Boolean) {
@@ -243,9 +285,9 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         })
 
-        val locationString= midLaLong.latitude.toString()+","+midLaLong.longitude.toString()
+        val locationString = midLaLong.latitude.toString() + "," + midLaLong.longitude.toString()
         val category = "13000"
-          locationServiceApi.getDataServiceBySearchId(locationString,category)
+        locationServiceApi.getDataServiceBySearchId(locationString, category)
 
     }
 
@@ -256,27 +298,23 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
                     latitude,
                     longitude
                 )
-            ).icon(IconFactory.getInstance(this@StreetViewMeetMeActivity).fromResource(R.drawable.marker_black)).title(name)
+            ).icon(
+                IconFactory.getInstance(this@StreetViewMeetMeActivity)
+                    .fromResource(R.drawable.marker_black)
+            ).title(name)
         )
 
-        mapbox.setOnMarkerClickListener(object :MapboxMap.OnMarkerClickListener{
+        mapbox.setOnMarkerClickListener(object : MapboxMap.OnMarkerClickListener {
             override fun onMarkerClick(marker: Marker): Boolean {
                 try {
                     binding.distanceCardInfo.visibility = View.VISIBLE
                     binding.middleAddressTx.text = marker.title
                     binding.nearMeSearchBtn.text = "Share"
-                    var distance = (marker.position.distanceTo(LatLng(mLatitude, mLongitude))/1000)
+                    var distance =
+                        (marker.position.distanceTo(LatLng(mLatitude, mLongitude)) / 1000)
                     binding.distanceKm.text = distance.toString()
 
 
-                    binding.meetNavigateBtn.setOnClickListener {
-                        val intent = Intent(this@StreetViewMeetMeActivity, StreetViewRouteActivity::class.java)
-                        intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
-                        intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
-                        intent.putExtra(ConstantsStreetView.DestinationLatitude, marker.position.latitude)
-                        intent.putExtra(ConstantsStreetView.DestinationLongitude, marker.position.longitude)
-                        startActivity(intent)
-                    }
                 } catch (e: Exception) {
                 }
 
@@ -288,12 +326,12 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun setMarkerDestination(latLng: LatLng, mapbox: MapboxMap) {
-        mLatitudeDest= latLng.latitude
+        mLatitudeDest = latLng.latitude
         mLongitudeDest = latLng.longitude
         LocationHelper.setZoomMarker(mLatitudeDest, mLongitudeDest, mapbox, zoom)
         // add marker
         if (mOtherLocationMarker != null) {
-            mOtherLocationMarker !!.remove()
+            mOtherLocationMarker!!.remove()
         }
         mOtherLocationMarker = mapbox.addMarker(
             MarkerOptions().position(LatLng(mLatitudeDest, mLongitudeDest))
@@ -328,13 +366,13 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
                     location?.let {
                         mLatitude = it.latitude
                         mLongitude = it.longitude
-                        setLocationMarker(LatLng( it.latitude, it.longitude), tempMapbox)
-                  /*      if (mLocationMarker != null) {
-                            mLocationMarker !!.remove()
-                        }
-                        mLocationMarker = mapbox.addMarker(
-                            MarkerOptions().position(LatLng(mLatitude, mLongitude))
-                        )*/
+                        setLocationMarker(LatLng(it.latitude, it.longitude), tempMapbox)
+                        /*      if (mLocationMarker != null) {
+                                  mLocationMarker !!.remove()
+                              }
+                              mLocationMarker = mapbox.addMarker(
+                                  MarkerOptions().position(LatLng(mLatitude, mLongitude))
+                              )*/
                         val latLng = LatLng(it.latitude, it.longitude)
                         LiveEarthAddressFromLatLng(this@StreetViewMeetMeActivity,
                             latLng,
@@ -347,7 +385,7 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
                                 }
                             }).execute()
                         myRepository.stopLocation()
-                    }?: kotlin.run {
+                    } ?: kotlin.run {
                         myRepository.startLocation()
                     }
                 }
@@ -365,7 +403,7 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
         LocationHelper.setZoomMarker(mLatitude, mLongitude, mapboxMap, zoom)
         // add marker
         if (mLocationMarker != null) {
-            mLocationMarker !!.remove()
+            mLocationMarker!!.remove()
         }
         mLocationMarker = mapbox.addMarker(
             MarkerOptions().position(LatLng(mLatitude, mLongitude))
@@ -390,23 +428,38 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-
     private fun showNearLocationsRecycler(nearLocationData: ArrayList<Result>) {
-        //binding.meetMeSearchBtn.visibility = View.GONE
-        val adapterLocations = NearMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
-            override fun onLocationInfo(model: Result) {
+        val adapterLocations =
+            NearMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
+                override fun onLocationInfo(model: Result) {
+                    val intent =
+                        Intent(this@StreetViewMeetMeActivity, StreetViewRouteActivity::class.java)
+                    /*        intent.putExtra(ConstantsStreetView.OriginLatitude, latitude)
+                            intent.putExtra(ConstantsStreetView.OriginLongitude, longitude)
+                            intent.putExtra(ConstantsStreetView.DestinationLatitude, model.geocodes.main.latitude)
+                            intent.putExtra(ConstantsStreetView.DestinationLongitude, model.geocodes.main.longitude)
+                            startActivity(intent)*/
+                }
 
-                val intent =
-                    Intent(this@StreetViewMeetMeActivity, StreetViewRouteActivity::class.java)
-        /*        intent.putExtra(ConstantsStreetView.OriginLatitude, latitude)
-                intent.putExtra(ConstantsStreetView.OriginLongitude, longitude)
-                intent.putExtra(ConstantsStreetView.DestinationLatitude, model.geocodes.main.latitude)
-                intent.putExtra(ConstantsStreetView.DestinationLongitude, model.geocodes.main.longitude)
-                startActivity(intent)*/
+                override fun shareLocation(model: Result) {
+                    Log.d(TAG, "shareLocation: +++++++++++")
+                    LocationHelper.shareLocation(
+                        this@StreetViewMeetMeActivity,
+                        model.geocodes.main.latitude,
+                        model.geocodes.main.longitude
+                    )
 
-            }
+                }
 
-        })
+                override fun addToFavouriteLocation(model: Result) {
+                    Log.d(TAG, "addToFavouriteLocation: --+-+-+-+-+-")
+                }
+
+                override fun onClickOfItemLocation(model: Result, pos: Int) {
+
+                }
+
+            })
 
         binding.locationRecycler.apply {
             setHasFixedSize(true)
@@ -469,7 +522,7 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
         LocationHelper.setZoomMarker(mLatitudeDest, mLongitudeDest, mapbox, zoom)
         // add marker
         if (mLocationMarkerDestin != null) {
-            mLocationMarkerDestin !!.remove()
+            mLocationMarkerDestin!!.remove()
         }
         mLocationMarkerDestin = mapbox.addMarker(
             MarkerOptions().position(LatLng(mLatitudeDest, mLongitudeDest))

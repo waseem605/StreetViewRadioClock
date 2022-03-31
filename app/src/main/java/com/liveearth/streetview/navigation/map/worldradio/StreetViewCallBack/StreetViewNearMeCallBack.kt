@@ -4,4 +4,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe
 
 interface StreetViewNearMeCallBack {
     fun onLocationInfo(model: Result)
+    fun shareLocation(model: Result)
+    fun addToFavouriteLocation(model: Result)
+    fun onClickOfItemLocation(model: Result,pos:Int)
 }

@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ class WorldClockAdapter(
         try {
             val model = modelArrayList[position]
 
+            Log.d("onBindViewHolder", "onBindViewHolder: "+model.country)
             holder.countryItemName.text = model.country
             holder.countryTimeZoneItem.text = model.timezone
             holder.countryTimeItem.timeZone = model.timezone

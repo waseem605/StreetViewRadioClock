@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.jeancsanchez:JcPlayer:2.6.16@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2d9ebabfcc6aeedfccec056b84326269/transformed/jetified-JcPlayer-2.6.16/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2d9ebabfcc6aeedfccec056b84326269/transformed/jetified-JcPlayer-2.6.16/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2d9ebabfcc6aeedfccec056b84326269/transformed/jetified-JcPlayer-2.6.16/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/df6eb91f9583683ea4b90fd23f096cd1/transformed/jetified-JcPlayer-2.6.16/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/df6eb91f9583683ea4b90fd23f096cd1/transformed/jetified-JcPlayer-2.6.16/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/df6eb91f9583683ea4b90fd23f096cd1/transformed/jetified-JcPlayer-2.6.16/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

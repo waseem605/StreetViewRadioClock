@@ -14,8 +14,8 @@
                         <option name="values">
                           <map>
                             <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_voice_icon" />
-                            <entry key="sourceFile" value="D:\Centurion\UI UX\Street View Clock\voice_icon.svg" />
+                            <entry key="outputName" value="ic_add_time_zone" />
+                            <entry key="sourceFile" value="D:\Centurion\UI UX\Street View Clock\add_time_zone.svg" />
                           </map>
                         </option>
                       </PersistentState>
