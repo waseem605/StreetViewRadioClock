@@ -33,7 +33,13 @@ object ConstantsStreetView {
     const val EXTRA_LATITUDE = "extra_latitude"
     const val EXTRA_LONGITUDE = "extra_longitude"
 
+    //World Clock Intent
+    const val All_TIME_INTENT = "All_TIME_INTENT"
+    const val INTENT_Value = "INTENT_Value"
+    const val Show_ADD_Btn = "Show_ADD_Btn"
 
+
+    //background Services
     const val MY_TIMER_BROADCAST = "MY_TIMER_BROADCAST"
     const val ACTION_PLAY = "ACTION_PLAY"
     const val ACTION_PAUSE = "ACTION_PAUSE"

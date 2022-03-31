@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_12sdp"
             android:textSize="@dimen/_50ssp"
             android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/todayTx"

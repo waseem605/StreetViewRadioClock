@@ -1,9 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewModel
 
-import android.os.Parcel
-import android.os.Parcelable
-
-class WorldClockModel(val timezone:String?, val iso:String?, val country:String?):Parcelable {
+class WorldClockModel(val timezone:String?, val iso:String?, val country:String?)
+/*:Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -30,4 +28,4 @@ class WorldClockModel(val timezone:String?, val iso:String?, val country:String?
             return arrayOfNulls(size)
         }
     }
-}
+}*/

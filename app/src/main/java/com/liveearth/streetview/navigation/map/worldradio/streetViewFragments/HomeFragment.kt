@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
     private fun topItemClickListeners(pos: Int) {
         when(pos){
             0->{
-                val mainIntent = Intent(requireContext(), StreetViewNearByPlacesActivity::class.java)
+                val mainIntent = Intent(requireContext(), StreetViewLiveEarthActivity::class.java)
                 startActivity(mainIntent)
             }
             1->{
@@ -140,6 +140,14 @@ class HomeFragment : Fragment() {
             }
             3->{
                 val mainIntent = Intent(requireContext(),StreetViewWorldClockActivity::class.java)
+                startActivity(mainIntent)
+            }
+            4->{
+                val mainIntent = Intent(requireContext(),StreetViewNearByPlacesActivity::class.java)
+                startActivity(mainIntent)
+            }
+            5->{
+                val mainIntent = Intent(requireContext(),StreetViewSpeedoMeterActivity::class.java)
                 startActivity(mainIntent)
             }
             7->{

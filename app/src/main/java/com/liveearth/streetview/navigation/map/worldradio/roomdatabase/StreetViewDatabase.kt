@@ -5,14 +5,14 @@ import androidx.room.*
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 
 @Database(
-    entities =  [WorldClockModel::class],
+    entities =  [WordTimeZoneModel::class],
     version = 1,
     exportSchema = false
 )
 @TypeConverters(Convertors::class)
 abstract class StreetViewDatabase: RoomDatabase() {
 
-    abstract fun getSpeedDao():WorldTimeZoneDao
+    abstract fun getTimeZoneDao():WorldTimeZoneDao
 
 
 

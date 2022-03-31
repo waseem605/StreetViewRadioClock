@@ -66,8 +66,6 @@ class StreetViewWeatherDetailsActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@StreetViewWeatherDetailsActivity)
             adapter = mAdapter
         }
-
-
     }
 
 

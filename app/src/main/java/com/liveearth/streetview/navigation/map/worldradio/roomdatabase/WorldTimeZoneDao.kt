@@ -2,7 +2,6 @@ package com.liveearth.streetview.navigation.map.worldradio.roomdatabase
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 
 @Dao
 interface WorldTimeZoneDao {
@@ -15,6 +14,10 @@ interface WorldTimeZoneDao {
 
     @Delete
     suspend fun deleteTimeZone(modelTimeZone: WordTimeZoneModel)
+
+    @Query("SELECT * FROM timeZoneWorld_table WHERE timeZone = :timeZone")
+    suspend fun getDataByTimeZone(timeZone:String):WordTimeZoneModel?
+
 
     @Query("SELECT * FROM timeZoneWorld_table")
     fun gatAllData():LiveData<List<WordTimeZoneModel>>

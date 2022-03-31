@@ -36,7 +36,7 @@ class WeatherDaysAdapter(
             val model = modelArrayList[position]
 
             holder.weatherDayItem.text = model.title
-
+            holder.weatherDateItem.text = model.title
 
            //Glide.with(context).load("https://flagpedia.net/data/flags/normal/${model.iso}.png").into(holder.countryFlagItemImg)
           /*  holder.itemView.setOnClickListener {
@@ -54,6 +54,7 @@ class WeatherDaysAdapter(
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         //var countryFlagItemImg = itemView.findViewById<ImageView>(R.id.countryFlagItemImg)
         var weatherDayItem = itemView.findViewById<TextView>(R.id.weatherDayItem)
+        var weatherDateItem = itemView.findViewById<TextView>(R.id.weatherDateItem)
 
 
     }

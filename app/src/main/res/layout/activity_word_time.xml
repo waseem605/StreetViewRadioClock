@@ -69,6 +69,7 @@
             android:layout_height="0dp"
             android:background="@drawable/bottom_bar_background"
             android:backgroundTint="@color/white"
+            android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintTop_toBottomOf="@id/countryName"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -77,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_20sdp"
                 app:layout_constraintTop_toTopOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -93,7 +95,7 @@
         <TextView
             android:id="@+id/singleTimeZone"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="Single Time Zone"
             android:gravity="center"
             android:textSize="@dimen/_12ssp"
@@ -131,10 +133,10 @@
         <TextView
             android:id="@+id/allTimeZone"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:text="All Time Zone"
             android:textSize="@dimen/_12ssp"
-            android:textColor="@color/black"
+            android:textColor="@color/appMainColor"
             android:gravity="center"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

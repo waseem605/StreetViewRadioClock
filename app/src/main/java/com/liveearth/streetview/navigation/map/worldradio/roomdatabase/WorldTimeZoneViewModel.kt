@@ -12,6 +12,8 @@ class WorldTimeZoneViewModel(private val repository: WorldTimeZoneRepository) : 
         }
     }
 
+    suspend fun getDataByTimeZone(timeZone: String):WordTimeZoneModel? = repository.getDataByTimeZone(timeZone)
+
     suspend fun updateTimeZone(timeZoneModel: WordTimeZoneModel) = repository.updateTimeZone(timeZoneModel)
     suspend fun deleteTimeZone(timeZoneModel: WordTimeZoneModel) = repository.deleteTimeZone(timeZoneModel)
 

@@ -75,10 +75,15 @@ dependencies {
 
     implementation 'com.imankur.library:analogclockview:1.0.0'
 
-
     //google location
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
+
+   // annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+    // Room
+    implementation "android.arch.persistence.room:runtime:1.1.1"
+    kapt("androidx.room:room-compiler:2.3.0")
+    implementation "androidx.room:room-ktx:2.3.0"
     // Android Room
     implementation "androidx.room:room-runtime:2.3.0"
     annotationProcessor "androidx.room:room-compiler:2.3.0"

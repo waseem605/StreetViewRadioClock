@@ -13,11 +13,13 @@ import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 
 
 class WorldClockAdapter(
     private val modelArrayList: ArrayList<WorldClockModel>,
     private val context: Context,
+    private val mShowAddBtn:String,
     val callBack: WorldClockCallBack
 
 ) : RecyclerView.Adapter<WorldClockAdapter.ListViewHolder>() {
@@ -33,7 +35,17 @@ class WorldClockAdapter(
         try {
             val model = modelArrayList[position]
 
-            Log.d("onBindViewHolder", "onBindViewHolder: "+model.country)
+            if (mShowAddBtn.equals(ConstantsStreetView.Show_ADD_Btn)){
+                holder.addTimeZone.visibility = View.VISIBLE
+                holder.addTimeZone.setOnClickListener {
+                    callBack.onClickAddTimeZone(model)
+                }
+
+            }else{
+                holder.addTimeZone.visibility = View.GONE
+            }
+
+            Log.d("onBindViewHolder", "onBindViewHolder: "+model.country+"==="+model.timezone)
             holder.countryItemName.text = model.country
             holder.countryTimeZoneItem.text = model.timezone
             holder.countryTimeItem.timeZone = model.timezone
@@ -53,6 +65,7 @@ class WorldClockAdapter(
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var countryFlagItemImg = itemView.findViewById<ImageView>(R.id.countryFlagItemImg)
+        var addTimeZone = itemView.findViewById<ImageView>(R.id.addTimeZone)
         var countryItemName = itemView.findViewById<TextView>(R.id.countryItemName)
         var countryTimeItem = itemView.findViewById<TextClock>(R.id.countryTimeItem)
         var countryTimeZoneItem = itemView.findViewById<TextView>(R.id.countryTimeZoneItem)

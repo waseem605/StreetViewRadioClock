@@ -10,9 +10,9 @@ class WordTimeZoneModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "country")
-    var country: String,
+    var country: String?,
     @ColumnInfo(name = "iso")
-    var iso: String,
+    var iso: String?,
     @ColumnInfo(name = "timeZone")
     var timeZone: String?
 )
