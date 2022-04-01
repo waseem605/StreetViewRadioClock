@@ -10,7 +10,7 @@
     <item
         android:id="@+id/themeFragmentMenu"
         android:title="Theme"
-        android:icon="@drawable/ic_premium_icon"/>
+        android:icon="@drawable/ic_theme_icon"/>
 
     <item
         android:id="@+id/premiumFragmentMenu"
@@ -20,7 +20,7 @@
     <item
         android:id="@+id/settingFragmentMenu"
         android:title="Setting"
-        android:icon="@drawable/ic_home_icon"/>
+        android:icon="@drawable/ic_settings_icon"/>
 
 
 </menu>

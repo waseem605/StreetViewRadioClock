@@ -15,6 +15,10 @@
     <color name="appSilverColor">#CDE6DD</color>
     <color name="appIconColor">#FCFCFC</color>
     <color name="colorGrayDark">#A7A7A7</color>
+
+    <color name="appSilverDarkColor">#A4CABD</color>
+
+
     <color name="colorYellow">#E79A31</color>
     <color name="colorRedApp">#E50000</color>
     <color name="lightSilver">#EFFDF8</color>

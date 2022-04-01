@@ -143,7 +143,7 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             4->{
-                val mainIntent = Intent(requireContext(),StreetViewNearByPlacesActivity::class.java)
+                val mainIntent = Intent(requireContext(),PathsPolygonsLabelsLiveEarthMapFmActivity::class.java)
                 startActivity(mainIntent)
             }
             5->{

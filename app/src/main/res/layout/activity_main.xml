@@ -12,20 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottomBar"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/street_view_navigation_graph"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
+        tools:layout_editor_absoluteY="1dp" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginBottom="@dimen/_120sdp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,103 +39,104 @@
             android:id="@+id/liveEarthBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Live earth"
             android:layout_margin="@dimen/_5sdp"
+            android:text="Live earth"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/meetMeMainBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="meet Me"
             android:layout_margin="@dimen/_5sdp"
+            android:text="meet Me"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/liveEarthBtn"/>
+            app:layout_constraintStart_toEndOf="@id/liveEarthBtn" />
 
         <Button
             android:id="@+id/nasaGlobeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nasa"
             android:layout_margin="@dimen/_5sdp"
+            android:text="Nasa"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/meetMeMainBtn"/>
+            app:layout_constraintStart_toEndOf="@id/meetMeMainBtn" />
 
         <Button
             android:id="@+id/worldTimeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="time"
             android:layout_margin="@dimen/_5sdp"
+            android:text="time"
             app:layout_constraintBottom_toTopOf="@id/liveEarthBtn"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/nearMeLocations"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Near me"
             android:layout_margin="@dimen/_5sdp"
+            android:text="Near me"
             app:layout_constraintBottom_toTopOf="@id/liveEarthBtn"
-            app:layout_constraintStart_toEndOf="@id/worldTimeBtn"/>
+            app:layout_constraintStart_toEndOf="@id/worldTimeBtn" />
 
         <Button
             android:id="@+id/weather"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="weather"
             android:layout_margin="@dimen/_5sdp"
+            android:text="weather"
             app:layout_constraintBottom_toTopOf="@id/liveEarthBtn"
-            app:layout_constraintStart_toEndOf="@id/nearMeLocations"/>
+            app:layout_constraintStart_toEndOf="@id/nearMeLocations" />
+
         <Button
             android:id="@+id/travelExpense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Expense"
             android:layout_margin="@dimen/_5sdp"
+            android:text="Expense"
             app:layout_constraintBottom_toTopOf="@id/worldTimeBtn"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/navigation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="navigation"
             android:layout_margin="@dimen/_5sdp"
+            android:text="navigation"
             app:layout_constraintBottom_toTopOf="@id/nearMeLocations"
-            app:layout_constraintStart_toEndOf="@id/travelExpense"/>
+            app:layout_constraintStart_toEndOf="@id/travelExpense" />
+
         <Button
             android:id="@+id/locationTracking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tracking"
             android:layout_margin="@dimen/_5sdp"
+            android:text="Tracking"
             app:layout_constraintBottom_toTopOf="@id/nearMeLocations"
-            app:layout_constraintStart_toEndOf="@id/navigation"/>
+            app:layout_constraintStart_toEndOf="@id/navigation" />
 
         <Button
             android:id="@+id/speedMeter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="speedMeter"
             android:layout_margin="@dimen/_5sdp"
+            android:text="speedMeter"
             app:layout_constraintBottom_toTopOf="@id/travelExpense"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        app:backgroundColor="#00000000"
         android:background="@drawable/bottom_bar_background"
-        app:menu="@menu/street_bottom_menu"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:backgroundColor="#00000000"
+       app:indicatorRadius="@dimen/_6sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/street_bottom_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

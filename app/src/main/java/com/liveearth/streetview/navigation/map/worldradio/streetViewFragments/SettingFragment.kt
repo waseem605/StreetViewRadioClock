@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentSettingBinding
 
 class SettingFragment : Fragment() {
@@ -18,8 +19,13 @@ class SettingFragment : Fragment() {
         binding = FragmentSettingBinding.inflate(layoutInflater,container,false)
 
 
+        clickListenerSetting()
 
         return binding.root
+    }
+
+    private fun clickListenerSetting() {
+        binding.toolbarLt.titleTx.text =getString(R.string.setting)
     }
 
 }

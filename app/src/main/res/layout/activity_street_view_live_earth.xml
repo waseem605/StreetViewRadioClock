@@ -68,6 +68,7 @@
                     android:background="@android:color/transparent"
                     android:ellipsize="end"
                     android:hint="@string/type_address_here"
+                    android:textColor="@color/appIconColor"
                     android:maxLines="1"
                     android:paddingStart="@dimen/_5sdp"
                     android:paddingEnd="@dimen/_5sdp"
