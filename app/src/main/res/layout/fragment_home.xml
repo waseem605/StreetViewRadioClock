@@ -71,6 +71,18 @@
             app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
             app:layout_constraintStart_toEndOf="@id/weatherTemp"/>
 
+
+        <ImageView
+            android:id="@+id/weatherTodayIcon"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:src="@drawable/ic_weather_temp"
+            app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
+            app:layout_constraintStart_toEndOf="@id/weatherUnit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/weatherTemp" />
+
         <TextView
             android:id="@+id/weatherTodayType"
             android:layout_width="wrap_content"

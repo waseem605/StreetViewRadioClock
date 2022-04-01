@@ -13,12 +13,17 @@ import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WeatherCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper.Companion.getDateTimeFromDateInString
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper.Companion.getForWeekly
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper.Companion.setDate
 
 
 class WeatherDaysAdapter(
-    private val modelArrayList: ArrayList<HomeFragmentModel>,
+    private val modelArrayList: ArrayList<WeatherList>,
     private val context: Context,
     val callBack: WeatherCallBack
 
@@ -28,17 +33,19 @@ class WeatherDaysAdapter(
           val view =
               LayoutInflater.from(context).inflate(R.layout.sample_weather_item_week, parent, false)
           return ListViewHolder(view)
-
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
+            holder.weatherDayItem.text = getForWeekly(model.dt.toLong())
+            holder.weatherDateItem.text = StreetViewWeatherHelper.getWeatherDate(model.dt.toLong(), 1)
+            holder.weatherTempItem.text = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
 
-            holder.weatherDayItem.text = model.title
-            holder.weatherDateItem.text = model.title
+            Glide.with(context)
+                .load(StreetViewWeatherHelper.getIcon(model.weather[0].icon))
+                .into(holder.weatherImageItem)
 
-           //Glide.with(context).load("https://flagpedia.net/data/flags/normal/${model.iso}.png").into(holder.countryFlagItemImg)
           /*  holder.itemView.setOnClickListener {
                 callBack.onLocationInfo(model)
             }*/
@@ -52,9 +59,10 @@ class WeatherDaysAdapter(
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //var countryFlagItemImg = itemView.findViewById<ImageView>(R.id.countryFlagItemImg)
+        var weatherImageItem = itemView.findViewById<ImageView>(R.id.weatherImageItem)
         var weatherDayItem = itemView.findViewById<TextView>(R.id.weatherDayItem)
         var weatherDateItem = itemView.findViewById<TextView>(R.id.weatherDateItem)
+        var weatherTempItem = itemView.findViewById<TextView>(R.id.weatherTempItem)
 
 
     }

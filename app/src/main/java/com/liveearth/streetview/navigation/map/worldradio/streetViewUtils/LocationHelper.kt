@@ -112,7 +112,7 @@ class LocationHelper() {
             return latLng
         }
 
-        fun hideKeyboad(mContext: Context) {
+        fun hideKeyboard(mContext: Context) {
             try {
                 val imm: InputMethodManager =
                     mContext.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -148,6 +148,7 @@ class LocationHelper() {
         }
 
 
+
         fun getCurrentDateTime(mContext: Context,dateTimeType:Int):String {
             val calendar = Calendar.getInstance()
             val simpleDateFormat = SimpleDateFormat("E, dd-MMM-yyyy hh:mm:ss:a")
@@ -173,19 +174,20 @@ class LocationHelper() {
             return data
         }
 
-        fun getDateTimeFromDateInString(date:Date,dateTimeType:Int):String {
-            val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm:a")
+        fun getDateTimeFromDateInString(date:Int,dateTimeType:Int):String {
+            val simpleDateFormat = SimpleDateFormat("E dd-MMM-yyyy hh:mm:a")
             val dateTime = simpleDateFormat.format(date).toString()
             val delimiter = " "
             val parts = dateTime.split(delimiter)
-            val timeReturn = parts[1]
-            val dateReturn = parts[0]
+            val timeReturn = parts[2]
+            val dateReturn = parts[1]
+            val dayReturn = parts[0]
             var data = ""
             when (dateTimeType) {
                 1 ->
                     data= "${timeReturn} $dateReturn"
                 2 ->
-                    data = dateReturn
+                    data = "$dayReturn,$dateReturn"
                 3 ->
                     data = timeReturn
             }

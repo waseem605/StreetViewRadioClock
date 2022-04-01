@@ -38,6 +38,8 @@ object ConstantsStreetView {
     const val INTENT_Value = "INTENT_Value"
     const val Show_ADD_Btn = "Show_ADD_Btn"
 
+    //CurrentAddress
+    var CURRENT_ADDRESS = "CurrentAddress"
 
     //background Services
     const val MY_TIMER_BROADCAST = "MY_TIMER_BROADCAST"

@@ -173,6 +173,8 @@ class HomeFragment : Fragment() {
                         LiveEarthAddressFromLatLng.GeoTaskCallback{
                         override fun onSuccessLocationFetched(fetchedAddress: String?) {
                             binding.currentAddress.text = fetchedAddress
+                            ConstantsStreetView.CURRENT_ADDRESS = fetchedAddress!!
+
                         }
 
                         override fun onFailedLocationFetched() {
@@ -192,8 +194,8 @@ class HomeFragment : Fragment() {
                 setData(data)
 
                 try {
-                   // Glide.with(this@HomeFragment).load(StreetViewWeatherHelper.getIcon(data.list[0].weather[0].icon)).into(binding.weatherImg)
-                    binding.todayDate.text = StreetViewWeatherHelper.setDate(data.list[0].dt_txt,1)
+                    Glide.with(this@HomeFragment).load(StreetViewWeatherHelper.getIcon(data.list[0].weather[0].icon)).into(binding.weatherTodayIcon)
+                    binding.todayDate.text =  StreetViewWeatherHelper.getWeatherDate(data.list[0].dt.toLong(), 1)
                     binding.weatherTodayType.text = data.list[0].weather[0].main.toString()
                 } catch (e: Exception) {
                 }

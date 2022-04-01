@@ -6,278 +6,218 @@
     android:layout_height="match_parent"
     tools:context=".activities.StreetViewWeatherDetailsActivity">
 
-
-    <include layout="@layout/custom_toolbar"
-        android:id="@+id/toolbar"/>
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:background="@color/appMainColor"
-    app:layout_constraintTop_toBottomOf="@id/toolbar"
-    app:layout_constraintBottom_toBottomOf="parent">
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchLocationLayout"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_margin="@dimen/_25sdp"
-        android:background="@drawable/line_border_silver"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/searchLocationEt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:background="@android:color/transparent"
-            android:ellipsize="end"
-            android:hint="@string/type_address_here"
-            android:maxLines="1"
-            android:paddingStart="@dimen/_5sdp"
-            android:paddingEnd="@dimen/_5sdp"
-            android:textColorHint="@color/appSilverColor"
-            android:textSize="@dimen/_11ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/searchImg"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!--
-                        <EditText
-                            android:id="@+id/searchLocationEt"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/type_address_here"
-                            android:maxLines="1"
-                            android:inputType="text"
-                            android:ellipsize="end"
-                            android:textCursorDrawable="@drawable/custome_curser_style_color"
-                            android:imeOptions="actionSearch"
-                            android:layout_marginTop="@dimen/_5sdp"
-                            android:paddingStart="@dimen/_5sdp"
-                            android:paddingEnd="@dimen/_5sdp"
-                            android:layout_marginBottom="@dimen/_5sdp"
-                            android:background="@android:color/transparent"
-                            android:textColorHint="@color/appSilverColor"
-                            android:layout_marginStart="@dimen/_8sdp"
-                            android:textSize="@dimen/_11ssp"
-                            app:layout_constraintEnd_toStartOf="@id/searchImg"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />-->
-
-        <ImageView
-            android:id="@+id/searchImg"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="@dimen/_3sdp"
-            android:padding="@dimen/_2sdp"
-            android:src="@drawable/ic_search_icon"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/todayDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:text="date"
-        android:textSize="@dimen/_18ssp"
-        android:gravity="center"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/searchLocationLayout"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/todayDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/todayDate"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-
-        <com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.STVTextViewBold
-            android:id="@+id/weatherTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="24"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:textSize="@dimen/_80ssp"
-            android:textColor="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/weatherUnit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="C"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:textSize="@dimen/_20ssp"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toTopOf="@id/weatherTemp"
-            app:layout_constraintStart_toEndOf="@id/weatherDegree"/>
-
-        <TextView
-            android:id="@+id/weatherDegree"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="o"
-            android:textSize="@dimen/_16ssp"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:textColor="@color/white"
-            android:layout_marginTop="@dimen/_5sdp"
-            app:layout_constraintTop_toTopOf="@id/weatherTemp"
-            app:layout_constraintStart_toEndOf="@id/weatherTemp"/>
-
-        <ImageView
-            android:id="@+id/weatherTodayIcon"
-            android:layout_width="@dimen/_100sdp"
-            android:layout_height="0dp"
-            android:src="@drawable/ic_weather_temp"
-            app:layout_constraintStart_toEndOf="@id/weatherUnit"
-            app:layout_constraintTop_toTopOf="@id/weatherTemp"
-            app:layout_constraintBottom_toTopOf="@id/weatherTodayType"/>
-
-        <TextView
-            android:id="@+id/weatherTodayType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_12ssp"
-            android:layout_marginStart="@dimen/_3sdp"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/weatherTodayIcon"
-            app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
-            app:layout_constraintStart_toStartOf="@id/weatherTodayIcon"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/detailsMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:background="@drawable/line_rounded_border_silver"
-        app:layout_constraintTop_toBottomOf="@id/todayDetails"
-        android:padding="@dimen/_5sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <TextView
-            android:id="@+id/detailsTx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="See Details"
-            android:textColor="@color/white"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:src="@drawable/ic_baseline_navigate_next_24"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/detailsTx"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:background="@drawable/bottom_bar_background"
-        android:backgroundTint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/detailsMore"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dayRecycler"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardElevation="@dimen/_8sdp"
-        android:visibility="gone"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:background="@color/appMainColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/searchLocationLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="@dimen/_30sdp"
+            android:layout_margin="@dimen/_25sdp"
+            android:background="@drawable/line_border_silver"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/weatherToday"
-                android:layout_width="wrap_content"
+                android:id="@+id/searchLocationEt"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:maxLines="1"
-                android:text="weather"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@android:color/transparent"
                 android:ellipsize="end"
+                android:hint="@string/type_address_here"
+                android:textColor="@color/white"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:textColorHint="@color/appSilverColor"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/searchImg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/weatherTodayImage"
-                android:textSize="@dimen/_16ssp"
-                android:textColor="@color/black"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--
+                            <EditText
+                                android:id="@+id/searchLocationEt"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/type_address_here"
+                                android:maxLines="1"
+                                android:inputType="text"
+                                android:ellipsize="end"
+                                android:textCursorDrawable="@drawable/custome_curser_style_color"
+                                android:imeOptions="actionSearch"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:paddingStart="@dimen/_5sdp"
+                                android:paddingEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:background="@android:color/transparent"
+                                android:textColorHint="@color/appSilverColor"
+                                android:layout_marginStart="@dimen/_8sdp"
+                                android:textSize="@dimen/_11ssp"
+                                app:layout_constraintEnd_toStartOf="@id/searchImg"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />-->
 
             <ImageView
-                android:id="@+id/weatherTodayImage"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                app:layout_constraintTop_toBottomOf="@id/weatherToday"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
-            <TextClock
-                android:id="@+id/weatherTimeItem"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:layout_marginStart="@dimen/_10sdp"
-                app:layout_constraintStart_toEndOf="@id/weatherTodayImage"
-                app:layout_constraintTop_toTopOf="@id/weatherTodayImage"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="@color/black"/>
+                android:id="@+id/searchImg"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/ic_search_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/todayDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="date"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toBottomOf="@id/searchLocationLayout" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/todayDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/todayDate">
+
+
+            <com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.STVTextViewBold
+                android:id="@+id/weatherTemp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textSize="@dimen/_80ssp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/weatherUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="C"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintStart_toEndOf="@id/weatherDegree"
+                app:layout_constraintTop_toTopOf="@id/weatherTemp" />
+
+            <TextView
+                android:id="@+id/weatherDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="o"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toEndOf="@id/weatherTemp"
+                app:layout_constraintTop_toTopOf="@id/weatherTemp" />
+
+            <ImageView
+                android:id="@+id/weatherTodayIcon"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintBottom_toTopOf="@id/weatherTodayType"
+                app:layout_constraintStart_toEndOf="@id/weatherUnit"
+                app:layout_constraintTop_toTopOf="@id/weatherTemp" />
+
+            <TextView
+                android:id="@+id/weatherTodayType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
+                app:layout_constraintStart_toStartOf="@id/weatherTodayIcon"
+                app:layout_constraintTop_toBottomOf="@id/weatherTodayIcon" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/detailsMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/line_rounded_border_silver"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/todayDetails">
+
+            <TextView
+                android:id="@+id/detailsTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:text="See Details"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:src="@drawable/ic_baseline_navigate_next_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/detailsTx"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/bottom_bar_background"
+            android:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailsMore">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dayRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

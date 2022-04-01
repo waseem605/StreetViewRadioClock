@@ -151,7 +151,6 @@ class WordTimeActivity : BaseStreetViewActivity() {
                         }
 
                         override fun onClickAddTimeZone(model: WorldClockModel) {
-                            Log.d("onBindViewHolder", "size: " + model.timezone)
                             addToMyTimeZone(model)
                         }
 
@@ -165,8 +164,7 @@ class WordTimeActivity : BaseStreetViewActivity() {
     }
 
     private fun addToMyTimeZone(model: WorldClockModel) {
-
-
+        Log.d("onBindViewHolder", "click===========: " + model.timezone)
         val repository = WorldTimeZoneRepository(StreetViewDatabase(this))
         val factory = WorldTimeZoneViewModelFactory(repository)
         val viewModel: WorldTimeZoneViewModel =
@@ -175,8 +173,11 @@ class WordTimeActivity : BaseStreetViewActivity() {
         try {
             GlobalScope.launch {
                 withContext(Dispatchers.Main){
-                    if (viewModel.getDataByTimeZone(model.timezone!!)!!.equals(model.timezone)){
+
+
+                    if (viewModel.getDataByTimeZone(model.timezone!!) !=null){
                         setToast(this@WordTimeActivity, "Already Exist ")
+
                     }else{
                         viewModel.insertTimeZone(
                             WordTimeZoneModel(
@@ -192,7 +193,6 @@ class WordTimeActivity : BaseStreetViewActivity() {
             }
         } catch (e: Exception) {
         }
-
 
     }
 

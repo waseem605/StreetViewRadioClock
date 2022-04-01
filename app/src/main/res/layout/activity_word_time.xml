@@ -106,7 +106,6 @@
             app:layout_constraintTop_toTopOf="@id/addTimeZone"
             app:layout_constraintBottom_toBottomOf="@id/addTimeZone"/>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/addTimeZone"
             android:layout_width="@dimen/_50sdp"
@@ -124,8 +123,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_add_time_zone"/>
+                android:layout_margin="@dimen/_10sdp"
+                android:src="@drawable/ic_add_time_zone_icon"/>
 
         </androidx.cardview.widget.CardView>
 

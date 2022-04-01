@@ -3,6 +3,7 @@ package com.liveearth.streetview.navigation.map.worldradio.streetViewUtils
 import android.annotation.SuppressLint
 import android.util.Log
 import com.liveearth.streetview.navigation.map.worldradio.R
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -11,6 +12,8 @@ import kotlin.math.roundToInt
 @SuppressLint("LogNotTimber")
 class StreetViewWeatherHelper() {
     companion object{
+
+        var arrayListWeather = ArrayList<WeatherList>()
 
         fun kalvinToCelsius(x:Double):Int{
             val temp = x  - 273.15
@@ -25,7 +28,6 @@ class StreetViewWeatherHelper() {
         }
 
         fun setDate(date:String,index:Int):String{
-
             var simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm:a")
             val cal = Calendar.getInstance()
             //val dateTime =cal.setTime(simpleDateFormat.parse(date))
@@ -61,6 +63,30 @@ class StreetViewWeatherHelper() {
             return vv
         }
 
+        fun getWeatherDate(timestamp: Long,index: Int): String? {
+            try {
+                val calendar = Calendar.getInstance()
+                val tz = TimeZone.getDefault()
+                calendar.timeInMillis = timestamp * 1000
+                calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
+                val sdf = SimpleDateFormat("dd-MMM-yyyy hh:mm:a")
+                val currenTimeZone = calendar.time as Date
+                //return sdf.format(currenTimeZone)
+
+                val delimiter = " "
+                val parts = sdf.format(currenTimeZone).split(delimiter)
+                val currentTime = parts[1]
+                val currentDate = parts[0]
+                if (index == 1){
+                    return currentDate
+                }else{
+                    return currentTime
+                }
+            } catch (e: Exception) {
+            }
+            return ""
+        }
+
 
         fun getForWeekly(timestamp: Long): String? {
             try {
@@ -68,9 +94,8 @@ class StreetViewWeatherHelper() {
                 val tz = TimeZone.getDefault()
                 calendar.timeInMillis = timestamp * 1000
                 calendar.add(Calendar.MILLISECOND, tz.getOffset(calendar.timeInMillis))
-                val sdf = SimpleDateFormat("dd MMM, EEEE")
+                val sdf = SimpleDateFormat("EEEE")
                 val currenTimeZone = calendar.time as Date
-
                 Log.d("timePickerDialog", "onCreate: =====time==============${sdf.format(currenTimeZone)}")
 
                 return sdf.format(currenTimeZone)
@@ -78,7 +103,6 @@ class StreetViewWeatherHelper() {
             }
             return ""
         }
-/*
         public fun getIcon(b: String): Int {
             var drw: Int? = null
             when (b) {
@@ -102,7 +126,7 @@ class StreetViewWeatherHelper() {
                 "50n" -> drw= R.drawable.icon_weather_50n
             }
             return drw!!
-        }*/
+        }
 
     }
 }

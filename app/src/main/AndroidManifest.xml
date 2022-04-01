@@ -19,6 +19,9 @@
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.StreetViewWeatherMoreDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.StreetViewWorldClockActivity"
             android:exported="false" />
         <activity
