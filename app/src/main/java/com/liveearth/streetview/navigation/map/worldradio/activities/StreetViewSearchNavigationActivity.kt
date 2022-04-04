@@ -74,6 +74,8 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         binding.addMoreLocation.setOnClickListener {
             addMoreLocations()
         }
+        binding.searchLayout.setOnClickListener {
+        }
 
         binding.currentLocationImage.setOnClickListener {
             userCurrentLocation()
@@ -133,6 +135,26 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
             startActivityForResult(intent, 302)
+        }
+        binding.voiceThreeLocation.setOnClickListener {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            startActivityForResult(intent, 303)
+        }
+        binding.voiceDestinationBtn.setOnClickListener {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            startActivityForResult(intent, 304)
+        }
+
+        binding.backLink.setOnClickListener {
+            onBackPressed()
         }
 
         designConditions()
@@ -197,6 +219,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
             val intent = Intent(this, StreetViewRouteActivity::class.java)
             intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
             intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
+            intent.putExtra(ConstantsStreetView.MultiPointsRoute,false)
             intent.putExtra(ConstantsStreetView.DestinationLatitude, mLatitudeDestination)
             intent.putExtra(ConstantsStreetView.DestinationLongitude, mLongitudeDestination)
             startActivity(intent)
@@ -253,7 +276,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         mapboxMap.uiSettings.attributionGravity = Gravity.TOP
 
         userCurrentLocation()
-
+        mapStyleOptionClickListener()
     }
 
     private fun setLocationMarker(latLng: LatLng, mapbox: MapboxMap) {
@@ -270,6 +293,12 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     }
 
     private fun setLocationMarkerDestination(latLng: LatLng, mapbox: MapboxMap) {
+        customRoutList.add(
+            LatLng(
+                mLatitudeDestination,
+                mLongitudeDestination
+            )
+        )
         //origin = Point.fromLngLat(latLng.longitude, latLng.latitude)
         LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapbox, zoom)
         if (mLocationMarkerDestination != null) {
@@ -332,32 +361,11 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
                     if (feature != null) {
                         if (feature.center() != null) {
                             if (feature.center()!!.coordinates().isNotEmpty()) {
-                                mLatitudeTwo = feature.center()?.coordinates()!!.get(1)
+                                mLatitudeThree = feature.center()?.coordinates()!!.get(1)
                                 mLongitudeThree = feature.center()?.coordinates()!!.get(0)
-                                customRoutList.add(
-                                    LatLng(
-                                       mLatitudeTwo,
-                                        mLongitudeThree
-                                    )
-                                )
+                                setLocationMarkerThree(LatLng(mLatitudeThree,mLongitudeThree),mapbox)
                                 binding.locationThree.text = feature.text()!!
-                                LocationHelper.setZoomMarker(
-                                    mLatitudeTwo,
-                                    mLongitudeThree,
-                                    mapbox,
-                                    zoom
-                                )
-                                if (mLocationMarkerThree != null) {
-                                    mLocationMarkerThree!!.remove()
-                                }
-                                mLocationMarkerThree = mapbox.addMarker(
-                                    MarkerOptions().position(
-                                        LatLng(
-                                            mLatitudeTwo,
-                                            mLongitudeThree
-                                        )
-                                    )
-                                )
+
                             }
                         }
                     }
@@ -371,12 +379,6 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
                             if (feature.center()!!.coordinates().isNotEmpty()) {
                                 mLatitudeDestination = feature.center()?.coordinates()!!.get(1)
                                 mLongitudeDestination = feature.center()?.coordinates()!!.get(0)
-                                customRoutList.add(
-                                    LatLng(
-                                        mLatitudeDestination,
-                                        mLongitudeDestination
-                                    )
-                                )
                                 binding.locationDestination.text = feature.text()!!
                                 setLocationMarkerDestination(
                                     LatLng(mLatitudeDestination, mLongitudeDestination),
@@ -389,6 +391,28 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
             }
             302 -> {
                 if (requestCode == 302 && resultCode == Activity.RESULT_OK) {
+                    val arrayList: ArrayList<String> =
+                        data !!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
+                    val voiceText: String = arrayList.get(0)
+                    latLongFromAddress(voiceText, requestCode)
+                    Log.d("onActivityResult", "onActivityResult  voiceText: $voiceText")
+                } else {
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+            303 -> {
+                if (requestCode == 303 && resultCode == Activity.RESULT_OK) {
+                    val arrayList: ArrayList<String> =
+                        data !!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
+                    val voiceText: String = arrayList.get(0)
+                    latLongFromAddress(voiceText, requestCode)
+                    Log.d("onActivityResult", "onActivityResult  voiceText: $voiceText")
+                } else {
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+            304 -> {
+                if (requestCode == 304 && resultCode == Activity.RESULT_OK) {
                     val arrayList: ArrayList<String> =
                         data !!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
                     val voiceText: String = arrayList.get(0)
@@ -427,18 +451,49 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         )
     }
 
-    private fun latLongFromAddress(voiceText: String, requestCode: Int) {
+    private fun setLocationMarkerThree(latLng: LatLng, mapbox: MapboxMap) {
+        customRoutList.add(
+            LatLng(
+                latLng.latitude,
+                latLng.longitude
+            )
+        )
+        LocationHelper.setZoomMarker(
+            latLng.latitude,
+            latLng.longitude,
+            mapbox,
+            zoom
+        )
+        if (mLocationMarkerThree != null) {
+            mLocationMarkerThree!!.remove()
+        }
+        mLocationMarkerThree = mapbox.addMarker(
+            MarkerOptions().position(
+                LatLng(
+                    latLng.latitude,
+                    latLng.longitude
+                )
+            )
+        )
+    }
 
+    private fun latLongFromAddress(voiceText: String, requestCode: Int) {
         if (voiceText !=""){
             StreetViewGeocoderFromAddress(this,voiceText,object :StreetViewGeocoderFromAddress.GeoTaskCallback{
-
                 override fun onSuccessLocationFetched(fetchedLatLngs: LatLng?) {
                     Log.d("onActivityResult", "onActivityResult  voiceText: ${fetchedLatLngs!!.latitude}")
-
                     when (requestCode){
                         302->{
                             binding.locationTwo.setText(voiceText)
                             setLocationMarkerTwo(fetchedLatLngs,mapbox)
+                        }
+                        303->{
+                            binding.locationThree.setText(voiceText)
+                            setLocationMarkerThree(fetchedLatLngs,mapbox)
+                        }
+                        304->{
+                            binding.locationDestination.setText(voiceText)
+                            setLocationMarkerDestination(fetchedLatLngs,mapbox)
                         }
                     }
                 }
@@ -447,7 +502,36 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
                     Log.d("onActivityResult", "onActivityResult  error:")
                 }
 
-            })
+            }).execute()
         }
     }
+
+
+    private fun mapStyleOptionClickListener() {
+        binding.mapStyleOption.setOnClickListener{
+            if (binding.mapLayerLayout.isVisible){
+                binding.mapLayerLayout.visibility = View.GONE
+            }else{
+                binding.mapLayerLayout.visibility = View.VISIBLE
+            }
+        }
+        binding.trafficMap.setOnClickListener{
+            mapbox.setStyle(Style.TRAFFIC_DAY)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.satelliteMap.setOnClickListener{
+            mapbox.setStyle(Style.SATELLITE)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.normalMapStyle.setOnClickListener{
+            mapbox.setStyle(Style.MAPBOX_STREETS)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.darkMapStyle.setOnClickListener{
+            mapbox.setStyle(Style.DARK)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+
+    }
+
 }

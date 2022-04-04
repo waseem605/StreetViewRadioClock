@@ -80,14 +80,13 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
         try {
             mMultiPointsRoute = intent.getBooleanExtra(ConstantsStreetView.MultiPointsRoute,false)
 
-
             lat = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude, 0.0)
             long = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude, 0.0)
             destinationlat = intent.getDoubleExtra(ConstantsStreetView.DestinationLatitude, 0.0)
             destinationLong = intent.getDoubleExtra(ConstantsStreetView.DestinationLongitude, 0.0)
             if (mMultiPointsRoute){
                 Log.d(TAG,"==customRoutListPoints===84===")
-                mMultiPointsRoute = true
+                //mMultiPointsRoute = true
                 customRoutList =
                     intent.getParcelableArrayListExtra<LatLng>(ConstantsStreetView.MultiPointsRouteList) as ArrayList<LatLng>
                 for (i in 0 until customRoutList.size){
@@ -141,8 +140,7 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
             locationComponent.isLocationComponentEnabled = true
             locationComponent.renderMode = RenderMode.NORMAL
 
-
-            if(customRoutListPoints != null){
+            if(mMultiPointsRoute){
                 getRouteList(mapboxMap,customRoutListPoints,origin!!)
                 //mapboxMap.addMarker(MarkerOptions().position(LatLng(origin!!.latitude(), origin!!.longitude())))
 
@@ -164,8 +162,6 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         mapboxMap.uiSettings.logoGravity = Gravity.TOP
         mapboxMap.uiSettings.attributionGravity = Gravity.TOP
-
-
     }
 
     private fun initSource(@NonNull loadedMapStyle: Style) {

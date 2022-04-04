@@ -17,7 +17,7 @@
         app:sv_unitTextColor="@color/white"
         app:sv_speedTextColor="@color/white"
         android:fitsSystemWindows="true"
-        app:sv_image="@drawable/ic_speedometer_body"
+        app:sv_image="@drawable/ic_speedo_meter_image"
         android:layout_marginTop="@dimen/_100sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

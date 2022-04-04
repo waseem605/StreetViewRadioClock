@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.Manifest
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -11,16 +12,20 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.centurionnavigation.dialogs.LocationEnableRequestDialogueBox
 import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
+import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityBaseStreetViewBinding
+import java.lang.Exception
 
 open class BaseStreetViewActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBaseStreetViewBinding
+    private lateinit var mProgressDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -136,6 +141,29 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION), 1)
+    }
+
+
+
+
+    fun showProgressDialog(mContext: Context){
+        try {
+            mProgressDialog = Dialog(mContext)
+            mProgressDialog.setContentView(R.layout.dialog_progress)
+            mProgressDialog.setCancelable(true)
+            mProgressDialog.setCanceledOnTouchOutside(false)
+            mProgressDialog.show()
+        } catch (e: Exception) {
+        }
+    }
+
+    fun hideProgressDialog(mContext: Context){
+        try {
+            //mProgressDialog = Dialog(mContext)
+            Log.d("mProgressDialog", "hideProgressDialog: =========================")
+            mProgressDialog.dismiss()
+        } catch (e: Exception) {
+        }
     }
 
 }

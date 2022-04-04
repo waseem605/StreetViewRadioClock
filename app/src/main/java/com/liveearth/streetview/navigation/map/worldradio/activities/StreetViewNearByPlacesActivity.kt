@@ -1,10 +1,16 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.location.Location
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,8 +38,10 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
+import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
+import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
 
-class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
+class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityStreetViewNearByPlacesBinding
     val TAG = "StreetViewNearBy"
     private var latitude: Double = 0.0
@@ -48,6 +56,7 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
     private var mDestination: Point? = null
     var zoom: Int = 16
     var flagMap: Boolean = true
+    lateinit var animationDownToUp: Animation
     private var mLocationsList: ArrayList<NearLocationsModel> = ArrayList()
     private lateinit var myRepository: LocationRepository
 
@@ -59,8 +68,23 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView = findViewById(R.id.mapViewNearMe)
         mapView.onCreate(savedInstanceState)
         mapViewResult()
+        animationDownToUp = AnimationUtils.loadAnimation(this, R.anim.slide_point_up)
 
 
+        binding.searchCurrentLocation.setOnClickListener {
+            val placeOptions =
+                PlaceOptions.builder().backgroundColor(resources.getColor(R.color.white))
+                    .build(PlaceOptions.MODE_FULLSCREEN)
+            val intent = PlaceAutocomplete.IntentBuilder()
+                .placeOptions(placeOptions)
+                .accessToken(ConstantsStreetView.accessToken)
+                .build(this)
+            startActivityForResult(intent, 1)
+        }
+        binding.bottomLayout.setOnClickListener {  }
+        binding.backLink.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun mapViewResult() {
@@ -86,9 +110,15 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun searchNearLocation() {
+        showProgressDialog(this)
         val apiLocationServices = StreetViewLocationAPIServices(object : StreetViewNearByCallBack {
             override fun onSuccess(data: StreetViewNearPlacesModel) {
                 val nearLocationData = data.results
+                hideProgressDialog(this@StreetViewNearByPlacesActivity)
+                /* Handler(Looper.getMainLooper()).postDelayed({
+                     binding.locationRecycler.visibility = View.VISIBLE
+                     binding.locationRecycler.startAnimation(animationDownToUp)
+                 }, 500)*/
 
                 if (nearLocationMarker != null) {
                     nearLocationMarker!!.remove()
@@ -129,7 +159,10 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun showNearLocationsRecycler(nearLocationData: ArrayList<Result>) {
-        //binding.meetMeSearchBtn.visibility = View.GONE
+         binding.bottomLayout.startAnimation(animationDownToUp)
+         binding.bottomLayout.visibility = View.VISIBLE
+              binding.meetMeSearchBtn.visibility = View.GONE
+
         val adapterLocations = NearMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
             override fun onLocationInfo(model: Result) {
 
@@ -144,10 +177,11 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun shareLocation(model: Result) {
-
+                LocationHelper.shareLocation(this@StreetViewNearByPlacesActivity,model.geocodes.main.latitude,model.geocodes.main.longitude)
             }
 
             override fun addToFavouriteLocation(model: Result) {
+
             }
 
             override fun onClickOfItemLocation(model: Result, pos: Int) {
@@ -230,6 +264,29 @@ class StreetViewNearByPlacesActivity : AppCompatActivity(), OnMapReadyCallback {
             binding.mapLayerLayout.visibility = View.GONE
         }
         */
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            1 -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val feature = PlaceAutocomplete.getPlace(data)
+                    if (feature != null) {
+                        if (feature.center() != null) {
+                            if (feature.center()!!.coordinates().isNotEmpty()) {
+                                binding.searchCurrentLocation.text = feature.text()!!
+                                setLocationMarker(
+                                    LatLng(feature.center()?.coordinates()!!.get(1),  feature.center()?.coordinates()!!.get(0)),
+                                    mapbox
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }

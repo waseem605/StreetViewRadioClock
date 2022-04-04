@@ -17,78 +17,144 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <androidx.cardview.widget.CardView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_15sdp"
-            android:layout_margin="@dimen/_25sdp"
+            android:background="@drawable/top_background_white"
+            android:backgroundTint="@color/appMainColor"
             app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+<!--
+            <EditText
+                android:id="@+id/searchCurrentLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp">
+                android:hint="@string/type_address_here"
+                android:maxLines="1"
+                android:inputType="text"
+                android:ellipsize="end"
+                android:textCursorDrawable="@drawable/custome_curser_style_color"
+                android:imeOptions="actionSearch"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:background="@android:color/transparent"
+                android:textColorHint="@color/black"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />-->
 
-                <EditText
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/lt021"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBaseline_toBottomOf="parent"
+                android:background="@drawable/line_border_silver">
+
+                <ImageView
+                    android:id="@+id/backLink"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/back_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:tint="@color/white" />
+
+                <TextView
                     android:id="@+id/searchCurrentLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
                     android:hint="@string/type_address_here"
                     android:maxLines="1"
-                    android:inputType="text"
                     android:ellipsize="end"
-                    android:textCursorDrawable="@drawable/custome_curser_style_color"
-                    android:imeOptions="actionSearch"
+                    android:gravity="center_vertical"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:background="@android:color/transparent"
-                    android:textColorHint="@color/black"
-                    android:layout_marginStart="@dimen/_8sdp"
+                    android:textColorHint="@color/appIconColor"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="@dimen/_3sdp"
                     android:textSize="@dimen/_11ssp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/backLink"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/searchIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <EditText
-                    android:id="@+id/searchLocationEt"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/type_address_here"
-                    android:maxLines="1"
-                    android:inputType="text"
-                    android:ellipsize="end"
-                    android:textCursorDrawable="@drawable/custome_curser_style_color"
-                    android:imeOptions="actionSearch"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@android:color/transparent"
-                    android:textColorHint="@color/black"
-                    android:textSize="@dimen/_11ssp"
+
+                <ImageView
+                    android:id="@+id/searchIcon"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_search_icon"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/searchCurrentLocation"
-                    android:autofillHints="Location" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_15sdp"
+                app:layout_constraintTop_toBottomOf="@id/lt021"/>
 
-        </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/meetMeSearchBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Search"
+            android:text="@string/search"
+            app:cornerRadius="@dimen/_20sdp"
             android:layout_margin="@dimen/_10sdp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14ssp"
+            android:backgroundTint="@color/appMainColor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/locationRecycler"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            app:layout_constraintBottom_toTopOf="@id/meetMeSearchBtn"/>
+            android:visibility="gone"
+            android:background="@drawable/bottom_bar_background"
+            android:backgroundTint="@color/white"
+            android:elevation="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/text54"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14ssp"
+                android:text="Near your Locations"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_margin="@dimen/_20sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/locationRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text54"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

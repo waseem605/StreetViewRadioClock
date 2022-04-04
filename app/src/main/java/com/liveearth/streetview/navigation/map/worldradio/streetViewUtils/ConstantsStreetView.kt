@@ -33,6 +33,11 @@ object ConstantsStreetView {
     const val EXTRA_LATITUDE = "extra_latitude"
     const val EXTRA_LONGITUDE = "extra_longitude"
 
+    //Radio Intent
+    const val Radio_Country_Name = "RadioCountryName"
+
+
+
     //World Clock Intent
     const val All_TIME_INTENT = "All_TIME_INTENT"
     const val INTENT_Value = "INTENT_Value"

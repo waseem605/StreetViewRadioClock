@@ -3,6 +3,9 @@
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+
+
     <string name="ok_text">OK</string>
     <string name="permission_required">Permission Required</string>
     <string name="permission_is_needed">This permission is needed to get your location</string>
@@ -16,19 +19,20 @@
     <string name="selected_item">Selected item:</string>
     <string name="start">Start</string>
     <string name="stop_text">Stop</string>
-    <string-array name="Languages">
-        <item>Java</item>
-        <item>Kotlin</item>
-        <item>Swift</item>
-        <item>Python</item>
-        <item>Scala</item>
-        <item>Perl</item>
-    </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="popular">Popular</string>
     <string name="more_for_you">More for you</string>
     <string name="live_earth_map">Live Earth Map</string>
     <string name="world_clock">World Clock</string>
     <string name="setting">Setting</string>
+    <string name="add_expense">Add Expense</string>
+
+    <string name="traffic">Traffic</string>
+    <string name="satellite">Satellite</string>
+    <string name="dark">Dark</string>
+    <string name="normal">Normal</string>
+    <string name="navigate">Navigate</string>
+    <string name="search">Search</string>
+    <string name="please_wait">Please waite</string>
 </resources>

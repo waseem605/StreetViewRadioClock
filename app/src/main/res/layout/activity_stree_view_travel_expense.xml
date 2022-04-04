@@ -4,24 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/appMainColor"
     tools:context=".activities.StreetViewTravelExpenseActivity">
 
+    <include layout="@layout/custom_toolbar"
+        android:id="@+id/toolbar"/>
 
-    <TextView
-        android:id="@+id/txtView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Select language:"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide74"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtView" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.13"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bottom_bar_background"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/guide74"
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide76"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.45"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="@dimen/_45sdp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cornerRadius="@dimen/_20sdp"
+            android:text="@string/add_expense"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:padding="@dimen/_8sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:backgroundTint="@color/appMainColor"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

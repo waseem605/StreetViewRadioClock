@@ -19,29 +19,6 @@ class StreetViewTravelExpenseActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
-        val languages = resources.getStringArray(R.array.Languages)
-        // access the spinner
-
-        if (binding.spinner != null) {
-            val adapter = ArrayAdapter(this,
-                android.R.layout.simple_spinner_item, languages)
-            binding.spinner.adapter = adapter
-
-            binding.spinner.onItemSelectedListener = object :
-                AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>,
-                                            view: View, position: Int, id: Long) {
-                    Toast.makeText(this@StreetViewTravelExpenseActivity,
-                        getString(R.string.selected_item) + " " +
-                                "" + languages[position], Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>) {
-                    // write code to perform some action
-                }
-            }
-        }
     }
 
 

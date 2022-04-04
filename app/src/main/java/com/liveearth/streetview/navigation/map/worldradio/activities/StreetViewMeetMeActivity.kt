@@ -7,6 +7,7 @@ import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -41,6 +42,7 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
+import com.streetview.map.navigation.live.earthmap.utils.StreetViewGeocoderFromAddress
 import java.text.DecimalFormat
 
 @SuppressLint("LogNotTimber")
@@ -94,6 +96,15 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
         binding.cMeetMeBtn.setOnClickListener {
             getCurrentLocationUser()
+        }
+
+        binding.voiceDestination.setOnClickListener {
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            intent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            startActivityForResult(intent, 302)
         }
 
         binding.meetMeSearchBtn.setOnClickListener {
@@ -513,6 +524,48 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                 }
             }
+            302 -> {
+                if (requestCode == 302 && resultCode == Activity.RESULT_OK) {
+                    val arrayList: ArrayList<String> =
+                        data !!.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS) as ArrayList<String>
+                    val voiceText: String = arrayList.get(0)
+                    latLongFromAddressDestination(voiceText, requestCode)
+                    Log.d("onActivityResult", "onActivityResult  voiceText: $voiceText")
+                } else {
+                    Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun latLongFromAddressDestination(voiceText: String, requestCode: Int) {
+
+        if (voiceText !=""){
+            Log.d("onActivityResult", "onActivityResult  voiceText====: --")
+
+            StreetViewGeocoderFromAddress(this,voiceText,object : StreetViewGeocoderFromAddress.GeoTaskCallback{
+                override fun onSuccessLocationFetched(fetchedLatLngs: LatLng?) {
+
+                    Log.d("onActivityResult", "onActivityResult  voiceText====: ${fetchedLatLngs!!.latitude}")
+                    binding.searchLocationDestination.text = voiceText
+                    //binding.searchLocationDestination.setText(voiceText)
+                    setLocationMarkerTwo(fetchedLatLngs,mapbox)
+
+
+                   /* when (requestCode){
+                        302->{
+                            binding.searchLocationDestination.text = voiceText
+                            //binding.searchLocationDestination.setText(voiceText)
+                            setLocationMarkerTwo(fetchedLatLngs,mapbox)
+                        }
+                    }*/
+                }
+
+                override fun onFailedLocationFetched() {
+                    Log.d("onActivityResult", "onActivityResult  error:")
+                }
+
+            }).execute()
         }
     }
 

@@ -5,8 +5,11 @@ import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.isVisible
+import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCallback
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCoroutine
@@ -51,7 +54,6 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         setContentView(binding.root)
         mapView = findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
-
 
         mapViewResult()
         clickListenersLiveEarth()
@@ -106,6 +108,10 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         })
 */
 
+        binding.backLink.setOnClickListener {
+            onBackPressed()
+        }
+
     }
 
     private fun mapViewResult() {
@@ -126,8 +132,8 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         LocationHelper.setZoomMarker(latitude, longitude, mapboxMap, 12)
 
         setLocationMarker(LatLng(latitude, longitude), mapboxMap)
+        mapOptionsListener()
     }
-
 
     private fun getYourCurrentLocation() {
         val tempMapbox = mapbox
@@ -168,6 +174,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                     }
                 }
             })
+            binding.mapLayerLayout.visibility = View.GONE
         } catch (e: Exception) {
             Log.d(TAG, "Exception$e")
         }
@@ -191,7 +198,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                 zoom++
                 LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
             }
-            // binding.mapLayerLayout.visibility = View.GONE
+            binding.mapLayerLayout.visibility = View.GONE
         }
 
         binding.ImgZoomOut.setOnClickListener {
@@ -199,7 +206,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                 zoom--
                 LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
             }
-            //binding.mapLayerLayout.visibility = View.GONE
+            binding.mapLayerLayout.visibility = View.GONE
         }
     }
 
@@ -224,6 +231,51 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
             }
         }
     }
+
+    private fun mapOptionsListener() {
+        binding.mapOptionsLt.setOnClickListener{
+            if (binding.mapLayerLayout.isVisible){
+                binding.mapLayerLayout.visibility = View.GONE
+            }else{
+                binding.mapLayerLayout.visibility = View.VISIBLE
+            }
+        }
+        binding.trafficMap.setOnClickListener{
+            mapbox.setStyle(Style.TRAFFIC_DAY)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.satelliteMap.setOnClickListener{
+            mapbox.setStyle(Style.SATELLITE)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.normalMapStyle.setOnClickListener{
+            mapbox.setStyle(Style.MAPBOX_STREETS)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.darkMapStyle.setOnClickListener{
+            mapbox.setStyle(Style.DARK)
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+        binding.threeD.setOnClickListener{
+            try {
+                if (flagMap){
+                    Glide.with(this).load(R.drawable.ic_three_d_icon).into(binding.imageThreeD)
+                    flagMap=false
+                    mBuildingPlugin.setVisibility(true)
+                    LocationHelper.set3dMap(latitude, longitude,mapbox)
+                }else{
+                    Glide.with(this).load(R.drawable.ic_three_d_icon).into(binding.imageThreeD)
+                    flagMap=true
+                    mBuildingPlugin.setVisibility(false)
+                    LocationHelper.setZoomMarker(latitude, longitude,mapbox,zoom)
+                }
+            } catch (e: Exception) {
+            }
+            binding.mapLayerLayout.visibility = View.GONE
+        }
+
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import com.liveearth.streetview.navigation.map.worldradio.globe.GeneralGlobeLiveEarthMapFmActivity
 import androidx.cardview.widget.CardView
@@ -28,6 +29,7 @@ import com.liveearth.streetview.navigation.map.worldradio.globe.OneCountryChanel
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.FmLiveEarthMapFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.RetrofitFMLiveEarthMapFm
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPostionCallBack
 import gov.nasa.worldwind.geom.Camera
 import gov.nasa.worldwind.geom.Position
@@ -44,16 +46,21 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.*
 
+
+@SuppressLint("LogNotTimber")
 class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActivity() {
     // A component for displaying the status of this activity
     protected var statusText: TextView? = null
     var TAG = "worldRadio"
     protected var country_name: TextView? = null
-    protected var more: Button? = null
-    protected var Info: Button? = null
+//    protected var more: Button? = null
+//    protected var Info: Button? = null
     protected var progressBarCard: CardView? = null
+    protected var radioCard: CardView? = null
     protected var infoLayout: ConstraintLayout? = null
     protected var radioLayout: ConstraintLayout? = null
+    protected var countryInfoLt: ConstraintLayout? = null
+    protected var countryNameTx: TextView? = null
 
     var oneCountriesFMModel = ArrayList<MainOneCountryFMModel>()
     var jcplayer:JcPlayerView?=null
@@ -83,9 +90,12 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
         chanelFlag = findViewById<ImageView>(R.id.chanelFlag)
         jcplayer = findViewById<JcPlayerView>(R.id.jcplayer)
         selectChanel = findViewById<CardView>(R.id.selectChanel)
+        radioCard = findViewById<CardView>(R.id.radioCard)
         countryFlag = findViewById<ImageView>(R.id.countryFlag)
+        countryNameTx = findViewById<TextView>(R.id.country_nameText)
         radioLayout = findViewById<ConstraintLayout>(R.id.radioLayout)
         infoLayout = findViewById<ConstraintLayout>(R.id.infoLayout)
+        countryInfoLt = findViewById<ConstraintLayout>(R.id.countryInfoLt)
         progressBarCard = findViewById(R.id.progressBarCard)
 
         statusText = TextView(this)
@@ -394,9 +404,11 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             }
             if (! message.isEmpty()) {
                 country_name !!.text = message
-                more !!.visibility = View.VISIBLE
+//                more !!.visibility = View.VISIBLE
+                countryInfoLt!!.visibility = View.VISIBLE
+
                 infoLayout !!.visibility = View.GONE
-                radioLayout !!.visibility = View.VISIBLE
+//                radioLayout !!.visibility = View.VISIBLE
                 Log.d("454545454545","===================++++++++++++++"+message)
                 playRadioStreetView(message)
 
@@ -406,8 +418,9 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                 )
                 dialog.show()*/
             } else {
-                more !!.visibility = View.GONE
-                Info !!.visibility = View.GONE
+//                more !!.visibility = View.GONE
+//                Info !!.visibility = View.GONE
+                countryInfoLt!!.visibility = View.GONE
                 infoLayout !!.visibility = View.VISIBLE
                 radioLayout !!.visibility = View.GONE
                 country_name !!.text = "Click on Globe to Select the Country"
@@ -417,18 +430,18 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
     }
 
     private fun playRadioStreetView(message: String) {
-        val dropDownTop:ImageView = findViewById<ImageView>(R.id.dropDownTop)
+     /*   val dropDownTop:ImageView = findViewById<ImageView>(R.id.dropDownTop)
         dropDownTop.setOnClickListener {
             infoLayout !!.visibility = View.VISIBLE
             radioLayout !!.visibility = View.GONE
-        }
+        }*/
 
         val jsonString: String = getdataFromJson()
         parseJsonStringToNewsList(jsonString,message)
 
-        selectChanel!!.setOnClickListener {
+       /* selectChanel!!.setOnClickListener {
             chanelSelection()
-        }
+        }*/
     }
 
     private fun getdataFromJson(): String {
@@ -446,6 +459,7 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
     }
 
     private fun parseJsonStringToNewsList(jsonString: String, mCountryName: String) {
+        var nameCountry:String?=null
         val newsArray = JSONArray(jsonString)
         Log.i("fms", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
@@ -454,9 +468,11 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             val iso = objinside.getString("iso")
             try {
                 if (name.equals(mCountryName)){
+                    Log.d("openViewData", "=============$iso======$name")
                     val flage="https://flagpedia.net/data/flags/normal/${iso}.png"
                     Glide.with(this).load(flage).into(countryFlag!!)
-                    countryNameRadio!!.text = name
+                    nameCountry = name
+                    countryNameTx!!.text = name
                     break
                 }
                 //allCountryFMList.add(AllCountryFMLiveEarthMapFmModel(name, iso))
@@ -464,7 +480,15 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             }
         }
 
-        getAllCountryFMListFromApi(mCountryName)
+        radioCard!!.setOnClickListener {
+            nameCountry.let {
+                val intent = Intent(this,StreetViewRadioChannelsActivity::class.java)
+                intent.putExtra(ConstantsStreetView.Radio_Country_Name,it)
+                startActivity(intent)
+            }
+        }
+
+        //getAllCountryFMListFromApi(mCountryName)
     }
 
     private fun chanelSelection() {
