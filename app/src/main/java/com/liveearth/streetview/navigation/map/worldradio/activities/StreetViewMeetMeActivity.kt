@@ -23,6 +23,7 @@ import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.S
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewMeetMeBinding
+import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.MeetMeLocationsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.NearMeLocationsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.StreetViewNearPlacesModel
@@ -441,7 +442,7 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun showNearLocationsRecycler(nearLocationData: ArrayList<Result>) {
         val adapterLocations =
-            NearMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
+            MeetMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
                 override fun onLocationInfo(model: Result) {
                     val intent =
                         Intent(this@StreetViewMeetMeActivity, StreetViewRouteActivity::class.java)

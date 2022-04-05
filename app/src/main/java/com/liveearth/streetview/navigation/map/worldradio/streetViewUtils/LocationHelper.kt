@@ -151,7 +151,7 @@ class LocationHelper() {
 
         fun getCurrentDateTime(mContext: Context,dateTimeType:Int):String {
             val calendar = Calendar.getInstance()
-            val simpleDateFormat = SimpleDateFormat("E, dd-MMM-yyyy hh:mm:ss:a")
+            val simpleDateFormat = SimpleDateFormat("E, dd-MMM-yyyy hh:mm:a")
             val dateTime = simpleDateFormat.format(calendar.time).toString()
 
             val delimiter = " "

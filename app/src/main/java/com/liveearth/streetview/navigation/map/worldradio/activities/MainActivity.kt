@@ -23,7 +23,7 @@ import me.ibrahimsn.lib.SmoothBottomBar
 import java.io.File
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseStreetViewActivity() {
     private lateinit var binding: ActivityMainBinding
     private val TAG = "MainActivity"
     private lateinit var navController: NavController
@@ -35,13 +35,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //currenLocationWeather()
-
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
-
-
+        //checkLocationPermission()
         buttonClickListener()
 
         setupSmoothBottomMenu()

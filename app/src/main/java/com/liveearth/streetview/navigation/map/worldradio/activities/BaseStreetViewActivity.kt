@@ -32,15 +32,14 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         binding = ActivityBaseStreetViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (checkStreetViewLocation(this)==false) {
-            val dialogueBox = LocationEnableRequestDialogueBox(this)
-            dialogueBox.show()
+        if (!checkLocationPermission()){
+            checkLocationPermission()
         }
 
 
-
-        if (checkLocationPermission()){
-            checkLocationPermission()
+        if (checkStreetViewLocation(this)==false) {
+            val dialogueBox = LocationEnableRequestDialogueBox(this)
+            dialogueBox.show()
         }
 
     }
@@ -111,7 +110,7 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkLocationPermission():Boolean {
+    fun checkLocationPermission():Boolean {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(

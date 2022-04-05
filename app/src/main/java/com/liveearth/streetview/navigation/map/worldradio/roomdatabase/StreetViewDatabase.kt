@@ -3,9 +3,11 @@ package com.liveearth.streetview.navigation.map.worldradio.roomdatabase
 import android.content.Context
 import androidx.room.*
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationDao
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationModel
 
 @Database(
-    entities =  [WordTimeZoneModel::class],
+    entities =  [WordTimeZoneModel::class,FavouriteLocationModel::class],
     version = 1,
     exportSchema = false
 )
@@ -13,6 +15,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldC
 abstract class StreetViewDatabase: RoomDatabase() {
 
     abstract fun getTimeZoneDao():WorldTimeZoneDao
+    abstract fun getFavouriteLocationDao():FavouriteLocationDao
 
 
 

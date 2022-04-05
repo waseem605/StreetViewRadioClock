@@ -5,14 +5,24 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import com.mapbox.mapboxsdk.geometry.LatLng
 
-@Entity(tableName = "timeZoneWorld_table")
+@Entity(tableName = "FavouriteLocation_table")
 class FavouriteLocationModel(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
+    @ColumnInfo(name = "locationId")
+    var locationId: String?,
+    @ColumnInfo(name = "address")
+    var address: String?,
     @ColumnInfo(name = "name")
     var name: String?,
-    @ColumnInfo(name = "iso")
-    var iso: String?,
     @ColumnInfo(name = "timeZone")
-    var timeZone: String?
+    var timeZone: String?,
+    @ColumnInfo(name = "date")
+    var date: String?,
+    @ColumnInfo(name = "time")
+    var time: String?,
+    @ColumnInfo(name = "latitude")
+    var latitude: Double?,
+    @ColumnInfo(name = "longitude")
+    var longitude: Double?
 )

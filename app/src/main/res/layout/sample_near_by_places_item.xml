@@ -90,8 +90,8 @@
 
         <ImageView
             android:id="@+id/itemFavouriteImg"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:src="@drawable/ic_favourite_icon"
             android:padding="@dimen/_3sdp"
             android:layout_marginStart="@dimen/_5sdp"
@@ -101,8 +101,8 @@
 
         <ImageView
             android:id="@+id/itemShareImg"
-            android:layout_width="@dimen/_30sdp"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
             android:src="@drawable/ic_share_icon"
             android:padding="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"

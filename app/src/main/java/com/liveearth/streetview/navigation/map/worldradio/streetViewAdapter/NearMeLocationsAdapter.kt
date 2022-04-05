@@ -12,11 +12,17 @@ import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class NearMeLocationsAdapter(
     private val modelArrayList: ArrayList<Result>,
     private val context: Context,
+    private val mFavouriteLocationViewModel: FavouriteLocationViewModel,
     val callBack: StreetViewNearMeCallBack
 
 ) : RecyclerView.Adapter<NearMeLocationsAdapter.ListViewHolder>() {
@@ -25,9 +31,9 @@ class NearMeLocationsAdapter(
           val view =
               LayoutInflater.from(context).inflate(R.layout.sample_near_by_places_item, parent, false)
           return ListViewHolder(view)
-
     }
 
+    @DelicateCoroutinesApi
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
@@ -42,11 +48,25 @@ class NearMeLocationsAdapter(
                 holder.locationAddress.text = model.location.locality
             }*/
             Glide.with(context).load(model.categories.get(0).icon.prefix+"64.png").into(holder.imageView)
+
+            GlobalScope.launch(Dispatchers.Main) {
+
+                val it = mFavouriteLocationViewModel.getDataById(model.fsq_id)
+                if (it != null) {
+                    Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+                }else{
+                    Glide.with(context).load(R.drawable.ic_favourite_icon).into(holder.itemFavouriteImg)
+                }
+            }
+
             holder.itemNavigationBtn.setOnClickListener {
                 callBack.onLocationInfo(model)
             }
+
+
+
             holder.itemFavouriteImg.setOnClickListener {
-                Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+               // Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
                 callBack.addToFavouriteLocation(model)
             }
             holder.itemShareImg.setOnClickListener {
@@ -57,18 +77,19 @@ class NearMeLocationsAdapter(
         }
     }
 
+    
 
     override fun getItemCount(): Int {
           return modelArrayList.size
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView = itemView.findViewById<ImageView>(R.id.mainItemImage)
-        var locationName = itemView.findViewById<TextView>(R.id.mainItemName)
-        var mainItemType = itemView.findViewById<TextView>(R.id.mainItemType)
-        var itemNavigationBtn = itemView.findViewById<CardView>(R.id.itemNavigationBtn)
-        var itemShareImg = itemView.findViewById<ImageView>(R.id.itemShareImg)
-        var itemFavouriteImg = itemView.findViewById<ImageView>(R.id.itemFavouriteImg)
+        var imageView: ImageView = itemView.findViewById<ImageView>(R.id.mainItemImage)
+        var locationName: TextView = itemView.findViewById<TextView>(R.id.mainItemName)
+        var mainItemType: TextView = itemView.findViewById<TextView>(R.id.mainItemType)
+        var itemNavigationBtn: CardView = itemView.findViewById<CardView>(R.id.itemNavigationBtn)
+        var itemShareImg: ImageView = itemView.findViewById<ImageView>(R.id.itemShareImg)
+        var itemFavouriteImg: ImageView = itemView.findViewById<ImageView>(R.id.itemFavouriteImg)
 
     }
 }
