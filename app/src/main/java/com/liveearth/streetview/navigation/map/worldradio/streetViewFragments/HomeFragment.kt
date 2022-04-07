@@ -150,6 +150,10 @@ class HomeFragment : Fragment() {
                 val mainIntent = Intent(requireContext(),StreetViewSpeedoMeterActivity::class.java)
                 startActivity(mainIntent)
             }
+            6->{
+                val mainIntent = Intent(requireContext(),StreetViewTravelExpenseActivity::class.java)
+                startActivity(mainIntent)
+            }
             7->{
                 val mainIntent = Intent(requireContext(),StreetViewWeatherDetailsActivity::class.java)
                 mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)

@@ -33,6 +33,143 @@
             app:layout_constraintGuide_percent="0.45"/>
 
 
+        <TextView
+            android:id="@+id/catTex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:paddingStart="@dimen/_8sdp"
+            android:paddingEnd="@dimen/_8sdp"
+            android:maxLines="1"
+            android:textCursorDrawable="@drawable/custom_edit_text_cut"
+            android:ellipsize="end"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@id/guide76"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/line_background_border_silver"
+            app:layout_constraintTop_toTopOf="@id/catTex"
+            app:layout_constraintBottom_toBottomOf="@id/catTex"/>
+
+
+        <TextView
+            android:id="@+id/locationTex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/black"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            app:layout_constraintTop_toBottomOf="@id/catTex"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <EditText
+            android:id="@+id/etLocations"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:paddingStart="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_5sdp"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            android:textCursorDrawable="@drawable/custom_edit_text_cut"
+            android:ellipsize="end"
+            android:drawableEnd="@drawable/ic_baseline_location_on"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@id/guide76"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/line_background_border_silver"
+            app:layout_constraintTop_toTopOf="@id/locationTex"
+            app:layout_constraintBottom_toBottomOf="@id/locationTex"/>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/addItemRecycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationTex"/>
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/line_border_black"
+            app:layout_constraintTop_toBottomOf="@id/addItemRecycler">
+
+            <EditText
+                android:id="@+id/etNameItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/view87"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view87"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@color/appSilverDarkColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/etItemPrice"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/etItemPrice"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/addNewItem"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/addNewItem"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/button_background_green"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_add_time_zone_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

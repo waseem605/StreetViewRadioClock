@@ -80,7 +80,7 @@
             app:showSecondHand="true"
             app:dial="@drawable/ic_clock_back"
             app:hour="@drawable/ic_hour_needle"
-            app:minute="@drawable/ic_minutes_needle"
+            app:minute="@drawable/ic_minute_nedle"
             app:second="@drawable/ic_seconds_needle"
             android:layout_marginTop="@dimen/_15sdp"
             app:layout_constraintTop_toBottomOf="@id/currentCountryImage"
