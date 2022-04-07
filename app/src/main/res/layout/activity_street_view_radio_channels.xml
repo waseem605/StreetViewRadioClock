@@ -91,8 +91,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/channelRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/radioCountryName"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

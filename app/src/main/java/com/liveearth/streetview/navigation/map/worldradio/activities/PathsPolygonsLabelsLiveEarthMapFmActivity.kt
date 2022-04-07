@@ -30,7 +30,7 @@ import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.Fm
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.RetrofitFMLiveEarthMapFm
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPostionCallBack
+import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 import gov.nasa.worldwind.geom.Camera
 import gov.nasa.worldwind.geom.Position
 import gov.nasa.worldwind.shape.*
@@ -53,23 +53,13 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
     protected var statusText: TextView? = null
     var TAG = "worldRadio"
     protected var country_name: TextView? = null
-//    protected var more: Button? = null
-//    protected var Info: Button? = null
     protected var progressBarCard: CardView? = null
     protected var radioCard: CardView? = null
     protected var infoLayout: ConstraintLayout? = null
     protected var radioLayout: ConstraintLayout? = null
     protected var countryInfoLt: ConstraintLayout? = null
     protected var countryNameTx: TextView? = null
-
-    var oneCountriesFMModel = ArrayList<MainOneCountryFMModel>()
-    var jcplayer:JcPlayerView?=null
-    protected var countryNameRadio: TextView? = null
-    var chanelFlag:ImageView?=null
     var countryFlag:ImageView?=null
-    var selectChanel:CardView?=null
-    var playlist: ArrayList<JcAudio> = ArrayList()
-    private var oneCountryChanelDialogs: OneCountryChanelDialogs? = null
     var message = ""
     protected var shapesLayer = RenderableLayer("Shapes")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,16 +74,9 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
     """.trimIndent()
         )
         country_name = findViewById(R.id.country_name)
-        countryNameRadio = findViewById<TextView>(R.id.countryNameRadio)
-//        more = findViewById(R.id.more)
-//        Info = findViewById(R.id.Info)
-        chanelFlag = findViewById<ImageView>(R.id.chanelFlag)
-        jcplayer = findViewById<JcPlayerView>(R.id.jcplayer)
-        selectChanel = findViewById<CardView>(R.id.selectChanel)
         radioCard = findViewById<CardView>(R.id.radioCard)
         countryFlag = findViewById<ImageView>(R.id.countryFlag)
         countryNameTx = findViewById<TextView>(R.id.country_nameText)
-        radioLayout = findViewById<ConstraintLayout>(R.id.radioLayout)
         infoLayout = findViewById<ConstraintLayout>(R.id.infoLayout)
         countryInfoLt = findViewById<ConstraintLayout>(R.id.countryInfoLt)
         progressBarCard = findViewById(R.id.progressBarCard)
@@ -123,12 +106,6 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
 //            loadPlaceNames();
             return null
         }
-   /*     override fun doInBackground(vararg notUsed: Void): Void? {
-            loadCountriesFile()
-            // loadHighways();
-            // loadPlaceNames();
-            return null
-        }*/
 
         override fun onProgressUpdate(vararg values: Renderable?) {
             super.onProgressUpdate(*values)
@@ -264,7 +241,6 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             }
         }
 
-
         private fun loadCountriesFile() {
             // Define the normal shape attributes
             val commonAttrs = ShapeAttributes()
@@ -314,7 +290,6 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                         0.3f
                     )
                     polygon.highlightAttributes = highlightAttrs
-
 
                     var polyStart = feature.indexOf("(")
                     while (polyStart >= 0) {
@@ -392,7 +367,7 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             togglePickedObjectHighlights()
         }
 
-        fun togglePickedObjectHighlights() {
+        private fun togglePickedObjectHighlights() {
             for (pickedObject in pickedObjects) {
                 if (pickedObject is Highlightable) {
                     val highlightable = pickedObject
@@ -404,22 +379,13 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             }
             if (! message.isEmpty()) {
                 country_name !!.text = message
-//                more !!.visibility = View.VISIBLE
                 countryInfoLt!!.visibility = View.VISIBLE
 
                 infoLayout !!.visibility = View.GONE
-//                radioLayout !!.visibility = View.VISIBLE
-                Log.d("454545454545","===================++++++++++++++"+message)
-                playRadioStreetView(message)
+                Log.d("454545454545", "===================++++++++++++++$message")
+                selectedCounryNameStreetView(message)
 
-         /*       val dialog = RadioLiveEarthMapFmPlayerDialog(
-                    this@PathsPolygonsLabelsLiveEarthMapFmActivity,
-                    message
-                )
-                dialog.show()*/
             } else {
-//                more !!.visibility = View.GONE
-//                Info !!.visibility = View.GONE
                 countryInfoLt!!.visibility = View.GONE
                 infoLayout !!.visibility = View.VISIBLE
                 radioLayout !!.visibility = View.GONE
@@ -429,19 +395,10 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
         }
     }
 
-    private fun playRadioStreetView(message: String) {
-     /*   val dropDownTop:ImageView = findViewById<ImageView>(R.id.dropDownTop)
-        dropDownTop.setOnClickListener {
-            infoLayout !!.visibility = View.VISIBLE
-            radioLayout !!.visibility = View.GONE
-        }*/
+    private fun selectedCounryNameStreetView(message: String) {
 
         val jsonString: String = getdataFromJson()
         parseJsonStringToNewsList(jsonString,message)
-
-       /* selectChanel!!.setOnClickListener {
-            chanelSelection()
-        }*/
     }
 
     private fun getdataFromJson(): String {
@@ -475,7 +432,6 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                     countryNameTx!!.text = name
                     break
                 }
-                //allCountryFMList.add(AllCountryFMLiveEarthMapFmModel(name, iso))
             } catch (e: Exception) {
             }
         }
@@ -487,100 +443,8 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                 startActivity(intent)
             }
         }
-
-        //getAllCountryFMListFromApi(mCountryName)
     }
 
-    private fun chanelSelection() {
-        if (oneCountriesFMModel.size>0){
-            oneCountryChanelDialogs= OneCountryChanelDialogs(this,oneCountriesFMModel,object :
-                ChanelPostionCallBack {
-                override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
-                    oneCountryChanelDialogs!!.dismiss()
-                    if (flage == ""){
-                        Glide.with(this@PathsPolygonsLabelsLiveEarthMapFmActivity).load(R.drawable.fm_navigation).into(chanelFlag!!)
-                    }else{
-                        Glide.with(this@PathsPolygonsLabelsLiveEarthMapFmActivity).load(flage).into(chanelFlag!!)
-                    }
-                    if (jcplayer!!.isPlaying) {
-                        jcplayer!!.pause()
-                        //Log.i("jcplayerzzz",": "+binding.jcplayer.currentAudio)
-                    }
-                    try {
-                        try {
-                            if (playlist[pos].path!=null && playlist[pos].path!="") {
-                                jcplayer!!.playAudio(playlist[pos])
-                            }
-                        } catch (e: Exception) {
-                        }
-                        jcplayer!!.createNotification(R.drawable.fm_navigation)
-                    } catch (e: Exception) {
-                    }
-                }
-            })
-            oneCountryChanelDialogs!!.show()
-        }
-    }
-
-    private fun getAllCountryFMListFromApi(mCountryName: String) {
-        //binding.progressBarPlayerCenter.visibility=View.VISIBLE
-        val retrofitFM = RetrofitFMLiveEarthMapFm.getRetrofitFM(this)
-        val apiInterface = retrofitFM.create(FmLiveEarthMapFmInterface::class.java)
-        val callToApi = apiInterface.getOneCountryFM(mCountryName)
-        callToApi.enqueue(object : Callback<List<MainOneCountryFMModel>> {
-            override fun onFailure(call: Call<List<MainOneCountryFMModel>>, t: Throwable) {
-                //binding.progressBarPlayerCenter.visibility=View.GONE
-                selectChanel!!.visibility=View.GONE
-                Toast.makeText(this@PathsPolygonsLabelsLiveEarthMapFmActivity, "Cannot get now.\nPlease Try again later.", Toast.LENGTH_SHORT).show()
-            }
-            override fun onResponse(
-                call: Call<List<MainOneCountryFMModel>>,
-                response: Response<List<MainOneCountryFMModel>>
-            ) {
-                if (response.isSuccessful) {
-                    oneCountriesFMModel.clear()
-                    oneCountriesFMModel = response.body() as ArrayList
-                    if (oneCountriesFMModel != null) {
-                       // binding.progressBarPlayerCenter.visibility=View.GONE
-                        selectChanel!!.visibility=View.VISIBLE
-                        settingListofStation(oneCountriesFMModel)
-                    }
-                } else {
-                    Toast.makeText(this@PathsPolygonsLabelsLiveEarthMapFmActivity, "Cannot get  now.\nPlease Try again.", Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
-    }
-
-    private fun settingListofStation(oneCountriesFMModel: ArrayList<MainOneCountryFMModel>) {
-        if (oneCountriesFMModel.size>0) {
-            if (oneCountriesFMModel[0].favicon == "") {
-                Glide.with(this).load(R.drawable.fm_navigation).into(chanelFlag!!)
-            } else {
-                Glide.with(this).load(oneCountriesFMModel[0].favicon).into(chanelFlag!!)
-            }
-
-            if (jcplayer!!.isPlaying) {
-                jcplayer!!.pause()
-                Log.i("jcplayerzzz", ": " + jcplayer!!.currentAudio)
-            }
-
-            playlist.clear()
-            if (oneCountriesFMModel.size > 0) {
-                for (x in 0..oneCountriesFMModel.size - 1) {
-                    playlist.add(JcAudio.createFromURL(oneCountriesFMModel[x].name, oneCountriesFMModel[x].urlResolved))
-                }
-            }
-            try {
-                if (playlist[0].path!=null && playlist[0].path!="") {
-                    jcplayer!!.playAudio(playlist[0])
-                }
-            } catch (e: Exception) {
-            }
-            jcplayer!!.initPlaylist(playlist)
-            jcplayer!!.createNotification(R.drawable.fm_navigation)
-        }
-    }
 
     override fun onBackPressed() {
         super.onBackPressed()

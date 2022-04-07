@@ -19,6 +19,9 @@
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.StreetViewRadioPlayStationActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.StreetViewFavouriteLocationsActivity"
             android:exported="false" />
         <activity

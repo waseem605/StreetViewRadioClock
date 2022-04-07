@@ -17,7 +17,7 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.DialogRadi
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.FmLiveEarthMapFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.RetrofitFMLiveEarthMapFm
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPostionCallBack
+import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 import org.json.JSONArray
 import org.json.JSONObject
 import retrofit2.Call
@@ -66,11 +66,11 @@ class RadioLiveEarthMapFmPlayerDialog(private var mContext: Context,private val 
     private fun chanelSelection() {
         if (oneCountriesFMModel.size>0){
             oneCountryChanelDialogs= OneCountryChanelDialogs(mContext,oneCountriesFMModel,object :
-                ChanelPostionCallBack {
+                ChanelPositionCallBack {
                 override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
                     oneCountryChanelDialogs!!.dismiss()
                     if (flage == ""){
-                        Glide.with(mContext).load(R.drawable.fm_navigation).into(binding.chanelFlag)
+                        Glide.with(mContext).load(R.drawable.icon_radio).into(binding.chanelFlag)
                     }else{
                         Glide.with(mContext).load(flage).into(binding.chanelFlag)
                     }
@@ -85,7 +85,7 @@ class RadioLiveEarthMapFmPlayerDialog(private var mContext: Context,private val 
                             }
                         } catch (e: Exception) {
                         }
-                        binding.jcplayer.createNotification(R.drawable.fm_navigation)
+                        binding.jcplayer.createNotification(R.drawable.icon_radio)
                     } catch (e: Exception) {
                     }
                 }
@@ -197,7 +197,7 @@ class RadioLiveEarthMapFmPlayerDialog(private var mContext: Context,private val 
     private fun settingListofStation(oneCountriesFMModel: ArrayList<MainOneCountryFMModel>) {
         if (oneCountriesFMModel.size>0) {
             if (oneCountriesFMModel[0].favicon == "") {
-                Glide.with(mContext).load(R.drawable.fm_navigation).into(binding.chanelFlag)
+                Glide.with(mContext).load(R.drawable.icon_radio).into(binding.chanelFlag)
             } else {
                 Glide.with(mContext).load(oneCountriesFMModel[0].favicon).into(binding.chanelFlag)
             }
@@ -220,7 +220,7 @@ class RadioLiveEarthMapFmPlayerDialog(private var mContext: Context,private val 
             } catch (e: Exception) {
             }
             binding.jcplayer.initPlaylist(playlist)
-            binding.jcplayer.createNotification(R.drawable.fm_navigation)
+            binding.jcplayer.createNotification(R.drawable.icon_radio)
         }
     }
 

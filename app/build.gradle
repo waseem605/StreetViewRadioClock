@@ -78,8 +78,6 @@ dependencies {
     //google location
     implementation 'com.google.android.gms:play-services-location:18.0.0'
 
-
-   // annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
     // Room
     implementation "android.arch.persistence.room:runtime:1.1.1"
     kapt("androidx.room:room-compiler:2.3.0")
@@ -96,6 +94,10 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.4.0'
+
+    //recyclerView
+    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.4'
+
     //JcPlayer
     implementation 'com.github.jeancsanchez:JcPlayer:2.6.16'
     //nasa

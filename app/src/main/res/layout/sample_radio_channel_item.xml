@@ -20,30 +20,37 @@
             android:id="@+id/channelItemImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/_20sdp"
             android:scaleType="fitCenter"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/gradientImg"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_60sdp"
             android:background="@drawable/radio_back_gradient"
             app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/nameGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.3"/>
 
             <TextView
                 android:id="@+id/channelItemName"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="@dimen/_10ssp"
-                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/white"
                 android:maxLines="1"
+                android:text="name"
                 android:ellipsize="end"
-                android:layout_marginStart="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
                 android:layout_margin="@dimen/_2sdp"
                 app:layout_constraintEnd_toStartOf="@id/nextImg"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/nameGuide"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 
@@ -55,7 +62,7 @@
                 android:padding="@dimen/_3sdp"
                 android:layout_margin="@dimen/_5sdp"
                 android:layout_marginStart="@dimen/_5sdp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@id/nameGuide"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"/>
@@ -69,6 +76,7 @@
             android:layout_height="@dimen/_30sdp"
             android:src="@drawable/ic_favourite_icon"
             android:padding="@dimen/_3sdp"
+            android:visibility="invisible"
             android:layout_margin="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toTopOf="parent"

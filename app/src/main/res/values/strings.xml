@@ -35,4 +35,5 @@
     <string name="search">Search</string>
     <string name="please_wait">Please waite</string>
     <string name="data_not_found">Data Not Exist</string>
+    <string name="playing">Playing</string>
 </resources>

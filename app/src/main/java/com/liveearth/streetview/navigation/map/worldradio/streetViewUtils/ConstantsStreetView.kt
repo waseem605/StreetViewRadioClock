@@ -1,8 +1,9 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewUtils
 
+import kotlin.properties.Delegates
+
 object ConstantsStreetView {
 
-    //var accessToken = "pk.eyJ1IjoiZWFydGhkdWJhaTAzIiwiYSI6ImNsMGkyZjh5eDBla2gzZHBudGs1YW1lNjAifQ.rqIgt_qv4GvDbDcycgQ7zQ"
     var accessToken =
         "pk.eyJ1IjoidWFlMDAwMSIsImEiOiJjbDB1aHc1bTAwZmRiM2JwZWYxMG85a2pvIn0.HaaaJlwnk7HFCS-eTR01ow"
 
@@ -16,7 +17,6 @@ object ConstantsStreetView {
 
     var currentCountryName = "currentCountryName"
     var currentCountryCode = "currentCountryCode"
-
 
     // Latitude and Longitude intents StringExtra
     const val OriginLatitude = "OriginLatitude"
@@ -33,8 +33,7 @@ object ConstantsStreetView {
     const val EXTRA_LATITUDE = "extra_latitude"
     const val EXTRA_LONGITUDE = "extra_longitude"
 
-    //Radio Intent
-    const val Radio_Country_Name = "RadioCountryName"
+
 
 
 
@@ -52,5 +51,12 @@ object ConstantsStreetView {
     const val ACTION_PAUSE = "ACTION_PAUSE"
     const val ACTION_RESUME = "ACTION_RESUME"
     const val ACTION_STOP = "ACTION_STOP"
+
+    //Radio Intent
+    const val Radio_Country_Name = "RadioCountryName"
+    //Radio intents
+    const val RADIO_FLAGE = "RadioFlage"
+    const val RADIO_CHANNEL_NAME = "RadioChannelName"
+     var RADIO_POSITION by Delegates.notNull<Int>()
 
 }

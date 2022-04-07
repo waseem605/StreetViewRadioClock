@@ -12,14 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPostionCallBack
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.CountryNameInterface
+import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 
 
 class AllChanelLiveEarthMapFmAdapters(
     var item: ArrayList<MainOneCountryFMModel>,
     val mContext: Context,
-    val callBacks: ChanelPostionCallBack
+    val callBacks: ChanelPositionCallBack
 ) :
     RecyclerView.Adapter<AllChanelLiveEarthMapFmAdapters.MyViewHolder>() {
 
@@ -43,7 +42,7 @@ class AllChanelLiveEarthMapFmAdapters(
 
         try {
             if (model.favicon == ""){
-                Glide.with(mContext).load(R.drawable.fm_navigation).into(holder.countryFlag!!)
+                Glide.with(mContext).load(R.drawable.icon_radio).into(holder.countryFlag!!)
             }else{
                 Glide.with(mContext).load(model.favicon).into(holder.countryFlag!!)
             }

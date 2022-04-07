@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.DialogCountrySelectionBinding
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPostionCallBack
+import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 
 
-class OneCountryChanelDialogs(private var mContext: Context, var chanelList:ArrayList<MainOneCountryFMModel>, val callBacks: ChanelPostionCallBack) :
+class OneCountryChanelDialogs(private var mContext: Context, var chanelList:ArrayList<MainOneCountryFMModel>, val callBacks: ChanelPositionCallBack) :
     Dialog(mContext) {
     private lateinit var binding:DialogCountrySelectionBinding
 
@@ -35,7 +35,7 @@ class OneCountryChanelDialogs(private var mContext: Context, var chanelList:Arra
                 val gridLayoutManager = GridLayoutManager(mContext, span)
                 binding.countryRecyclerView.layoutManager = gridLayoutManager
                 val adapterRecyclerView1 = AllChanelLiveEarthMapFmAdapters(allCountriesFMLiveEarthMapFmModel, mContext, object :
-                    ChanelPostionCallBack{
+                    ChanelPositionCallBack{
                     override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
                         callBacks.onChanelClick(flage,nameCh,pos)
                     }

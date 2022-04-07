@@ -72,7 +72,6 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
         setContentView(binding.root)
 
         val factory = FavouriteLocationViewModelFactory(this)
-
         mFavouriteLocationViewModel = ViewModelProvider(this,factory).get(FavouriteLocationViewModel::class.java)
 
         mapView = findViewById(R.id.mapViewNearMe)

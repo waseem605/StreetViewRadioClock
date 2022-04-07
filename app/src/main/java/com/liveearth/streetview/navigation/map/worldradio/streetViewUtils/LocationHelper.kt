@@ -8,6 +8,7 @@ import android.location.Geocoder
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat.startActivity
+import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
@@ -21,10 +22,7 @@ class LocationHelper() {
     companion object {
         val TAG = "LocationHelper"
 
-        var routeIntent = 1
-        var routeNaviIntent = 2
-
-        var locationPointsList= ArrayList<Point>()
+        var oneCountriesRadioList = ArrayList<MainOneCountryFMModel>()
 
 
 

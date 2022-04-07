@@ -1,31 +1,30 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.FmLiveEarthMapFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.RetrofitFMLiveEarthMapFm
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioChannelsAdapter
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPostionCallBack
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
+import java.util.*
 
-class StreetViewRadioChannelsActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityStreetViewRadioChannelsBinding
+class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
+    private lateinit var binding: ActivityStreetViewRadioChannelsBinding
     val TAG = "RadioChannels"
-    lateinit var countryName:String
-    var oneCountriesFMModel = ArrayList<MainOneCountryFMModel>()
+    lateinit var countryName: String
+    var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,38 +33,51 @@ class StreetViewRadioChannelsActivity : AppCompatActivity() {
         setContentView(binding.root)
         countryName = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
 
-        binding.radioCountryName.text = "Tranding in $countryName"
+        """Tranding in ${this.countryName}""".also { binding.radioCountryName.text = it }
 
+        showProgressDialog(this)
         getAllCountryFMListFromApi(countryName)
     }
 
     private fun getAllCountryFMListFromApi(mCountryName: String) {
-        //binding.progressBarPlayerCenter.visibility=View.VISIBLE
         val retrofitFM = RetrofitFMLiveEarthMapFm.getRetrofitFM(this)
         val apiInterface = retrofitFM.create(FmLiveEarthMapFmInterface::class.java)
         val callToApi = apiInterface.getOneCountryFM(mCountryName)
         callToApi.enqueue(object : Callback<List<MainOneCountryFMModel>> {
             override fun onFailure(call: Call<List<MainOneCountryFMModel>>, t: Throwable) {
-                //binding.progressBarPlayerCenter.visibility=View.GONE
-                //selectChanel!!.visibility= View.GONE
-                Toast.makeText(this@StreetViewRadioChannelsActivity, "Cannot get now.\nPlease Try again later.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this@StreetViewRadioChannelsActivity,
+                    "Cannot get now.\nPlease Try again later.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
+
             override fun onResponse(
                 call: Call<List<MainOneCountryFMModel>>,
                 response: Response<List<MainOneCountryFMModel>>
             ) {
                 if (response.isSuccessful) {
-                    oneCountriesFMModel.clear()
-                    oneCountriesFMModel = response.body() as ArrayList
+                    try {
+                        hideProgressDialog(this@StreetViewRadioChannelsActivity)
+                        mCountriesRadioChannelList.clear()
+                        mCountriesRadioChannelList = response.body() as ArrayList
+                        showChannelListOfCountry(mCountriesRadioChannelList)
 
-                    showChannelListOfCountry(oneCountriesFMModel)
-                  /*  if (oneCountriesFMModel != null) {
-                        // binding.progressBarPlayerCenter.visibility=View.GONE
-                        selectChanel!!.visibility= View.VISIBLE
-                        settingListofStation(oneCountriesFMModel)
-                    }*/
+                        LocationHelper.oneCountriesRadioList.clear()
+                        LocationHelper.oneCountriesRadioList = mCountriesRadioChannelList
+
+                    } catch (e: Exception) {
+                    }
                 } else {
-                    Toast.makeText(this@StreetViewRadioChannelsActivity, "Cannot get  now.\nPlease Try again.", Toast.LENGTH_SHORT).show()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        hideProgressDialog(this@StreetViewRadioChannelsActivity)
+                        Toast.makeText(
+                            this@StreetViewRadioChannelsActivity,
+                            "Cannot get  now.\nPlease Try again.",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                    }, 1500)
                 }
             }
         })
@@ -73,20 +85,26 @@ class StreetViewRadioChannelsActivity : AppCompatActivity() {
 
     private fun showChannelListOfCountry(oneCountriesFM: ArrayList<MainOneCountryFMModel>) {
 
-        Log.d(TAG, "showChannelListOfCountry: ========"+oneCountriesFMModel.size)
-        val radioAdapter = RadioChannelsAdapter(oneCountriesFM,this,object :ChanelPostionCallBack{
-            override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
+        Log.d(TAG, "showChannelListOfCountry: ========" + mCountriesRadioChannelList.size)
+        val radioAdapter =
+            RadioChannelsAdapter(oneCountriesFM, this, object : ChanelPositionCallBack {
+                override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
+                    val radioIntent = Intent(this@StreetViewRadioChannelsActivity,StreetViewRadioPlayStationActivity::class.java)
+                    radioIntent.putExtra(ConstantsStreetView.RADIO_FLAGE,flage)
+                    radioIntent.putExtra(ConstantsStreetView.Radio_Country_Name,countryName)
+                    radioIntent.putExtra(ConstantsStreetView.RADIO_CHANNEL_NAME,nameCh)
+                    radioIntent.putExtra("RADIO_POSITION",pos)
+                    startActivity(radioIntent)
 
-            }
+                }
 
-        })
+            })
 
         binding.channelRecyclerView.apply {
             setHasFixedSize(true)
             Log.d(TAG, "showChannelListOfCountry: ====recycler====")
-            layoutManager = GridLayoutManager(this@StreetViewRadioChannelsActivity,2)
+            layoutManager = GridLayoutManager(this@StreetViewRadioChannelsActivity, 2)
             adapter = radioAdapter
-
         }
 
     }
