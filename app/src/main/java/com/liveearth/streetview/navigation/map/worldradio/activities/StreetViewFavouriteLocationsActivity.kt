@@ -2,7 +2,6 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -15,9 +14,9 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.Favo
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationModel
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModel
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModelFactory
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

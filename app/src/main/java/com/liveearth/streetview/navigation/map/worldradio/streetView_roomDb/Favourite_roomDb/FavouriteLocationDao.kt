@@ -1,4 +1,4 @@
-package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb
+package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
@@ -16,7 +16,7 @@ interface FavouriteLocationDao {
     suspend fun deleteFavouriteLocation(model: FavouriteLocationModel)
 
     @Query("SELECT * FROM FavouriteLocation_table WHERE locationId = :locationId")
-    suspend fun getDataById(locationId:String):FavouriteLocationModel?
+    suspend fun getDataById(locationId:String): FavouriteLocationModel?
 
     @Query("SELECT * FROM FavouriteLocation_table")
     fun gatAllData():LiveData<List<FavouriteLocationModel>>

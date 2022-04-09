@@ -118,6 +118,9 @@ open class BaseStreetViewActivity : AppCompatActivity() {
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
             ) {
+
+
+            } else {
                 val permissionDialog = LocationRequestDialogueBox(this,object :
                     ExistCallBackListener {
                     override fun onExistClick() {
@@ -125,9 +128,7 @@ open class BaseStreetViewActivity : AppCompatActivity() {
                     }
                 })
                 permissionDialog.show()
-
-            } else {
-                requestLocationPermission()
+              //  requestLocationPermission()
             }
             return false
         }else{

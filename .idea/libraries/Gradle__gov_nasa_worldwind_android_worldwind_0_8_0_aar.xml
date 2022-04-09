@@ -4,8 +4,8 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/867566ffc3b6608bdf207386a458de2d/transformed/jetified-worldwind-0.8.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/867566ffc3b6608bdf207386a458de2d/transformed/jetified-worldwind-0.8.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/867566ffc3b6608bdf207386a458de2d/transformed/jetified-worldwind-0.8.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/867566ffc3b6608bdf207386a458de2d/transformed/jetified-worldwind-0.8.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/867566ffc3b6608bdf207386a458de2d/transformed/jetified-worldwind-0.8.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

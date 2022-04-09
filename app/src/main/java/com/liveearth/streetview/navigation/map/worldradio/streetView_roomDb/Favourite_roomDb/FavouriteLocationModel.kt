@@ -1,4 +1,4 @@
-package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb
+package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb
 
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo

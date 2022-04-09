@@ -7,193 +7,338 @@
     android:background="@color/appMainColor"
     tools:context=".activities.StreetViewTravelExpenseActivity">
 
-    <include layout="@layout/custom_toolbar"
-        android:id="@+id/toolbar"/>
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_toolbar" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guide74"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13"/>
+        app:layout_constraintGuide_percent="0.13" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/bottom_bar_background"
         android:backgroundTint="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/guide74"
-        app:layout_constraintBottom_toTopOf="@id/bottomLayout">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guide76"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.45"/>
-
-
-        <TextView
-            android:id="@+id/catTex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Category"
-            android:textSize="@dimen/_16ssp"
-            android:textColor="@color/black"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_30sdp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30sdp"
-            android:paddingStart="@dimen/_8sdp"
-            android:paddingEnd="@dimen/_8sdp"
-            android:maxLines="1"
-            android:textCursorDrawable="@drawable/custom_edit_text_cut"
-            android:ellipsize="end"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintStart_toEndOf="@id/guide76"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/line_background_border_silver"
-            app:layout_constraintTop_toTopOf="@id/catTex"
-            app:layout_constraintBottom_toBottomOf="@id/catTex"/>
-
-
-        <TextView
-            android:id="@+id/locationTex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Location"
-            android:textSize="@dimen/_16ssp"
-            android:textColor="@color/black"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/catTex"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <EditText
-            android:id="@+id/etLocations"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_30sdp"
-            android:paddingStart="@dimen/_12sdp"
-            android:paddingEnd="@dimen/_5sdp"
-            android:maxLines="1"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_12ssp"
-            android:textCursorDrawable="@drawable/custom_edit_text_cut"
-            android:ellipsize="end"
-            android:drawableEnd="@drawable/ic_baseline_location_on"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintStart_toEndOf="@id/guide76"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@drawable/line_background_border_silver"
-            app:layout_constraintTop_toTopOf="@id/locationTex"
-            app:layout_constraintBottom_toBottomOf="@id/locationTex"/>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/addItemRecycler"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/locationTex"/>
-
+        app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+        app:layout_constraintTop_toBottomOf="@id/guide74">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
-            android:background="@drawable/line_border_black"
-            app:layout_constraintTop_toBottomOf="@id/addItemRecycler">
+            android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/etNameItem"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide76"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:padding="@dimen/_5sdp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.45" />
+
+            <TextView
+                android:id="@+id/moneyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Money Spend"
                 android:textColor="@color/black"
-                android:textCursorDrawable="@drawable/custom_edit_text_cut"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/view87"
+                android:textSize="@dimen/_16ssp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/view87"
-                android:layout_width="2dp"
-                android:layout_height="0dp"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@color/appSilverDarkColor"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/etItemPrice"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/etItemPrice"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_5sdp"
+            <TextView
+                android:id="@+id/etTotalMoney"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/line_background_border_silver"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:padding="@dimen/_5sdp"
+                android:gravity="center"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
                 android:textColor="@color/black"
                 android:textCursorDrawable="@drawable/custom_edit_text_cut"
                 android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/addNewItem"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/addNewItem"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@drawable/button_background_green"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/ic_add_time_zone_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/moneyText"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/guide76"
+                app:layout_constraintTop_toTopOf="@id/moneyText" />
+
+
+            <TextView
+                android:id="@+id/catTex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Category"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/moneyText"/>
+
+            <EditText
+                android:id="@+id/etCategory"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/line_background_border_silver"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/catTex"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide76"
+                app:layout_constraintTop_toTopOf="@id/catTex" />
+
+            <TextView
+                android:id="@+id/dateTex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Date of expense"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/catTex" />
+
+            <TextView
+                android:id="@+id/etCalender"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/line_background_border_silver"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/dateTex"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide76"
+                app:layout_constraintTop_toTopOf="@id/dateTex"
+                app:drawableEndCompat="@drawable/ic_calendar_icon_focused" />
+
+            <TextView
+                android:id="@+id/locationTex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:text="Location"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/dateTex" />
+
+            <TextView
+                android:id="@+id/etLocations"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/line_background_border_silver"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:gravity="center"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="@id/locationTex"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide76"
+                app:layout_constraintTop_toTopOf="@id/locationTex"
+                app:drawableEndCompat="@drawable/ic_baseline_location_on" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/addItemRecycler"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationTex" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addItemDetailsLt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/line_border_black"
+                app:layout_constraintTop_toBottomOf="@id/addItemRecycler">
+
+                <EditText
+                    android:id="@+id/etNameItem"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/custome_curser_style_color"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/view87"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view87"
+                    android:layout_width="2dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@color/appSilverDarkColor"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/etItemPrice"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/etItemPrice"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="@dimen/_3sdp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/custome_curser_style_color"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/addNewItem"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/addNewItem"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/button_background_green"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_add_time_zone_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/descriptionText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Description"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="@id/addItemDetailsLt"
+                app:layout_constraintTop_toBottomOf="@id/addItemDetailsLt" />
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:background="@drawable/line_border_black"
+                android:ellipsize="end"
+                android:padding="@dimen/_8sdp"
+                android:textColor="@color/black"
+                android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintTop_toBottomOf="@id/descriptionText" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_height="@dimen/_45sdp"
+        android:paddingBottom="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_3sdp"
+                android:src="@drawable/ic_share_icon"
+                app:tint="@color/appMainColor" />
+
+        </androidx.cardview.widget.CardView>
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/addExpense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cornerRadius="@dimen/_20sdp"
-            android:text="@string/add_expense"
-            android:textStyle="bold"
-            android:textAllCaps="false"
-            android:padding="@dimen/_8sdp"
             android:layout_margin="@dimen/_5sdp"
             android:backgroundTint="@color/appMainColor"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:elevation="@dimen/_8sdp"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/add_expense"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            app:cornerRadius="@dimen/_20sdp"
+            app:elevation="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_15sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/_3sdp"
+                android:src="@drawable/ic_baseline_delete" />
+
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

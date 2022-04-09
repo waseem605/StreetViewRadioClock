@@ -4,20 +4,12 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.FavLocationListener
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
-import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationModel
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 
 
 class FavouriteLocationsAdapter(

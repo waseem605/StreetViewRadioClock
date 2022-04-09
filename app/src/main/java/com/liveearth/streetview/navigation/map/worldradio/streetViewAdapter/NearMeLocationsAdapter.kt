@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope

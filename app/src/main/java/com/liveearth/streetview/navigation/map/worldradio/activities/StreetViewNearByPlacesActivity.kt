@@ -23,14 +23,12 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.Str
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.StreetViewNearPlacesModel
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewNearByPlacesBinding
-import com.liveearth.streetview.navigation.map.worldradio.roomdatabase.StreetViewDatabase
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.NearMeLocationsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.NearLocationsModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationModel
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationRepository
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModel
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationViewModelFactory
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModelFactory
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.Marker

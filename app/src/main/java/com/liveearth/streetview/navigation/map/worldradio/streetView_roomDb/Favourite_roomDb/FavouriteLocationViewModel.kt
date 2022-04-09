@@ -1,4 +1,4 @@
-package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb
+package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -17,7 +17,7 @@ class FavouriteLocationViewModel(mContext: Context) : ViewModel() {
         }
     }
 
-    suspend fun getDataById(id: String):FavouriteLocationModel? = repository.getDataById(id)
+    suspend fun getDataById(id: String): FavouriteLocationModel? = repository.getDataById(id)
 
     suspend fun updateFavouriteLocation(model: FavouriteLocationModel) = repository.updateFavouriteLocation(model)
     suspend fun deleteFavouriteLocation(model: FavouriteLocationModel) = repository.deleteFavouriteLocation(model)

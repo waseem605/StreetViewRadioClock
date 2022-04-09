@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-accounts:0.8.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8d4c8d3c5ff35a4314f15c09aafb0c9e/transformed/jetified-mapbox-android-accounts-0.8.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/abfe6b31f621c9fe2d15f5ff2bbf5f73/transformed/jetified-mapbox-android-accounts-0.8.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/abfe6b31f621c9fe2d15f5ff2bbf5f73/transformed/jetified-mapbox-android-accounts-0.8.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/abfe6b31f621c9fe2d15f5ff2bbf5f73/transformed/jetified-mapbox-android-accounts-0.8.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/abfe6b31f621c9fe2d15f5ff2bbf5f73/transformed/jetified-mapbox-android-accounts-0.8.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-accounts/0.8.0/516dabaa17c030272d7c79c53b26de7ba84b3048/mapbox-android-accounts-0.8.0-javadoc.jar!/" />

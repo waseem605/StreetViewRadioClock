@@ -1,7 +1,6 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-sdk-gl-core:5.2.2@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5e623236d62f08eea91d244475bb9e82/transformed/jetified-mapbox-android-sdk-gl-core-5.2.2/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cde29be694dfdc2a2001076c27e11fd9/transformed/jetified-mapbox-android-sdk-gl-core-5.2.2/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cde29be694dfdc2a2001076c27e11fd9/transformed/jetified-mapbox-android-sdk-gl-core-5.2.2/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cde29be694dfdc2a2001076c27e11fd9/transformed/jetified-mapbox-android-sdk-gl-core-5.2.2/AndroidManifest.xml" />

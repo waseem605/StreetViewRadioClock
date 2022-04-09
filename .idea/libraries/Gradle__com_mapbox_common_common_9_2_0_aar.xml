@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.common:common:9.2.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ada7561dbf6e05514c863144d4aff91c/transformed/jetified-common-9.2.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5dd0715efeec31955e5e3fdb0866a9fe/transformed/jetified-common-9.2.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5dd0715efeec31955e5e3fdb0866a9fe/transformed/jetified-common-9.2.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5dd0715efeec31955e5e3fdb0866a9fe/transformed/jetified-common-9.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5dd0715efeec31955e5e3fdb0866a9fe/transformed/jetified-common-9.2.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5dd0715efeec31955e5e3fdb0866a9fe/transformed/jetified-common-9.2.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.common/common/9.2.0/7703e688d17da82a580496687af1759f99cf53c1/common-9.2.0-javadoc.jar!/" />

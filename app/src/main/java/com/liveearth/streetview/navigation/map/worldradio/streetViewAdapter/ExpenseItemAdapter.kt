@@ -36,8 +36,8 @@ class ExpenseItemAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
-
-
+            holder.etNameItem.text = model.name
+            holder.etItemPrice.text = model.Price.toString()
 
             holder.removeItem.setOnClickListener {
                 callBack.onRemoveItem(model,position)
@@ -52,9 +52,9 @@ class ExpenseItemAdapter(
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var removeItem = itemView.findViewById<ImageView>(R.id.removeItem)
-        var etNameItem:TextView = itemView.findViewById<TextView>(R.id.etNameItem)
-        var etItemPrice = itemView.findViewById<EditText>(R.id.etItemPrice)
+        var removeItem:ImageView = itemView.findViewById<ImageView>(R.id.removeItem)
+        var etNameItem:TextView = itemView.findViewById<TextView>(R.id.itemExpenseName)
+        var etItemPrice:TextView = itemView.findViewById<TextView>(R.id.itemExpensePrice)
 
     }
 }

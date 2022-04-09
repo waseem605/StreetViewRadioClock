@@ -1,10 +1,9 @@
 package com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack
 
-import android.location.Location
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.FavouriteLocationModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 
 interface FavLocationListener {
-    fun onNavigateToLocation(model:FavouriteLocationModel)
-    fun onShareFavLocation(model:FavouriteLocationModel)
-    fun onDeleteFavLocation(model:FavouriteLocationModel)
+    fun onNavigateToLocation(model: FavouriteLocationModel)
+    fun onShareFavLocation(model: FavouriteLocationModel)
+    fun onDeleteFavLocation(model: FavouriteLocationModel)
 }
