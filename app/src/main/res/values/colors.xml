@@ -11,6 +11,8 @@
     <color name="appMainColorTop">#368C6F</color>
 
 
+    <color name="appMainDarkColor">#00442F</color>
+    <color name="appMainMediumColor">#17614A</color>
     <color name="appMainColor">#237157</color>
     <color name="appSilverColor">#CDE6DD</color>
     <color name="appIconColor">#FCFCFC</color>

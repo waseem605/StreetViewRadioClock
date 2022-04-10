@@ -36,4 +36,6 @@
     <string name="please_wait">Please waite</string>
     <string name="data_not_found">Data Not Exist</string>
     <string name="playing">Playing</string>
+    <string name="edit">Edit</string>
+    <string name="measuring_unit">Measuring Unit</string>
 </resources>

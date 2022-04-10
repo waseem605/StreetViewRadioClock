@@ -1,12 +1,12 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseCallBackListener
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseItemCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreeViewTravelExpenseBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.ExpenseItemAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
@@ -14,6 +14,10 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.Consta
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -27,18 +31,24 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
     private var mYear: Int? = null
     private var mDay: Int? = null
     private var mDate: String? = null
-    private var mTotal:Int = 0
-
+    private var mTotal: Int = 0
+    private var mID: Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStreeViewTravelExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mID = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID, 0)
         val factory = ExpenseViewModelFactory(this)
         mExpenseViewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
 
+        if (mID !=null){
+            showExpenseDetails(mID)
+            "Update".also { binding.addExpense.text = it }
+        }else{
+            "Add Expense".also { binding.addExpense.text = it }
+        }
         addExpenseItemRecycler()
         clickListenerExpense()
 
@@ -58,54 +68,121 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             datePickerListener()
         }
 
+        binding.deleteExpenseBtn.setOnClickListener {
+            if (mID != 0 ||mID ==null) {
+                GlobalScope.launch(Dispatchers.IO) {
+                    mExpenseViewModel.deleteDataById(mID)
+                    withContext(Dispatchers.Main) {
+                        setToast(this@StreetViewTravelExpenseActivity, "Delete Successfully")
+                        onBackPressed()
+                    }
+                }
+            } else {
+                mExpenseList.clear()
+                mExpenseAdapter.notifyDataSetChanged()
+                binding.etTotalMoney.text = ""
+                binding.etCategory.text.clear()
+                binding.etLocations.text = ""
+                binding.etCalender.text = ""
+                binding.etDescription.text.clear()
+            }
+        }
+
+    }
+
+
+    private fun showExpenseDetails(mID: Int) {
+        try {
+            GlobalScope.launch(Dispatchers.IO) {
+                // mExpenseViewModel.getDataById(mID)
+                showDataExpense(mExpenseViewModel.getDataById(mID))
+            }
+        } catch (e: Exception) {
+        }
+    }
+
+    private fun showDataExpense(model: ExpenseModel?) {
+        try {
+            mExpenseList = model!!.itemList as ArrayList<ExpenseItemModel>
+            binding.etTotalMoney.text = model.totalExpense.toString()
+            binding.etCategory.setText(model.category)
+            binding.etLocations.text = model.location
+            binding.etCalender.text = model.date
+            binding.etDescription.setText(model.description)
+            addExpenseItemRecycler()
+
+        } catch (e: Exception) {
+        }
+
     }
 
     private fun addExpenseItemRecycler() {
-        mExpenseAdapter = ExpenseItemAdapter(mExpenseList, this, object : ExpenseCallBackListener {
-            override fun onExpenseAdd(model: ExpenseItemModel) {
-                mExpenseAdapter.notifyDataSetChanged()
+        try {
+            mExpenseAdapter =
+                ExpenseItemAdapter(mExpenseList, this, object : ExpenseItemCallBackListener {
+                    override fun onExpenseAdd(model: ExpenseItemModel) {
+                        mExpenseAdapter.notifyDataSetChanged()
+                    }
+
+                    override fun onRemoveItem(model: ExpenseItemModel, pos: Int) {
+                        mExpenseList.removeAt(pos)
+                        mExpenseAdapter.notifyDataSetChanged()
+                    }
+
+                })
+
+            binding.addItemRecycler.apply {
+                layoutManager = GridLayoutManager(this@StreetViewTravelExpenseActivity, 2)
+                adapter = mExpenseAdapter
             }
-
-            override fun onRemoveItem(model: ExpenseItemModel, pos: Int) {
-                mExpenseList.removeAt(pos)
-                mExpenseAdapter.notifyDataSetChanged()
-            }
-
-        })
-
-        binding.addItemRecycler.apply {
-            layoutManager = GridLayoutManager(this@StreetViewTravelExpenseActivity, 2)
-            adapter = mExpenseAdapter
+        } catch (e: Exception) {
         }
 
     }
 
     private fun insertDataExpense() {
 
-        if (!validateCategory() || !validateDate() || !validateExpenseDescription() || mExpenseList.size ==0) {
+        if (!validateCategory() || !validateDate() || !validateExpenseDescription() || mExpenseList.size == 0) {
             setToast(this, "please enter Fields")
         } else {
-            mExpenseViewModel.insertExpense(
-                ExpenseModel(
-                    id = null,
-                    binding.etCategory.text.trim().toString(),
-                    mDate,
-                    ConstantsStreetView.CURRENT_ADDRESS,
-                    mExpenseList,
-                    binding.etDescription.text.toString(),
-                    mTotal
-                )
-            )
-            setToast(this, "Saved Expense")
-        }
 
+            if (mID == null ||mID == 0) {
+                mExpenseViewModel.insertExpense(
+                    ExpenseModel(
+                        id = null,
+                        binding.etCategory.text.trim().toString(),
+                        mDate,
+                        ConstantsStreetView.CURRENT_ADDRESS,
+                        mExpenseList,
+                        binding.etDescription.text.toString(),
+                        mTotal
+                    )
+                )
+                setToast(this, "Saved Expense")
+            } else {
+                mExpenseViewModel.updateExpense(
+                    ExpenseModel(
+                        mID,
+                        binding.etCategory.text.trim().toString(),
+                        mDate,
+                        ConstantsStreetView.CURRENT_ADDRESS,
+                        mExpenseList,
+                        binding.etDescription.text.toString(),
+                        mTotal
+                    )
+                )
+                setToast(this, "Updated Expense")
+            }
+            val intent = Intent(this,StreetViewTravelExpenseActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun addItemNamePrice() {
         try {
             val nameItem = binding.etNameItem.text.trim().toString()
             val priceItem = binding.etItemPrice.text.trim().toString()
-            if (!validateItemName() || !validateItemPrice()){
+            if (!validateItemName() || !validateItemPrice()) {
                 setToast(this@StreetViewTravelExpenseActivity, "Please fill item details")
             } else {
                 mTotal += priceItem.toInt()
@@ -161,6 +238,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             true
         }
     }
+
     private fun validateItemName(): Boolean {
         val temp: String
         temp = binding.etNameItem.text.toString().trim { it <= ' ' }
@@ -173,6 +251,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             true
         }
     }
+
     private fun validateItemPrice(): Boolean {
         val temp: String
         temp = binding.etItemPrice.text.toString().trim { it <= ' ' }
@@ -188,13 +267,13 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
 
     private fun validateExpenseDescription(): Boolean {
         val `val`: String
-        `val` = binding.etDescription.getText().toString().trim { it <= ' ' }
+        `val` = binding.etDescription.text.toString().trim { it <= ' ' }
         return if (`val`.isEmpty()) {
-            binding.etDescription.setError("Field can not be empty")
+            binding.etDescription.error = "Field can not be empty"
             false
         } else {
-            binding.etDescription.setError(null)
-           // binding.etDescription.setErrorEnabled(false)
+            binding.etDescription.error = null
+            // binding.etDescription.setErrorEnabled(false)
             true
         }
     }

@@ -1,8 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack
 
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 
 interface ExpenseCallBackListener {
-    fun onExpenseAdd(model:ExpenseItemModel)
-    fun onRemoveItem(model: ExpenseItemModel,pos:Int)
+    fun onExpenseView(model: ExpenseModel)
 }

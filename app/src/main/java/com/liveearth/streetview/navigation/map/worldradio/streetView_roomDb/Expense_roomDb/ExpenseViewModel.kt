@@ -19,8 +19,18 @@ class ExpenseViewModel(mContext: Context) : ViewModel() {
 
     suspend fun getDataById(id: Int):ExpenseModel? = repository.getDataById(id)
 
-    suspend fun updateExpense(model: ExpenseModel) = repository.updateExpense(model)
+
+
+    fun updateExpense(model: ExpenseModel){
+           viewModelScope.launch {
+               Dispatchers.IO
+               repository.updateExpense(model)
+         }
+    }
     suspend fun deleteExpense(model: ExpenseModel) = repository.deleteExpense(model)
+
+    suspend fun deleteDataById(id: Int) = repository.deleteExpenseById(id)
+
 
     suspend fun clearExpense() = repository.clearExpense()
 

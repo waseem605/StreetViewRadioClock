@@ -274,7 +274,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomLayout"
         android:layout_width="match_parent"
@@ -322,6 +321,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/deleteExpenseBtn"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"

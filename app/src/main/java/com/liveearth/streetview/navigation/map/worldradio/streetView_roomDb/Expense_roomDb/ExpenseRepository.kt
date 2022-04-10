@@ -22,4 +22,5 @@ class ExpenseRepository(
 
     fun getAllData(): LiveData<List<ExpenseModel>> = mDatabase.getExpenseDao().gatAllData()
 
+    suspend fun deleteExpenseById(id: Int) = mDatabase.getExpenseDao().deleteExpenseById(id)
 }

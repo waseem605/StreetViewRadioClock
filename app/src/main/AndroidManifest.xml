@@ -19,6 +19,9 @@
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.StreetViewTravelExpenseDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.StreetViewTravelExpenseViewActivity"
             android:exported="false" />
         <activity

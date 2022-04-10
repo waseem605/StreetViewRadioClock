@@ -1,29 +1,21 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextClock
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseCallBackListener
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseItemCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 
 
 class ExpenseSavedAdapter(
     private val modelArrayList: ArrayList<ExpenseModel>,
-    private val context: Context/*,
-    val callBack: ExpenseCallBackListener*/
+    private val context: Context,
+    val itemCallBack: ExpenseCallBackListener
 
 ) : RecyclerView.Adapter<ExpenseSavedAdapter.ListViewHolder>() {
 
@@ -42,6 +34,9 @@ class ExpenseSavedAdapter(
             holder.totalExpenseItem.text = model.totalExpense.toString()
             holder.locationExpenseItem.text = model.location
 
+            holder.itemView.setOnClickListener {
+                itemCallBack.onExpenseView(model)
+            }
 
         } catch (e: Exception) {
         }

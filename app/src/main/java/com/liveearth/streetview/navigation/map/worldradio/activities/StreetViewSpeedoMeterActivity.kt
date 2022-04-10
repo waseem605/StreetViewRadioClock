@@ -37,11 +37,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
       var mMaxSpeed: Float = 0.0F
       var flag:Boolean = true
 
-        var imageSpeedometer: ImageSpeedometer?=null
-
-
-
-
+    var imageSpeedometer: ImageSpeedometer?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

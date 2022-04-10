@@ -1,28 +1,21 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.TextClock
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseCallBackListener
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseItemCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 
 
 class ExpenseItemAdapter(
     private val modelArrayList: ArrayList<ExpenseItemModel>,
     private val context: Context,
-    val callBack: ExpenseCallBackListener
+    val itemCallBack: ExpenseItemCallBackListener
 
 ) : RecyclerView.Adapter<ExpenseItemAdapter.ListViewHolder>() {
 
@@ -40,7 +33,7 @@ class ExpenseItemAdapter(
             holder.etItemPrice.text = model.Price.toString()
 
             holder.removeItem.setOnClickListener {
-                callBack.onRemoveItem(model,position)
+                itemCallBack.onRemoveItem(model,position)
             }
         } catch (e: Exception) {
         }
