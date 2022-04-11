@@ -3,91 +3,95 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/colorGrayDark"
     android:layout_height="match_parent"
+    android:background="@color/colorGrayDark"
     tools:context=".activities.StreetViewSpeedoMeterActivity">
 
-    <include layout="@layout/custom_toolbar"
-        android:id="@+id/toolbarLt"/>
+    <include
+        android:id="@+id/toolbarLt"
+        layout="@layout/custom_toolbar" />
 
-    <include layout="@layout/speed_back_layout"
-        android:id="@+id/back_speed"/>
+    <include
+        android:id="@+id/back_speed"
+        layout="@layout/speed_back_layout" />
 
     <TextView
         android:id="@+id/measuringTx"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center"
         android:text="@string/measuring_unit"
         android:textColor="@color/appSilverColor"
-        android:gravity="center"
-        android:layout_margin="@dimen/_10sdp"
         android:textSize="@dimen/_10ssp"
-        app:layout_constraintTop_toBottomOf="@id/toolbarLt"/>
-
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:text="KMs"
         android:textColor="@color/white"
         android:textSize="@dimen/_12sdp"
-        android:text="KMs"
         android:textStyle="bold"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="@id/switchUnit"
         app:layout_constraintBottom_toBottomOf="@id/switchUnit"
-        app:layout_constraintEnd_toStartOf="@id/switchUnit"/>
+        app:layout_constraintEnd_toStartOf="@id/switchUnit"
+        app:layout_constraintTop_toTopOf="@id/switchUnit" />
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switchUnit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        app:showText="true"
-        android:textOff="km"
-        android:textOn="m"
         android:switchMinWidth="@dimen/_120sdp"
         android:textColor="@color/white"
+        android:textOff="km"
+        android:textOn="m"
         android:textSize="@dimen/_12ssp"
-        app:track="@drawable/switch_track"
         android:thumb="@drawable/switch_thumb"
-        app:layout_constraintTop_toBottomOf="@id/measuringTx"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/measuringTx"
+        app:showText="true"
+        app:track="@drawable/switch_track" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:text="Miles"
         android:textColor="@color/white"
         android:textSize="@dimen/_12sdp"
-        android:text="Miles"
         android:textStyle="bold"
-        android:layout_margin="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="@id/switchUnit"
         app:layout_constraintBottom_toBottomOf="@id/switchUnit"
-        app:layout_constraintStart_toEndOf="@id/switchUnit"/>
+        app:layout_constraintStart_toEndOf="@id/switchUnit"
+        app:layout_constraintTop_toTopOf="@id/switchUnit" />
 
 
     <com.github.anastr.speedviewlib.ImageSpeedometer
         android:id="@+id/imageSpeedometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:sv_indicator="NeedleIndicator"
-        app:sv_withTremble="false"
-        app:sv_unitTextColor="@color/white"
-        app:sv_speedTextColor="@color/white"
-        android:fitsSystemWindows="true"
-        app:sv_image="@drawable/ic_speedo_meter_image"
         android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintTop_toBottomOf="@id/switchUnit"
+        android:fitsSystemWindows="true"
+        app:layout_constraintBottom_toTopOf="@id/speedDetailsLt"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintTop_toBottomOf="@id/switchUnit"
+        app:sv_image="@drawable/ic_speedo_meter_image"
+        app:sv_indicator="NeedleIndicator"
+        app:sv_speedTextColor="@color/white"
+        app:sv_unitTextColor="@color/white"
+        app:sv_withTremble="false" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/speedDetailsLt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/appSilverColor"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/speedBtn"
         app:layout_constraintTop_toBottomOf="@id/imageSpeedometer">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -100,58 +104,133 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maximum Speed"
-                android:textSize="@dimen/_8ssp"
                 android:textColor="@color/appSilverDarkColor"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/_8ssp"
                 app:layout_constraintEnd_toStartOf="@id/minSpeedTX"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/maxSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="25"
+                android:textColor="@color/appMainColor"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/maxSpeedTX"
+                app:layout_constraintStart_toStartOf="@id/maxSpeedTX"
+                app:layout_constraintTop_toBottomOf="@id/maxSpeedTX" />
+
+            <TextView
+                android:id="@+id/maxSpeedUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_3sdp"
+                android:text="KMs"
+                android:textColor="@color/appSilverDarkColor"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toEndOf="@id/maxSpeed"
+                app:layout_constraintTop_toTopOf="@id/maxSpeed" />
 
             <TextView
                 android:id="@+id/minSpeedTX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Maximum Speed"
-                android:textSize="@dimen/_8ssp"
+                android:text="Minimum Speed"
                 android:textColor="@color/appSilverDarkColor"
+                android:textSize="@dimen/_8ssp"
                 app:layout_constraintEnd_toStartOf="@id/avgSpeedTX"
                 app:layout_constraintStart_toEndOf="@id/maxSpeedTX"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/minimumSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="25"
+                android:textColor="@color/appMainColor"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/minSpeedTX"
+                app:layout_constraintStart_toStartOf="@id/minSpeedTX"
+                app:layout_constraintTop_toBottomOf="@id/minSpeedTX" />
+
+            <TextView
+                android:id="@+id/minSpeedUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_3sdp"
+                android:text="KMs"
+                android:textColor="@color/appSilverDarkColor"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toEndOf="@id/minimumSpeed"
+                app:layout_constraintTop_toTopOf="@id/minimumSpeed" />
+
             <TextView
                 android:id="@+id/avgSpeedTX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Maximum Speed"
-                android:textSize="@dimen/_8ssp"
+                android:text="Average Speed"
                 android:textColor="@color/appSilverDarkColor"
-                app:layout_constraintStart_toEndOf="@id/minSpeedTX"
+                android:textSize="@dimen/_8ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintStart_toEndOf="@id/minSpeedTX"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+            <TextView
+                android:id="@+id/avgSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="25"
+                android:textColor="@color/appMainColor"
+                android:textSize="@dimen/_20ssp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/avgSpeedTX"
+                app:layout_constraintStart_toStartOf="@id/avgSpeedTX"
+                app:layout_constraintTop_toBottomOf="@id/avgSpeedTX" />
 
 
+            <TextView
+                android:id="@+id/avgSpeedUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_3sdp"
+                android:text="KMs"
+                android:textColor="@color/appSilverDarkColor"
+                android:textSize="@dimen/_8ssp"
+                app:layout_constraintStart_toEndOf="@id/avgSpeed"
+                app:layout_constraintTop_toTopOf="@id/avgSpeed" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/speedBtn"
-        android:layout_width="@dimen/_100sdp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_25sdp"
-        android:text="start"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:textSize="@dimen/_12ssp"
-        android:textAllCaps="false"
-        android:padding="@dimen/_10sdp"
-        app:cornerRadius="@dimen/_8sdp"
         android:backgroundTint="@color/appSilverColor"
-        app:layout_constraintTop_toBottomOf="@id/speedDetailsLt"
+        android:padding="@dimen/_10sdp"
+        android:text="start"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16ssp"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/speedDetailsLt" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

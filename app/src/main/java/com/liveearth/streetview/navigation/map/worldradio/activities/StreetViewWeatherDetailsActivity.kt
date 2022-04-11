@@ -70,14 +70,12 @@ class StreetViewWeatherDetailsActivity : AppCompatActivity() {
 
 
     private fun mainWeatherDetails(mLatitude: Double, mLongitude: Double) {
-
         try {
             val weatherResult = WeatherAPIServices(object :StreetViewWeatherCallBack{
                 override fun onSuccess(data: StreetViewWeatherModel) {
-
                     StreetViewWeatherHelper.arrayListWeather = data.list as ArrayList<WeatherList>
                     binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
-                    Log.d("454545454","===============weather============"+ StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString())
+                    Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString())
                     try {
                         Glide.with(this@StreetViewWeatherDetailsActivity)
                             .load(StreetViewWeatherHelper.getIcon(data.list[0].weather[0].icon))

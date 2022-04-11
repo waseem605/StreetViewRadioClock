@@ -20,8 +20,10 @@ import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.S
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.HomeFragmentClickCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import com.liveearth.streetview.navigation.map.worldradio.activities.*
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentHomeBinding
+import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentMoreAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentTopAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
@@ -135,7 +137,7 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             2->{
-                val mainIntent = Intent(requireContext(),StreetViewNearByPlacesActivity::class.java)
+                val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
                 startActivity(mainIntent)
             }
             3->{
@@ -143,6 +145,7 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             4->{
+               // val mainIntent = Intent(requireContext(),STPathsPolygonsLabelsLiveEarthMapFmActivity::class.java)
                 val mainIntent = Intent(requireContext(),PathsPolygonsLabelsLiveEarthMapFmActivity::class.java)
                 startActivity(mainIntent)
             }
@@ -194,9 +197,8 @@ class HomeFragment : Fragment() {
     private fun homeWeatherDetails(location: Location) {
         val weatherToday = WeatherAPIServices(object :StreetViewWeatherCallBack{
             override fun onSuccess(data: StreetViewWeatherModel) {
-               // weatherData=data
+                StreetViewWeatherHelper.arrayListWeather=data.list as ArrayList<WeatherList>
                 setData(data)
-
                 try {
                     Glide.with(this@HomeFragment).load(StreetViewWeatherHelper.getIcon(data.list[0].weather[0].icon)).into(binding.weatherTodayIcon)
                     binding.todayDate.text =  StreetViewWeatherHelper.getWeatherDate(data.list[0].dt.toLong(), 1)

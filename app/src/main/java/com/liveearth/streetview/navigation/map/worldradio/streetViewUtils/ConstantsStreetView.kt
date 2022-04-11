@@ -15,6 +15,9 @@ object ConstantsStreetView {
     const val WHITE_COLOR = "#FFFFFFFF"
 
 
+     const val Unit_Is_Miles = "Unit_Is_Miles"
+     const val Unit_Is_Fahrenheit = "Unit_Is_Fahrenheit"
+
     var currentCountryName = "currentCountryName"
     var currentCountryCode = "currentCountryCode"
 

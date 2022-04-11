@@ -1,16 +1,17 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import com.liveearth.streetview.navigation.map.worldradio.globe.GeneralGlobeLiveEarthMapFmActivity
+import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import gov.nasa.worldwind.layer.RenderableLayer
 import android.os.Bundle
 import com.liveearth.streetview.navigation.map.worldradio.R
+import android.widget.FrameLayout
 import gov.nasa.worldwind.render.Renderable
 import gov.nasa.worldwind.WorldWind
+import gov.nasa.worldwind.globe.Globe
 import android.graphics.Typeface
 import android.os.AsyncTask
 import android.util.Log
@@ -21,9 +22,12 @@ import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.MotionEvent
 import android.view.View
-import android.widget.*
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import gov.nasa.worldwind.PickedObjectList
 import gov.nasa.worldwind.geom.Camera
 import gov.nasa.worldwind.geom.Position
 import gov.nasa.worldwind.shape.*
@@ -36,20 +40,19 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.*
 
-
-@SuppressLint("LogNotTimber")
 class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActivity() {
     // A component for displaying the status of this activity
     protected var statusText: TextView? = null
-    var TAG = "worldRadio"
     protected var country_name: TextView? = null
+
+    // protected Button more;
     protected var progressBarCard: CardView? = null
-    protected var radioCard: CardView? = null
-    protected var infoLayout: ConstraintLayout? = null
-    protected var radioLayout: ConstraintLayout? = null
-    protected var countryInfoLt: ConstraintLayout? = null
-    protected var countryNameTx: TextView? = null
-    var countryFlag:ImageView?=null
+    var countryFlag: ImageView?=null
+    var countryNameTx: TextView?=null
+       protected var radioCard: CardView? = null
+       protected var infoLayout: ConstraintLayout? = null
+       protected var radioLayout: ConstraintLayout? = null
+       protected var countryInfoLt: ConstraintLayout? = null
     var message = ""
     protected var shapesLayer = RenderableLayer("Shapes")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,79 +67,103 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
     """.trimIndent()
         )
         country_name = findViewById(R.id.country_name)
+        //more=findViewById(R.id.more);
+        progressBarCard = findViewById(R.id.progressBarCard)
         radioCard = findViewById<CardView>(R.id.radioCard)
-        countryFlag = findViewById<ImageView>(R.id.countryFlag)
         countryNameTx = findViewById<TextView>(R.id.country_nameText)
         infoLayout = findViewById<ConstraintLayout>(R.id.infoLayout)
         countryInfoLt = findViewById<ConstraintLayout>(R.id.countryInfoLt)
-        progressBarCard = findViewById(R.id.progressBarCard)
+         countryFlag = findViewById<ImageView>(R.id.countryFlag)
 
+        /*
+
+        more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!message.isEmpty()) {
+//                    Intent intent = new Intent(PathsPolygonsLabelsLiveEarthMapFmActivity.this, MoreInfoMapLiveEarthFmActivity.class);
+//                    intent.putExtra("country",message);
+//                    startActivity(intent);
+//                    finish();
+                }else {
+                    Toast.makeText(PathsPolygonsLabelsLiveEarthMapFmActivity.this,"Select Country First",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+*/
+
+        // Add a TextView on top of the globe to convey the status of this activity
         statusText = TextView(this)
-        statusText !!.setTextColor(Color.YELLOW)
+        statusText!!.setTextColor(Color.YELLOW)
         val globeLayout = findViewById<View>(R.id.globe) as FrameLayout
         globeLayout.addView(statusText)
 
         // Override the WorldWindow's built-in navigation behavior by adding picking support.
-        this.worldWindow.worldWindowController = PickController()
+        this.worldWindow.worldWindowController =
+            PickController()
         this.worldWindow.layers.addLayer(shapesLayer)
-        statusText !!.text = "Loading countries...."
+
+        // Load the shapes into the renderable layer
+        statusText!!.text = "Loading countries...."
         CreateRenderablesTask().execute()
     }
 
-    @SuppressLint("StaticFieldLeak")
     protected inner class CreateRenderablesTask : AsyncTask<Void?, Renderable?, Void?>() {
         private var numCountriesCreated = 0
         private var numHighwaysCreated = 0
         private var numPlacesCreated = 0
         private val random = Random(22)
-
-        override fun doInBackground(vararg params: Void?): Void? {
+         override fun doInBackground(vararg params: Void?): Void? {
             loadCountriesFile()
-//            loadHighways();
-//            loadPlaceNames();
+            // loadHighways();
+            // loadPlaceNames();
             return null
         }
 
-        override fun onProgressUpdate(vararg values: Renderable?) {
+         override fun onProgressUpdate(vararg values: Renderable?) {
             super.onProgressUpdate(*values)
             val shape = values[0]
-            statusText !!.text = "Added " + shape!!.displayName + " feature..."
+            statusText!!.text = "Added " + shape!!.displayName + " feature..."
             shapesLayer.addRenderable(shape)
             worldWindow.requestRedraw()
         }
 
         override fun onPostExecute(notUsed: Void?) {
             super.onPostExecute(notUsed)
-            statusText !!.text = ""
-            progressBarCard !!.visibility = View.GONE
+            statusText!!.text = ""
+            progressBarCard!!.visibility = View.GONE
             val camera = Camera()
             camera[37.0, 70.0, 20000000.0, WorldWind.ABSOLUTE, 0.0, 0.0] = 0.0 // No roll
 
+            // Apply the new camera position
             val globe = wwd.globe
             wwd.navigator.setAsCamera(globe, camera)
 
-            worldWindow.requestRedraw()
+            /* statusText.setText(String.format(Locale.US, "%,d places, %,d highways and %,d countries created",
+                    this.numPlacesCreated,
+                    this.numHighwaysCreated,
+                    this.numCountriesCreated));*/worldWindow.requestRedraw()
         }
 
         private fun loadPlaceNames() {
-            val placeAttrs =
-                TextAttributes().setTypeface(Typeface.DEFAULT_BOLD) // Override the normal Typeface
-                    .setTextSize(28f) // default size is 24
-                    .setTextOffset(Offset.bottomRight()) // anchor the label's bottom-right corner at its position
-
+            // Define the text attributes used for places
+            val placeAttrs = TextAttributes()
+                .setTypeface(Typeface.DEFAULT_BOLD) // Override the normal Typeface
+                .setTextSize(28f) // default size is 24
+                .setTextOffset(Offset.bottomRight()) // anchor the label's bottom-right corner at its position
             // Define the text attribute used for lakes
-            val lakeAttrs =
-                TextAttributes().setTypeface(Typeface.create("serif", Typeface.BOLD_ITALIC))
-                    .setTextSize(32f) // default size is 24
-                    .setTextColor(
-                        gov.nasa.worldwind.render.Color(
-                            0f,
-                            1f,
-                            1f,
-                            0.70f
-                        )
-                    ) // cyan, with 7% opacity
-                    .setTextOffset(Offset.center()) // center the label over its position
+            val lakeAttrs = TextAttributes()
+                .setTypeface(Typeface.create("serif", Typeface.BOLD_ITALIC))
+                .setTextSize(32f) // default size is 24
+                .setTextColor(
+                    gov.nasa.worldwind.render.Color(
+                        0f,
+                        1f,
+                        1f,
+                        0.70f
+                    )
+                ) // cyan, with 7% opacity
+                .setTextOffset(Offset.center()) // center the label over its position
 
             // Load the place names
             var reader: BufferedReader? = null
@@ -160,9 +187,9 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                         if (fields[NAM].contains("Lake")) lakeAttrs else placeAttrs
                     )
                     label.displayName = label.text
-
+                    // Add the Label object to the RenderableLayer on the UI Thread (see onProgressUpdate)
                     publishProgress(label)
-                    numPlacesCreated ++
+                    numPlacesCreated++
                 }
             } catch (e: IOException) {
                 Logger.log(
@@ -179,11 +206,12 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             val attrs = ShapeAttributes()
             attrs.outlineColor[1.0f, 1.0f, 0.0f] = 1.0f
             attrs.outlineWidth = 3f
-
+            // Define the shape attributes used for highlighted "highways"
             val highlightAttrs = ShapeAttributes()
             highlightAttrs.outlineColor[1.0f, 0.0f, 0.0f] = 1.0f
             highlightAttrs.outlineWidth = 7f
 
+            // Load the highways
             var reader: BufferedReader? = null
             try {
                 val `in` = resources.openRawResource(R.raw.world_highways)
@@ -210,6 +238,7 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                     val positions: MutableList<Position> = ArrayList()
                     val tuples = feature.split(",".toRegex()).toTypedArray()
                     for (i in tuples.indices) {
+                        // The XY tuple components a separated by a space
                         val xy = tuples[i].split(" ".toRegex()).toTypedArray()
                         positions.add(Position.fromDegrees(xy[1].toDouble(), xy[0].toDouble(), 0.0))
                     }
@@ -221,8 +250,9 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                         true // essential for preventing long segments from intercepting ellipsoid.
                     path.displayName = attributes
 
+                    // Add the Path object to the RenderableLayer on the UI Thread (see onProgressUpdate)
                     publishProgress(path)
-                    numHighwaysCreated ++
+                    numHighwaysCreated++
                 }
             } catch (e: IOException) {
                 Logger.log(Logger.ERROR, "Exception attempting to read/parse world_highways file.")
@@ -256,6 +286,7 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                 val GEOMETRY = headers.indexOf("WKT")
                 val NAME = headers.indexOf("COUNTRY_NA")
 
+                // ... and process the remaining lines in the CSV
                 val WKT_START = "\"POLYGON ("
                 val WKT_END = ")\""
                 while (reader.readLine().also { line = it } != null) {
@@ -281,6 +312,8 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                     )
                     polygon.highlightAttributes = highlightAttrs
 
+                    // Process all the polygons within this feature by creating "boundaries" for each.
+                    // Individual polygons are bounded by "(" and ")"
                     var polyStart = feature.indexOf("(")
                     while (polyStart >= 0) {
                         val polyEnd = feature.indexOf(")", polyStart)
@@ -302,11 +335,13 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                         }
                         polygon.addBoundary(positions)
 
+                        // Locate the next polygon in the feature
                         polyStart = feature.indexOf("(", polyEnd)
                     }
 
+                    // Add the Polygon object to the RenderableLayer on the UI Thread (see onProgressUpdate).
                     publishProgress(polygon)
-                    numCountriesCreated ++
+                    numCountriesCreated++
                 }
             } catch (e: IOException) {
                 Logger.log(Logger.ERROR, "Exception attempting to read/parse world_highways file.")
@@ -314,11 +349,14 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                 WWUtil.closeSilently(reader)
             }
         }
-
     }
 
     inner class PickController : BasicWorldWindowController() {
         protected var pickedObjects = ArrayList<Any>() // last picked objects from onDown events
+
+        /**
+         * Assign a subclassed SimpleOnGestureListener to a GestureDetector to handle the "pick" events.
+         */
         protected var pickGestureDetector =
             GestureDetector(applicationContext, object : SimpleOnGestureListener() {
                 override fun onSingleTapUp(event: MotionEvent): Boolean {
@@ -327,17 +365,24 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
                 }
             })
 
+        /**
+         * Delegates events to the pick handler or the native WorldWind navigation handlers.
+         */
         override fun onTouchEvent(event: MotionEvent): Boolean {
             var consumed = super.onTouchEvent(event)
-            if (! consumed) {
+            if (!consumed) {
                 consumed = pickGestureDetector.onTouchEvent(event)
             }
             return consumed
         }
 
+        /**
+         * Performs a pick at the tap location.
+         */
         fun pick(event: MotionEvent) {
             val PICK_REGION_SIZE = 40 // pixels
 
+            // Forget our last picked objects
             togglePickedObjectHighlights()
             pickedObjects.clear()
 
@@ -345,10 +390,12 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             val pickList = worldWindow.pickShapesInRect(
                 event.x - PICK_REGION_SIZE / 2,
                 event.y - PICK_REGION_SIZE / 2,
-                PICK_REGION_SIZE.toFloat(),
-                PICK_REGION_SIZE.toFloat()
+                PICK_REGION_SIZE.toFloat(), PICK_REGION_SIZE.toFloat()
             )
 
+            // pickShapesInRect can return multiple objects, i.e., they're may be more that one 'top object'
+            // So we iterate through the list instead of calling pickList.topPickedObject which returns the
+            // arbitrary 'first' top object.
             for (i in 0 until pickList.count()) {
                 if (pickList.pickedObjectAt(i).isOnTop) {
                     pickedObjects.add(pickList.pickedObjectAt(i).userObject)
@@ -357,36 +404,42 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
             togglePickedObjectHighlights()
         }
 
-        private fun togglePickedObjectHighlights() {
+        /**
+         * Toggles the highlighted state of a picked object.
+         */
+        fun togglePickedObjectHighlights() {
             for (pickedObject in pickedObjects) {
                 if (pickedObject is Highlightable) {
                     val highlightable = pickedObject
-                    highlightable.isHighlighted = ! highlightable.isHighlighted
+                    highlightable.isHighlighted = !highlightable.isHighlighted
                     if (highlightable.isHighlighted) {
+                        /* if (!message.isEmpty()) {
+                            message += ", ";
+                        }
+                        message += ((Renderable) highlightable).getDisplayName();*/
                         message = (highlightable as Renderable).displayName
                     }
                 }
             }
-            if (! message.isEmpty()) {
-                country_name !!.text = message
+            if (!message.isEmpty()) {
+                country_name!!.text = message
+                // more.setVisibility(View.VISIBLE);
                 countryInfoLt!!.visibility = View.VISIBLE
-
                 infoLayout !!.visibility = View.GONE
-                Log.d("454545454545", "===================++++++++++++++$message")
-                selectedCounryNameStreetView(message)
-
+                selectedCountryNameStreetView(message)
             } else {
-                countryInfoLt!!.visibility = View.GONE
+                // more.setVisibility(View.GONE);
+          /*      countryInfoLt!!.visibility = View.GONE
                 infoLayout !!.visibility = View.VISIBLE
-                radioLayout !!.visibility = View.GONE
-                country_name !!.text = "Click on Globe to Select the Country"
+                radioLayout !!.visibility = View.GONE*/
+                country_name!!.text = "Click on Globe to Select the Country"
             }
             this.worldWindow.requestRedraw()
         }
     }
 
-    private fun selectedCounryNameStreetView(message: String) {
 
+    private fun selectedCountryNameStreetView(message: String) {
         val jsonString: String = getdataFromJson()
         parseJsonStringToNewsList(jsonString,message)
     }
@@ -436,7 +489,12 @@ class PathsPolygonsLabelsLiveEarthMapFmActivity : GeneralGlobeLiveEarthMapFmActi
     }
 
 
+
     override fun onBackPressed() {
         super.onBackPressed()
+        /*    ApplicationAdsLiveEarthMapFm.setHandlerForAdRequest(this);
+        Intent intent=new Intent(PathsPolygonsLabelsLiveEarthMapFmActivity.this, LiveEarthMapLandingActivity.class);
+        startActivity(intent);
+        finish();*/
     }
 }

@@ -62,6 +62,12 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
 
     private fun clickListenersLiveEarth() {
 
+        binding.nearByLocations.setOnClickListener {
+            val intent = Intent(this,StreetViewNearByPlacesActivity::class.java)
+            startActivity(intent)
+        }
+
+
         binding.currentLocationBtn.setOnClickListener {
             getYourCurrentLocation()
         }

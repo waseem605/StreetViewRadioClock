@@ -74,6 +74,9 @@ dependencies {
     //bottom navigation style
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.7.9'
 
+    // MP chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     implementation 'com.imankur.library:analogclockview:1.0.0'
 
     //google location

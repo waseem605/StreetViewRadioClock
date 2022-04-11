@@ -21,7 +21,6 @@ class LocationTrackingMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
-
         val broadCastReceiver = object : BroadcastReceiver() {
             override fun onReceive(contxt: Context?, intent: Intent?) {
 

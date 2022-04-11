@@ -43,11 +43,10 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewSpeedoMeterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.kiloMeterBtn.isChecked = true
+       // binding.kiloMeterBtn.isChecked = true
         binding.imageSpeedometer.unit = "KP/H"
 
         imageSpeedometer = binding.imageSpeedometer
-
 
         binding.speedBtn.setOnClickListener {
             toStartLocation()
@@ -59,8 +58,8 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
     private fun toStartLocation() {
         if (flag){
             flag = false
-            binding.kiloMeterBtn.isEnabled = false
-            binding.milesPerBtn.isEnabled = false
+//            binding.kiloMeterBtn.isEnabled = false
+//            binding.milesPerBtn.isEnabled = false
 
             try {
                 locationRepository = LocationRepository(this, object : MyLocationListener {
@@ -75,7 +74,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                             imageSpeedometer!!.speedTo((mSpeedStart*3.6).toFloat())
 
                             if (myLocation!!.speed>0){
-                                if (binding.kiloMeterBtn.isChecked){
+                             /*   if (binding.kiloMeterBtn.isChecked){
                                     mSpeedUnit="KP/H"
                                     imageSpeedometer!!.speedTo((mSpeedStart*3.6).toFloat())
                                     mSpeedStart = (mSpeedStart*3.6).toFloat()
@@ -83,7 +82,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                                     mSpeedUnit = "MP/H"
                                     imageSpeedometer!!.speedTo((mSpeedStart*2.23694).toFloat())
                                     mSpeedStart = (mSpeedStart*2.23694).toFloat()
-                                }
+                                }*/
                             }
                             if (mSpeedStart>mMaxSpeed){
                                 mMaxSpeed = mSpeedStart
@@ -107,8 +106,8 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
             }
 
         }else{
-            binding.kiloMeterBtn.isEnabled = true
-            binding.milesPerBtn.isEnabled = true
+//            binding.kiloMeterBtn.isEnabled = true
+//            binding.milesPerBtn.isEnabled = true
             flag = true
             //binding.speedBtn.setBackgroundColor(Color.parseColor(AppConstants.APP_SELECTED_COLOR))
             binding.speedBtn.text = resources.getString(R.string.start)
@@ -126,13 +125,13 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                 }).execute()
 
                 mSpeedEnd = myLocation!!.speed
-                if (binding.kiloMeterBtn.isChecked){
+          /*      if (binding.kiloMeterBtn.isChecked){
                     imageSpeedometer!!.speedTo((mSpeedEnd*3.6).toFloat())
                     mSpeedEnd = (mSpeedEnd*3.6).toFloat()
                 }else{
                     imageSpeedometer!!.speedTo((mSpeedEnd*2.23694).toFloat())
                     mSpeedEnd = (mSpeedEnd*2.23694).toFloat()
-                }
+                }*/
                 Log.d("myLocation", "onCreate:speed =end===$mSpeedEnd========${stopLocation}==============")
                 mEndLatLong = "${myLocation!!.latitude.toString()},${myLocation!!.longitude.toString()}"
                 saveSpeedRecord(stopLocation,mEndLatLong,mSpeedUnit)

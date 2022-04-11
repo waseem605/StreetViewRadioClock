@@ -11,7 +11,6 @@
         android:id="@+id/toolbarLt"
         layout="@layout/custom_toolbar" />
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -19,7 +18,9 @@
         android:background="@drawable/bottom_bar_background"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarLt">
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="174dp">
 
 
         <!--Temperature-->
@@ -56,6 +57,8 @@
                     android:text="Celsius"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@id/temperatureTx"
                     app:layout_constraintTop_toBottomOf="@id/temperatureTx" />
 
@@ -66,6 +69,8 @@
                     android:text=" / "
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/celsiusTx"
                     app:layout_constraintTop_toBottomOf="@id/temperatureTx" />
 
@@ -80,6 +85,25 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/dSlash"
                     app:layout_constraintTop_toBottomOf="@id/temperatureTx" />
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchUnitTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:switchMinWidth="@dimen/_120sdp"
+                    android:textColor="@color/white"
+                    android:textOff="C"
+                    android:textOn="F"
+                    android:textSize="@dimen/_12ssp"
+                    android:thumb="@drawable/switch_thumb"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:showText="true"
+                    app:track="@drawable/switch_track" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -118,6 +142,8 @@
                     android:text="Kilometer"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@id/distanceTx"
                     app:layout_constraintTop_toBottomOf="@id/distanceTx" />
 
@@ -128,6 +154,8 @@
                     android:text=" / "
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/meterTx"
                     app:layout_constraintTop_toBottomOf="@id/distanceTx" />
 
@@ -142,6 +170,24 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/dSlash1"
                     app:layout_constraintTop_toBottomOf="@id/distanceTx" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchUnit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:switchMinWidth="@dimen/_120sdp"
+                    android:textColor="@color/white"
+                    android:textOff="km"
+                    android:textOn="M"
+                    android:textSize="@dimen/_12ssp"
+                    android:thumb="@drawable/switch_thumb"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:showText="true"
+                    app:track="@drawable/switch_track" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -417,8 +463,8 @@
                     android:layout_marginStart="@dimen/_10sdp"
                     android:text="Remove Ads"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
                     android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/premiumImg"
                     app:layout_constraintStart_toEndOf="@id/premiumImg"
                     app:layout_constraintTop_toTopOf="@id/premiumImg" />

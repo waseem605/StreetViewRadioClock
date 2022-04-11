@@ -1,25 +1,15 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
-import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.widget.PopupMenu
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
 import com.liveearth.streetview.navigation.map.worldradio.R
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityMainBinding
 import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
-import com.mapbox.mapboxsdk.log.LoggerDefinition
-import me.ibrahimsn.lib.OnItemSelectedListener
-import me.ibrahimsn.lib.SmoothBottomBar
 import java.io.File
 
 
@@ -73,7 +63,7 @@ class MainActivity : BaseStreetViewActivity() {
             startActivity(Intent(this, StreetViewMeetMeActivity::class.java))
         }
         binding.nasaGlobeBtn.setOnClickListener {
-            startActivity(Intent(this, PathsPolygonsLabelsLiveEarthMapFmActivity::class.java))
+            startActivity(Intent(this, STPathsPolygonsLabelsLiveEarthMapFmActivity::class.java))
         }
 
         binding.worldTimeBtn.setOnClickListener {

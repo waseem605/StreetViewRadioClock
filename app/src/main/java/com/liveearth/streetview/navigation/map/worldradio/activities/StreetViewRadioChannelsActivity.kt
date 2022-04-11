@@ -37,6 +37,9 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
 
         showProgressDialog(this)
         getAllCountryFMListFromApi(countryName)
+        binding.backLink.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun getAllCountryFMListFromApi(mCountryName: String) {

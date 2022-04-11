@@ -7,9 +7,8 @@ import android.location.Address
 import android.location.Geocoder
 import android.util.Log
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.startActivity
+import androidx.core.content.ContextCompat
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
-import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -17,6 +16,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 class LocationHelper() {
     companion object {
@@ -86,6 +86,18 @@ class LocationHelper() {
             sharingIntent.type = "text/plain"
             sharingIntent.putExtra(Intent.EXTRA_TEXT, uri)
             context.startActivity(Intent.createChooser(sharingIntent, "Share in..."))
+        }
+
+        private fun shareTextOnly(context: Context,text: String) {
+            val intent = Intent(Intent.ACTION_SEND)
+
+            // setting type of data shared as text
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_SUBJECT, "Subject Here")
+
+            // Adding the text to share using putExtra
+            intent.putExtra(Intent.EXTRA_TEXT, text)
+            context.startActivity(Intent.createChooser(intent, "Share Via"))
         }
 
         fun midPointLocation(lat1: Double, lon1: Double, lat2: Double, lon2: Double):LatLng {
