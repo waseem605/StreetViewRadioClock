@@ -46,6 +46,11 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
             }
         })
 
+        binding.toolbar.backLink.setOnClickListener {
+            onBackPressed()
+        }
+        binding.toolbar.titleTx.text = "Favourite Locations"
+
         getCurrentLocation()
 
     }

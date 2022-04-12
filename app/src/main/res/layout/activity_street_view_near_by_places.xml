@@ -113,6 +113,7 @@
             android:layout_height="wrap_content"
             android:text="@string/search"
             app:cornerRadius="@dimen/_20sdp"
+            android:visibility="invisible"
             android:layout_margin="@dimen/_10sdp"
             android:textColor="@color/white"
             android:textAllCaps="false"

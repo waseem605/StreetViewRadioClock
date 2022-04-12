@@ -113,12 +113,13 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
 
         getYourCurrentLocation()
 
-        binding.meetMeSearchBtn.setOnClickListener {
+    /*    binding.meetMeSearchBtn.setOnClickListener {
             searchNearLocation()
-        }
+        }*/
+
     }
 
-    private fun searchNearLocation() {
+    private fun searchNearLocation(latitude: Double, longitude: Double) {
         showProgressDialog(this)
         val apiLocationServices = StreetViewLocationAPIServices(object : StreetViewNearByCallBack {
             override fun onSuccess(data: StreetViewNearPlacesModel) {
@@ -228,10 +229,12 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
             myRepository = LocationRepository(this, object : MyLocationListener {
                 override fun onLocationChanged(location: Location) {
                     location.let {
+
                         setLocationMarker(LatLng(it.latitude, it.longitude), tempMapbox)
                         if (mLocationMarker != null) {
                             mLocationMarker!!.remove()
                         }
+                        searchNearLocation(it.latitude,it.longitude)
                         mLocationMarker = mapbox.addMarker(
                             MarkerOptions().position(LatLng(it.latitude, it.longitude))
                         )

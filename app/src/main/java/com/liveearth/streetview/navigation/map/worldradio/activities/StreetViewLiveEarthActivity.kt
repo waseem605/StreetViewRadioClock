@@ -265,12 +265,12 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         binding.threeD.setOnClickListener{
             try {
                 if (flagMap){
-                    Glide.with(this).load(R.drawable.ic_three_d_icon).into(binding.imageThreeD)
+                    Glide.with(this).load(R.drawable.ic_two_d_icon).into(binding.imageThreeD)
                     flagMap=false
                     mBuildingPlugin.setVisibility(true)
                     LocationHelper.set3dMap(latitude, longitude,mapbox)
                 }else{
-                    Glide.with(this).load(R.drawable.ic_two_d_icon).into(binding.imageThreeD)
+                    Glide.with(this).load(R.drawable.ic_three_d_icon).into(binding.imageThreeD)
                     flagMap=true
                     mBuildingPlugin.setVisibility(false)
                     LocationHelper.setZoomMarker(latitude, longitude,mapbox,zoom)

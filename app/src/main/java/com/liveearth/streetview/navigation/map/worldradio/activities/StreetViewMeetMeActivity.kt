@@ -88,12 +88,17 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun meetMeClickListener() {
 
+        binding.toolbar.titleTx.text = "Meet Me Middle"
         animationTopToDown = AnimationUtils.loadAnimation(this, R.anim.slide_top_to_down)
         animationDownToUp = AnimationUtils.loadAnimation(this, R.anim.slide_point_up)
         animationDown = AnimationUtils.loadAnimation(this, R.anim.slide_down_to_point)
         animationPointToDown = AnimationUtils.loadAnimation(this, R.anim.slide_point_to_down)
 
         binding.topLayout.startAnimation(animationTopToDown)
+
+        binding.toolbar.backLink.setOnClickListener {
+            onBackPressed()
+        }
 
         binding.cMeetMeBtn.setOnClickListener {
             getCurrentLocationUser()
@@ -189,7 +194,6 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //find near me locations hit
     private fun nearMeLocationsMidPoints() {
-
         try {
             midLaLong = LocationHelper.midPointLocation(
                 mLatitude,
@@ -249,7 +253,6 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
         val locationServiceApi = StreetViewLocationAPIServices(object : StreetViewNearByCallBack {
             override fun onSuccess(data: StreetViewNearPlacesModel) {
                 val nearMeLocationData = data.results
-
                 Handler(Looper.getMainLooper()).postDelayed({
                     binding.topLayout.visibility = View.GONE
                     binding.distanceCardInfo.visibility = View.GONE

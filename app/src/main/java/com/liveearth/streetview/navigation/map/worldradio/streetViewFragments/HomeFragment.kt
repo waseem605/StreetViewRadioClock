@@ -158,12 +158,21 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             7->{
-                val mainIntent = Intent(requireContext(),StreetViewWeatherDetailsActivity::class.java)
-                mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
-                mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
-                startActivity(mainIntent)
+                weatherIntentLatLng()
             }
+
         }
+
+        binding.forwardWeather.setOnClickListener {
+           weatherIntentLatLng()
+        }
+    }
+
+    private fun weatherIntentLatLng() {
+        val mainIntent = Intent(requireContext(),StreetViewWeatherDetailsActivity::class.java)
+        mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
+        mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
+        startActivity(mainIntent)
     }
 
 

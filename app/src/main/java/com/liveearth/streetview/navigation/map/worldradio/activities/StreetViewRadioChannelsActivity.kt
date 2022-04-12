@@ -33,7 +33,7 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
         countryName = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
 
-        """Tranding in ${this.countryName}""".also { binding.radioCountryName.text = it }
+        """Trending in ${this.countryName}""".also { binding.radioCountryName.text = it }
 
         showProgressDialog(this)
         getAllCountryFMListFromApi(countryName)
