@@ -48,7 +48,7 @@ class SettingFragment : Fragment() {
                 binding.milesTx.typeface = Typeface.DEFAULT_BOLD
                 binding.milesTx.setTextColor(resources.getColor(R.color.appMainColor))
                 binding.meterTx.typeface = Typeface.DEFAULT
-                binding.milesTx.setTextColor(resources.getColor(R.color.black))
+                binding.meterTx.setTextColor(resources.getColor(R.color.black))
                 mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,true)
             } else {
                 binding.meterTx.typeface = Typeface.DEFAULT_BOLD

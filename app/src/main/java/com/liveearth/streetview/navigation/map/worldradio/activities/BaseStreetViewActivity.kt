@@ -32,10 +32,6 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         binding = ActivityBaseStreetViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        if (!checkLocationPermission()){
-            checkLocationPermission()
-        }
-
 
         if (checkStreetViewLocation(this)==false) {
             val dialogueBox = LocationEnableRequestDialogueBox(this)
@@ -74,11 +70,38 @@ open class BaseStreetViewActivity : AppCompatActivity() {
             val dialogueBox = LocationEnableRequestDialogueBox(this)
             dialogueBox.show()
         }
+        checkLocationPermission()
+       // if (checkLocationPermission()){
 
-        if (checkLocationPermission()){
-            checkLocationPermission()
+       // }
+    }
+
+    fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                val permissionDialog = LocationRequestDialogueBox(this,object :
+                    ExistCallBackListener {
+                    override fun onExistClick() {
+                        requestLocationPermission()
+                    }
+                })
+                permissionDialog.show()
+            } else {
+
+                requestLocationPermission()
+            }
+
+        }else{
+
+            //mainItemClickListener()
         }
     }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -110,32 +133,7 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         }
     }
 
-    fun checkLocationPermission():Boolean {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
-            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            ) {
 
-
-            } else {
-                val permissionDialog = LocationRequestDialogueBox(this,object :
-                    ExistCallBackListener {
-                    override fun onExistClick() {
-                        requestLocationPermission()
-                    }
-                })
-                permissionDialog.show()
-              //  requestLocationPermission()
-            }
-            return false
-        }else{
-            return true
-            //mainItemClickListener()
-        }
-    }
 
     private fun requestLocationPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(

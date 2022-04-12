@@ -34,16 +34,15 @@ class SavedWorldTimeAdapter(
         try {
             val model = modelArrayList[position]
 
-
             Log.d("onBindViewHolder", "onBindViewHolder: "+model.country)
             holder.countryItemName.text = model.country
             holder.countryTimeZoneItem.text = model.timeZone
             holder.countryTimeItem.timeZone = model.timeZone
 
            //Glide.with(context).load("https://flagpedia.net/data/flags/normal/${model.iso}.png").into(holder.countryFlagItemImg)
-          /*  holder.itemView.setOnClickListener {
-                callBack.onLocationInfo(model)
-            }*/
+            holder.itemView.setOnClickListener {
+                callBack.onItemWorldClock(model.timeZone!!)
+            }
         } catch (e: Exception) {
         }
     }

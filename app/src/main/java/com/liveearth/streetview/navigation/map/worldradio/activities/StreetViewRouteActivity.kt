@@ -26,7 +26,9 @@ import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
+import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
+import com.mapbox.mapboxsdk.geometry.LatLngBounds
 import com.mapbox.mapboxsdk.location.LocationComponentActivationOptions
 import com.mapbox.mapboxsdk.location.modes.RenderMode
 import com.mapbox.mapboxsdk.maps.MapView
@@ -159,7 +161,9 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 mapboxMap.addMarker(MarkerOptions().position(LatLng(destination!!.latitude(), destination!!.longitude())))
                 getRoute(mapboxMap, origin!!, destination!!)
             }
+            animateStreetViewToBounds()
         }
+
         mapboxMap.uiSettings.logoGravity = Gravity.TOP
         mapboxMap.uiSettings.attributionGravity = Gravity.TOP
     }
@@ -374,6 +378,21 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
         })
+    }
+
+
+    private fun animateStreetViewToBounds() {
+        val latLngBounds = LatLngBounds.Builder()
+            .include(LatLng(origin!!.latitude(), origin!!.longitude()))
+            .include(LatLng(destination!!.latitude(), destination!!.longitude()))
+            .build()
+        try {
+            mapbox!!.animateCamera(
+                CameraUpdateFactory.newLatLngBounds(latLngBounds, 150),
+                5000
+            )
+        } catch (e: Exception) {
+        }
     }
 
     fun ConvertSectoDay(n: Int) {

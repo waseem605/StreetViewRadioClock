@@ -67,22 +67,21 @@
         app:layout_constraintStart_toEndOf="@id/switchUnit"
         app:layout_constraintTop_toTopOf="@id/switchUnit" />
 
-
     <com.github.anastr.speedviewlib.ImageSpeedometer
         android:id="@+id/imageSpeedometer"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
         android:fitsSystemWindows="true"
+        android:layout_margin="@dimen/_20sdp"
         app:layout_constraintBottom_toTopOf="@id/speedDetailsLt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/switchUnit"
-        app:sv_image="@drawable/ic_speedo_meter_image"
-        app:sv_indicator="NeedleIndicator"
+        app:sv_image="@drawable/new_speedo"
+        app:sv_indicator="KiteIndicator"
         app:sv_speedTextColor="@color/white"
         app:sv_unitTextColor="@color/white"
-        app:sv_withTremble="false" />
+        app:sv_withTremble="true" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/speedDetailsLt"
@@ -116,7 +115,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
-                android:text="25"
                 android:textColor="@color/appMainColor"
                 android:textSize="@dimen/_20ssp"
                 android:textStyle="bold"
@@ -152,7 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
-                android:text="25"
+
                 android:textColor="@color/appMainColor"
                 android:textSize="@dimen/_20ssp"
                 android:textStyle="bold"
@@ -189,7 +187,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:gravity="center"
-                android:text="25"
                 android:textColor="@color/appMainColor"
                 android:textSize="@dimen/_20ssp"
                 android:textStyle="bold"

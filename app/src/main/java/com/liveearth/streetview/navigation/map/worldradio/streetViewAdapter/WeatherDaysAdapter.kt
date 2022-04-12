@@ -16,7 +16,9 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.Stre
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper.Companion.getDateTimeFromDateInString
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper.Companion.getForWeekly
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper.Companion.setDate
@@ -29,6 +31,8 @@ class WeatherDaysAdapter(
 
 ) : RecyclerView.Adapter<WeatherDaysAdapter.ListViewHolder>() {
 
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
           val view =
               LayoutInflater.from(context).inflate(R.layout.sample_weather_item_week, parent, false)
@@ -37,10 +41,21 @@ class WeatherDaysAdapter(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
+            mPreferenceManagerClass = PreferenceManagerClass(context)
             val model = modelArrayList[position]
             holder.weatherDayItem.text = getForWeekly(model.dt.toLong())
             holder.weatherDateItem.text = StreetViewWeatherHelper.getWeatherDate(model.dt.toLong(), 1)
-            holder.weatherTempItem.text = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
+
+            val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+            if (temperatureUnit){
+                holder.weatherTempItem.text = StreetViewWeatherHelper.kalvinToForenHeat(model.main.temp).toString()
+                holder.weatherUnitItem.text = "F"
+            }else{
+                holder.weatherTempItem.text = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
+                holder.weatherUnitItem.text = "C"
+            }
+
+            //holder.weatherTempItem.text = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
 
             Glide.with(context)
                 .load(StreetViewWeatherHelper.getIcon(model.weather[0].icon))
@@ -63,6 +78,7 @@ class WeatherDaysAdapter(
         var weatherDayItem = itemView.findViewById<TextView>(R.id.weatherDayItem)
         var weatherDateItem = itemView.findViewById<TextView>(R.id.weatherDateItem)
         var weatherTempItem = itemView.findViewById<TextView>(R.id.weatherTempItem)
+        var weatherUnitItem = itemView.findViewById<TextView>(R.id.weatherUnitItem)
 
 
     }

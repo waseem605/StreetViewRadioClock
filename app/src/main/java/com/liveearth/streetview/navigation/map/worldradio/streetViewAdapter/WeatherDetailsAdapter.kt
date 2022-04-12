@@ -11,6 +11,8 @@ import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WeatherMoreDetailsCallback
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 
 
@@ -20,7 +22,7 @@ class WeatherDetailsAdapter(
     val callBack: WeatherMoreDetailsCallback
 
 ) : RecyclerView.Adapter<WeatherDetailsAdapter.ListViewHolder>() {
-
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
           val view =
@@ -30,6 +32,8 @@ class WeatherDetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+                    mPreferenceManagerClass = PreferenceManagerClass(context)
+
         val model = modelArrayList[position]
         val weatherTime = StreetViewWeatherHelper.getTimeLongType(model.dt.toLong())
         val delimiter = " "
@@ -37,14 +41,16 @@ class WeatherDetailsAdapter(
         val weatherDateOnly = parts[0]
         val weatherTimeOnly = parts[1]
         val weatherAMOnly = parts[2]
-        holder.weatherItemTemp.text = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
-        holder.degreeC.text = "C"
-//        if (PreferenceManagerClass!!.getBoolean(AppConstants.CELCIUS_TEMP)){
-//
-//        }else{
-//            holder.weatherItemTemp.text = WeatherHelper.kalvinToForenHeat(model.main.temp).toString()
-//            holder.degreeC.text = "F"
-//        }
+
+        val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+        if (temperatureUnit){
+            holder.weatherItemTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(model.main.temp).toString()
+            holder.degreeC.text = "F"
+        }else{
+            holder.weatherItemTemp.text = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
+            holder.degreeC.text = "C"
+        }
+
         val temp = StreetViewWeatherHelper.kalvinToCelsius(model.main.temp).toString()
         val iconTemp = StreetViewWeatherHelper.getIcon(model.weather[0].icon)
 

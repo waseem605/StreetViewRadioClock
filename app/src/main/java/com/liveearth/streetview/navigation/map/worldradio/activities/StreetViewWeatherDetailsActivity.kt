@@ -19,6 +19,7 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySt
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.WeatherDaysAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.mapbox.mapboxsdk.geometry.LatLng
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
@@ -27,8 +28,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 @SuppressLint("LogNotTimber")
-class StreetViewWeatherDetailsActivity : AppCompatActivity() {
+class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
     private lateinit var binding:ActivityStreetViewWeatherDetailsBinding
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
     private val TAG = "WeatherDetails"
     private var mLatitude:Double = 0.0
     private var mLongitude:Double = 0.0
@@ -42,10 +44,11 @@ class StreetViewWeatherDetailsActivity : AppCompatActivity() {
         binding= ActivityStreetViewWeatherDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+
         mLatitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,0.0)
         mLongitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,0.0)
         mainWeatherDetails(mLatitude,mLongitude)
-
 
 
         binding.detailsMore.setOnClickListener {
@@ -71,10 +74,21 @@ class StreetViewWeatherDetailsActivity : AppCompatActivity() {
 
     private fun mainWeatherDetails(mLatitude: Double, mLongitude: Double) {
         try {
+            showProgressDialog(this)
             val weatherResult = WeatherAPIServices(object :StreetViewWeatherCallBack{
                 override fun onSuccess(data: StreetViewWeatherModel) {
+                    hideProgressDialog(this@StreetViewWeatherDetailsActivity)
                     StreetViewWeatherHelper.arrayListWeather = data.list as ArrayList<WeatherList>
-                    binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
+
+                    val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+                    if (temperatureUnit){
+                        binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(data.list[0].main.temp).toString()
+                        binding.weatherUnit.text = "F"
+                    }else{
+                        binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
+                        binding.weatherUnit.text = "C"
+                    }
+                    //binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
                     Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString())
                     try {
                         Glide.with(this@StreetViewWeatherDetailsActivity)
@@ -86,10 +100,10 @@ class StreetViewWeatherDetailsActivity : AppCompatActivity() {
                     binding.todayDate.text = StreetViewWeatherHelper.getWeatherDate(data.list[0].dt.toLong(), 1)
                     binding.weatherTodayType.text = data.list[0].weather[0].main.toString()
                     nexDaysDetails(data.list as ArrayList<WeatherList>)
-
                 }
 
                 override fun onFailure(userError: String) {
+                    hideProgressDialog(this@StreetViewWeatherDetailsActivity)
                     Log.d("454545454","==64======error=========$userError==========")
                 }
 

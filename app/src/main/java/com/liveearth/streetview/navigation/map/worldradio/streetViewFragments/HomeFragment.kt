@@ -28,6 +28,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.Home
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentTopAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.mapbox.mapboxsdk.geometry.LatLng
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -41,10 +42,10 @@ class HomeFragment : Fragment() {
     private var mTopList: ArrayList<HomeFragmentModel> = ArrayList()
     private var mBottomList: ArrayList<HomeFragmentModel> = ArrayList()
     var mLocationRepository: LocationRepository? = null
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     private var lat:Double = 0.0
     private var lon:Double = 0.0
     private var update = 0
-
 
 
     override fun onCreateView(
@@ -53,6 +54,7 @@ class HomeFragment : Fragment() {
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
+        mPreferenceManagerClass = PreferenceManagerClass(requireContext())
         topItemManager()
         moreItemManager()
         currentLocationWeather()
@@ -65,7 +67,6 @@ class HomeFragment : Fragment() {
         mTopList.add(HomeFragmentModel(R.drawable.ic_live_earth_icon, "Live Earth Map", 0))
         mTopList.add(HomeFragmentModel(R.drawable.ic_street_map_icon, "Live Street View", 1))
         mTopList.add(HomeFragmentModel(R.drawable.ic_navigation_compass_icon, "Navigation", 2))
-
         mHomeTopAdapter = HomeFragmentTopAdapter(mTopList, requireContext(), object :
             HomeFragmentClickCallBack {
             override fun onItemClickListener(mode: HomeFragmentModel) {
@@ -105,7 +106,7 @@ class HomeFragment : Fragment() {
 
         mBottomList.add(HomeFragmentModel(R.drawable.icon_meet_me, "Meet Me", 0))
         mBottomList.add(HomeFragmentModel(R.drawable.cloudy_icon, "My favourite", 1))
-        mBottomList.add(HomeFragmentModel(R.drawable.icon_nearby, "Nearby Places", 2))
+        mBottomList.add(HomeFragmentModel(R.drawable.location_tracker_icon, "Nearby Places", 2))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_clock, "World Clock", 3))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_radio, "Radio", 4))
         mBottomList.add(HomeFragmentModel(R.drawable.speedo_meter, "Speedometer", 5))
@@ -145,8 +146,7 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             4->{
-               // val mainIntent = Intent(requireContext(),STPathsPolygonsLabelsLiveEarthMapFmActivity::class.java)
-                val mainIntent = Intent(requireContext(),PathsPolygonsLabelsLiveEarthMapFmActivity::class.java)
+                val mainIntent = Intent(requireContext(),StreetViewMainGlobeViewActivity::class.java)
                 startActivity(mainIntent)
             }
             5->{
@@ -234,15 +234,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun setData(data: StreetViewWeatherModel) {
-        binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
-/*        val temperatureUnit = PreferenceManagerClass!!.getBoolean(AppConstants.CELCIUS_TEMP)
+        //binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
+        val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
         if (temperatureUnit){
-            binding.temperatureToday.text = WeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
-            binding.degreeSignC.text = "C"
+            binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(data.list[0].main.temp).toString()
+            binding.weatherUnit.text = "F"
         }else{
-            binding.temperatureToday.text = WeatherHelper.kalvinToForenHeat(data.list[0].main.temp).toString()
-            binding.degreeSignC.text = "F"
-        }*/
+            binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(data.list[0].main.temp).toString()
+            binding.weatherUnit.text = "C"
+        }
     }
 
 

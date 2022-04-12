@@ -67,11 +67,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/savedLocationRecycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-
-
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

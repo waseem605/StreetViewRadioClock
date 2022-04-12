@@ -146,9 +146,10 @@ class WordTimeActivity : BaseStreetViewActivity() {
                     this@WordTimeActivity,
                     mShowAddBtn,
                     object : WorldClockCallBack {
-                        override fun onItemWorldClock() {
+                        override fun onItemWorldClock(time: String) {
 
                         }
+
 
                         override fun onClickAddTimeZone(model: WorldClockModel) {
                             addToMyTimeZone(model)

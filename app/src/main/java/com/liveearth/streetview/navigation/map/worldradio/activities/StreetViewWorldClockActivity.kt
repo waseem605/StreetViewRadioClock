@@ -46,8 +46,6 @@ class StreetViewWorldClockActivity : AppCompatActivity() {
 
     }
 
-
-
     private fun getCurrentLocationTimeZone() {
      /*   Log.d(TAG, "setTimeToClockView: =47==location=====$mCountryName==+"+ConstantsStreetView.currentCountryName)
 
@@ -162,8 +160,10 @@ class StreetViewWorldClockActivity : AppCompatActivity() {
 
                 binding.timeZoneRecyclerView.apply {
                     mSavedAdapter = SavedWorldTimeAdapter(it,this@StreetViewWorldClockActivity,object :WorldClockCallBack{
-                        override fun onItemWorldClock() {
+                        override fun onItemWorldClock(time: String) {
+                            binding.clockView.setTimeZone(time)
                         }
+
 
                         override fun onClickAddTimeZone(model: WorldClockModel) {
                         }

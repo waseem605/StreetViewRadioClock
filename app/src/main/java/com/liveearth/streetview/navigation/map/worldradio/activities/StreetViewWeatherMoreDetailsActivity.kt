@@ -14,6 +14,8 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.Wea
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewWeatherMoreDetailsBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.WeatherDetailsAdapter
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import java.text.DecimalFormat
 
@@ -22,6 +24,7 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
     private lateinit var binding:ActivityStreetViewWeatherMoreDetailsBinding
     private val TAG = "WeatherMoreDetails"
     var mArrayListWeather = ArrayList<WeatherList>()
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +32,7 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
         binding = ActivityStreetViewWeatherMoreDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        mPreferenceManagerClass = PreferenceManagerClass(this)
         mArrayListWeather = StreetViewWeatherHelper.arrayListWeather
 
         chartVewWeater(mArrayListWeather)
@@ -39,28 +43,23 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
     private fun chartVewWeater(mArrayListWeather: ArrayList<WeatherList>) {
         try {
         val mYValue = ArrayList<Entry>()
+            val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+            if (temperatureUnit){
+                mYValue.add(Entry(0f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[0].main.temp).toFloat())))
+                mYValue.add(Entry(1f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[7].main.temp).toFloat())))
+                mYValue.add(Entry(2f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[14].main.temp).toFloat())))
+                mYValue.add(Entry(3f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[23].main.temp).toFloat())))
+                mYValue.add(Entry(4f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[31].main.temp).toFloat())))
+                mYValue.add(Entry(5f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[39].main.temp).toFloat())))
+            }else{
+                mYValue.add(Entry(0f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[0].main.temp).toFloat())))
+                mYValue.add(Entry(1f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[7].main.temp).toFloat())))
+                mYValue.add(Entry(2f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[14].main.temp).toFloat())))
+                mYValue.add(Entry(3f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[23].main.temp).toFloat())))
+                mYValue.add(Entry(4f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[31].main.temp).toFloat())))
+                mYValue.add(Entry(5f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[39].main.temp).toFloat())))
+            }
 
-        mYValue.add(Entry(0f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[0].main.temp).toFloat())))
-        mYValue.add(Entry(1f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[7].main.temp).toFloat())))
-        mYValue.add(Entry(2f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[14].main.temp).toFloat())))
-        mYValue.add(Entry(3f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[23].main.temp).toFloat())))
-        mYValue.add(Entry(4f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[31].main.temp).toFloat())))
-        mYValue.add(Entry(5f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[39].main.temp).toFloat())))
-
-           /* binding.chart1.isDragEnabled = true
-            //binding.chart1.setScaleEnabled(false)
-            binding.chart1.setScaleEnabled(true);
-            val lineDataSet = LineDataSet(mYValue,"Weather")
-            lineDataSet.fillAlpha = 110
-            lineDataSet.setCircleColor(resources.getColor(R.color.appIconColor))
-            lineDataSet.lineWidth = 3f
-            lineDataSet.highlightLineWidth
-            lineDataSet.valueTextSize = 10f
-            lineDataSet.valueTextColor = Color.WHITE
-            val mLineDataSet = ArrayList<ILineDataSet>()
-            mLineDataSet.add(lineDataSet)
-            val mData = LineData(mLineDataSet)
-            binding.chart1.data = mData*/
             setUpLineChart(mYValue)
 
         } catch (e: Exception) {
@@ -139,25 +138,17 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
 
 
     private fun weatherMoreDetails(weatherList: WeatherList) {
-        //binding.windTx.text = (Math.round(((weatherList.wind.speed)*3.6) * 10.0) / 10.0).toString()
         try {
-            var distance = (Math.round(((weatherList.wind.speed)*3.6) * 10.0) / 10.0)
-            binding.windTx.text = DecimalFormat("#.#").format(distance)
-             binding.percentTx3.text = "Km/h"
+            val distance = (Math.round(((weatherList.wind.speed)*3.6) * 10.0) / 10.0)
 
-//            val PreferenceManagerClass = PreferenceManagerClass(this)
-//            if (PreferenceManagerClass.getBoolean(AppConstants.DISTANCE_UNIT)) {
-                //val number2digits: Double = String.format("%.1f", distance).toDouble()
-      /*          binding.windTx.text = DecimalFormat("#.#").format(distance)
-                binding.percentTx3.text = "Km/h"*/
-//            } else {
-//                distance = (distance * 0.6214)
-//                // val number2digits: Double = String.format("%.1f", distance).toDouble()
-//                binding.windTx.text = DecimalFormat("#.#").format(distance)
-//                binding.percentTx3.text = "Miles/h"
-//            }
-
-
+            if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)) {
+                val number2digits: Double = String.format("%.1f", distance).toDouble()
+                binding.windTx.text = DecimalFormat("#.#").format(distance)
+                binding.percentTx3.text = "Miles/h"
+            }else{
+                binding.windTx.text = DecimalFormat("#.#").format(distance)
+                binding.percentTx3.text = "Km/h"
+            }
 /*
             binding.windDegreeTx.text = (weatherList.wind.deg).toString()
             binding.cloudTx.text = (weatherList.clouds.all).toString()

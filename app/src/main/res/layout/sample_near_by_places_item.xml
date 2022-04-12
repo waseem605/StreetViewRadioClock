@@ -90,23 +90,25 @@
 
         <ImageView
             android:id="@+id/itemFavouriteImg"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:src="@drawable/ic_favourite_icon"
-            android:padding="@dimen/_3sdp"
+            android:padding="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintEnd_toStartOf="@id/itemShareImg"
             app:layout_constraintTop_toTopOf="@id/itemNavigationBtn"
             app:layout_constraintBottom_toBottomOf="@id/itemNavigationBtn"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
             android:id="@+id/itemShareImg"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="@dimen/_30sdp"
             android:src="@drawable/ic_share_icon"
             android:padding="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
             app:layout_constraintTop_toTopOf="@id/itemNavigationBtn"
+            app:layout_constraintEnd_toStartOf="@id/itemNavigationBtn"
             app:layout_constraintBottom_toBottomOf="@id/itemNavigationBtn"
             app:layout_constraintStart_toEndOf="@id/itemFavouriteImg"/>
 

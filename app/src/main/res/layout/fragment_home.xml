@@ -53,7 +53,6 @@
             android:id="@+id/weatherUnit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="C"
             android:textColor="@color/white"
             android:textSize="@dimen/_20ssp"
             app:layout_constraintBottom_toBottomOf="@id/weatherTemp"

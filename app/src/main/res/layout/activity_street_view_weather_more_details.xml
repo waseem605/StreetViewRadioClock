@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/bottom_bar_background"
-        android:backgroundTint="@color/appMainColor"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/currentDate">
 
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             app:cardElevation="@dimen/_2sdp"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/appSilverColor"
             android:layout_margin="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/humidityCard"
@@ -106,7 +106,7 @@
             android:layout_height="wrap_content"
             app:cardElevation="@dimen/_2sdp"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/appSilverColor"
             android:layout_margin="@dimen/_5sdp"
             app:layout_constraintStart_toEndOf="@id/precipitationCard"
             app:layout_constraintEnd_toStartOf="@id/windCard"
@@ -160,14 +160,13 @@
 
         </androidx.cardview.widget.CardView>
 
-
         <androidx.cardview.widget.CardView
             android:id="@+id/windCard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:cardElevation="@dimen/_2sdp"
             app:cardCornerRadius="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/white"
+            app:cardBackgroundColor="@color/appSilverColor"
             android:layout_margin="@dimen/_5sdp"
             app:layout_constraintStart_toEndOf="@id/humidityCard"
             app:layout_constraintEnd_toEndOf="parent"
@@ -182,7 +181,7 @@
                     android:id="@+id/tx3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Humidity"
+                    android:text="Wind"
                     android:textColor="@color/appMainColor"
                     android:gravity="center"
                     android:textSize="@dimen/_10ssp"
@@ -222,12 +221,12 @@
 
         </androidx.cardview.widget.CardView>
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white"
             android:layout_marginTop="@dimen/_30sdp"
+            android:padding="@dimen/_10sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/windCard">
 

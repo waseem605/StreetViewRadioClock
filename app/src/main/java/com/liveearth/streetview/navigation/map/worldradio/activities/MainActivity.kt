@@ -55,51 +55,8 @@ class MainActivity : BaseStreetViewActivity() {
 
     private fun buttonClickListener() {
 
-        binding.liveEarthBtn.setOnClickListener {
-            startActivity(Intent(this, StreetViewLiveEarthActivity::class.java))
-        }
-
-        binding.meetMeMainBtn.setOnClickListener {
-            startActivity(Intent(this, StreetViewMeetMeActivity::class.java))
-        }
-        binding.nasaGlobeBtn.setOnClickListener {
-            startActivity(Intent(this, STPathsPolygonsLabelsLiveEarthMapFmActivity::class.java))
-        }
-
-        binding.worldTimeBtn.setOnClickListener {
-            val intent = Intent(this, WordTimeActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.nearMeLocations.setOnClickListener {
-            startActivity(Intent(this, StreetViewNearByPlacesActivity::class.java))
-        }
-
-        binding.travelExpense.setOnClickListener {
-            //startActivity(Intent(this, StreetViewTravelExpenseActivity::class.java))
-            val intent = Intent(Intent.ACTION_GET_CONTENT)
-            val uri = Uri.parse(
-                (Environment.getExternalStorageDirectory().path
-                        + File.separator) + "/Download/AllVideoDownloaderCT/Insta/" + File.separator
-            )
-            intent.setDataAndType(uri, "*/*")
-            startActivity(Intent.createChooser(intent, "Open folder"))
-
-        }
-        binding.navigation.setOnClickListener {
-            startActivity(Intent(this, StreetViewSearchNavigationActivity::class.java))
-        }
-        binding.locationTracking.setOnClickListener {
-            startActivity(Intent(this, LocationTrackingMainActivity::class.java))
-        }
-        binding.speedMeter.setOnClickListener {
-            startActivity(Intent(this, StreetViewSpeedoMeterActivity::class.java))
-        }
-
-
 
     }
-
 
     private fun setupSmoothBottomMenu() {
         val popupMenu = PopupMenu(this, null)
