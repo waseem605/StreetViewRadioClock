@@ -1,0 +1,902 @@
+﻿{
+
+    "theme parks": [
+        {
+            "name ": "walt diseny world resort",
+            "lat": "28.3771904",
+            "long": "-81.5729287",
+            "description": "There’s a reason why they call Orlando Florida’s Disney resort a “world”. The mega-resort Walt Disney World features four marvelous parks to lose yourself in the wonderful world of Disney.",
+            "links": "https://drive.google.com/file/d/1C8U7Pzij2yjc3vcI-_PoNKlxfeJZPRda/view?usp=sharing"
+        },
+        {
+            "name ": "europa park",
+            "lat": "48.266023",
+            "long": "7.7198189",
+            "description": "The largest theme park in Germany, Europa Park is located in Rust. Attractions include Pirates in Batavia, which is an electrifying underground boat ride experience.",
+            "links": "https://drive.google.com/file/d/18H7I48tJ7e_uGgMn9gwVGyF6Xb9l6Lui/view?usp=sharing"
+        },
+        {
+            "name ": "disneyland paris",
+            "lat": "48.8673893",
+            "long": "2.7814043",
+            "description": "On the outskirts of Paris is where you will find the European version of Disneyland, one of the best theme parks in the world. There are two parks to explore: Disneyland Park and Walt Disney Studios Park.",
+            "links": "https://drive.google.com/file/d/1NsUHiZaklKOBvnZam8U-pV90_bfj6u3F/view?usp=sharing"
+        },
+        {
+            "name ": "universal orlando resort",
+            "lat": "28.4743254",
+            "long": "-81.470008",
+            "description": "One of the world’s most famous theme parks, the three parks at  Universal Orlando Resort sees more than 10 million visitors per year.",
+            "links": "https://drive.google.com/file/d/1ImRSaNvSZWfhs2ZU3hAugMZIcYlflDya/view?usp=sharing"
+        },
+        {
+            "name ": "tivoli gardens",
+            "lat": "55.6736871",
+            "long": "12.5659584",
+            "description": "Old meets new at Tivoli Gardens in Copenhagen, an amusement park that first opened in 1843. It sits right in the center of the city and has a range of rides, games, musicals, gardens and major concerts.",
+            "links": "https://drive.google.com/file/d/16IArdNDSLgbdjb367iea329e-6yR4fCe/view?usp=sharing"
+        },
+        {
+            "name ": "universal studio hollywood",
+            "lat": "34.1381212",
+            "long": "-118.355567",
+            "description": "Head to La-La Land for Universal Studios Hollywood, a movie-themed amusement park with thrilling rides. Top attractions include Fast & Furious Supercharged and Harry Potter and The Forbidden Journey.",
+            "links": "https://drive.google.com/file/d/1F5atlTGiauvg006nxPzto0iiruQW2XXt/view?usp=sharing"
+        },
+        {
+            "name ": "cedar point",
+            "lat": "41.482211",
+            "long": "-82.6857093",
+            "description": "Opened in the late 1800s, Cedar Point is one of the older US theme parks. Located in Ohio, it spans 364 acres and is known as the roller coaster capital of the world.",
+            "links": "https://drive.google.com/file/d/1iJ8N8cntYC5z4C_M81yqrCiHdYvMJkdx/view?usp=sharing"
+        },
+        {
+            "name ": "universal studio japan",
+            "lat": "34.665442",
+            "long": "135.4301495",
+            "description": "There’s world-class entertainment on offer at Universal Studios Japan, where you can enjoy great rides like Flight of the Hippogriff. The Tokyo-based theme park also features Spider-Man and Jurassic Park-themed attractions.",
+            "links": "https://drive.google.com/file/d/1W4p2xSS8Isqw97pG9N3mHYy9l2gDVD4Z/view?usp=sharing"
+        },
+        {
+            "name ": "efteling",
+            "lat": "51.6493429",
+            "long": "5.0382703",
+            "description": "In Kaatsheuvel, you’ll find Efteling, Holland’s largest theme park which is also known as The World of Wonders. Attractions include adrenaline-pumping rollercoasters and spectacular park shows.",
+            "links": "https://drive.google.com/file/d/1X80hY4rLm1QFgDOOGzGRvqQyoxaQCECH/view?usp=sharing"
+        },
+        {
+            "name ": "seaworld orlando",
+            "lat": "28.4112839",
+            "long": "-81.4633873",
+            "description": "Embrace the aquatic life at SeaWorld Orlando with loads of exciting attractions. From rollercoasters to infinity falls, you’ll be sure to make a splash at SeaWorld Orlando.",
+            "links": "https://drive.google.com/file/d/1GdVkzPogGrnEFBKo8VmbfzE2ARSCc-79/view?usp=sharing"
+        },
+        {
+            "name ": "ocean park hongkong",
+            "lat": "22.2394013",
+            "long": "114.1629856",
+            "description": "Seek out thrills at Ocean Park and Ride the Arctic Blast or experience the Wild Twister and much more at one of Hong Kong’s favorite theme parks.",
+            "links": "https://drive.google.com/file/d/1f-qEROfKrU2nMwytkpSkvYF0TSJ8_fe1/view?usp=sharing"
+        },
+        {
+            "name ": "lotte world",
+            "lat": "37.5111158",
+            "long": "127.0959783",
+            "description": "You will find the world’s largest indoor theme parks at Lotte World in Seoul, South Korea. There’s also an outdoor amusement park called Magic Island and an artificial island to explore.",
+            "links": "https://drive.google.com/file/d/1p5LwM_qsxCay8y4YVKtBihfGByBVi1nj/view?usp=sharing"
+        },
+        {
+            "name ": "ferrari world",
+            "lat": "24.4835529",
+            "long": "54.6029024",
+            "description": "Put the pedal to the metal at Ferrari World in Abu Dhabi. Find out what it’s like to be a Scuderia Ferrari driver with thrilling rides and roller coasters. Get ready for the G-Force!",
+            "links": "https://drive.google.com/file/d/1hBoHObtLlgAVc7Tk74xShE7znlrJs3al/view?usp=sharing"
+        }
+    ],
+    "mountains": [
+        {
+            "name": "mount everest",
+            "lat": "27.9881388",
+            "long": "86.9074655",
+            "description": "Mount Everest stretches across the lands of Nepal, China and the Tibetan border in southern Asia. Mt. Everest measures in at 8,848.86 meters or 29,031.7 Ft. Everest is part of the Himalayan Mountains which is home to a handful of the highest mountain peaks in the world above sea level.",
+            "links": "https://drive.google.com/file/d/13Dg3Dz0r5KDvcPu2Tv8UsNkJbIgtRSCD/view?usp=sharing"
+        },
+        {
+            "name": "k2",
+            "lat": "35.8800041",
+            "long": "76.5063453",
+            "description": "K2 is also known as Qogir Feng or Mount Godwin Austen, named after the mountain’s first surveyor and English geographer Colonel H.H. Godwin Austen.  K2 is the second tallest mountain in the world measured above sea level reaching 28,252 Ft or 8,611 meters.",
+            "links": "https://drive.google.com/file/d/1EME_IGtQ5XGV2mF31YFZAIqBpk5qp7FV/view?usp=sharing"
+        },
+        {
+            "name": "kanchenjunga",
+            "lat": "27.7025097",
+            "long": "88.1387802",
+            "description": "Kangchenjuna is one of the massive, towering mountain peaks in the Himalayas where Everest resides. Kangchenjunga measures in at 8586 meters or 28169 Ft.",
+            "links": "https://drive.google.com/file/d/1eYQ6j8XEPurFQIQ6fXRi_9iObHyUl_I4/view?usp=sharing"
+        },
+        {
+            "name": "lhotse",
+            "lat": "27.9642429",
+            "long": "86.9299651",
+            "description": "Lhotse is the 4th highest mountain in the world above sea level measuring at 8,516 meters and 27940 ft. Lhoste is located in China on the border of Nepal and Tibet and is part of the same mountain range as the infamous Mt. Everest. Lhotse means “South Peak” in Tibetan.",
+            "links": "https://drive.google.com/file/d/1h0XE9hk-beQPSx-Hcf62yhKzDIzzcP3O/view?usp=sharing"
+        },
+        {
+            "name": "makalu",
+            "lat": "27.8857644",
+            "long": "87.0788944",
+            "description": "Makalu is the 5th tallest mountain above sea level measuring at 8485 meters or 27838 ft, located in the mahalangun, a section in the Himalayas on NE Nepal and South central Tibet, China. Makalu lies just east of Everest. Makalu is more isolated and is recognizable by its four sided pyramid like faces.",
+            "links": "https://drive.google.com/file/d/1GPiO6574YvszkbPKMAIn6JjcwEMcbW1z/view?usp=sharing"
+        },
+        {
+            "name": "cho oyu",
+            "lat": "28.0960504",
+            "long": "86.6527387",
+            "description": "Cho Oyu is the 6th tallest mountain above sea level measuring at an elevation of 8188 meters or 26864 ft. This is another massive formation of the mighty Himalayas and lies on the west side of the Khumba (Everest) region.",
+            "links": "https://drive.google.com/file/d/1qFWUpRkvARdn_NI0ZuMDhoI-RY5V-AHJ/view?usp=sharing"
+        },
+        {
+            "name": "dhaulagiri",
+            "lat": "28.6984833",
+            "long": "83.4785948",
+            "description": "Dhaulagiri is the 7th tallest mountain in the world above sea level with an elevation of 8167 meters or 267795 ft and another prominent formation of the Himalayas. Dhaulagiri does not share a country like many of the himalayan peaks but is completely inside the borders of Nepal.",
+            "links": "https://drive.google.com/file/d/1QeVTbY6Be3xMgy40D2MQr6ESo5KXKSr3/view?usp=sharing"
+        },
+        {
+            "name": "manaslu",
+            "lat": "28.5497288",
+            "long": "84.550922",
+            "description": "Manaslu is the 8th tallest mountain above sea level. Manaslu measures at an elevation of 8163 meters or 26,781 ft. It belongs to the Mansiri Himal of the western Nepalese Himalayas. Manaslu derives from the Sanskrit word “manasa” (spirit) so is known as  “mountain of the spirit.”",
+            "links": "https://drive.google.com/file/d/1kMX-17svIaAZtPp7f5P3nI62F7bafDwc/view?usp=sharing"
+        },
+        {
+            "name": "nanga parbat",
+            "lat": "35.2375205",
+            "long": "74.5803898",
+            "description": "Nanga Parbat is the 9th tallest mountain peak measuring at 8126 meters or 26660 ft above sea level. It is located in the Damer District of Gilgit-Baltistan, Pakistan on the western Himalayas.",
+            "links": "https://drive.google.com/file/d/1eRqVywuGtMXIKWXU7bZIxyfbu1d8H--l/view?usp=sharing"
+        },
+        {
+            "name": "annapurna",
+            "lat": "28.6049307",
+            "long": "83.8119249",
+            "description": "Annapurna is the 10th tallest mountain measuring at 8,091 meters or 26,545 ft. This magnificent mountain is also located in the Himalayan Mountains of Nepal.",
+            "links": "https://drive.google.com/file/d/1ROSzkcH9l_RuVojdXiYW75lHyz3EURmN/view?usp=sharing"
+        }
+    ],
+    "football stadiums": [
+        {
+            "name": "Rungrado",
+            "lat": "39.0507161",
+            "long": "125.771055",
+            "description": "This is undoubtedly the largest football stadiums of its kind. Open the way back in 1989, the stadium is built on an area of almost 21 hectares. Since North Korean football is not really the strongest in the world, this football stadium finds its use as a multipurpose venue. This is made possible due to a scalloped roof that has many intricate works.",
+            "links": "https://drive.google.com/file/d/1-0QggD4-dEuuV94TgeLPxYRpqPO7dSv2/view?usp=sharing"
+        },
+        {
+            "name": "melbourne cricket ground",
+            "lat": "-37.8199626",
+            "long": "144.9812606",
+            "description": "The Melbourne Cricket Ground is one of the iconic sporting destinations in the world. This is a multipurpose venue that manages to host cricket and football events. Over the years, the ground has gained a lot of prominence as a result of hosting every major type of event. The MCG, as it is also known, has been a destination for Australian Rules Football matches, Olympic events, and World Cup qualifiers amongst others",
+            "links": "https://drive.google.com/file/d/1BQo8lI3KctQufoMtTV2mRKUcEPzz0FDO/view?usp=sharing"
+        },
+        {
+            "name": "camp nou",
+            "lat": "41.3805842",
+            "long": "2.1196755",
+            "description": "Construction Cost: €1.73 billion The Camp Nou hosts FC Barcelona and has a distinction as one of the largest stadiums in the world. It is easily the largest in Spain with its capacity touching almost 100,000. This is an impressive feat for an all-seater stadium. Over the years, the ground has managed to host every conceivable major tournament/game.",
+            "links": "https://drive.google.com/file/d/1K2M2rlb3_b49KJrvMYFjspTXn6zo6OxD/view?usp=sharing"
+        },
+        {
+            "name": "fnb stadium",
+            "lat": "-26.2347521",
+            "long": "27.9804667",
+            "description": "The FNB Stadium is the largest of its kind in Africa and it primarily hosts rugby union and football games. It can be quite intimidating place given its size. The ground has been utilised for various purposes in the past, but it is best known for hosting the World Cup 2010 final match between Netherlands and Spain.",
+            "links": "https://drive.google.com/file/d/16Ws1sE2ZnOv1PKcZ-wRNLLQyELkoZFXm/view?usp=sharing"
+        },
+        {
+            "name": "rose bowl",
+            "lat": "34.1654157",
+            "long": "-118.1734923",
+            "description": "It is not a secret that Americans are fans of big stadiums and it is easy to come across behemoths when it comes to college football and NFL competitions. It could be easy to miss out football stadiums on American soil, as this sport is only now gaining traction. Yet, there are some huge football stadiums in America and the crowing leader among them would be the Rose Bowl Stadium in California.",
+            "links": "https://drive.google.com/file/d/1-G6S684roidp4Y5sI6BGfcauWWybhep_/view?usp=sharing"
+        },
+        {
+            "name": "wembly stadium",
+            "lat": "51.556028",
+            "long": "-0.2818064",
+            "description": "Wembley is an iconic destination for football fans in England. There was a lot of scepticism when the English Football Association decided to take down the Wembley, which is regarded as the home of football, in favour of a new ground.",
+            "links": "https://drive.google.com/file/d/1PxJJcqGPYiighe0gpkO4Md_rZxy3EdOJ/view?usp=sharing"
+        },
+        {
+            "name": "Estadio Azteca",
+            "lat": "19.3003907",
+            "long": "-99.1517709",
+            "description": "An iconic image in the Mexico City would be the Estadio Azteca, which is the home turf of the Mexican national team, Cruz Azul, and Club America. One of the major reasons behind the stadium being steeped in history is the prestige of having hosted two World Cup finals – 1970 and 1986.",
+            "links": "https://drive.google.com/file/d/11cC7Q2OYjE86mPqPX9sGR_EQ68gygA8T/view?usp=sharing"
+        },
+        {
+            "name": "Bukit Jalil National Stadium",
+            "lat": "3.0546403",
+            "long": "101.6891513",
+            "description": "The Malaysian national football team may not be high in the FIFA rankings, but that does not stop the national team from building one of the largest football stadiums in the world. The Bukit Jalil National Stadium, which was built at a cost of RM800 million, is a colossus that can hold more than 87,000 spectators.",
+            "links": "https://drive.google.com/file/d/1BQQCtJPI4YPrnDE7QyMEhUWMTt_HF5kO/view?usp=sharing"
+        },
+        {
+            "name": "Borg El-Arab Stadium",
+            "lat": "30.9995828",
+            "long": "29.7271994",
+            "description": "This is the second largest stadium in the African continent as it only sits behind the FNB Stadium in terms of total capacity. However, the 86,000 capacity of the Borg El-Arab Stadium makes it the largest in Egypt by a comfortable margin. Unlike many other stadiums of its kind, it has been air-conditioned in many places so that the extreme weather conditions in this part of the world are combated with great efficiency.",
+            "links": "https://drive.google.com/file/d/1BuJa9FT6dDLF_cLuSM6BtShn9fMEVwvU/view?usp=sharing"
+        }
+    ],
+    "airports": [
+        {
+            "name": "king fahad international airport",
+            "lat": "26.4637863",
+            "long": "49.7718537",
+            "description": "King Fahd International Airport, also known as Dammam International Airport, is currently the largest airport in the world in terms of land area. The area of the airport situated in Saudi Arabia is 776 square km.",
+            "links": "https://drive.google.com/file/d/1Fh7WBQaxM4NNqdrKPG-fY1-8TXYJqBI7/view?usp=sharing"
+        },
+        {
+            "name": "denver international airport",
+            "lat": "39.8433442",
+            "long": "-104.7545833",
+            "description": "Denver International Airport, locally known as DIA, opened in 1995. It is situated in Colorado, USA. It covers around 135.7 square km area which makes it the largest airport in North America and second largest in the world.",
+            "links": "https://drive.google.com/file/d/1zOxoEBXF0OBpKE11sxufB9BTlNQikoth/view?usp=sharing"
+        },
+        {
+            "name": "Dallas Fort Worth International Airport",
+            "lat": "32.8998136",
+            "long": "-97.0425239",
+            "description": "Dallas Fort Worth International Airport, or DFW Airport, is the primary international airport serving the Dallas-Fort Worth area in the US state of Texas. It is 69.63 square km in size.",
+            "links": "https://drive.google.com/file/d/1Gl83ksNuAbpO709b_-vaX7g30366yF60/view?usp=sharing"
+        },
+        {
+            "name": "orlando international airport",
+            "lat": "28.4179214",
+            "long": "-81.3063338",
+            "description": "Orlando International Airport is a major public airport in Florida, USA. It opened in 1981 and covers 69.63 square km area. In 2019, it handled 50,613,072 passengers, making it the busiest airport in the state and 10th busiest airport in the United States. Its former name was McCoy Air Force Base.",
+            "links": "https://drive.google.com/file/d/1BBneQmAdmfBF-3uKJxXDXrsHAryL6ejy/view?usp=sharing"
+        },
+        {
+            "name": "washington dulles international airport",
+            "lat": "38.9531803",
+            "long": "-77.4543476",
+            "description": "Washington Dulles International Airport or just Dulles International Airport is situated in northern Virginia side of Washington DC in USA. The airport covers 52.6 square km area. Operations of the airport opened in 1962.",
+            "links": "https://drive.google.com/file/d/1OZmeD2SwAFUxiIgV2Qpl8Fv38QYTVZiJ/view?usp=sharing"
+        },
+        {
+            "name": "bejjing daxing  international airport",
+            "lat": "39.5098091",
+            "long": "116.4083182",
+            "description": "Beijing Daxing International Airport is located on the border of the Chinese capital and Langfang, Hebei Province. It has been nicknamed \"The Starfish\". It began operations in 2019 and covers 47 square km area.",
+            "links": "https://drive.google.com/file/d/1M535w4D956kPPWmrP8CI8ntIbUPjUiyV/view?usp=sharing"
+        },
+        {
+            "name": "george bush intercontinental airport",
+            "lat": "29.9642116",
+            "long": "-95.3729419",
+            "description": "Originally named Houston Intercontinental Airport, it was renamed after George HW Bush -- 41st President of the United States -- in 1997. Opening in 1969, it is located 23 miles north of downtown Houston, Texas in USA.",
+            "links": "https://drive.google.com/file/d/1K07zJrTFMDLiwjR_yfxKu0QVd3TuEfep/view?usp=sharing"
+        },
+        {
+            "name": "Shanghai Pudong International Airport",
+            "lat": "31.1477171",
+            "long": "121.8042311",
+            "description": "Pudong is one of the two international airports in Shanghai, China. Opening in 1999, it covers 40 square km of area. Pudong Airport is a fast-growing hub for both passengers and cargo.",
+            "links": "https://drive.google.com/file/d/1qKTdAR6t4tdiO4jrzLrPRxv-2wdre3NG/view?usp=sharing"
+        },
+        {
+            "name": "cairo international airport",
+            "lat": "30.1119049",
+            "long": "31.3940659",
+            "description": "Cairo International Airport is the principal airport of Egypt and the busiest in the North African country. It covers an approximate area of 37 square km. Opening in 1963, it is the second-busiest airport in Africa.",
+            "links": "https://drive.google.com/file/d/1CWrN4AsLNN24Z4j0pjeJhP0xv7Z7398D/view?usp=sharing"
+        },
+        {
+            "name": "Suvarnabhumi Airport",
+            "lat": "13.694765",
+            "long": "100.7227996",
+            "description": "Suvarnabhumi Airport is also known unofficially as Bangkok Airport. It is one of the major airports of Thailand. It opened in 2006 and covers an area of approximately 32 square km. It is one of the biggest international airports in Southeast Asia and a regional hub for aviation.",
+            "links": "https://drive.google.com/file/d/18Yzzx3yHnX7SOX6kOYVodm95W2ENpCNR/view?usp=sharing"
+        }
+    ],
+    "ship ports": [
+        {
+            "name": "port of shanghai",
+            "lat": "30.7183206",
+            "long": "120.8545407",
+            "description": "The Port of Shanghai is the biggest port in the world based on cargo throughput. The Chinese port handled 744 million tonnes of cargo in 2012, including 32.5 million twenty-foot equivalent units (TEUs) of containers.",
+            "links": "https://drive.google.com/file/d/1Z9U5rRKwzr3U5ImNagz5nyVJKzowcIlf/view?usp=sharing"
+        },
+        {
+            "name": "port of singapore",
+            "lat": "1.351219",
+            "long": "103.6194919",
+            "description": "The Port of Singapore, which handled 537.6 million tonnes of cargo in 2012, is the second biggest port in the world. The port’s container throughput crossed the 30 million TEUs mark for the first time in 2012.",
+            "links": "https://drive.google.com/file/d/1SB-ZgxyCjeEVeJJOK7BrwYHuu3r1UG2j/view?usp=sharing"
+        },
+        {
+            "name": "port of tainjin",
+            "lat": "38.9832281",
+            "long": "117.7406203",
+            "description": "The third biggest port in the world is the Port of Tianjin (formerly Tanggu), which in 2012 witnessed remarkable increase of cargo and container throughputs by 5.3% and 6.2% respectively. It handled 476 million tonnes of cargo and 12.3 million TEUs of containers in 2012.",
+            "links": "https://drive.google.com/file/d/1FcsmMfdvNJ4RlI_Do_ifdRFfRfuUMVXV/view?usp=sharing"
+        },
+        {
+            "name": "port of guangzhou",
+            "lat": "31.1611022",
+            "long": "108.6067427",
+            "description": "The Port of Guangzhou handled more than 460 million tonnes of cargo in 2012, making it the fourth biggest port in the world based on cargo traffic. The port is located in the middle of the Pearl River Delta.",
+            "links": "https://drive.google.com/file/d/1CDMSwPMO8_OHtBxrTLz0wnHuoa5Y8Hiz/view?usp=sharing"
+        },
+        {
+            "name": "port of ningbo",
+            "lat": "30.6271374",
+            "long": "114.1692826",
+            "description": "Port of Ningbo, which handled more than 453 million tonnes of cargo in 2012, is the fifth biggest port in the world. The port’s TEU capacity also reached 15.6 million tonnes in the same year.",
+            "links": "https://drive.google.com/file/d/1JYIq_MJg7VfjHKihUjESN1amtP96SBhQ/view?usp=sharing"
+        },
+        {
+            "name": "port of rotterdam",
+            "lat": "51.9496041",
+            "long": "4.1430743",
+            "description": "The Port of Rotterdam is currently the biggest port in Europe and the sixth biggest in the world by annual cargo throughput. The port handled 441.5 million tonnes of cargo in 2012.",
+            "links": "https://drive.google.com/file/d/1Mwe3rHQDL4o1QNshtdnAR3S0yEF8_28O/view?usp=sharing"
+        },
+        {
+            "name": "port of suzhou",
+            "lat": "31.4206118",
+            "long": "120.1843834",
+            "description": "Port of Suzhou, which achieved a cargo throughput of 428 million tonnes in 2012, an increase of 12.61% from 2011, is currently the seventh biggest port in the world by cargo throughput. It is also one of the busiest inland river ports in the world.",
+            "links": "https://drive.google.com/file/d/1xMsIMxTSEvOct_BxFk-WOXgpwwvhsQJS/view?usp=sharing"
+        },
+        {
+            "name": "port of qingdao",
+            "lat": "36.0140753",
+            "long": "120.1998383",
+            "description": "Port of Qingdao, located at the entrance to Jiaozhou Bay on the south coast of Shadong Peninsula, overlooking the Yellow Sea, handled more than 400 million tonnes of cargo in 2012.",
+            "links": "https://drive.google.com/file/d/1BaR9GhYSPJsifwjtAAux67UX2ff7h1Rq/view?usp=sharing"
+        },
+        {
+            "name": "port of dalian",
+            "lat": "38.9269028",
+            "long": "121.651928",
+            "description": "Port of Dalian, located in the Liaodong Peninsula in Liaoning province, handled more than 303 million tonnes of cargo in 2012 ranking as the ninth biggest port in the world.",
+            "links": "https://drive.google.com/file/d/1dBOiFGoFvGmS4nodytYCYSCWRnDjrV86/view?usp=sharing"
+        },
+        {
+            "name": "port of busan",
+            "lat": "35.1035522",
+            "long": "129.033614",
+            "description": "Port of Busan, located in mouth of the Naktong River in South Korea, is the tenth biggest port in the world based on cargo throughput. The port handled 298 million tonnes of cargo in 2012.",
+            "links": "https://drive.google.com/file/d/1Zrm8TLTavboADHOFX6qub3CYvIPkoVCS/view?usp=sharing"
+        }
+    ],
+    "world wonders": [
+        {
+            "name ": "great wall of china",
+            "lat ": "40.4319118",
+            "long": "116.5681862",
+            "description": "Great might be an understatement. One of the world’s largest building-construction projects, the Great Wall of China is widely thought to be about 5,500 miles (8,850 km) long; a disputed Chinese study, however, claims the length is 13,170 miles (21,200 km). Work began in the 7th century BCE and continued for two millennia.",
+            "links": "https://drive.google.com/file/d/10BQZ9subyS8U5nHF0ZhzXfDnAyEQCdY4/view?usp=sharing"
+        },
+        {
+            "name ": "chichen itza",
+            "lat ": "20.6864037",
+            "long": "-88.5839981",
+            "description": "Chichén Itzá is a Mayan city on the Yucatán Peninsula in Mexico, which flourished in the 9th and 10th centuries CE. Under the Mayan tribe Itzá—who were strongly influenced by the Toltecs—a number of important monuments and temples were built. Among the most notable is the stepped pyramid El Castillo (“The Castle”), which rises 79 feet (24 meters) above the Main Plaza.",
+            "links": "https://drive.google.com/file/d/1oF5eTyEo\u0002TP4RpryMLumcihGPZVmj/view?usp=sharing"
+        },
+        {
+            "name ": "petra",
+            "lat ": "30.3395426",
+            "long": "35.4298454",
+            "description": "The ancient city of Petra, Jordan, is located in a remote valley, nestled among sandstone mountains and cliffs. It was purported to be one of the places where Moses struck a rock and water gushed forth.",
+            "links": "https://drive.google.com/file/d/1bDXNgBlnpQSnHTugbTY52g-iTGbTBede/view?usp=sharing"
+        },
+        {
+            "name ": "machu picchu",
+            "lat ": "-13.2085011",
+            "long": "-72.6319833",
+            "description": "This Incan site near Cuzco, Peru, was “discovered” in 1911 by Hiram Bingham, who believed it was Vilcabamba, a secret Incan stronghold used during the 16th-century rebellion against Spanish rule.",
+            "links": "https://drive.google.com/file/d/1EE1bwNgxass2dl5FhB3RqVPl1BpQMABu/view?usp=sharing"
+        },
+        {
+            "name ": "christ the redeemer",
+            "lat ": "-22.951911",
+            "long": "-43.2126759",
+            "description": "Christ the Redeemer, a colossal statue of Jesus, stands atop Mount Corcovado in Rio de Janeiro. Its origins date to just after World War I, when some Brazilians feared a “tide of godlessness.” They proposed a statue, which was ultimately designed by Heitor da Silva Costa, Carlos Oswald, and Paul Landowski.",
+            "links": "https://drive.google.com/file/d/10yEbb8kZb1l8ShKjvJI8FRK_WvSV0ofs/view?usp=sharing"
+        },
+        {
+            "name ": "colosseum",
+            "lat ": "41.8902142",
+            "long": "12.4900422",
+            "description": "The Colosseum in Rome was built in the first century by order of the Emperor Vespasian. A feat of engineering, the amphitheater measures 620 by 513 feet (189 by 156 meters) and features a complex system of vaults. It was capable of holding 50,000 spectators, who watched a variety of events.",
+            "links": "https://drive.google.com/file/d/17ZbtY3SXgZmaE5xNCMGFPbrV5sVvLzsP/view?usp=sharing"
+        },
+        {
+            "name ": "taj mahal",
+            "lat ": "27.1744007",
+            "long": "78.0420091",
+            "description": "This mausoleum complex in Agra, India, is regarded as one of the world’s most iconic monuments and is perhaps the finest example of Mughal architecture. It was built by Emperor Shah Jahān (reigned 1628–58) to honor his wife Mumtāz Maḥal (“Chosen One of the Palace”), who died in 1631 giving birth to their 14th child. It took about 22 years and 20,000 workers to construct the complex, which includes an immense garden with a reflecting pool.",
+            "links": "https://drive.google.com/file/d/1lduvRHkhVDaXAj9NxG-XcVWbIT9IxRcL/view?usp=sharing"
+        }
+    ],
+    "presidential palaces": [
+        {
+            "name": "presidential palace poland",
+            "lat": "52.2431713",
+            "long": "21.0144238",
+            "description": "Designed by the Polish architect Chrystian Piotr Aigner, the Presidential Palace in Warsaw, Poland was first erected in 1643. But it wasn't until 1818 that the structure was used for bureaucratic purposes.",
+            "links": "https://drive.google.com/file/d/1XnEi81C4IfX-B2YpYFbKAXQkVwPoxsx-/view?usp=sharing"
+        },
+        {
+            "name": "belem palace portugal",
+            "lat": "38.6979947",
+            "long": "-9.202738",
+            "description": "Located in Lisbon, Portugal, the Belém Palace was completed in 1754. At first, the building housed the various kings of Portugal. In 1910, however, the building became the official residence for the presidents of the republic.",
+            "links": "https://drive.google.com/file/d/19jGgLg9TdbJNlBeaXZz8XAfdAtNrzRvH/view?usp=sharing"
+        },
+        {
+            "name": "Palacio da Alvorada, Brasilia, Brazil",
+            "lat": "-15.7925073",
+            "long": "-47.8250237",
+            "description": "Designed by Brazilian architect Oscar Niemeyer, Palácio da Alvorada was completed in 1958. The presidential residence, located in Brasília, went through an extensive renovation between 2004 and 2006 that cost more than $18 million.",
+            "links": "https://drive.google.com/file/d/1mmDEPS_OlYLp-HqcW41yFp3R2oD4pBCx/view?usp=sharing"
+        },
+        {
+            "name": "Elysee Palace, Paris, France",
+            "lat": "48.8697941",
+            "long": "2.3142886",
+            "description": "Opened in 1722, Paris’s Élysée Palace has been the official residence of the French president since 1848. Built by Armand-Claude Molet, the building is a stunning example of classical architecture.",
+            "links": "https://drive.google.com/file/d/1Lzkwa0dQwjlwDgq6fxhVzjQk7Go6EBVQ/view?usp=sharing"
+        },
+        {
+            "name": "Presidential Palace of Suriname, Paramaribo, Suriname",
+            "lat": "5.8267984",
+            "long": "-55.1534394",
+            "description": "Constructed in 1730, the Presidential Palace of Suriname was built in the Dutch Colonial style. The South American country was a colony of Holland until the 1970s.",
+            "links": "https://drive.google.com/file/d/1qseYInku_zat75wWEgedzhE0aXIMPPrJ/view?usp=sharing"
+        },
+        {
+            "name": "Presidential Palace, Hanoi, Vietnam",
+            "lat": "21.0392992",
+            "long": "105.8323093",
+            "description": "The Presidential Palace in Hanoi is the official home of Vietnam’s president. Completed in 1906 by French architect Auguste Henri Vildieu, the Beaux Arts building is painted a bright yellow.",
+            "links": "https://drive.google.com/file/d/12a2ZXuvH7-1FxuCvLl5QCrmA77oyQAM0/view?usp=sharing"
+        },
+        {
+            "name": "Kremlin, Moscow, Russia",
+            "lat": "55.7520263",
+            "long": "37.6153107",
+            "description": "The Moscow Kremlin is a fortified, 68-acre complex built in the heart of the city. Constructed at the end of the fifteenth century, the Kremlin saw different eras of renovations, as various rulers assumed power in the country. Today, the complex is home to Russia’s president.",
+            "links": "https://drive.google.com/file/d/1crQelSBpnF9NQalv80KRFiOa44OLocCz/view?usp=sharing"
+        },
+        {
+            "name": "Palace of Turkish President, Ankara, Turkey",
+            "lat": "39.9308914",
+            "long": "32.7968878",
+            "description": "Located in the capital city of Ankara, the Palace of Turkish President was designed in the Seljuk style (the Seljuks ruled parts of the Middle East between the eleventh and thirteenth centuries). The complex, in total, spans an area of 3.2 million square feet.",
+            "links": "https://drive.google.com/file/d/1SGVfQVg11WsSpO_RTjFD9xLP3c_gbxn5/view?usp=sharing"
+        },
+        {
+            "name": "Bellevue Palace, Berlin, Germany",
+            "lat": "52.5175758",
+            "long": "13.3506041",
+            "description": "Completed in 1786, Berlin’s Bellevue Palace was built by German architect Michael Philipp Daniel Boumann in the neoclassical style. Although the building has always been owned by the government, it only became the official presidential residence in 1994.",
+            "links": "https://drive.google.com/file/d/1miMOA2PZ957FWTGEFvBn3qkHxx1s2DJ7/view?usp=sharing"
+        },
+        {
+            "name": "white house",
+            "lat": "38.8819592",
+            "long": "-77.0488746",
+            "description": "After the fire of 1814 destroyed the original, the new White House was finished in 1817. As home to the sitting U.S. president, the White House includes 132 rooms, 35 baths, and six levels. It takes 570 gallons of paint to cover the all-white façade.",
+            "links": "https://drive.google.com/file/d/1Qo6qwfzGRNXjLycwIpnkgo8yt9W1G7m2/view?usp=sharing"
+        },
+        {
+            "name": "Akorda Presidential Palace, Astana, Kazakhstan",
+            "lat": "51.1257434",
+            "long": "71.4441617",
+            "description": "Located in Kazakhstan’s capital city of Astana, Akorda Presidential Palace opened in 2004. The palace, which is 262 feet tall, includes a blue and gold dome topped with a spire. The structure was worked on by architects, engineers, designers, and builders from ten different countries.",
+            "links": "https://drive.google.com/file/d/1W64BzA02QwykOjL0NOoWbEqesnM2VIA0/view?usp=sharing"
+        }
+    ],
+    "iconic buildings": [
+        {
+            "name": "St. Paul Cathedral, London",
+            "lat": "51.5138486",
+            "long": "-0.1005393",
+            "description ": "London’s most iconic building St Paul’s Cathedral was designed by English architect Sir Christopher Wren. Sitting at the top of Ludgate Hill, the highest point in the City of London, its famous dome is one of the world’s largest, measuring nearly 112 metres high.",
+            "links": "https://drive.google.com/file/d/1QhMzV-otHQe7aKmjQ-Zy4TrPtzf1p3Tu/view?usp=sharing"
+        },
+        {
+            "name": "Petronas Tower, Kuala Lumpur",
+            "lat": "3.1579278",
+            "long": "101.7075007",
+            "description ": "Standing at 170 metres above ground, the Petronas Towers are twin skyscrapers in Kuala Lumpur, Malaysia. The buildings, which held the title of tallest in the world between 1998-2004, are iconic landmarks of the capital city.",
+            "links": "https://drive.google.com/file/d/1NezXwMOnZ2cUvaj7XiEcCP3fPjYZMRDt/view?usp=sharing"
+        },
+        {
+            "name": "The Leaning Tower Of Pisa, Italy",
+            "lat": "43.7229559",
+            "long": "10.3944083",
+            "description ": "The Leaning Tower of Pisa is one of the most remarkable architectural structures in Europe. Most famous for its tilt, the tower began to lean during construction after soft ground on one side was unable to properly support the structure’s weight.",
+            "links": "https://drive.google.com/file/d/1Mb0Aj1q-MpsYTAtqLB9WjKJbe0zd1NSf/view?usp=sharing"
+        },
+        {
+            "name": "St. Basils Cathedral, Moscow",
+            "lat": "55.7525259",
+            "long": "37.6208981",
+            "description ": "This garish, candy-coloured cathedral is, in fact, Moscow’s most visited tourist attraction. The Iconic Building, shaped to resemble the flame of a bonfire rising into the sky, is located just outside the Kremlin gates and marks the geometric centre of the city.",
+            "links": "https://drive.google.com/file/d/15PBx8JRMkyknzhuEoze_edeYLll7j0ML/view?usp=sharing"
+        },
+        {
+            "name": "Empire State Building, New York",
+            "lat": "40.7484445",
+            "long": "-73.9878531",
+            "description ": "We couldn’t put together a list of world-famous buildings without including this grand Art Deco skyscraper. Once the tallest building in the world, construction began on the Empire State building on St Patrick’s Day 1930 and was completed just 410 days later.",
+            "links": "https://drive.google.com/file/d/1j9sEHBKQHerepWuHhz7tMpY90yObmtVI/view?usp=sharing"
+        },
+        {
+            "name": "Lloyds Building, London",
+            "lat": "51.5126939",
+            "long": "-0.0844634",
+            "description ": "This Iconic Building looks like it belongs in a sci-fi movie rather than Lime Street in London. The award-winning Lloyds building (also known as the Inside-Out building) is an iconic architectural landmark and one of the most recognisable constructions on the London skyline.",
+            "links": "https://drive.google.com/file/d/1r2ggcLv6Yx0JWmFQeujDFAXADWid92YO/view?usp=sharing"
+        },
+        {
+            "name": "Gaudí House, Barcelona",
+            "lat": "41.41217",
+            "long": "2.1544751",
+            "description ": "Barcelona is a well-known destination among travellers who wish to have a good mixture of fun and culture in a modern setting.",
+            "links": "https://drive.google.com/file/d/1UYUZtvz2Se9R6Ol5FtE7DO3jyyx9l2pD/view?usp=sharing"
+        },
+        {
+            "name": "Sydney Opera House, Sydney",
+            "lat": "-33.8567799",
+            "long": "151.213108",
+            "description ": "Sydney Opera House is widely regarded as one of the greatest architectural works of the 20th century. The innovative design came from architect Jørn Utzon, who was relatively unknown until January 29, 1957, when his entry to the ‘International competition for a national opera house at Bennelong Point, Sydney’ was announced the winner.",
+            "links": "https://drive.google.com/file/d/1H6y_T5S856JZbrzWlFx9KybqZ4k7eelw/view?usp=sharing"
+        },
+        {
+            "name": "Space Needle, Seattle",
+            "lat": "47.6205099",
+            "long": "-122.3514661",
+            "description ": "The futuristic Space Needle in Seattle, Washington was built for the 1962 World’s fair. The famous landmark stands at 184m high and 42m wide at its widest point.",
+            "links": "https://drive.google.com/file/d/1vOIhcXSuumCj4uH77SCUxRDBnl5S2F9-/view?usp=sharing"
+        },
+        {
+            "name": "Hagia Sopia",
+            "lat": "41.008587",
+            "long": "28.9779863",
+            "description ": "Once a church, later a mosque, and now a museum, Hagia Sophia is an architectural masterpiece. A perfect example of Byzantine architecture, Hagia Sophia is located in Istanbul, Turkey.",
+            "links": "https://drive.google.com/file/d/1TEEVPuM1qMhuiLH65O5Rp-23VO_FN40G/view?usp=sharing"
+        },
+        {
+            "name": "Falling Water, Pennsylvania",
+            "lat": "39.9062592",
+            "long": "-79.47003",
+            "description ": "Designed by famous American architect Frank Lloyd Wright in 1934, Fallingwater is quite possibly the most famous private residence in the world. But why? Well, the unique design makes it look like the house stretches out over a 30ft waterfall, with no solid ground beneath it.",
+            "links": "https://drive.google.com/file/d/1UzHqIPWUfl4WqZQ4W4G6XQ_RXPS3nIXb/view?usp=sharing"
+        },
+        {
+            "name": "Guggenheim Museum, Bilbao",
+            "lat": "43.2686751",
+            "long": "-2.9362005",
+            "description ": "The Guggenheim Museum Bilbao is one of the most admired works of contemporary architecture. California-based Canadian-American architect Frank Gehry created the unique concept after winning an architectural competition to design the building.",
+            "links": "https://drive.google.com/file/d/1pPjot5PgWanMtoMyTTZZDCdJb9yhbYJ5/view?usp=sharing"
+        },
+        {
+            "name": "Flatiron Building, Manhattan",
+            "lat": "40.7410645",
+            "long": "-73.9918873",
+            "description ": "The eye-catching Flatiron building in Manhattan was designed by Chicago architect Daniel Burnham and built in 1902. The distinctive triangular shape allowed the building to fill the space located at the intersection of Fifth Avenue and Broadway.",
+            "links": "https://drive.google.com/file/d/1ZovyEvuly-8QgiAWBczTV3SdrdVBBL3K/view?usp=sharing"
+        },
+        {
+            "name": "Burj Khalifa, Dubai",
+            "lat": "25.1972018",
+            "long": "55.2721877",
+            "description ": "Last on our list but very means the least is the world’s tallest building Burj Khalifa. The Iconic Building and magnificent centrepiece of Downtown Dubai stand at a whopping 828.9 meters high.",
+            "links": "https://drive.google.com/file/d/1996Yd0t0iRd85EXFpvzAZ7blbVLWCFwy/view?usp=sharing"
+        }
+    ],
+    "dams": [
+        {
+            "name": "Kariba Dam",
+            "lat": "-16.5221016",
+            "long": "28.7594805",
+            "description": "Built between 1955 and 1959 on the Zambesi River between Zambia and Zimbabwe according to the plans of French architect André Coyne, Kariba is the biggest. It is an arch dam, 128 metres high and 579 metres long that has a reservoir capacity of 185 billion cubic metres of water.",
+            "links": "https://drive.google.com/file/d/1c6KBbrgp5lwi3SIcT18N5esSw50nfvFw/view?usp=sharing"
+        },
+        {
+            "name": "Bratsk Dam",
+            "lat": "54.7005868",
+            "long": "100.0263333",
+            "description": "The second biggest dam in the world by reservoir is located in Siberia, Russia. Built between 1954 and 1964, it holds 169 billion cubic metres of water, stretching for 5.4 square kilometres.",
+            "links": "https://drive.google.com/file/d/11JABahpoQf5K4ETOGt2nr7V8NzcqkgJE/view?usp=sharing"
+        },
+        {
+            "name": "Akosombo Dam",
+            "lat": "6.2994786",
+            "long": "0.0566053",
+            "description": "With a reservoir of 144 billion cubic metres, the third biggest dam in the world by reservoir is behind the Lake Volta, the largest artificial body of water by extension. Located in the southeast of Ghana, it was built between 1961 and 1965 thanks to the financial support of the World Bank, the United States and the United Kingdom.",
+            "links": "https://drive.google.com/file/d/1iJQIF8AMSqEJPZ5L3s79DFr45dQyYPpk/view?usp=sharing"
+        },
+        {
+            "name": "Daniel Johnson Dam",
+            "lat": "50.6398857",
+            "long": "-68.7342937",
+            "description": "In addition to being the fourth biggest by reservoir, this Canadian dam on the Manicouagan River in Québec is the longest multiple-arch buttress dam. Rising 214 metres in height and stretching for 1,300 metres in length, it has a reservoir of nearly 140 billion cubic metres.",
+            "links": "https://drive.google.com/file/d/1XZXNtz76baRHjV2eE2BZCCExAwVUagGk/view?usp=sharing"
+        },
+        {
+            "name": "Guri Dam",
+            "lat": "7.7644493",
+            "long": "-63.0021887",
+            "description": "The fifth biggest dam by reservoir is officially known as the Simón Bolívar Hydroelectric Plant. Located in Venezuela, it has a reservoir of 135 billion cubic metres. This gravity dam is 162 metres high and 7.5 kilometres long.",
+            "links": "https://drive.google.com/file/d/1dzjqci6mCHm0Csb1qs2vQzM0gURHkFUB/view?usp=sharing"
+        },
+        {
+            "name": "Assuan Dam",
+            "lat": "23.9708879",
+            "long": "32.8750812",
+            "description": "This is the biggest dam on the Nile River in Egypt. The lake created by the reservoir is named after Gamal Abdel Nasser, the former Egyptian president who wanted the dam built",
+            "links": "https://drive.google.com/file/d/177kR9J7E_TjpYvbptJhp9XzURq6LqR78/view?usp=sharing"
+        },
+        {
+            "name": "W.A.C. Bennet Dam",
+            "lat": "56.016856",
+            "long": "-122.2126083",
+            "description": "Located on the Peace River, this dam created the Williston Lake in British Columbia, Canada. The reservoir’s capacity is 74 billion cubic metres of water, contained by a structure 183 metres high and more than two kilometres long. Built between 1961 and 1967",
+            "links": "https://drive.google.com/file/d/19BacxTW_skpVkh8X6Z4ieOJfmo9rO00P/view?usp=sharing"
+        },
+        {
+            "name": "Krasnojarsk Dam",
+            "lat": "55.934725",
+            "long": "92.2914223",
+            "description": "Located on the Enisej River in Siberia, Russia, it has a reservoir with a capacity of 73 billion cubic metres. Built between 1956 and 1972, this gravity dam is 124 metres high and a little more than a kilometre long.",
+            "links": "https://drive.google.com/file/d/18oJBeqkeXPa0pGG3E_HvEuq8dh1Cv-YT/view?usp=sharing"
+        },
+        {
+            "name": "Zeya Dam",
+            "lat": "53.7691702",
+            "long": "127.3042003",
+            "description": "Completed in 1975, it has a reservoir with a capacity of 68 billion cubic metres in Russia near the border with China. More than two billion cubic metres of concrete were used to build the dam, which stands 112 metres high and stretches for 714 metres.",
+            "links": "https://drive.google.com/file/d/19b-mnmfBWZ2Tn0DtFrP4Bt6oS6uNChI8/view?usp=sharing"
+        },
+        {
+            "name": " Robert-Bourassa Dam",
+            "lat": "53.7897807",
+            "long": "-77.566925",
+            "description": "At a height of more than 162 metres and a length of 2.8 kilometres, this dam in the Canadian province of Québec has a reservoir of 61.7 billion cubic metres of water that covers nearly three square kilometres.",
+            "links": "https://drive.google.com/file/d/1r6XNK8ZmBrf-eTxvBjNklgBKbfo1zw5U/view?usp=sharing"
+        }
+    ],
+    "Famous roads": [
+        {
+            "name": "LYSEVEGAN ROAD, NORWAY",
+            "lat": "59.0553562",
+            "long": "6.6619107",
+            "description": "With grand fjord scenery and an intense stretch with 27 hairpin curves, the Lysevegan Road from Lysefjord to Sirdal in Norway is at the top of our bucket list.",
+            "links": "https://drive.google.com/file/d/1REy0HJP-8W95WwVqr_QbDBghhdUE_ENV/view?usp=sharing"
+        },
+        {
+            "name": "LEH-MANALI HIGHWAY, INDIA",
+            "lat": "33.1168306",
+            "long": "77.6320678",
+            "description": "The infamous Leh-Manali Highway passes through the majestic Himalaya Mountain Range. Be aware this route is 298 miles long and goes through mountain passes that are so high, you can get altitude sickness! Tourists flock here in the summer when the weather is more forgiving.",
+            "links": "https://drive.google.com/file/d/1YITBaZZmhvwwqpaYmHsCV-3VrvCQR5iW/view?usp=sharing"
+        },
+        {
+            "name": "PACIFIC COAST HIGHWAY, USA",
+            "lat": "36.7544898",
+            "long": "-121.7674875",
+            "description": "This is one of the great all-American roads that winds down 128 miles of rugged California coastline transporting you across beaches and redwood forests with stunning views across the Pacific Ocean.",
+            "links": "https://drive.google.com/file/d/172ScP7KpyQvQcvgqervU3cR3eNNqRFfY/view?usp=sharing"
+        },
+        {
+            "name": "AMALFI DRIVE, ITALY",
+            "lat": "40.6270678",
+            "long": "14.5813824",
+            "description": "A drive along the Amalfi Coast in Italy will transport you through a heady mix of glamorous coastal towns, expansive views over the turquoise sea, plunging cliffs and pastel-colored hillside villages.",
+            "links": "https://drive.google.com/file/d/1qjBDrL5iHu39QnbhMvpAAnoMH9NJzmgn/view?usp=sharing"
+        },
+        {
+            "name": "TRANSFAGARASAN HIGHWAY, ROMANIA ",
+            "lat": "45.4533757",
+            "long": "24.622845",
+            "description": "This highway takes you across the Fagaras Mountains, which at more than 6,500 feet (2,000 m) are some of the highest points in Romania. The road is 56 miles of steep vistas and hairpin bends; it’s a good route for a single day trip",
+            "links": "https://drive.google.com/file/d/109OORUUrtFbHvUi4VyXFJzK6IrxxGZse/view?usp=sharing"
+        },
+        {
+            "name": "ROUTE 1, ICELAND",
+            "lat": "64.0589277",
+            "long": "-21.5840392",
+            "description": "This unique scenic road takes you in a circular route around Iceland, passing most of the island’s most iconic natural sights. At 824 miles, it is not a short day trip, but there are just too many extraordinary experiences along the way to rush!",
+            "links": "https://drive.google.com/file/d/1vTauY-W77RN18j9-iy2doEtkxrX-Kzft/view?usp=sharing"
+        },
+        {
+            "name": "Ruta 40 Argentina",
+            "lat": "-37.131431",
+            "long": "-69.7949078",
+            "description": "Argentina’s Route 40 is one of the longest and most impressive scenic drives in the world, taking you 3,000 miles alongside the Andes Mountains.",
+            "links": "https://drive.google.com/file/d/13tsEirrUYMOqURB5p8M4eFakGpF0gpaa/view?usp=sharing"
+        },
+        {
+            "name": "KARAKORAM HIGHWAY, PAKISTAN",
+            "lat": "35.4202137",
+            "long": "74.0422287",
+            "description": "This route crosses the Kunjerab Pass at a whopping 15,748 feet (4,800 m) above sea level, connecting Pakistan to China. A famous part of the Silk Road, the highway was once precarious for travelers but has now been modernized with a new roadway.",
+            "links": "https://drive.google.com/file/d/1PUfRZDOlrqNPdbB0HS8N_4tj0pMCkX0K/view?usp=sharing"
+        },
+        {
+            "name": "MILFORD ROAD, NEW ZEALAND",
+            "lat": "-45.5730046",
+            "long": "168.1061593",
+            "description": "The Milford Road is part of New Zealand‘s State Highway 94 and transports you to one of the country’s most beloved areas of natural beauty: Milford Sound. At around 80 miles the Milford Road route is an easy drive that takes you through the Fiordland",
+            "links": "https://drive.google.com/file/d/1YwHjMDgzTXmrTyB2vwAJPhnDWMOXTrsq/view?usp=sharing"
+        },
+        {
+            "name": "CHAPMAN’S PEAK DRIVE, SOUTH AFRICA",
+            "lat": "-34.0883147",
+            "long": "18.3506896",
+            "description": "This extraordinary trip takes you on a circular route around South Africa’s breathtaking southern peninsula. Start at Hout Bay south of Cape Town, climb to Chapman’s Peak and finish in Noordhoek.",
+            "links": "https://drive.google.com/file/d/17MVYpsFTKH-iUndPGlyT91h-QinmAlzo/view?usp=sharing"
+        }
+    ],
+    "beaches": [
+        {
+            "name": "Copacabana, Rio de Janeiro, Brazil",
+            "lat": "-22.9732303",
+            "long": "-43.203265",
+            "description": "At Copacabana Beach, one of the world’s most famous beaches, the people-watching may be even more riveting than the scenery.",
+            "links": "https://drive.google.com/file/d/1gyrUugaQ-8oAHIKTa8WozN2V_RE-hJic/view?usp=sharing"
+        },
+        {
+            "name": "Santa Monica Beach, California",
+            "lat": "34.0107301",
+            "long": "-118.5176967",
+            "description": "Spanning 3.5 miles, Santa Monica Beach is where nostalgia meets California living. Along Ocean Front Walk, fitness enthusiasts take advantage of retro workout equipment, while the Marvin Braude Bike Trail hums with tanned skateboarders, rollerbladers and cyclists at, perhaps, the most famous beach in the world.",
+            "links": "https://drive.google.com/file/d/1joV-uoRTk8ccsh4jF24XQtrCDzvXVXsl/view?usp=sharing"
+        },
+        {
+            "name": "South Beach, Miami, Florida",
+            "lat": "25.7818876",
+            "long": "-80.1527164",
+            "description": "Glamorous hotels, clubs and restaurants converge in South Beach, but the American Riviera is most famous for its Art Deco vibe and two miles of white sand. Rack up Instagram likes by the 35 bright and funky lifeguard towers at one of the most popular beaches, and rent a DecoBike to explore",
+            "links": "https://drive.google.com/file/d/1joV-uoRTk8ccsh4jF24XQtrCDzvXVXsl/view?usp=sharing"
+        },
+        {
+            "name": "Renaissance Island, Aruba",
+            "lat": "12.4939304",
+            "long": "-70.0289154",
+            "description": "The Renaissance Aruba Resort & Casino’s man-made private island is the only place in Aruba to take a selfie with flamboyance of flamingos, who are happy to oblige in return for kibble from a vending machine (bring quarters)",
+            "links": "https://drive.google.com/file/d/1f72Atp6sk625y-mYfh7BYM0RHpvaIQ3w/view?usp=sharing"
+        },
+        {
+            "name": "Waikiki, Honolulu, Hawaii",
+            "lat": "21.2801507",
+            "long": "-157.841453",
+            "description": "In 1901, the Moana Surfrider resort opened on the south shore of Oahu, and Waikiki’s status as a prime vacation spot was cemented. More than a century later, a multimillion-dollar refurbishment transformed Kuhio Beach and the Waikiki Beach Walk",
+            "links": "https://drive.google.com/file/d/1McbeEmOjWtqbnDT8gNcpK5MNBwevBrN4/view?usp=sharing"
+        },
+        {
+            "name": "Navagio Beach, Zakynthos, Greece",
+            "lat": "37.8595812",
+            "long": "20.6226222",
+            "description": "You’ve seen this photogenic bay on travel ads – now, discover where it is: Navagio Beach, on the Ionian Isle of Zakynthos. Enclosed by limestone cliffs, the cove is also known as Shipwreck Beach, thanks to the rusting vessel of the Panayiotis, which washed ashore here in 1982.",
+            "links": "https://drive.google.com/file/d/1YMVEMXfG2pNVi4mqI-xu0B4hHrOwnmTr/view?usp=sharing"
+        },
+        {
+            "name": "Whitehaven Beach, Whitsunday Island, Australia",
+            "lat": "-20.273391",
+            "long": "149.0224178",
+            "description": "Preserved within Whitsunday Islands National Park on the Great Barrier Reef, Whitehaven Beach stretches for more than four miles",
+            "links": "https://drive.google.com/file/d/105UjUOR1uDk1p__AXu_I0nH3LkeQ2gwH/view?usp=sharing"
+        },
+        {
+            "name": "Maya Bay, Phi Phi Islands, Thailand",
+            "lat": "7.6782081",
+            "long": "98.7633205",
+            "description": "Basted onto the travel map after the release of the film The Beach in 2000, Maya Bay sees more tourists than it can literally handle. Thailand’s Department of National Parks, Wildlife and Plant Conservation closed the beach for four months in 2018 for reef recovery",
+            "links": "https://drive.google.com/file/d/1v8zKgbS8ZdQ8a-jBIucQzoTbQX-1gbfp/view?usp=sharing"
+        },
+        {
+            "name": "Trunk Bay, St. John, U.S. Virgin Island",
+            "lat": "18.352715",
+            "long": "-64.777298",
+            "description": "Donated to the U.S. National Park Service by Laurence S. Rockefeller in 1956, Trunk Bay remains blissfully hotel-free. Visitors of the USVI do, however, share the pristine beach with cruise passengers and schools of tropical fish, viewed along the 225-yard underwater snorkeling trail.",
+            "links": "https://drive.google.com/file/d/1C8xPS1wFNsJTwaPQknUTWyK2nREBG5QZ/view?usp=sharing"
+        },
+        {
+            "name": "The Baths, British Virgin Islands",
+            "lat": "18.4301784",
+            "long": "-64.4534121",
+            "description": "It’s practically impossible to take a bad photo at the Baths, a series of large granite boulders that decorate the southern shore of Virgin Gorda.",
+            "links": ".https://drive.google.com/file/d/1jhEN5IVZqBetU-PMW6oqZAzXhPbiL1ip/view?usp=sharing"
+        }
+    ],
+    "hotels": [
+        {
+            "name": "burj al arab",
+            "lat ": "25.1415573",
+            "long": "55.183884",
+            "description": "The Burj Al Arab has often been described as the world’s first “seven-star hotel” or \"the most luxurious hotel in the world\" since opening its doors in 1999. And while the brand doesn’t describe itself this way, it’s easy to see why others do.",
+            "links": "https://drive.google.com/file/d/1DnQ2BhoAoHItsmZMmOZdLjnNm1zyCWSb/view?usp=sharing"
+        },
+        {
+            "name": "palm las vegas",
+            "lat ": "36.1625819",
+            "long": "-115.2719804",
+            "description": "While there are many luxury properties to choose from on the Las Vegas Strip, The Palms is known for its iconic high-rolling atmosphere. The penthouse suites at The Palms have been home to some of the most high-profile parties Las Vegas has ever seen, and are designed with entertaining in mind.",
+            "links": "https://drive.google.com/file/d/1_ECitBBCD28ysfPh-PfuLvs0hyLMZBjt/view?usp=sharing"
+        },
+        {
+            "name": "Kamalaya Koh Samui, Thailand",
+            "lat ": "9.4231299",
+            "long": "100.0052356",
+            "description": "Luxury doesn’t always mean opulent furnishings and indulgent decor. At Kamalaya retreat, wellness is inextricably linked with luxury. Guests are greeted with signature mocktails for a one-on-one consultation on arrival, where they can design their perfect wellness experience.",
+            "links": "https://drive.google.com/file/d/1SrfV6-T8pe2KiQcCC3hFfsq0LmIeZIWu/view?usp=sharing"
+        },
+        {
+            "name": "The Ritz Carlton Wolfsburg, Germany",
+            "lat ": "52.4332372",
+            "long": "10.7876381",
+            "description": "If your visions of luxury don’t normally include views of a car manufacturing plant, you’re in for a delightful surprise. Set within the Volkswagen Autostadt theme park, the five-star Ritz Carlton Wolfsburg is surrounded by automotive, architectural, design, art, and culinary innovation.",
+            "links": "https://drive.google.com/file/d/1gX5OR4AgT6oL2xETd7n69Cp_1JRWEtpY/view?usp=sharing"
+        },
+        {
+            "name": "The Plaza, New York City",
+            "lat ": "40.76466",
+            "long": "-73.9766295",
+            "description": "Since its debut in 1907, The Plaza has remained a New York icon hosting world leaders, dignitaries, captains of industry, Broadway legends, and Hollywood royalty. But it's much more than simply an historic property.",
+            "links": "https://drive.google.com/file/d/19i131I77DbBpkmpSaQeBzkxx-uY7IHbY/view?usp=sharing"
+        },
+        {
+            "name": "Mandarin Oriental, Hong Kong",
+            "lat ": "22.2811925",
+            "long": "114.1564718",
+            "description": "This well-known flagship retreat in the heart of Hong Kong gives guests a welcome place to escape the hustle and bustle of the city. The Mandarin Oriental Hong Kong’s 501 rooms and suites have lovely views of the city skyline and Victoria Harbour",
+            "links": "https://drive.google.com/file/d/1dUwFnDIX4iZW7ZGzhzvVzIna2oXAeNTp/view?usp=sharing"
+        },
+        {
+            "name": "The Inn at Little Washington, Virginia",
+            "lat ": "38.7138119",
+            "long": "-78.1617366",
+            "description": "For a quieter elegance and spectacular culinary experience, there's The Inn at Little Washington. Located in a sleepy town in the foothills of the Blue Ridge Mountains, The Inn has 24 rooms, suites, and cottages.",
+            "links": "https://drive.google.com/file/d/1HZnlC7WqKj864RomlPKUkWK7KbNRLU1J/view?usp=sharing"
+        },
+        {
+            "name": "Acqualina Resort, Miami ",
+            "lat ": "25.9408418",
+            "long": "-80.1230847",
+            "description": "If your taste for luxury includes expensive cars, look no further than the Acqualina Resort in Miami. The property is home to the world’s largest collection of independently owned Rolls Royces found at a single hotel.",
+            "links": "https://drive.google.com/file/d/1xWF6C8mKRt_W6vHbQQvVuOMPK08jFSSE/view?usp=sharing"
+        },
+        {
+            "name": "Four Seasons Private Island, Maldives",
+            "lat ": "5.3167229",
+            "long": "73.0754904",
+            "description": "Nothing says pure luxury like having your own private island. The Four Seasons Maldives at Voavah is the pinnacle of secluded extravagance. The island includes a beach house with seven luxury suites for up to 22 guests",
+            "links": "https://drive.google.com/file/d/1QeD7QVnssEyVWM_mVznTQrYwrdjuNjIW/view?usp=sharing"
+        },
+        {
+            "name": "Marquis Los Cabos, Mexico ",
+            "lat ": "22.9863509",
+            "long": "-109.7601007",
+            "description": "Marquis Los Cabos is a private oasis perfectly in tune with its surroundings. The architecture, art showpieces from local artists, and decor all serve to blend the resort in with its surroundings and make guests feel like they’ve stepped into a second home.",
+            "links": "https://drive.google.com/file/d/1xh_IC0MmWHYfYslSIq-OxgFnmrP06d9Q/view?usp=sharing"
+        },
+        {
+            "name": "Titanic Mardan Palace, Turkey",
+            "lat ": "36.8587018",
+            "long": "30.9183798",
+            "description": "For all-inclusive luxury on the shores of the Mediterranean, look no further than the Titanic Mardan Palace. Guests can experience over 30 dining options, a championship golf course, water sports activities, entertainment options, and a world-class spa at this sprawling Turkish estate.",
+            "links": "https://drive.google.com/file/d/1Oqv2jJ46zwiAM7csHWlBfcHAk48aay2j/view?usp=sharing"
+        }
+    ]
+}

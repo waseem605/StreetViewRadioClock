@@ -4,11 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<!--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:name=".hilt.MyApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,6 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.StreetViewFirstLookActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.StreetViewMainActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.StreetViewMainGlobeViewActivity"
             android:exported="false"

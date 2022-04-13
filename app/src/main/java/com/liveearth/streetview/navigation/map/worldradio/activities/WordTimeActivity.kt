@@ -10,11 +10,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityWordTimeBinding
+import com.liveearth.streetview.navigation.map.worldradio.hilt.CountryNameModel
 import com.liveearth.streetview.navigation.map.worldradio.roomdatabase.*
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.WorldClockAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,9 +26,12 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.InputStream
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Named
 import kotlin.collections.ArrayList
 
 @SuppressLint("LogNotTimber")
+@AndroidEntryPoint
 class WordTimeActivity : BaseStreetViewActivity() {
     private lateinit var binding: ActivityWordTimeBinding
     private val TAG = "WordTime"
@@ -36,10 +42,20 @@ class WordTimeActivity : BaseStreetViewActivity() {
     lateinit var mShowAddBtn: String
 
 
+    @Inject
+    @Named("WorldClockModel_list")
+    lateinit var mWorldClockListTwo :ArrayList<WorldClockModel>
+
+    @Inject
+    @Named("countryNameListJson")
+    lateinit var mCountryNameListTwo :ArrayList<CountryNameModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWordTimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.d("worldCloclres", "onCreate: =====world clock==="+mWorldClockListTwo.size)
+        Log.d("worldCloclres", "onCreate: ===country name====="+mCountryNameListTwo.size)
 
         try {
             mShowAddBtn = intent.getStringExtra(ConstantsStreetView.All_TIME_INTENT)!!
@@ -52,13 +68,15 @@ class WordTimeActivity : BaseStreetViewActivity() {
         }
 
         /*  val arrayTimezone = (TimeZone.getAvailableIDs())
-
           val adapterGender = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrayTimezone)
           binding.etGender.setAdapter(adapterGender)
   */
 
-        val jsonString: String = getdataFromJson()
-        parseJsonStringToNewsList(jsonString)
+
+        worldClockListRecyclerView(mWorldClockListTwo)
+
+/*        val jsonString: String = getdataFromJson()
+        parseJsonStringToNewsList(jsonString)*/
 
         clickListener()
 
@@ -137,7 +155,7 @@ class WordTimeActivity : BaseStreetViewActivity() {
 
     private fun worldClockListRecyclerView(mWorldClockList: ArrayList<WorldClockModel>) {
 
-        mWorldClockList.let {
+        mWorldClockList?.let {
             Log.d("onBindViewHolder", "size: " + it.size)
 
             binding.wordClockRecycler.apply {

@@ -65,4 +65,16 @@ class WeatherAPIServices(val callBackWeather: StreetViewWeatherCallBack) {
     }
 
 
+    //private val BASE_URL = "https://api.openweathermap.org/"
+   // private val appId = "fef304ef226153ff5a6553f569892a4e"
+
+
+    //for MVVM
+    fun getInstance(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+    }
+
+
 }

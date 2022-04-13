@@ -42,51 +42,56 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewSpeedoMeterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mPreferenceManagerClass = PreferenceManagerClass(this)
+        try {
+            mPreferenceManagerClass = PreferenceManagerClass(this)
 
-        Unit_Is_Miles = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)
-        if (Unit_Is_Miles){
-            binding.imageSpeedometer.unit = "M/H"
-            binding.maxSpeedUnit.text = "M/H"
-            binding.minSpeedUnit.text = "M/H"
-            binding.avgSpeedUnit.text = "M/H"
-            binding.switchUnit.isChecked = true
-        }else{
-            binding.imageSpeedometer.unit = "KP/H"
-            binding.maxSpeedUnit.text = "KP/H"
-            binding.minSpeedUnit.text = "KP/H"
-            binding.avgSpeedUnit.text = "KP/H"
-            binding.switchUnit.isChecked = false
-        }
-
-        imageSpeedometer = binding.imageSpeedometer
-
-        binding.speedBtn.setOnClickListener {
-            toStartLocation()
-        }
-        binding.toolbarLt.backLink.setOnClickListener {
-            onBackPressed()
-        }
-        binding.toolbarLt.titleTx.text = "Speedo Meter"
-
-        binding.switchUnit.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (isChecked) {
+            Unit_Is_Miles = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)
+            if (Unit_Is_Miles){
                 binding.imageSpeedometer.unit = "M/H"
                 binding.maxSpeedUnit.text = "M/H"
                 binding.minSpeedUnit.text = "M/H"
                 binding.avgSpeedUnit.text = "M/H"
-                Unit_Is_Miles = true
-                mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,true)
-                // binding.switchUnit.isChecked = true
+                binding.switchUnit.isChecked = true
             }else{
                 binding.imageSpeedometer.unit = "KP/H"
                 binding.maxSpeedUnit.text = "KP/H"
                 binding.minSpeedUnit.text = "KP/H"
                 binding.avgSpeedUnit.text = "KP/H"
-                Unit_Is_Miles = false
-                mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,false)
-                //binding.switchUnit.isChecked = false
+                binding.switchUnit.isChecked = false
             }
+
+            imageSpeedometer = binding.imageSpeedometer
+
+            binding.speedBtn.setOnClickListener {
+                toStartLocation()
+            }
+            binding.toolbarLt.backLink.setOnClickListener {
+                onBackPressed()
+            }
+            binding.toolbarLt.titleTx.text = "Speedo Meter"
+
+            binding.switchUnit.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    binding.imageSpeedometer.unit = "M/H"
+                    binding.maxSpeedUnit.text = "M/H"
+                    binding.minSpeedUnit.text = "M/H"
+                    binding.avgSpeedUnit.text = "M/H"
+                    Unit_Is_Miles = true
+                    mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,true)
+                    // binding.switchUnit.isChecked = true
+                }else{
+                    binding.imageSpeedometer.unit = "KP/H"
+                    binding.maxSpeedUnit.text = "KP/H"
+                    binding.minSpeedUnit.text = "KP/H"
+                    binding.avgSpeedUnit.text = "KP/H"
+                    Unit_Is_Miles = false
+                    mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,false)
+                    //binding.switchUnit.isChecked = false
+                }
+            }
+
+
+        } catch (e: Exception) {
         }
 
     }

@@ -38,4 +38,5 @@
     <string name="playing">Playing</string>
     <string name="edit">Edit</string>
     <string name="measuring_unit">Measuring Unit</string>
+    <string name="weather_details">Weather Details</string>
 </resources>

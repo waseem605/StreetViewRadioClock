@@ -119,6 +119,11 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         mapViewResultRoute()
 
+        binding.toolbarLt.titleTx.text = "Navigation Route"
+        binding.toolbarLt.backLink.setOnClickListener {
+            onBackPressed()
+        }
+
 
     }
 

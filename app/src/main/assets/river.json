@@ -1,0 +1,72 @@
+ [
+{
+"name": "amazon river",
+"lat": "-1.6015249",
+"long": "-70.7195179",
+"description": "The Amazon River is located in South America, and travels through the countries of Brazil, Peru and Columbia.  It is the largest river (in terms of volume) in the world, with a discharge of ​​208,978 cubic meters per second. It is also often thought of as the longest river, at 6993 kilometers, although there is some debate about the method used for measuring.",
+"links": "https://drive.google.com/uc?export=download&id=12UioD1AkAjqYVmbDsl7V3cXxAxVBrZ5L"
+},
+{
+"name": "nile river",
+"lat": "23.3189274",
+"long": "23.1194865",
+"description": "The Nile River is a major north-flowing river which [asses through much of northern Africa on its journey to the Mediterranean Sea. It travels through both Egypt and Sudan, but has three major sources: ​​Blue Nile River, White Nile, Atbarah which pass through Ethiopia and Uganda, before reaching Sudan and South Sudan.",
+"links": "https://drive.google.com/uc?export=download&id=1c14Pa9NKOL3Y2p5vzQsgvagNllVZN2sG"
+},
+{
+"name": "ganges",
+"lat": "27.3413045",
+"long": "78.512067",
+"description": "The Ganges river flows through India and Bangladesh. The river measures 2510 kilometers in length, and is a distinct landmark, but is more famous for being of such high religious significance. In Hindu culture and religion, the Ganges is thought to be the most sacred body of water in the world. More mythically, the river is an embodiment of the goddess Ganga, who was the daughter of Himalaya, the mountain god.",
+"links": "https://drive.google.com/uc?export=download&id=10kJtoTSvA3j_7H40v2-B3AqptgEU7xRn"
+},
+{
+"name": "mississippi",
+"lat": "38.9247195",
+"long": "-90.6788653",
+"description": "The Mississippi River is the second longest river in North America and measures roughly 3730 kilometers in length. This wide and winding river is an impressive sight to see, and it passes through or borders ten different U.S. states: Minnesota, Wisconsin, Iowa, Illinois, Missouri, Kentucky, Tennessee, Arkansas, Mississippi, and Louisiana. As such, it is one of the world’s most important commercial water sources, providing power for many nearby cities. Its sheer size also means it is a habitat for a range of animals, and is a migratory line for many species of birds and fish.",
+"links": "https://drive.google.com/uc?export=download&id=1VnLHkM9KuaxJjtAOtqk6CTP-yahiPFcX"
+},
+{
+"name": "thames",
+"lat": "51.5403133",
+"long": "-0.7458382",
+"description": "The River Thames flows through southern England, and passes through the capital city of London. The river measures 346 kilometers in length and drains into the North Sea. It is the longest river completely in England (that is not including the rest of the UK). ",
+"links": "https://drive.google.com/uc?export=download&id=1SM5Ux7fIVAQp9Z1ODSKRS41iEIHWMTXT"
+},
+{
+"name": "murray river",
+"lat": "-35.3862269",
+"long": "143.7435796",
+"description": "Murray river is Australia’s longest river, and is located in the south-eastern part of the country. It measures 2508 kilometres long, and passes through New South Wales, Victoria and South Australia. As Australia is a dry and arid country, water sources such as the Murray are highly important. This river provides water for roughly 1.5 million homes across Australia,and is also used  as an irrigation source for local farms.",
+"links": "https://drive.google.com/uc?export=download&id=14b00ZaSookJSQ3x7H2mxieMREZ8VIvmv"
+},
+{
+"name": "orinoco",
+"lat": "7.6788544",
+"long": "-64.9005673",
+"description": "The Orinoco River is located in South America and has a length of 2,250 kilometres. The majority of the river is in the country of Venezuela, but it also cuts into Columbia. This river is the fourth largest river in the world by discharge volume.",
+"links": "https://drive.google.com/uc?export=download&id=1gFFNsaoBIM40jR16aTS5JVXLyTARm8y5"
+},
+{
+"name": "saint lawrence river",
+"lat": "47.5892857",
+"long": "-74.0853222",
+"description": "The Saint Lawrence River is located in Eastern Canada, and flows from the great lakes to the Atlantic Ocean. It is both one of the largest rivers in the continent, and the only outflow source for the all important Great Lakes.",
+"links": "https://drive.google.com/uc?export=download&id=1Yp2JOguFtZj57xekiyWt19W2D_KG07dH"
+},
+{
+"name": "danube river",
+"lat": "46.3400062",
+"long": "18.8198358",
+"description": "The Danube River is the second longest river in Europe, and can be found running through  number of central and southeastern Europe including Germany, Austria, Romania, Hungary, Serbia, Bulgaria, Ukraine, Slovakia, and Croatia.",
+"links": "https://drive.google.com/uc?export=download&id=1GP-FdVnRdolQshykMMprgqj_YM4-5lCk"
+},
+{
+"name": "mekong river",
+"lat": "15.8975562",
+"long": "98.9494407",
+"description": "The Mekong River forms a border between East Asia and Southeast Asia. It passes through or borders the countries of Vietnam, Thailand, Laos, Cambodia, China, and Myanmar. Some 60 million people rely on the Mekong River. It supports one of the largest and most diverse fishing industries in the world.",
+"links": "https://drive.google.com/uc?export=download&id=1CgmrV5LvxbfOJ4KVBouGkBRlNVOFPHaG"
+}
+]

@@ -58,6 +58,9 @@ class HomeFragment : Fragment() {
         topItemManager()
         moreItemManager()
         currentLocationWeather()
+        binding.forwardWeather.setOnClickListener {
+            weatherIntentLatLng()
+        }
 
         return binding.root
     }
@@ -92,7 +95,8 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             1->{
-                val mainIntent = Intent(requireContext(),StreetViewLiveEarthActivity::class.java)
+                //val mainIntent = Intent(requireContext(),StreetViewLiveEarthActivity::class.java)
+                val mainIntent = Intent(requireContext(),StreetViewFirstLookActivity::class.java)
                 startActivity(mainIntent)
             }
             2->{
@@ -163,12 +167,11 @@ class HomeFragment : Fragment() {
 
         }
 
-        binding.forwardWeather.setOnClickListener {
-           weatherIntentLatLng()
-        }
+
     }
 
     private fun weatherIntentLatLng() {
+        Log.d(TAG, "weatherIntentLatLng: ===========button pressed")
         val mainIntent = Intent(requireContext(),StreetViewWeatherDetailsActivity::class.java)
         mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
         mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)

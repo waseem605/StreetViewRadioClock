@@ -42,6 +42,8 @@ object ConstantsStreetView {
 
     //Expense Intent
     const val EXPENSE_ID = "EXPENSE_ID"
+    //Expense Intent
+    const val StreetView_ID = "StreetView_ID"
 
     //World Clock Intent
     const val All_TIME_INTENT = "All_TIME_INTENT"

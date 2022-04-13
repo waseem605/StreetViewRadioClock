@@ -6,12 +6,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.dummy.apiServices.WeatherAPI
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import com.example.dummy.apiServices.WeatherAPIServices
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewWeatherCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RepositoryWeather
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RetrofitHelper
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.ViewModelFactory
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.WeatherViewModel
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WeatherCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
@@ -31,6 +38,7 @@ import kotlinx.coroutines.launch
 class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
     private lateinit var binding:ActivityStreetViewWeatherDetailsBinding
     private lateinit var mPreferenceManagerClass:PreferenceManagerClass
+    private lateinit var viewModel: WeatherViewModel
     private val TAG = "WeatherDetails"
     private var mLatitude:Double = 0.0
     private var mLongitude:Double = 0.0
@@ -48,7 +56,10 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
 
         mLatitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,0.0)
         mLongitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,0.0)
-        mainWeatherDetails(mLatitude,mLongitude)
+
+        mvvmWeatherDetails(mLatitude,mLongitude)
+
+       // mainWeatherDetails(mLatitude,mLongitude)
 
 
         binding.detailsMore.setOnClickListener {
@@ -68,6 +79,51 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
                 .build(this)
             startActivityForResult(intent, 1)
         }
+
+        binding.toolbar.titleTx.text = "Weather"
+
+        binding.toolbar.backLink.setOnClickListener {
+            onBackPressed()
+        }
+    }
+
+    private fun mvvmWeatherDetails(mLatitude: Double, mLongitude: Double) {
+
+        val services = RetrofitHelper.getInstance().create(WeatherAPI::class.java)
+        val repositoryWeather = RepositoryWeather(services)
+        viewModel = ViewModelProvider(this, ViewModelFactory(repositoryWeather,mLatitude.toString(),mLongitude.toString())).get(
+            WeatherViewModel::class.java)
+
+        viewModel.weather.observe(this, Observer {
+
+            try {
+                StreetViewWeatherHelper.arrayListWeather = it.list as ArrayList<WeatherList>
+
+                val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+                if (temperatureUnit){
+                    binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(it.list[0].main.temp).toString()
+                    binding.weatherUnit.text = "F"
+                }else{
+                    binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
+                    binding.weatherUnit.text = "C"
+                }
+                //binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
+                Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString())
+                try {
+                    Glide.with(this@StreetViewWeatherDetailsActivity)
+                        .load(StreetViewWeatherHelper.getIcon(it.list[0].weather[0].icon))
+                        .into(binding.weatherTodayIcon)
+                }catch (e: Exception) {
+                    println(e)
+                }
+                binding.todayDate.text = StreetViewWeatherHelper.getWeatherDate(it.list[0].dt.toLong(), 1)
+                binding.weatherTodayType.text = it.list[0].weather[0].main.toString()
+                nexDaysDetails(it.list as ArrayList<WeatherList>)
+
+            } catch (e: Exception) {
+            }
+        })
+
 
     }
 
@@ -155,7 +211,7 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
                                 mLatitude = feature.center()?.coordinates()!!.get(1)
                                 mLongitude = feature.center()?.coordinates()!!.get(0)
                                 binding.searchLocationEt.text = feature.text()!!
-                                mainWeatherDetails(mLatitude,mLongitude)
+                                mvvmWeatherDetails(mLatitude,mLongitude)
                             }
                         }
                     }

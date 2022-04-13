@@ -226,7 +226,7 @@
             android:layout_height="0dp"
             android:background="@color/white"
             android:layout_marginTop="@dimen/_30sdp"
-            android:padding="@dimen/_10sdp"
+            android:padding="@dimen/_3sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/windCard">
 

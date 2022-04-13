@@ -32,10 +32,17 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
 
 
-        mID  = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID,0)
-        clickListenerExpenseDetails(mID)
-        showExpenseDetails(mID)
+        try {
+            mID  = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID,0)
+            clickListenerExpenseDetails(mID)
+            showExpenseDetails(mID)
+        } catch (e: Exception) {
+        }
 
+        binding.toolbar.titleTx.text = "Expense Details"
+        binding.toolbar.backLink.setOnClickListener {
+            onBackPressed()
+        }
 
     }
 

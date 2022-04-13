@@ -37,7 +37,15 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
 
         chartVewWeater(mArrayListWeather)
         forecastWeather(mArrayListWeather)
+        clickListenerMoreDetails()
 
+    }
+
+    private fun clickListenerMoreDetails() {
+        binding.toolbarLt.titleTx.text = getString(R.string.weather_details)
+        binding.toolbarLt.backLink.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun chartVewWeater(mArrayListWeather: ArrayList<WeatherList>) {

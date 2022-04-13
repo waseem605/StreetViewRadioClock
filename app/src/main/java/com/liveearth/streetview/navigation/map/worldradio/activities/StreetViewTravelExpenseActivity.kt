@@ -39,18 +39,27 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreeViewTravelExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mID = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID, 0)
-        val factory = ExpenseViewModelFactory(this)
-        mExpenseViewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
+        try {
+            mID = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID, 0)
+            val factory = ExpenseViewModelFactory(this)
+            mExpenseViewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
 
-        if (mID !=null){
-            showExpenseDetails(mID)
-            "Update".also { binding.addExpense.text = it }
-        }else{
-            "Add Expense".also { binding.addExpense.text = it }
+            if (mID !=null){
+                showExpenseDetails(mID)
+                "Update".also { binding.addExpense.text = it }
+            }else{
+                "Add Expense".also { binding.addExpense.text = it }
+            }
+            addExpenseItemRecycler()
+            clickListenerExpense()
+
+            binding.toolbar.backLink.setOnClickListener {
+                onBackPressed()
+            }
+            binding.toolbar.titleTx.text = "Add Expense"
+
+        } catch (e: Exception) {
         }
-        addExpenseItemRecycler()
-        clickListenerExpense()
 
     }
 
