@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.StreetViewMainActivity">
 
-
     <include layout="@layout/custom_toolbar"
         android:id="@+id/toolbarLt"/>
 

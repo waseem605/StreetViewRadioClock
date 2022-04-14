@@ -1,0 +1,79 @@
+[
+  {
+    "name": "burj al arab",
+    "lat": "25.1415573",
+    "long": "55.183884",
+    "description": "The Burj Al Arab has often been described as the world’s first “seven-star hotel” or \"the most luxurious hotel in the world\" since opening its doors in 1999. And while the brand doesn’t describe itself this way, it’s easy to see why others do.",
+    "links": "https://drive.google.com/uc?export=download&id=1DnQ2BhoAoHItsmZMmOZdLjnNm1zyCWSb"
+  },
+  {
+    "name": "palm las vegas",
+    "lat": "36.1625819",
+    "long": "-115.2719804",
+    "description": "While there are many luxury properties to choose from on the Las Vegas Strip, The Palms is known for its iconic high-rolling atmosphere. The penthouse suites at The Palms have been home to some of the most high-profile parties Las Vegas has ever seen, and are designed with entertaining in mind.",
+    "links": "https://drive.google.com/uc?export=download&id=1_ECitBBCD28ysfPh-PfuLvs0hyLMZBjt"
+  },
+  {
+    "name": "Kamalaya Koh Samui, Thailand",
+    "lat": "9.4231299",
+    "long": "100.0052356",
+    "description": "Luxury doesn’t always mean opulent furnishings and indulgent decor. At Kamalaya retreat, wellness is inextricably linked with luxury. Guests are greeted with signature mocktails for a one-on-one consultation on arrival, where they can design their perfect wellness experience.",
+    "links": "https://drive.google.com/uc?export=download&id=1SrfV6-T8pe2KiQcCC3hFfsq0LmIeZIWu"
+  },
+  {
+    "name": "The Ritz Carlton Wolfsburg, Germany",
+    "lat": "52.4332372",
+    "long": "10.7876381",
+    "description": "If your visions of luxury don’t normally include views of a car manufacturing plant, you’re in for a delightful surprise. Set within the Volkswagen Autostadt theme park, the five-star Ritz Carlton Wolfsburg is surrounded by automotive, architectural, design, art, and culinary innovation.",
+    "links": "https://drive.google.com/uc?export=download&id=1gX5OR4AgT6oL2xETd7n69Cp_1JRWEtpY"
+  },
+  {
+    "name": "The Plaza, New York City",
+    "lat": "40.76466",
+    "long": "-73.9766295",
+    "description": "Since its debut in 1907, The Plaza has remained a New York icon hosting world leaders, dignitaries, captains of industry, Broadway legends, and Hollywood royalty. But it's much more than simply an historic property.",
+    "links": "https://drive.google.com/uc?export=download&id=19i131I77DbBpkmpSaQeBzkxx-uY7IHbY"
+  },
+  {
+    "name": "Mandarin Oriental, Hong Kong",
+    "lat": "22.2811925",
+    "long": "114.1564718",
+    "description": "This well-known flagship retreat in the heart of Hong Kong gives guests a welcome place to escape the hustle and bustle of the city. The Mandarin Oriental Hong Kong’s 501 rooms and suites have lovely views of the city skyline and Victoria Harbour",
+    "links": "https://drive.google.com/uc?export=download&id=1dUwFnDIX4iZW7ZGzhzvVzIna2oXAeNTp"
+  },
+  {
+    "name": "The Inn at Little Washington, Virginia",
+    "lat": "38.7138119",
+    "long": "-78.1617366",
+    "description": "For a quieter elegance and spectacular culinary experience, there's The Inn at Little Washington. Located in a sleepy town in the foothills of the Blue Ridge Mountains, The Inn has 24 rooms, suites, and cottages.",
+    "links": "https://drive.google.com/uc?export=download&id=1HZnlC7WqKj864RomlPKUkWK7KbNRLU1J"
+  },
+  {
+    "name": "Acqualina Resort, Miami ",
+    "lat": "25.9408418",
+    "long": "-80.1230847",
+    "description": "If your taste for luxury includes expensive cars, look no further than the Acqualina Resort in Miami. The property is home to the world’s largest collection of independently owned Rolls Royces found at a single hotel.",
+    "links": "https://drive.google.com/uc?export=download&id=1xWF6C8mKRt_W6vHbQQvVuOMPK08jFSSE"
+  },
+  {
+    "name": "Four Seasons Private Island, Maldives",
+    "lat": "5.3167229",
+    "long": "73.0754904",
+    "description": "Nothing says pure luxury like having your own private island. The Four Seasons Maldives at Voavah is the pinnacle of secluded extravagance. The island includes a beach house with seven luxury suites for up to 22 guests",
+    "links": "https://drive.google.com/uc?export=download&id=1QeD7QVnssEyVWM_mVznTQrYwrdjuNjIW"
+  },
+  {
+    "name": "Marquis Los Cabos, Mexico ",
+    "lat": "22.9863509",
+    "long": "-109.7601007",
+    "description": "Marquis Los Cabos is a private oasis perfectly in tune with its surroundings. The architecture, art showpieces from local artists, and decor all serve to blend the resort in with its surroundings and make guests feel like they’ve stepped into a second home.",
+    "links": "https://drive.google.com/uc?export=download&id=1xh_IC0MmWHYfYslSIq-OxgFnmrP06d9Q"
+  },
+  {
+    "name": "Titanic Mardan Palace, Turkey",
+    "lat": "36.8587018",
+    "long": "30.9183798",
+    "description": "For all-inclusive luxury on the shores of the Mediterranean, look no further than the Titanic Mardan Palace. Guests can experience over 30 dining options, a championship golf course, water sports activities, entertainment options, and a world-class spa at this sprawling Turkish estate.",
+    "links": "https://drive.google.com/uc?export=download&id=1Oqv2jJ46zwiAM7csHWlBfcHAk48aay2j"
+  }
+]

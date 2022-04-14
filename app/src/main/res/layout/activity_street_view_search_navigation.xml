@@ -352,6 +352,7 @@
                 android:background="@drawable/button_background_green"
                 android:padding="@dimen/_5sdp"
                 android:src="@drawable/ic_add_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -361,7 +362,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/locationTwoConst"
             android:layout_width="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toEndOf="@id/leftSideLayout"
             android:layout_marginStart="@dimen/_8sdp"
@@ -405,7 +406,7 @@
             android:id="@+id/locationThreeConst"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintStart_toEndOf="@id/leftSideLayout"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -486,7 +487,28 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navigationBtn"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            app:cornerRadius="@dimen/_25sdp"
+            app:elevation="@dimen/_4sdp"
+            android:text="Navigate"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:padding="@dimen/_7sdp"
+            android:layout_margin="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14ssp"
+            android:backgroundTint="@color/appMainColor"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/locationDestConst"/>
+
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_65sdp"
             android:background="@drawable/bottom_bar_background"
@@ -507,7 +529,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/appMainColor" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

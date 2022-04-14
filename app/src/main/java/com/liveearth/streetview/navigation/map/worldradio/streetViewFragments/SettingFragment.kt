@@ -1,5 +1,6 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewFragments
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.liveearth.streetview.navigation.map.worldradio.R
+import com.liveearth.streetview.navigation.map.worldradio.activities.StreetViewPrivacyPolicyActivity
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentSettingBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
@@ -24,8 +26,16 @@ class SettingFragment : Fragment() {
         mPreferenceManagerClass = PreferenceManagerClass(requireContext())
 
         clickListenerSetting()
+        centerClickListener()
 
         return binding.root
+    }
+
+    private fun centerClickListener() {
+        binding.privacyLT.setOnClickListener {
+            val intent = Intent(requireContext(),StreetViewPrivacyPolicyActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun clickListenerSetting() {
@@ -87,5 +97,7 @@ class SettingFragment : Fragment() {
             }
         }
     }
+
+
 
 }

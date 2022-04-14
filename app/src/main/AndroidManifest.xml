@@ -19,6 +19,9 @@
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activities.StreetViewPrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.StreetViewFirstLookActivity"
             android:exported="false" />
         <activity

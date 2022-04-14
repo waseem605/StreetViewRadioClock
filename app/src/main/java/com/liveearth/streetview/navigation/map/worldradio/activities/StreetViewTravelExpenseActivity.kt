@@ -44,11 +44,15 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             val factory = ExpenseViewModelFactory(this)
             mExpenseViewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
 
-            if (mID !=null){
+            if (mID >-1){
                 showExpenseDetails(mID)
                 "Update".also { binding.addExpense.text = it }
-            }else{
-                "Add Expense".also { binding.addExpense.text = it }
+            }else if(mID == -1){
+                binding.addExpense.text = "Add Expense"
+            }
+            else{
+                binding.addExpense.text = "Add Expense"
+              //  "Add Expense".also { binding.addExpense.text = it }
             }
             addExpenseItemRecycler()
             clickListenerExpense()

@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Kariba Dam",
+    "lat": "-16.5221016",
+    "long": "28.7594805",
+    "description": "Built between 1955 and 1959 on the Zambesi River between Zambia and Zimbabwe according to the plans of French architect André Coyne, Kariba is the biggest. It is an arch dam, 128 metres high and 579 metres long that has a reservoir capacity of 185 billion cubic metres of water.",
+    "links": "https://drive.google.com/uc?export=download&id=1c6KBbrgp5lwi3SIcT18N5esSw50nfvFw"
+  },
+  {
+    "name": "Bratsk Dam",
+    "lat": "54.7005868",
+    "long": "100.0263333",
+    "description": "The second biggest dam in the world by reservoir is located in Siberia, Russia. Built between 1954 and 1964, it holds 169 billion cubic metres of water, stretching for 5.4 square kilometres.",
+    "links": "https://drive.google.com/uc?export=download&id=11JABahpoQf5K4ETOGt2nr7V8NzcqkgJE"
+  },
+  {
+    "name": "Akosombo Dam",
+    "lat": "6.2994786",
+    "long": "0.0566053",
+    "description": "With a reservoir of 144 billion cubic metres, the third biggest dam in the world by reservoir is behind the Lake Volta, the largest artificial body of water by extension. Located in the southeast of Ghana, it was built between 1961 and 1965 thanks to the financial support of the World Bank, the United States and the United Kingdom.",
+    "links": "https://drive.google.com/uc?export=download&id=1iJQIF8AMSqEJPZ5L3s79DFr45dQyYPpk"
+  },
+  {
+    "name": "Daniel Johnson Dam",
+    "lat": "50.6398857",
+    "long": "-68.7342937",
+    "description": "In addition to being the fourth biggest by reservoir, this Canadian dam on the Manicouagan River in Québec is the longest multiple-arch buttress dam. Rising 214 metres in height and stretching for 1,300 metres in length, it has a reservoir of nearly 140 billion cubic metres.",
+    "links": "https://drive.google.com/uc?export=download&id=1XZXNtz76baRHjV2eE2BZCCExAwVUagGk"
+  },
+  {
+    "name": "Guri Dam",
+    "lat": "7.7644493",
+    "long": "-63.0021887",
+    "description": "The fifth biggest dam by reservoir is officially known as the Simón Bolívar Hydroelectric Plant. Located in Venezuela, it has a reservoir of 135 billion cubic metres. This gravity dam is 162 metres high and 7.5 kilometres long.",
+    "links": "https://drive.google.com/uc?export=download&id=1dzjqci6mCHm0Csb1qs2vQzM0gURHkFUB"
+  },
+  {
+    "name": "Assuan Dam",
+    "lat": "23.9708879",
+    "long": "32.8750812",
+    "description": "This is the biggest dam on the Nile River in Egypt. The lake created by the reservoir is named after Gamal Abdel Nasser, the former Egyptian president who wanted the dam built",
+    "links": "https://drive.google.com/uc?export=download&id=177kR9J7E_TjpYvbptJhp9XzURq6LqR78"
+  },
+  {
+    "name": "W.A.C. Bennet Dam",
+    "lat": "56.016856",
+    "long": "-122.2126083",
+    "description": "Located on the Peace River, this dam created the Williston Lake in British Columbia, Canada. The reservoir’s capacity is 74 billion cubic metres of water, contained by a structure 183 metres high and more than two kilometres long. Built between 1961 and 1967",
+    "links": "https://drive.google.com/uc?export=download&id=19BacxTW_skpVkh8X6Z4ieOJfmo9rO00P"
+  },
+  {
+    "name": "Krasnojarsk Dam",
+    "lat": "55.934725",
+    "long": "92.2914223",
+    "description": "Located on the Enisej River in Siberia, Russia, it has a reservoir with a capacity of 73 billion cubic metres. Built between 1956 and 1972, this gravity dam is 124 metres high and a little more than a kilometre long.",
+    "links": "https://drive.google.com/uc?export=download&id=18oJBeqkeXPa0pGG3E_HvEuq8dh1Cv-YT"
+  },
+  {
+    "name": "Zeya Dam",
+    "lat": "53.7691702",
+    "long": "127.3042003",
+    "description": "Completed in 1975, it has a reservoir with a capacity of 68 billion cubic metres in Russia near the border with China. More than two billion cubic metres of concrete were used to build the dam, which stands 112 metres high and stretches for 714 metres.",
+    "links": "https://drive.google.com/uc?export=download&id=19b-mnmfBWZ2Tn0DtFrP4Bt6oS6uNChI8"
+  },
+  {
+    "name": " Robert-Bourassa Dam",
+    "lat": "53.7897807",
+    "long": "-77.566925",
+    "description": "At a height of more than 162 metres and a length of 2.8 kilometres, this dam in the Canadian province of Québec has a reservoir of 61.7 billion cubic metres of water that covers nearly three square kilometres.",
+    "links": "https://drive.google.com/uc?export=download&id=1r6XNK8ZmBrf-eTxvBjNklgBKbfo1zw5U"
+  }
+]

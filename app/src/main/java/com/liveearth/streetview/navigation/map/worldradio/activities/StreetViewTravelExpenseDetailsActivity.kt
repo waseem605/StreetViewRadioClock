@@ -16,6 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import android.R
+import android.util.Log
+
 
 class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
     private lateinit var binding: ActivityStreetViewExpenseTravelDetailsBinding
@@ -30,7 +33,6 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewExpenseTravelDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         try {
             mID  = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID,0)
@@ -74,6 +76,25 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
                 adapter = mAdapter
             }
         } catch (e: Exception) {
+        }
+
+        binding.shareExpenseCard.setOnClickListener {
+            val intent = Intent(Intent.ACTION_SEND)
+            val shareTitle = model!!.category
+            val shareDate = model.date
+            val shareDesc = model.description
+            val shareLocation = model.location
+            var shareItem = ""
+            for (i in 0 until model.itemList!!.size) {
+               val shareItemTemp = model.itemList!![i].name+"    "+model.itemList!![i].Price
+                shareItem +="\n$shareItemTemp"
+            }
+            val shareBody ="Category: $shareTitle \n Date: $shareDate \n Location: $shareLocation \n\n Items: $shareItem \n\n Description: $shareDesc"
+            Log.d(TAG, "showDataExpense: $shareBody")
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_SUBJECT, "getString(R.string.share_subject)")
+            intent.putExtra(Intent.EXTRA_TEXT, shareBody)
+           startActivity(Intent.createChooser(intent, "getString(R.string.share_using)"))
         }
 
     }

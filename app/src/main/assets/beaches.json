@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Copacabana, Rio de Janeiro, Brazil",
+    "lat": "-22.9732303",
+    "long": "-43.203265",
+    "description": "At Copacabana Beach, one of the world’s most famous beaches, the people-watching may be even more riveting than the scenery.",
+    "links": "https://drive.google.com/uc?export=download&id=1gyrUugaQ-8oAHIKTa8WozN2V_RE-hJic"
+  },
+  {
+    "name": "Santa Monica Beach, California",
+    "lat": "34.0107301",
+    "long": "-118.5176967",
+    "description": "Spanning 3.5 miles, Santa Monica Beach is where nostalgia meets California living. Along Ocean Front Walk, fitness enthusiasts take advantage of retro workout equipment, while the Marvin Braude Bike Trail hums with tanned skateboarders, rollerbladers and cyclists at, perhaps, the most famous beach in the world.",
+    "links": "https://drive.google.com/uc?export=download&id=1joV-uoRTk8ccsh4jF24XQtrCDzvXVXsl"
+  },
+  {
+    "name": "South Beach, Miami, Florida",
+    "lat": "25.7818876",
+    "long": "-80.1527164",
+    "description": "Glamorous hotels, clubs and restaurants converge in South Beach, but the American Riviera is most famous for its Art Deco vibe and two miles of white sand. Rack up Instagram likes by the 35 bright and funky lifeguard towers at one of the most popular beaches, and rent a DecoBike to explore",
+    "links": "https://drive.google.com/uc?export=download&id=1joV-uoRTk8ccsh4jF24XQtrCDzvXVXsl"
+  },
+  {
+    "name": "Renaissance Island, Aruba",
+    "lat": "12.4939304",
+    "long": "-70.0289154",
+    "description": "The Renaissance Aruba Resort & Casino’s man-made private island is the only place in Aruba to take a selfie with flamboyance of flamingos, who are happy to oblige in return for kibble from a vending machine (bring quarters)",
+    "links": "https://drive.google.com/uc?export=download&id=1f72Atp6sk625y-mYfh7BYM0RHpvaIQ3w"
+  },
+  {
+    "name": "Waikiki, Honolulu, Hawaii",
+    "lat": "21.2801507",
+    "long": "-157.841453",
+    "description": "In 1901, the Moana Surfrider resort opened on the south shore of Oahu, and Waikiki’s status as a prime vacation spot was cemented. More than a century later, a multimillion-dollar refurbishment transformed Kuhio Beach and the Waikiki Beach Walk",
+    "links": "https://drive.google.com/uc?export=download&id=1McbeEmOjWtqbnDT8gNcpK5MNBwevBrN4"
+  },
+  {
+    "name": "Navagio Beach, Zakynthos, Greece",
+    "lat": "37.8595812",
+    "long": "20.6226222",
+    "description": "You’ve seen this photogenic bay on travel ads – now, discover where it is: Navagio Beach, on the Ionian Isle of Zakynthos. Enclosed by limestone cliffs, the cove is also known as Shipwreck Beach, thanks to the rusting vessel of the Panayiotis, which washed ashore here in 1982.",
+    "links": "https://drive.google.com/uc?export=download&id=1YMVEMXfG2pNVi4mqI-xu0B4hHrOwnmTr"
+  },
+  {
+    "name": "Whitehaven Beach, Whitsunday Island, Australia",
+    "lat": "-20.273391",
+    "long": "149.0224178",
+    "description": "Preserved within Whitsunday Islands National Park on the Great Barrier Reef, Whitehaven Beach stretches for more than four miles",
+    "links": "https://drive.google.com/uc?export=download&id=105UjUOR1uDk1p__AXu_I0nH3LkeQ2gwH"
+  },
+  {
+    "name": "Maya Bay, Phi Phi Islands, Thailand",
+    "lat": "7.6782081",
+    "long": "98.7633205",
+    "description": "Basted onto the travel map after the release of the film The Beach in 2000, Maya Bay sees more tourists than it can literally handle. Thailand’s Department of National Parks, Wildlife and Plant Conservation closed the beach for four months in 2018 for reef recovery",
+    "links": "https://drive.google.com/uc?export=download&id=1v8zKgbS8ZdQ8a-jBIucQzoTbQX-1gbfp"
+  },
+  {
+    "name": "Trunk Bay, St. John, U.S. Virgin Island",
+    "lat": "18.352715",
+    "long": "-64.777298",
+    "description": "Donated to the U.S. National Park Service by Laurence S. Rockefeller in 1956, Trunk Bay remains blissfully hotel-free. Visitors of the USVI do, however, share the pristine beach with cruise passengers and schools of tropical fish, viewed along the 225-yard underwater snorkeling trail.",
+    "links": "https://drive.google.com/uc?export=download&id=1C8xPS1wFNsJTwaPQknUTWyK2nREBG5QZ"
+  },
+  {
+    "name": "The Baths, British Virgin Islands",
+    "lat": "18.4301784",
+    "long": "-64.4534121",
+    "description": "It’s practically impossible to take a bad photo at the Baths, a series of large granite boulders that decorate the southern shore of Virgin Gorda.",
+    "links": ".https://drive.google.com/uc?export=download&id=1jhEN5IVZqBetU-PMW6oqZAzXhPbiL1ip"
+  }
+]

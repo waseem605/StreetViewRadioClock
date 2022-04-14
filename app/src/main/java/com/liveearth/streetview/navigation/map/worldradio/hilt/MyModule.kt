@@ -24,7 +24,6 @@ object MyModule {
     private val BASE_URL = "https://api.openweathermap.org/"
 
 
-
     @Provides
     @Singleton
     @Named("world_clock_string")
@@ -49,7 +48,7 @@ object MyModule {
         val mWorldClockList: ArrayList<WorldClockModel> = ArrayList()
 
         val newsArray = JSONArray(jsonString)
-        Log.i("fms", "SIZE : " + newsArray.length())
+        Log.i("streetView", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
             val objinside = JSONObject(newsArray.get(i).toString())
             val country = objinside.getString("country")
@@ -86,7 +85,7 @@ object MyModule {
     fun parseJsonStringToCountryNameList(@Named("all_country")jsonString: String):ArrayList<CountryNameModel>{
         val mCountryNameListTwo: ArrayList<CountryNameModel> = ArrayList()
         val newsArray = JSONArray(jsonString)
-        Log.i("fms", "SIZE : " + newsArray.length())
+        Log.i("streetView", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
             val objinside = JSONObject(newsArray.get(i).toString())
             val name = objinside.getString("name")
@@ -100,7 +99,7 @@ object MyModule {
         return mCountryNameListTwo
     }
 
-
+//River
     @Provides
     @Singleton
     @Named("River_StreetView_list")
@@ -118,7 +117,7 @@ object MyModule {
         }
         //return inputString
         val newsArray = JSONArray(inputString)
-        Log.i("fms", "SIZE : " + newsArray.length())
+        Log.i("streetView", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
             val objInside = JSONObject(newsArray.get(i).toString())
             val name = objInside.getString("name")
@@ -135,6 +134,8 @@ object MyModule {
         return mWorldClockList
     }
 
+
+    //Theme Parks
     @Provides
     @Singleton
     @Named("ThemeParks_StreetView_list")
@@ -152,7 +153,7 @@ object MyModule {
         }
         //return inputString
         val newsArray = JSONArray(inputString)
-        Log.i("fms", "SIZE : " + newsArray.length())
+        Log.i("streetView", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
             val objInside = JSONObject(newsArray.get(i).toString())
             val name = objInside.getString("name")
@@ -161,7 +162,6 @@ object MyModule {
             val description = objInside.getString("description")
             val links = objInside.getString("links")
             try {
-
                 mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
             } catch (e: Exception) {
             }
@@ -169,6 +169,9 @@ object MyModule {
         return mWorldClockList
     }
 
+    /*
+    Mountain_StreetView_list
+    */
     @Provides
     @Singleton
     @Named("Mountain_StreetView_list")
@@ -186,7 +189,156 @@ object MyModule {
         }
         //return inputString
         val newsArray = JSONArray(inputString)
-        Log.i("fms", "SIZE : " + newsArray.length())
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+
+    /*
+    Beaches_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Beaches_StreetView_list")
+    fun getBeachesStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("beaches.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+
+    /*
+    Airports_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Airports_StreetView_list")
+    fun getAirportsStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("airports.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+
+
+    /*
+    Dams_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Dams_StreetView_list")
+    fun getDamsStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("dams.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+
+    /*
+    Football_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Football_StreetView_list")
+    fun getFootballStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("football_stadium.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
             val objInside = JSONObject(newsArray.get(i).toString())
             val name = objInside.getString("name")
@@ -202,6 +354,263 @@ object MyModule {
         }
         return mWorldClockList
     }
+
+
+    /*
+    Hotels_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Hotels_StreetView_list")
+    fun getHotelsStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("hotels.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+
+
+    /*
+    Roads_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Roads_StreetView_list")
+    fun getRoadsStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("famous_road.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+    /*
+    IconicBuilding_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("IconicBuilding_StreetView_list")
+    fun getIconicBuildingStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("iconic_buildings.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+    /*
+    Presidential_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("Presidential_StreetView_list")
+    fun getPresidentialStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("presidential_places.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+  /*
+    ShipPorts_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("ShipPorts_StreetView_list")
+    fun getShipPortsStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("ship_ports.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
+
+  /*
+    WorldWonder_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("WorldWonder_StreetView_list")
+    fun getWorldWonderStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("world_wonders.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+  /*
+    FamousPlaces_StreetView_list
+    */
+    @Provides
+    @Singleton
+    @Named("FamousPlaces_StreetView_list")
+    fun getFamousPlacesStreetView(app:Application): ArrayList<StreetViewModel>{
+        val mWorldClockList: ArrayList<StreetViewModel> = ArrayList()
+        var inputString = ""
+        try {
+            val inputStream: InputStream = app.assets.open("famous_places.json")
+            inputString = inputStream.bufferedReader().use {
+                it.readText()
+            }
+            Log.d("openViewData", inputString)
+        } catch (e: Exception) {
+            Log.d("openViewData", e.toString())
+        }
+        //return inputString
+        val newsArray = JSONArray(inputString)
+        Log.i("streetView", "SIZE : " + newsArray.length())
+        for (i in 0 until newsArray.length()) {
+            val objInside = JSONObject(newsArray.get(i).toString())
+            val name = objInside.getString("name")
+            val lat = objInside.getString("lat")
+            val long = objInside.getString("long")
+            val description = objInside.getString("description")
+            val links = objInside.getString("links")
+            try {
+                mWorldClockList.add(StreetViewModel(name,lat,long,description,links))
+            } catch (e: Exception) {
+            }
+        }
+        return mWorldClockList
+    }
+
 
 
 

@@ -41,6 +41,7 @@ class StreetViewTravelExpenseViewActivity : AppCompatActivity() {
         binding.toolbar.titleTx.text = "Expense List"
         binding.addExpenseBtn.setOnClickListener {
             val intent = Intent(this,StreetViewTravelExpenseActivity::class.java)
+            intent.putExtra(ConstantsStreetView.EXPENSE_ID,-1)
             startActivity(intent)
         }
     }
