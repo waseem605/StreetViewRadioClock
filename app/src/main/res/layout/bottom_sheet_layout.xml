@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="0dp"
+    android:id="@+id/bottom_sheet_design"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior"
+    android:background="@drawable/bottom_bar_background">
+
+    <View
+        android:id="@+id/viewTop"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_3sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/button_background_green"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/normalStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintEnd_toStartOf="@id/satelliteStyle"
+        app:layout_constraintTop_toBottomOf="@id/viewTop"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <ImageView
+            android:id="@+id/normalImage"
+            android:padding="@dimen/_2sdp"
+            android:background="@color/appMainColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/satelliteStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintEnd_toStartOf="@id/trafficStyle"
+        app:layout_constraintTop_toBottomOf="@id/viewTop"
+        app:layout_constraintStart_toEndOf="@id/normalStyle">
+
+
+        <ImageView
+            android:id="@+id/satelliteImage"
+            android:padding="@dimen/_2sdp"
+            android:background="@color/appMainColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/trafficStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintEnd_toStartOf="@id/darkStyle"
+        app:layout_constraintTop_toBottomOf="@id/viewTop"
+        app:layout_constraintStart_toEndOf="@id/satelliteStyle">
+
+
+        <ImageView
+            android:id="@+id/trafficImage"
+            android:padding="@dimen/_2sdp"
+            android:background="@color/appMainColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/darkStyle"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewTop"
+        app:layout_constraintStart_toEndOf="@id/trafficStyle">
+
+        <ImageView
+            android:id="@+id/darkImage"
+            android:padding="@dimen/_2sdp"
+            android:background="@color/appMainColor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

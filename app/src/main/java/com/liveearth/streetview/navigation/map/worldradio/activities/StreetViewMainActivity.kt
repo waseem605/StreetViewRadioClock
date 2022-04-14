@@ -1,25 +1,28 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.viewpager2.widget.ViewPager2
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.CategoryStreetViewCallBackListener
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MainStreetViewCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewMainBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.StreetViewMainAdapter
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.CategoryStreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONArray
-import org.json.JSONObject
-import java.io.InputStream
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -87,6 +90,11 @@ class StreetViewMainActivity : AppCompatActivity() {
     lateinit var mShipPortsStreetViewList :ArrayList<StreetViewModel>
 
 
+    @Inject
+    @Named("FamousPlaces_StreetView_list")
+    lateinit var mFamousPlacesStreetViewList :ArrayList<StreetViewModel>
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,15 +102,76 @@ class StreetViewMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         try {
+            binding.toolbarLt.titleTx.text = "Street View"
             val posIntent = intent.getIntExtra(ConstantsStreetView.StreetView_ID,0)
-            Log.d(TAG, "onCreate: =======mStreetViewListTwo========="+mRiverStreetViewList.size)
+            val nameIntent = intent.getStringExtra(ConstantsStreetView.StreetView_Name)
+            if (nameIntent == ConstantsStreetView.StreetView_Name){
+                mGeneralStreetViewList = mFamousPlacesStreetViewList
+                famousStreetViewDisplay(mGeneralStreetViewList,posIntent)
+                Log.d(TAG, "onCreate: "+mGeneralStreetViewList.size)
+                for (i in 0 until mGeneralStreetViewList.size){
+                    Log.d(TAG, "onCreate:===========$i===== "+mGeneralStreetViewList[i].name)
+                }
 
-            getStreetViewData(posIntent)
+                binding.famousLayoutStreetView.visibility = View.VISIBLE
 
-            getCurrentUserLocation()
+            }else
+            {
+                Log.d(TAG, "onCreate: =======mStreetViewListTwo=========" + mRiverStreetViewList.size)
+
+                getStreetViewData(posIntent)
+                getCurrentUserLocation()
+            }
 
         } catch (e: Exception) {
         }
+
+    }
+
+    private fun famousStreetViewDisplay(mGeneralStreetViewList: ArrayList<StreetViewModel>, posIntent: Int) {
+        binding.streetViewNameItem.text = mGeneralStreetViewList[posIntent].name
+        binding.streetViewDescriptionItem.text = mGeneralStreetViewList[posIntent].description
+        Glide.with(this).load(mGeneralStreetViewList[posIntent].link).diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true).listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(
+                    e: GlideException?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    isFirstResource: Boolean
+                ): Boolean {
+
+                    return false
+                }
+
+                override fun onResourceReady(
+                    resource: Drawable?,
+                    model: Any?,
+                    target: Target<Drawable>?,
+                    dataSource: DataSource?,
+                    isFirstResource: Boolean
+                ): Boolean {
+                    binding.progressBar.visibility = View.INVISIBLE
+                   // binding.streetViewImageItem.setImageDrawable(resource)
+                    return true
+                }
+
+            }).into(binding.streetViewImageItem)
+
+        binding.shareLocationCard.setOnClickListener {
+            LocationHelper.shareLocation(this@StreetViewMainActivity,mGeneralStreetViewList[posIntent].lat.toDouble(),mGeneralStreetViewList[posIntent].long.toDouble())
+        }
+
+        binding.navigateCard.setOnClickListener {
+            val intent = Intent(this@StreetViewMainActivity, StreetViewRouteActivity::class.java)
+            intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
+            intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
+            intent.putExtra(ConstantsStreetView.MultiPointsRoute,false)
+            intent.putExtra(ConstantsStreetView.DestinationLatitude, mGeneralStreetViewList[posIntent].lat.toDouble())
+            intent.putExtra(ConstantsStreetView.DestinationLongitude, mGeneralStreetViewList[posIntent].long.toDouble())
+            startActivity(intent)
+        }
+
+
 
     }
 

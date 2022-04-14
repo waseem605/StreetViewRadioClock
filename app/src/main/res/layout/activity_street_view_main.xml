@@ -16,4 +16,126 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarLt"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/famousLayoutStreetView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/streetViewImageItem"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/navigateCard"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            app:cardBackgroundColor="@color/appMainColor"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_4sdp"
+            android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/shareLocationCard">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_navigation_icon"
+                app:tint="@color/white" />
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/shareLocationCard"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            app:cardBackgroundColor="@color/appMainColor"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_4sdp"
+            android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/streetViewNameItem">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_share_icon"
+                app:tint="@color/white" />
+
+        </androidx.cardview.widget.CardView>
+
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button_background_green"
+            android:backgroundTint="@color/black"
+            android:alpha="0.5"
+            app:layout_constraintTop_toTopOf="@id/streetViewNameItem"
+            app:layout_constraintStart_toStartOf="@id/streetViewNameItem"
+            app:layout_constraintEnd_toEndOf="@id/streetViewNameItem"
+            app:layout_constraintBottom_toBottomOf="@id/streetViewNameItem"/>
+
+        <TextView
+            android:id="@+id/streetViewNameItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            android:padding="@dimen/_4sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/streetViewDescriptionItem" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button_background_green"
+            android:backgroundTint="@color/black"
+            android:alpha="0.5"
+            app:layout_constraintTop_toTopOf="@id/streetViewDescriptionItem"
+            app:layout_constraintStart_toStartOf="@id/streetViewDescriptionItem"
+            app:layout_constraintEnd_toEndOf="@id/streetViewDescriptionItem"
+            app:layout_constraintBottom_toBottomOf="@id/streetViewDescriptionItem"/>
+
+        <TextView
+            android:id="@+id/streetViewDescriptionItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            android:padding="@dimen/_5sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:indeterminate="true"
+            android:indeterminateDrawable="@drawable/progressbar_color"
+            android:progress="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

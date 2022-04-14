@@ -239,6 +239,11 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     }
 
     private fun mapOptionsListener() {
+
+
+
+
+
         binding.mapOptionsLt.setOnClickListener{
             if (binding.mapLayerLayout.isVisible){
                 binding.mapLayerLayout.visibility = View.GONE

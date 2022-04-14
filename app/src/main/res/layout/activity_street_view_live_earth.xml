@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,401 +8,408 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.mapbox.mapboxsdk.maps.MapView
-            android:id="@+id/mapView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/top_background"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/backLink"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/back_icon"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/white" />
-
-            <TextView
-                android:id="@+id/titleTx"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:gravity="center"
-                android:text="@string/live_earth_map"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/backLink"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <com.mapbox.mapboxsdk.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_margin="@dimen/_25sdp"
-                android:background="@drawable/line_border_silver"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/backLink">
+                android:layout_height="wrap_content"
+                android:background="@drawable/top_background"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/backLink"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/back_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/white" />
 
                 <TextView
-                    android:id="@+id/searchLocationEt"
+                    android:id="@+id/titleTx"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:background="@android:color/transparent"
-                    android:ellipsize="end"
-                    android:hint="@string/type_address_here"
-                    android:maxLines="1"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:paddingEnd="@dimen/_5sdp"
-                    android:textColor="@color/appIconColor"
-                    android:textColorHint="@color/appSilverColor"
-                    android:textSize="@dimen/_11ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/searchImg"
+                    android:gravity="center"
+                    android:text="@string/live_earth_map"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/backLink"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!--
-                                <EditText
-                                    android:id="@+id/searchLocationEt"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:hint="@string/type_address_here"
-                                    android:maxLines="1"
-                                    android:inputType="text"
-                                    android:ellipsize="end"
-                                    android:textCursorDrawable="@drawable/custome_curser_style_color"
-                                    android:imeOptions="actionSearch"
-                                    android:layout_marginTop="@dimen/_5sdp"
-                                    android:paddingStart="@dimen/_5sdp"
-                                    android:paddingEnd="@dimen/_5sdp"
-                                    android:layout_marginBottom="@dimen/_5sdp"
-                                    android:background="@android:color/transparent"
-                                    android:textColorHint="@color/appSilverColor"
-                                    android:layout_marginStart="@dimen/_8sdp"
-                                    android:textSize="@dimen/_11ssp"
-                                    app:layout_constraintEnd_toStartOf="@id/searchImg"
-                                    app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintBottom_toBottomOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent" />-->
-
-                <ImageView
-                    android:id="@+id/searchImg"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="0dp"
-                    android:layout_marginEnd="@dimen/_3sdp"
-                    android:padding="@dimen/_2sdp"
-                    android:src="@drawable/ic_search_icon"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_margin="@dimen/_25sdp"
+                    android:background="@drawable/line_border_silver"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/backLink">
+
+                    <TextView
+                        android:id="@+id/searchLocationEt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:background="@android:color/transparent"
+                        android:ellipsize="end"
+                        android:hint="@string/type_address_here"
+                        android:maxLines="1"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:textColor="@color/appIconColor"
+                        android:textColorHint="@color/appSilverColor"
+                        android:textSize="@dimen/_11ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/searchImg"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--
+                                    <EditText
+                                        android:id="@+id/searchLocationEt"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:hint="@string/type_address_here"
+                                        android:maxLines="1"
+                                        android:inputType="text"
+                                        android:ellipsize="end"
+                                        android:textCursorDrawable="@drawable/custome_curser_style_color"
+                                        android:imeOptions="actionSearch"
+                                        android:layout_marginTop="@dimen/_5sdp"
+                                        android:paddingStart="@dimen/_5sdp"
+                                        android:paddingEnd="@dimen/_5sdp"
+                                        android:layout_marginBottom="@dimen/_5sdp"
+                                        android:background="@android:color/transparent"
+                                        android:textColorHint="@color/appSilverColor"
+                                        android:layout_marginStart="@dimen/_8sdp"
+                                        android:textSize="@dimen/_11ssp"
+                                        app:layout_constraintEnd_toStartOf="@id/searchImg"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <ImageView
+                        android:id="@+id/searchImg"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/ic_search_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/mapOptionsLt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/threeD"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                app:cardBackgroundColor="@color/appMainColor"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <ImageView
+                    android:id="@+id/imageThreeD"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:src="@drawable/ic_three_d_icon" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/appMainColor"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:src="@drawable/ic_style_icon" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/currentLocationBtn"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/appMainColor"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:src="@drawable/ic_current_location_icon" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ImgZoomIn"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/appMainColor"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:src="@drawable/ic_zoom_in" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ImgZoomOut"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardBackgroundColor="@color/appMainColor"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_4sdp"
+                    android:src="@drawable/ic_zoom_out" />
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mapLayerLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_5sdp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/mapOptionsLt"
+            app:layout_constraintTop_toTopOf="@id/mapOptionsLt">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/satelliteMap"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img54"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tx54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:text="@string/satellite"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img54" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/darkMapStyle"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img56"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tx56"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:text="@string/dark"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img56" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/normalMapStyle"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img57"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tx57"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:text="@string/normal"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img57" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trafficMap"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img55"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tx55"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        android:gravity="center"
+                        android:text="@string/traffic"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/img55" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/nearByLocations"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_100sdp"
+            app:cardBackgroundColor="@color/appMainColor"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/icon_nearby" />
+
+        </androidx.cardview.widget.CardView>
+
+<!--
+        <include layout="@layout/bottom_sheet_layout"
+            android:id="@+id/bottom_sheet"/>
+-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    <LinearLayout
-        android:id="@+id/mapOptionsLt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_15sdp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/threeD"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            app:cardBackgroundColor="@color/appMainColor"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <ImageView
-                android:id="@+id/imageThreeD"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_three_d_icon" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/appMainColor"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_style_icon" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/currentLocationBtn"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/appMainColor"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_margin="@dimen/_4sdp"
-                android:src="@drawable/ic_current_location_icon" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/ImgZoomIn"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/appMainColor"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_4sdp"
-                android:src="@drawable/ic_zoom_in" />
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/ImgZoomOut"
-            android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            app:cardBackgroundColor="@color/appMainColor"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/_4sdp"
-                android:src="@drawable/ic_zoom_out" />
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/mapLayerLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:paddingBottom="@dimen/_5sdp"
-        app:layout_constraintTop_toTopOf="@id/mapOptionsLt"
-        app:layout_constraintEnd_toStartOf="@id/mapOptionsLt">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/satelliteMap"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img54"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx54"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/satellite"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img54"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/darkMapStyle"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img56"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx56"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dark"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img56"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/normalMapStyle"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img57"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx57"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/normal"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img57"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/trafficMap"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img55"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:scaleType="fitXY"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx55"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/traffic"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img55"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/nearByLocations"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        app:cardBackgroundColor="@color/appMainColor"
-        app:cardCornerRadius="@dimen/_5sdp"
-        app:cardElevation="@dimen/_4sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_100sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_5sdp"
-            android:src="@drawable/icon_nearby" />
-
-    </androidx.cardview.widget.CardView>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

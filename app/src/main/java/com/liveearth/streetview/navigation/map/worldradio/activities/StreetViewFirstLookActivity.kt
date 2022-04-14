@@ -42,14 +42,22 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
     }
 
     private fun famousPlaces() {
-        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.rivers,"River",0))
-        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.mountains,"Mountain",1))
-        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.theme_parks,"Theme\nParks",2))
-        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.beaches,"Beaches",3))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.maya_bay,"Maya Bay",0))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.santa_onica,"South Beach",1))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.burj_khalifa,"Burj Khalifa",2))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.hagia_sopia,"Hagia Sopia",3))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.space_needle,"Space Needle",4))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.sydney_opera,"Opera House",5))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.great_wall_china,"Great wall",6))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.universal_studio,"Universal studio",7))
+        mFamousStreetViewList.add(CategoryStreetViewModel(R.drawable.disney_land_paris,"Disneyland paris",8))
 
         mAdapterFamous = FamousStreetViewAdapter(mFamousStreetViewList,this,object :CategoryStreetViewCallBackListener{
             override fun onClickCategory(model: CategoryStreetViewModel, pos: Int) {
-
+                val intentStreet = Intent(this@StreetViewFirstLookActivity,StreetViewMainActivity::class.java)
+                intentStreet.putExtra(ConstantsStreetView.StreetView_ID,model.pos)
+                intentStreet.putExtra(ConstantsStreetView.StreetView_Name,ConstantsStreetView.StreetView_Name)
+                startActivity(intentStreet)
             }
 
         })
@@ -80,6 +88,7 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
             override fun onClickCategory(model: CategoryStreetViewModel, pos: Int) {
                 val intentStreet = Intent(this@StreetViewFirstLookActivity,StreetViewMainActivity::class.java)
                 intentStreet.putExtra(ConstantsStreetView.StreetView_ID,model.pos)
+                intentStreet.putExtra(ConstantsStreetView.StreetView_Name,"fh")
                 startActivity(intentStreet)
             }
 
