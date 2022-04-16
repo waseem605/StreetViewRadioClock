@@ -23,6 +23,8 @@
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_baseline_arrow_forward.xml" value="0.27314814814814814" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_baseline_directions_car.xml" value="0.27314814814814814" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_baseline_location_on.xml" value="0.2890625" />
+        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_border_one.xml" value="0.2890625" />
+        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_border_two.xml" value="0.75" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_calendar_icon_focused.xml" value="0.2890625" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_clock_back.xml" value="0.27314814814814814" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_current_location_icon.xml" value="0.27314814814814814" />
@@ -40,6 +42,7 @@
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_new_minute_soi.xml" value="0.2890625" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_new_minute_svg.xml" value="0.2890625" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_premium_icon_golden.xml" value="0.2846153846153846" />
+        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_rectangle27svg.xml" value="0.2890625" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_seconds_needle.xml" value="0.5" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_speedo_meter_image.xml" value="0.20572916666666666" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/ic_speedometer_body.xml" value="0.27314814814814814" />

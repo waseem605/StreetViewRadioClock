@@ -19,6 +19,10 @@ class LiveEarthAddressFromLatLng : CoroutineScope {
     private var callBack: GeoTaskCallback
     private var latLng: LatLng
 
+    val coroutineExceptionHandler = CoroutineExceptionHandler{_, throwable ->
+        throwable.printStackTrace()
+    }
+
     constructor(mContext: Context, latLng: LatLng, callBack:GeoTaskCallback) {
         this.mContext = mContext
         this.callBack = callBack
@@ -37,7 +41,7 @@ class LiveEarthAddressFromLatLng : CoroutineScope {
 
     /*it will done then next will call*/
     private suspend fun doInBackground(): String =
-        withContext(Dispatchers.IO) { // to run code in Background Thread
+        withContext(Dispatchers.IO+ coroutineExceptionHandler) { // to run code in Background Thread
             Log.d(TAG, "doInBackground: ${Thread.currentThread().name}")
             // delay(1000)
             var location = "User Location"

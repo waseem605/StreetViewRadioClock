@@ -328,6 +328,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
+                <ImageView
+                    android:id="@+id/locationOnBorderOne"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_border_one"
+                    app:layout_constraintTop_toTopOf="@id/locationOne"
+                    app:layout_constraintStart_toStartOf="@id/locationOne"
+                    app:layout_constraintEnd_toEndOf="@id/locationOne"
+                    app:layout_constraintBottom_toBottomOf="@id/locationOne"/>
+
                 <TextView
                     android:id="@+id/locationOne"
                     android:layout_width="0dp"
@@ -345,15 +355,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/addMoreLocation" />
 
-                <ImageView
-                    android:id="@+id/locationOnBorder"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:background="@drawable/line_border_green"
-                    app:layout_constraintTop_toTopOf="@id/locationOne"
-                    app:layout_constraintStart_toStartOf="@id/locationOne"
-                    app:layout_constraintEnd_toEndOf="@id/locationOne"
-                    app:layout_constraintBottom_toBottomOf="@id/locationOne"/>
 
                 <ImageView
                     android:id="@+id/addMoreLocation"
@@ -373,7 +374,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/locationTwoConst"
                 android:layout_width="0dp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@id/leftSideLayout"
                 android:layout_marginStart="@dimen/_8sdp"
@@ -381,16 +382,25 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/locationOneConst">
 
+                <ImageView
+                    android:id="@+id/locationOnBorderTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_border_one"
+                    app:layout_constraintTop_toTopOf="@id/locationTwo"
+                    app:layout_constraintStart_toStartOf="@id/locationTwo"
+                    app:layout_constraintEnd_toEndOf="@id/locationTwo"
+                    app:layout_constraintBottom_toBottomOf="@id/locationTwo"/>
+
                 <TextView
                     android:id="@+id/locationTwo"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:ellipsize="end"
-                    android:hint="location2"
+                    android:hint="Second way point"
                     android:maxLines="1"
                     android:padding="@dimen/_5sdp"
                     android:gravity="center_vertical"
-                    android:background="@drawable/line_border_green"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10ssp"
@@ -417,12 +427,22 @@
                 android:id="@+id/locationThreeConst"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:layout_constraintStart_toEndOf="@id/leftSideLayout"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/locationTwoConst">
+
+                <ImageView
+                    android:id="@+id/locationOnBorderThree"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/ic_border_one"
+                    app:layout_constraintTop_toTopOf="@id/locationThree"
+                    app:layout_constraintStart_toStartOf="@id/locationThree"
+                    app:layout_constraintEnd_toEndOf="@id/locationThree"
+                    app:layout_constraintBottom_toBottomOf="@id/locationThree"/>
 
                 <TextView
                     android:id="@+id/locationThree"
@@ -465,6 +485,8 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/locationThreeConst">
+
+
 
                 <TextView
                     android:id="@+id/locationDestination"

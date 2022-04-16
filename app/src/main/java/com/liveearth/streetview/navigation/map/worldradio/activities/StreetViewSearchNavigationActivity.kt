@@ -78,7 +78,19 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
     }
 
+
+
     private fun searchNavigationClicks() {
+
+/*
+        binding.locationOnBorder.drawable.sta
+        binding.locationOnBorder.stateColor!!.setColorFilter(
+            ContextCompat.getColor(
+                mContext,
+                R.color.purple_color
+            ), PorterDuff.Mode.MULTIPLY
+        )
+*/
 
         //binding.locationDestination.background.setTint(resources.getColor(R.color.colorYellow))
 /*
@@ -99,7 +111,8 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         );*/
 
 
-        binding.locationOnBorder.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow))
+
+//binding.locationOnBorder.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow))
 
 
 
@@ -118,6 +131,8 @@ mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDra
 
         binding.currentLocationImage.setOnClickListener {
             userCurrentLocation()
+            binding.locationOnBorderOne.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow))
+
         }
 
         binding.locationOne.setOnClickListener {

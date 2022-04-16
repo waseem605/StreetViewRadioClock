@@ -37,14 +37,16 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     private lateinit var binding: ActivityStreetViewLiveEarthBinding
 
     val TAG = "StreetViewLiveEarth"
-    private var latitude: Double = 24.748257
-    private var longitude: Double = 67.073477
+//    private var latitude: Double = 24.748257
+//    private var longitude: Double = 67.073477
+    private var latitude: Double = 25.1124317
+    private var longitude: Double = 55.138978
     private lateinit var mapView: MapView
     private lateinit var mBuildingPlugin: BuildingPlugin
     lateinit var mapbox: MapboxMap
     private var myStyle: Style? = null
     private var locationMarker: Marker? = null
-    var zoom: Int = 16
+    var zoom: Int = 12
     var flagMap: Boolean = true
     private lateinit var myRepository: LocationRepository
     var mBottomSheetBehavior: BottomSheetBehavior<View>?=null

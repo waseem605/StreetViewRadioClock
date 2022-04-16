@@ -103,7 +103,7 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:hint="location1"
+                android:hint="destination"
                 android:maxLines="1"
                 android:padding="@dimen/_5sdp"
                 android:textColor="@color/white"
@@ -178,7 +178,7 @@
             android:id="@+id/distanceCardInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
             android:paddingBottom="@dimen/_5sdp"
             android:background="@drawable/bottom_bar_background"
             app:layout_constraintBottom_toBottomOf="parent">

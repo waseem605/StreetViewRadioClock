@@ -51,6 +51,10 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
         }
         binding.toolbar.titleTx.text = "Favourite Locations"
 
+        binding.nearByLocations.setOnClickListener {
+            val intent = Intent(this,StreetViewNearByPlacesActivity::class.java)
+            startActivity(intent)
+        }
         getCurrentLocation()
 
     }

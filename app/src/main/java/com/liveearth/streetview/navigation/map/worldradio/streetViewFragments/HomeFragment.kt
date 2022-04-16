@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
     private fun topItemManager() {
 
         mTopList.add(HomeFragmentModel(R.drawable.ic_live_earth_icon, "Live Earth Map", 0))
-        mTopList.add(HomeFragmentModel(R.drawable.ic_street_map_icon, "Live Street View", 1))
+        mTopList.add(HomeFragmentModel(R.drawable.ic_street_map_icon, "Street View", 1))
         mTopList.add(HomeFragmentModel(R.drawable.ic_navigation_compass_icon, "Navigation", 2))
         mHomeTopAdapter = HomeFragmentTopAdapter(mTopList, requireContext(), object :
             HomeFragmentClickCallBack {
@@ -126,7 +126,7 @@ class HomeFragment : Fragment() {
     private fun moreItemManager() {
 
         mBottomList.add(HomeFragmentModel(R.drawable.icon_meet_me, "Meet Me", 0))
-        mBottomList.add(HomeFragmentModel(R.drawable.cloudy_icon, "My favourite", 1))
+        mBottomList.add(HomeFragmentModel(R.drawable.favorite, "My favourite", 1))
         mBottomList.add(HomeFragmentModel(R.drawable.location_tracker_icon, "Location Tracker", 2))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_clock, "World Clock", 3))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_radio, "Radio", 4))
