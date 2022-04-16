@@ -35,6 +35,10 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        binding.toolbarLt.titleTx.text = "Street View"
+        binding.toolbarLt.backLink.setOnClickListener {
+            onBackPressed()
+        }
         categoryRecyclerView()
 
         famousPlaces()

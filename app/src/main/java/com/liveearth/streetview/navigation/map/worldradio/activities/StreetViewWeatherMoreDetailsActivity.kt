@@ -98,7 +98,7 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
                 setDrawAxisLine(false)
             }
             xAxis.apply {
-                setDrawLabels(true)
+                setDrawLabels(false)
                 setDrawGridLines(false)
                 setDrawAxisLine(false)
             }

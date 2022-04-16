@@ -3,6 +3,8 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.location.Location
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -10,16 +12,20 @@ import android.util.Log
 import android.view.Gravity
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.isVisible
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCallback
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCoroutine
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewSearchNavigationBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
@@ -32,6 +38,7 @@ import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
 import com.streetview.map.navigation.live.earthmap.utils.StreetViewGeocoderFromAddress
+
 
 @SuppressLint("LogNotTimber")
 class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyCallback {
@@ -56,6 +63,8 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     var zoom: Int = 16
     private var customRoutList: ArrayList<LatLng> = ArrayList()
     private lateinit var myRepository: LocationRepository
+    var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,6 +80,36 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
     private fun searchNavigationClicks() {
 
+        //binding.locationDestination.background.setTint(resources.getColor(R.color.colorYellow))
+/*
+
+        val unwrappedDrawable: Drawable? =
+            AppCompatResources.getDrawable(this,R.drawable.line_border_green)
+        val wrappedDrawable: Drawable = DrawableCompat.wrap(unwrappedDrawable!!)
+        DrawableCompat.setTint(wrappedDrawable,resources.getColor(R.color.colorYellow))
+*/
+
+        val unwrappedDrawable2 = AppCompatResources.getDrawable(this, R.drawable.line_border_green)
+        val wrappedDrawable2 = DrawableCompat.wrap(unwrappedDrawable2!!)
+        DrawableCompat.setTint(wrappedDrawable2, Color.RED)
+
+        /*      DrawableCompat.setTint(
+            DrawableCompat.wrap(.getDrawable()),
+            ContextCompat.getColor(context, R.color.another_nice_color)
+        );*/
+
+
+        binding.locationOnBorder.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow))
+
+
+
+
+mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDrawer)
+        mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
+
+        binding.mapStyleOption.setOnClickListener {
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_EXPANDED
+        }
         binding.addMoreLocation.setOnClickListener {
             addMoreLocations()
         }
@@ -207,6 +246,18 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
             setToast(this, "Please select your Destination Location")
         } else if (mLocationMarkerTwo != null || mLocationMarkerThree != null) {
 
+            customRoutList.add(LatLng(mLatitude, mLongitude))
+            if (mLocationMarkerTwo != null){
+                customRoutList.add(
+                    LatLng(mLatitudeTwo, mLongitudeTwo))
+            }
+            if (mLocationMarkerThree != null){
+                customRoutList.add(
+                    LatLng(mLatitudeThree, mLongitudeThree))
+            }
+
+            customRoutList.add(LatLng(mLatitudeDestination, mLongitudeDestination))
+
             val intentRoute = Intent(this, StreetViewRouteActivity::class.java)
             intentRoute.putParcelableArrayListExtra(ConstantsStreetView.MultiPointsRouteList, customRoutList)
             intentRoute.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
@@ -293,12 +344,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     }
 
     private fun setLocationMarkerDestination(latLng: LatLng, mapbox: MapboxMap) {
-        customRoutList.add(
-            LatLng(
-                mLatitudeDestination,
-                mLongitudeDestination
-            )
-        )
+
         //origin = Point.fromLngLat(latLng.longitude, latLng.latitude)
         LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapbox, zoom)
         if (mLocationMarkerDestination != null) {
@@ -321,12 +367,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
                                 mLatitude = feature.center()?.coordinates()!!.get(1)
                                 mLongitude = feature.center()?.coordinates()!!.get(0)
                                 binding.locationOne.text = feature.text()!!
-                                customRoutList.add(
-                                    LatLng(
-                                        mLatitude,
-                                        mLongitude
-                                    )
-                                )
+
                                 setLocationMarker(
                                     LatLng(mLatitude, mLongitude),
                                     mapbox
@@ -426,12 +467,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     }
 
     private fun setLocationMarkerTwo(latLng: LatLng, mapbox: MapboxMap) {
-        customRoutList.add(
-            LatLng(
-                latLng.latitude,
-                latLng.longitude
-            )
-        )
+
         LocationHelper.setZoomMarker(
             latLng.latitude,
             latLng.longitude,
@@ -452,12 +488,6 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     }
 
     private fun setLocationMarkerThree(latLng: LatLng, mapbox: MapboxMap) {
-        customRoutList.add(
-            LatLng(
-                latLng.latitude,
-                latLng.longitude
-            )
-        )
         LocationHelper.setZoomMarker(
             latLng.latitude,
             latLng.longitude,
@@ -508,28 +538,22 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
 
     private fun mapStyleOptionClickListener() {
-        binding.mapStyleOption.setOnClickListener{
-            if (binding.mapLayerLayout.isVisible){
-                binding.mapLayerLayout.visibility = View.GONE
-            }else{
-                binding.mapLayerLayout.visibility = View.VISIBLE
-            }
-        }
-        binding.trafficMap.setOnClickListener{
+
+        binding.bottomSheet.trafficStyle.setOnClickListener{
             mapbox.setStyle(Style.TRAFFIC_DAY)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.satelliteMap.setOnClickListener{
+        binding.bottomSheet.satelliteStyle.setOnClickListener{
             mapbox.setStyle(Style.SATELLITE)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.normalMapStyle.setOnClickListener{
+        binding.bottomSheet.normalStyle.setOnClickListener{
             mapbox.setStyle(Style.MAPBOX_STREETS)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.darkMapStyle.setOnClickListener{
+        binding.bottomSheet.darkStyle.setOnClickListener{
             mapbox.setStyle(Style.DARK)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
 
     }

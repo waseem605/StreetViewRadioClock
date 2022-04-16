@@ -57,9 +57,9 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
         mLatitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,0.0)
         mLongitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,0.0)
 
-        mvvmWeatherDetails(mLatitude,mLongitude)
+        //mvvmWeatherDetails(mLatitude,mLongitude)
 
-       // mainWeatherDetails(mLatitude,mLongitude)
+        mainWeatherDetails(mLatitude,mLongitude)
 
 
         binding.detailsMore.setOnClickListener {
@@ -69,7 +69,7 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
 
         binding.searchLocationEt.text = ConstantsStreetView.CURRENT_ADDRESS
 
-        binding.searchLocationEt.setOnClickListener {
+        binding.searchLocationLayout.setOnClickListener {
             val placeOptions =
                 PlaceOptions.builder().backgroundColor(resources.getColor(R.color.white))
                     .build(PlaceOptions.MODE_FULLSCREEN)
@@ -87,16 +87,16 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
         }
     }
 
-    private fun mvvmWeatherDetails(mLatitude: Double, mLongitude: Double) {
+    private fun mvvmWeatherDetails(latitude: Double, longitude: Double) {
 
         val services = RetrofitHelper.getInstance().create(WeatherAPI::class.java)
         val repositoryWeather = RepositoryWeather(services)
-        viewModel = ViewModelProvider(this, ViewModelFactory(repositoryWeather,mLatitude.toString(),mLongitude.toString())).get(
+        viewModel = ViewModelProvider(this, ViewModelFactory(repositoryWeather,latitude.toString(),longitude.toString())).get(
             WeatherViewModel::class.java)
 
         viewModel.weather.observe(this, Observer {
+            Log.d(TAG, "mvvmWeatherDetails: ====98====="+StreetViewWeatherHelper.kalvinToForenHeat(it.list[0].main.temp).toString())
 
-            try {
                 StreetViewWeatherHelper.arrayListWeather = it.list as ArrayList<WeatherList>
 
                 val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
@@ -108,7 +108,7 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
                     binding.weatherUnit.text = "C"
                 }
                 //binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
-                Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString())
+               // Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString())
                 try {
                     Glide.with(this@StreetViewWeatherDetailsActivity)
                         .load(StreetViewWeatherHelper.getIcon(it.list[0].weather[0].icon))
@@ -119,7 +119,7 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
                 binding.todayDate.text = StreetViewWeatherHelper.getWeatherDate(it.list[0].dt.toLong(), 1)
                 binding.weatherTodayType.text = it.list[0].weather[0].main.toString()
                 nexDaysDetails(it.list as ArrayList<WeatherList>)
-
+            try {
             } catch (e: Exception) {
             }
         })
@@ -177,7 +177,6 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
 
     }
 
-
     private fun nexDaysDetails(arrayList: ArrayList<WeatherList>) {
         mDaysWeatherList.clear()
         mDaysWeatherList.add(WeatherList(arrayList[7].clouds,arrayList[7].dt,arrayList[7].dt_txt,arrayList[7].main,arrayList[7].pop,arrayList[7].sys,arrayList[7].visibility,arrayList[7].weather,arrayList[7].wind))
@@ -211,7 +210,9 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
                                 mLatitude = feature.center()?.coordinates()!!.get(1)
                                 mLongitude = feature.center()?.coordinates()!!.get(0)
                                 binding.searchLocationEt.text = feature.text()!!
-                                mvvmWeatherDetails(mLatitude,mLongitude)
+                                //mvvmWeatherDetails(mLatitude,mLongitude)
+                                mainWeatherDetails(mLatitude,mLongitude)
+                                Log.d(TAG, "onActivityResult: "+mLatitude+"--"+mLongitude)
                             }
                         }
                     }

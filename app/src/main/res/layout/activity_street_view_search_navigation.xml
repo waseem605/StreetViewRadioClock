@@ -1,537 +1,554 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appSilverColor"
+    android:background="@color/white"
     tools:context=".activities.StreetViewSearchNavigationActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/toolbarLt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/top_background_white"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/backLink"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            android:src="@drawable/back_icon"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbarLt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:textSize="@dimen/_14ssp"
-            android:text="Where To go ?"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/top_background_white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backLink"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:src="@drawable/back_icon"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/_14ssp"
+                android:text="Where To go ?"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.mapbox.mapboxsdk.maps.MapView
+            android:id="@+id/mapViewMainNavigation"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLt"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-    
-    <com.mapbox.mapboxsdk.maps.MapView
-        android:id="@+id/mapViewMainNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/toolbarLt"
-        app:layout_constraintBottom_toBottomOf="parent"/>
-
-    <ImageView
-        android:id="@+id/mapStyleOption"
-        android:layout_width="@dimen/_35sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_margin="@dimen/_15sdp"
-        android:src="@drawable/ic_style_icon"
-        android:padding="@dimen/_5sdp"
-        android:background="@drawable/button_background_green"
-        app:layout_constraintTop_toBottomOf="@id/toolbarLt"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-
-    <LinearLayout
-        android:id="@+id/mapLayerLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        android:paddingBottom="@dimen/_5sdp"
-        app:layout_constraintTop_toTopOf="@id/mapStyleOption"
-        app:layout_constraintEnd_toStartOf="@id/mapStyleOption">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/satelliteMap"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img54"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx54"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/satellite"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img54"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/darkMapStyle"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_5sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img56"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx56"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/dark"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img56"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/normalMapStyle"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img57"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx57"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/normal"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img57"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/trafficMap"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
-            app:cardCornerRadius="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            android:layout_marginEnd="@dimen/_5sdp"
-            app:cardElevation="@dimen/_4sdp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/img55"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"
-                    android:scaleType="fitXY"
-                    android:layout_margin="@dimen/_2sdp"
-                    android:src="@drawable/ic_style_icon"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-                <TextView
-                    android:id="@+id/tx55"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/traffic"
-                    android:gravity="center"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginBottom="@dimen/_2sdp"
-                    app:layout_constraintTop_toBottomOf="@id/img55"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/currentLocationImage"
-        android:layout_width="@dimen/_55sdp"
-        android:layout_height="@dimen/_55sdp"
-        android:layout_margin="@dimen/_15sdp"
-        app:cardElevation="@dimen/_4sdp"
-        app:cardCornerRadius="@dimen/_27sdp"
-        app:cardBackgroundColor="@color/appMainColor"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/searchLayout">
-
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_5sdp"
-            android:src="@drawable/ic_current_location_icon"/>
+            android:id="@+id/mapStyleOption"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_margin="@dimen/_15sdp"
+            android:src="@drawable/ic_style_icon"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/button_background_green"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLt"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/searchLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_bar_background"
-        android:backgroundTint="@color/appSilverColor"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <!--leftSideLayout-->
         <LinearLayout
-            android:id="@+id/leftSideLayout"
+            android:id="@+id/mapLayerLayout"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            app:layout_constraintTop_toTopOf="@id/locationOneConst"
-            app:layout_constraintBottom_toBottomOf="@id/locationDestConst"
-            app:layout_constraintStart_toStartOf="parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:paddingBottom="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="@id/mapStyleOption"
+            app:layout_constraintEnd_toStartOf="@id/mapStyleOption">
 
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_width="@dimen/_12sdp"
-                android:layout_height="@dimen/_12sdp"
-                android:src="@drawable/dot_white_green"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/satelliteMap"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
 
-            <ImageView
-                android:id="@+id/img2"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/multi_dot"
-                android:layout_marginTop="@dimen/_5sdp"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/img3"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/multi_dot"
-                android:layout_marginTop="@dimen/_6sdp"/>
+                    <ImageView
+                        android:id="@+id/img54"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent"/>
 
-            <ImageView
-                android:id="@+id/img4"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/multi_dot"
-                android:layout_marginTop="@dimen/_6sdp"/>
+                    <TextView
+                        android:id="@+id/tx54"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/satellite"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        app:layout_constraintTop_toBottomOf="@id/img54"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <ImageView
-                android:id="@+id/img5"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/multi_dot"
-                android:layout_marginTop="@dimen/_6sdp"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/img6"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_15sdp"
-                android:src="@drawable/multi_dot"
-                android:layout_marginTop="@dimen/_6sdp"/>
+            </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/img7"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/list_location"
-                android:layout_marginTop="@dimen/_6sdp"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/darkMapStyle"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img56"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tx56"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dark"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        app:layout_constraintTop_toBottomOf="@id/img56"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/normalMapStyle"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img57"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tx57"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/normal"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        app:layout_constraintTop_toBottomOf="@id/img57"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/trafficMap"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardBackgroundColor="@color/white"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:cardElevation="@dimen/_4sdp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/img55"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:scaleType="fitXY"
+                        android:layout_margin="@dimen/_2sdp"
+                        android:src="@drawable/ic_style_icon"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
+                    <TextView
+                        android:id="@+id/tx55"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/traffic"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginBottom="@dimen/_2sdp"
+                        app:layout_constraintTop_toBottomOf="@id/img55"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/locationOneConst"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintStart_toEndOf="@id/leftSideLayout"
-            android:layout_marginStart="@dimen/_8sdp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/currentLocationImage"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_margin="@dimen/_15sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:cardCornerRadius="@dimen/_27sdp"
+            app:cardBackgroundColor="@color/appMainColor"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/locationOne"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:background="@drawable/line_border_green"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:hint="location1"
-                android:maxLines="1"
-                android:padding="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintBottom_toBottomOf="@id/addMoreLocation"
-                app:layout_constraintEnd_toStartOf="@id/addMoreLocation"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/addMoreLocation" />
+            app:layout_constraintBottom_toTopOf="@id/searchLayout">
 
             <ImageView
-                android:id="@+id/addMoreLocation"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@drawable/button_background_green"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/ic_add_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_4sdp"
+                android:src="@drawable/ic_current_location_icon"/>
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/locationTwoConst"
-            android:layout_width="0dp"
-            android:visibility="visible"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/leftSideLayout"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/locationOneConst">
-
-            <TextView
-                android:id="@+id/locationTwo"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:ellipsize="end"
-                android:hint="location2"
-                android:maxLines="1"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center_vertical"
-                android:background="@drawable/line_border_green"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintBottom_toBottomOf="@id/voiceTwoLocation"
-                app:layout_constraintEnd_toStartOf="@id/voiceTwoLocation"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/voiceTwoLocation" />
-
-            <ImageView
-                android:id="@+id/voiceTwoLocation"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@drawable/button_background_green"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/ic_voice_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/locationThreeConst"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintStart_toEndOf="@id/leftSideLayout"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/locationTwoConst">
-
-            <TextView
-                android:id="@+id/locationThree"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:padding="@dimen/_5sdp"
-                android:hint="location3"
-                android:background="@drawable/line_border_green"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintBottom_toBottomOf="@id/voiceThreeLocation"
-                app:layout_constraintEnd_toStartOf="@id/voiceThreeLocation"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/voiceThreeLocation" />
-
-            <ImageView
-                android:id="@+id/voiceThreeLocation"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:background="@drawable/button_background_green"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/ic_voice_icon"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/locationDestConst"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toEndOf="@id/leftSideLayout"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/locationThreeConst">
-
-            <TextView
-                android:id="@+id/locationDestination"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:ellipsize="end"
-                android:hint="destination"
-                android:maxLines="1"
-                android:background="@drawable/line_border_green"
-                android:padding="@dimen/_5sdp"
-                android:gravity="center_vertical"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_10ssp"
-                app:layout_constraintBottom_toBottomOf="@id/voiceDestinationBtn"
-                app:layout_constraintEnd_toStartOf="@id/voiceDestinationBtn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/voiceDestinationBtn" />
-
-            <ImageView
-                android:id="@+id/voiceDestinationBtn"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_voice_icon"
-                android:background="@drawable/button_background_green"
-                android:padding="@dimen/_5sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/navigationBtn"
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="wrap_content"
-            app:cornerRadius="@dimen/_25sdp"
-            app:elevation="@dimen/_4sdp"
-            android:text="Navigate"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:padding="@dimen/_7sdp"
-            android:layout_margin="@dimen/_5sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14ssp"
-            android:backgroundTint="@color/appMainColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/locationDestConst"/>
-
-
-<!--        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/searchLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_65sdp"
+            android:layout_height="wrap_content"
             android:background="@drawable/bottom_bar_background"
-            app:layout_constraintTop_toBottomOf="@id/locationDestConst">
+            android:backgroundTint="@color/appSilverColor"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <ImageView
-                android:id="@+id/navigationBtn"
-                android:layout_width="@dimen/_45sdp"
-                android:layout_height="@dimen/_45sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:backgroundTint="@color/appSilverColor"
-                android:background="@drawable/button_background_green"
-                android:src="@drawable/navigation_img_btn"
-                app:layout_constraintBottom_toBottomOf="parent"
+            <!--leftSideLayout-->
+            <LinearLayout
+                android:id="@+id/leftSideLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:layout_constraintTop_toTopOf="@id/locationOneConst"
+                app:layout_constraintBottom_toBottomOf="@id/locationDestConst"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/dot_white_green"/>
+
+                <ImageView
+                    android:id="@+id/img2"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/multi_dot"
+                    android:layout_marginTop="@dimen/_5sdp"/>
+
+                <ImageView
+                    android:id="@+id/img3"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/multi_dot"
+                    android:layout_marginTop="@dimen/_6sdp"/>
+
+                <ImageView
+                    android:id="@+id/img4"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/multi_dot"
+                    android:layout_marginTop="@dimen/_6sdp"/>
+
+                <ImageView
+                    android:id="@+id/img5"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/multi_dot"
+                    android:layout_marginTop="@dimen/_6sdp"/>
+
+                <ImageView
+                    android:id="@+id/img6"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/multi_dot"
+                    android:layout_marginTop="@dimen/_6sdp"/>
+
+                <ImageView
+                    android:id="@+id/img7"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/list_location"
+                    android:layout_marginTop="@dimen/_6sdp"/>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/locationOneConst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintStart_toEndOf="@id/leftSideLayout"
+                android:layout_marginStart="@dimen/_8sdp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/appMainColor" />
+                app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>-->
+                <TextView
+                    android:id="@+id/locationOne"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:hint="your location"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/addMoreLocation"
+                    app:layout_constraintEnd_toStartOf="@id/addMoreLocation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/addMoreLocation" />
+
+                <ImageView
+                    android:id="@+id/locationOnBorder"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/line_border_green"
+                    app:layout_constraintTop_toTopOf="@id/locationOne"
+                    app:layout_constraintStart_toStartOf="@id/locationOne"
+                    app:layout_constraintEnd_toEndOf="@id/locationOne"
+                    app:layout_constraintBottom_toBottomOf="@id/locationOne"/>
+
+                <ImageView
+                    android:id="@+id/addMoreLocation"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/button_background_green"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_add_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/locationTwoConst"
+                android:layout_width="0dp"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/leftSideLayout"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationOneConst">
+
+                <TextView
+                    android:id="@+id/locationTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:ellipsize="end"
+                    android:hint="location2"
+                    android:maxLines="1"
+                    android:padding="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/line_border_green"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/voiceTwoLocation"
+                    app:layout_constraintEnd_toStartOf="@id/voiceTwoLocation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/voiceTwoLocation" />
+
+                <ImageView
+                    android:id="@+id/voiceTwoLocation"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/button_background_green"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_voice_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/locationThreeConst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/leftSideLayout"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationTwoConst">
+
+                <TextView
+                    android:id="@+id/locationThree"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/_5sdp"
+                    android:hint="location3"
+                    android:background="@drawable/line_border_green"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:maxLines="1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/voiceThreeLocation"
+                    app:layout_constraintEnd_toStartOf="@id/voiceThreeLocation"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/voiceThreeLocation" />
+
+                <ImageView
+                    android:id="@+id/voiceThreeLocation"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:background="@drawable/button_background_green"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_voice_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/locationDestConst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@id/leftSideLayout"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationThreeConst">
+
+                <TextView
+                    android:id="@+id/locationDestination"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:ellipsize="end"
+                    android:hint="destination"
+                    android:maxLines="1"
+                    android:background="@drawable/line_border_green"
+                    android:padding="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/voiceDestinationBtn"
+                    app:layout_constraintEnd_toStartOf="@id/voiceDestinationBtn"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/voiceDestinationBtn" />
+
+                <ImageView
+                    android:id="@+id/voiceDestinationBtn"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:src="@drawable/ic_voice_icon"
+                    android:background="@drawable/button_background_green"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/navigationBtn"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="wrap_content"
+                app:cornerRadius="@dimen/_25sdp"
+                app:elevation="@dimen/_4sdp"
+                android:text="Navigate"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="@dimen/_7sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:backgroundTint="@color/appMainColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/locationDestConst"/>
+
+
+            <!--        <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_65sdp"
+                        android:background="@drawable/bottom_bar_background"
+                        app:layout_constraintTop_toBottomOf="@id/locationDestConst">
+
+                        <ImageView
+                            android:id="@+id/navigationBtn"
+                            android:layout_width="@dimen/_45sdp"
+                            android:layout_height="@dimen/_45sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_marginBottom="@dimen/_8sdp"
+                            android:backgroundTint="@color/appSilverColor"
+                            android:background="@drawable/button_background_green"
+                            android:src="@drawable/navigation_img_btn"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/appMainColor" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/bottom_sheet_layout"
+        android:id="@+id/bottomSheet"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

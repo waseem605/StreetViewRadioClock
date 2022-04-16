@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.R
 import android.util.Log
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 
 
 class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
@@ -78,7 +79,15 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
         } catch (e: Exception) {
         }
 
+           binding.shareExpenseCard.setOnClickListener {
+          model!!.let {
+              LocationHelper.shareExpenseData(this,it.category!!,it.date!!,it.description!!,it.location!!,it.itemList!! as ArrayList<ExpenseItemModel>)
+          }
+      }
+
+/*
         binding.shareExpenseCard.setOnClickListener {
+
             val intent = Intent(Intent.ACTION_SEND)
             val shareTitle = model!!.category
             val shareDate = model.date
@@ -96,6 +105,7 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
             intent.putExtra(Intent.EXTRA_TEXT, shareBody)
            startActivity(Intent.createChooser(intent, "getString(R.string.share_using)"))
         }
+*/
 
     }
 

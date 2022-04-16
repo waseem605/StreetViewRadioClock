@@ -11,6 +11,7 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySt
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.ExpenseItemAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModelFactory
@@ -81,6 +82,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             datePickerListener()
         }
 
+
         binding.deleteExpenseBtn.setOnClickListener {
             if (mID != 0 ||mID ==null) {
                 GlobalScope.launch(Dispatchers.IO) {
@@ -98,6 +100,21 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                 binding.etLocations.text = ""
                 binding.etCalender.text = ""
                 binding.etDescription.text.clear()
+            }
+        }
+
+        binding.shareExpenseCard.setOnClickListener {
+            if (!validateCategory() || !validateDate() || !validateExpenseDescription() || mExpenseList.size == 0) {
+                setToast(this, "please enter Fields")
+            }else {
+                LocationHelper.shareExpenseData(
+                    this,
+                    binding.etCategory.text.toString(),
+                    binding.etCalender.text.toString(),
+                    binding.etDescription.text.toString(),
+                    binding.etLocations.text.toString(),
+                    mExpenseList
+                )
             }
         }
 
@@ -126,6 +143,14 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
 
         } catch (e: Exception) {
         }
+
+
+
+     /*   binding.shareExpenseCard.setOnClickListener {
+            model!!.let {
+                LocationHelper.shareExpenseData(this,it.category!!,it.date!!,it.description!!,it.location!!,it.itemList!! as ArrayList<ExpenseItemModel>)
+            }
+        }*/
 
     }
 

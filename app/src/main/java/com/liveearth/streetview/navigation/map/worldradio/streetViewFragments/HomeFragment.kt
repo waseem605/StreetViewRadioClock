@@ -1,22 +1,38 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewFragments
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
+import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
+import com.example.dummy.apiServices.WeatherAPI
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import com.example.dummy.apiServices.WeatherAPIServices
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewWeatherCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RepositoryWeather
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RetrofitHelper
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.ViewModelFactory
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.WeatherViewModel
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.HomeFragmentClickCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
@@ -43,6 +59,7 @@ class HomeFragment : Fragment() {
     private var mBottomList: ArrayList<HomeFragmentModel> = ArrayList()
     var mLocationRepository: LocationRepository? = null
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
+    private lateinit var viewModel: WeatherViewModel
     private var lat:Double = 0.0
     private var lon:Double = 0.0
     private var update = 0
@@ -53,7 +70,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-
+        checkLocationPermission()
         mPreferenceManagerClass = PreferenceManagerClass(requireContext())
         topItemManager()
         moreItemManager()
@@ -110,7 +127,7 @@ class HomeFragment : Fragment() {
 
         mBottomList.add(HomeFragmentModel(R.drawable.icon_meet_me, "Meet Me", 0))
         mBottomList.add(HomeFragmentModel(R.drawable.cloudy_icon, "My favourite", 1))
-        mBottomList.add(HomeFragmentModel(R.drawable.location_tracker_icon, "Nearby Places", 2))
+        mBottomList.add(HomeFragmentModel(R.drawable.location_tracker_icon, "Location Tracker", 2))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_clock, "World Clock", 3))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_radio, "Radio", 4))
         mBottomList.add(HomeFragmentModel(R.drawable.speedo_meter, "Speedometer", 5))
@@ -187,7 +204,9 @@ class HomeFragment : Fragment() {
                     mLocationRepository!!.stopLocation()
                     lat = it.latitude
                     lon = it.longitude
-                    homeWeatherDetails(it)
+                    //homeWeatherDetails(it)
+                    homeWeatherMVVMDetails(it)
+
                     LiveEarthAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
                         LiveEarthAddressFromLatLng.GeoTaskCallback{
                         override fun onSuccessLocationFetched(fetchedAddress: String?) {
@@ -203,6 +222,42 @@ class HomeFragment : Fragment() {
                 }
             }
 
+        })
+    }
+
+    private fun homeWeatherMVVMDetails(location: Location) {
+        val services = RetrofitHelper.getInstance().create(WeatherAPI::class.java)
+        val repositoryWeather = RepositoryWeather(services)
+        viewModel = ViewModelProvider(this, ViewModelFactory(repositoryWeather,location.latitude.toString(),location.longitude.toString())).get(
+            WeatherViewModel::class.java)
+
+        viewModel.weather.observe(this, Observer {
+
+            try {
+                StreetViewWeatherHelper.arrayListWeather = it.list as ArrayList<WeatherList>
+
+                val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+                if (temperatureUnit){
+                    binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(it.list[0].main.temp).toString()
+                    binding.weatherUnit.text = "F"
+                }else{
+                    binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
+                    binding.weatherUnit.text = "C"
+                }
+                //binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
+                Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString())
+                try {
+                    Glide.with(requireContext())
+                        .load(StreetViewWeatherHelper.getIcon(it.list[0].weather[0].icon))
+                        .into(binding.weatherTodayIcon)
+                }catch (e: Exception) {
+                    println(e)
+                }
+                binding.todayDate.text = StreetViewWeatherHelper.getWeatherDate(it.list[0].dt.toLong(), 1)
+                binding.weatherTodayType.text = it.list[0].weather[0].main.toString()
+
+            } catch (e: Exception) {
+            }
         })
     }
 
@@ -256,6 +311,72 @@ class HomeFragment : Fragment() {
             binding.weatherUnit.text = "C"
         }
     }
+
+
+    fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                val permissionDialog = LocationRequestDialogueBox(requireContext(),object :
+                    ExistCallBackListener {
+                    override fun onExistClick() {
+                        requestLocationPermission()
+                    }
+                })
+                permissionDialog.show()
+            } else {
+
+                requestLocationPermission()
+            }
+
+        }else{
+            currentLocationWeather()
+            //mainItemClickListener()
+        }
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                currentLocationWeather()
+                //mainItemClickListener()
+            }
+        } else {
+            Toast.makeText(requireContext(), "permission denied", Toast.LENGTH_LONG).show()
+            if (! ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                startActivity(
+                    Intent(
+                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        Uri.fromParts("package", requireContext().packageName, null),
+                    ),
+                )
+            }
+        }
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(requireActivity(), arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION), 1)
+    }
+
 
 
 }

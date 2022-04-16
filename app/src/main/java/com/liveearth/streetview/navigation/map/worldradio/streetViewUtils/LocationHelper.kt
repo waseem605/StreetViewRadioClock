@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
 import com.mapbox.mapboxsdk.camera.CameraPosition
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -16,6 +17,7 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class LocationHelper() {
@@ -203,6 +205,24 @@ class LocationHelper() {
             }
             return data
         }
+
+
+        fun shareExpenseData(context: Context,shareTitle:String,shareDate:String,shareDesc:String,shareLocation:String,itemList:ArrayList<ExpenseItemModel>){
+            val intent = Intent(Intent.ACTION_SEND)
+
+            var shareItem = ""
+            for (i in 0 until itemList.size) {
+                val shareItemTemp = itemList[i].name+"    "+itemList[i].Price
+                shareItem +="\n$shareItemTemp"
+            }
+            val shareBody ="Category: $shareTitle \n Date: $shareDate \n Location: $shareLocation \n\n Items: $shareItem \n\n Description: $shareDesc"
+            Log.d(TAG, "showDataExpense: $shareBody")
+            intent.type = "text/plain"
+            intent.putExtra(Intent.EXTRA_SUBJECT, "getString(R.string.share_subject)")
+            intent.putExtra(Intent.EXTRA_TEXT, shareBody)
+            context.startActivity(Intent.createChooser(intent, "getString(R.string.share_using)"))
+        }
+
 
         fun getTimeStamp(timeinMillies: Long): String? {
             var date: String? = null

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRouteBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.mapbox.api.directions.v5.DirectionsCriteria
 import com.mapbox.api.directions.v5.MapboxDirections
 import com.mapbox.api.directions.v5.models.DirectionsResponse
@@ -43,12 +44,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import timber.log.Timber
+import java.text.DecimalFormat
 
 @SuppressLint("LogNotTimber")
 class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityStreetViewRouteBinding
     private val TAG = "RouteActivity"
-
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     private var mapbox: MapboxMap? = null
     private var myStyle: Style? = null
     private var locationMarker: Marker? = null
@@ -77,6 +79,7 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
         mapView = findViewById(R.id.mapViewNaviRoute)
         mapView.onCreate(savedInstanceState)
+        mPreferenceManagerClass = PreferenceManagerClass(this)
 
 
         try {
@@ -256,18 +259,17 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 var distance = (currentRoute!!.distance().toDouble() / 1000)
                 binding.distanceRouteTv.text = distance.toString()
 
-//                val PreferenceManagerClass = PreferenceManagerClass(this@StreetViewRouteActivity)
-//                try {
-//                    if (PreferenceManagerClass.getBoolean(AppConstants.DISTANCE_UNIT)){
-//                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
-//                        binding.milesTv.text = "Km"
-//                    }else{
-//                        distance= distance*0.6214
-//                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
-//                        binding.milesTv.text = "Miles"
-//                    }
-//                } catch (e: Exception) {
-//                }
+                try {
+                    if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)){
+                        distance= distance*0.6214
+                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
+                        binding.milesTv.text = "Miles"
+                    }else{
+                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
+                        binding.milesTv.text = "Km"
+                    }
+                } catch (e: Exception) {
+                }
 
                 mapboxMap.getStyle { style ->
                     val source =

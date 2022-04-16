@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCallback
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCoroutine
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
@@ -46,6 +47,9 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     var zoom: Int = 16
     var flagMap: Boolean = true
     private lateinit var myRepository: LocationRepository
+    var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +65,13 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     }
 
     private fun clickListenersLiveEarth() {
+
+        mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDrawer)
+        mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
+
+        binding.mapStyleBtn.setOnClickListener {
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_EXPANDED
+        }
 
         binding.nearByLocations.setOnClickListener {
             val intent = Intent(this,StreetViewNearByPlacesActivity::class.java)
@@ -240,32 +251,28 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
 
     private fun mapOptionsListener() {
 
-
-
-
-
-        binding.mapOptionsLt.setOnClickListener{
+  /*      binding.mapOptionsLt.setOnClickListener{
             if (binding.mapLayerLayout.isVisible){
                 binding.mapLayerLayout.visibility = View.GONE
             }else{
                 binding.mapLayerLayout.visibility = View.VISIBLE
             }
-        }
-        binding.trafficMap.setOnClickListener{
+        }*/
+        binding.bottomSheet.trafficStyle.setOnClickListener{
             mapbox.setStyle(Style.TRAFFIC_DAY)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.satelliteMap.setOnClickListener{
+        binding.bottomSheet.satelliteStyle.setOnClickListener{
             mapbox.setStyle(Style.SATELLITE)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.normalMapStyle.setOnClickListener{
+        binding.bottomSheet.normalStyle.setOnClickListener{
             mapbox.setStyle(Style.MAPBOX_STREETS)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
-        binding.darkMapStyle.setOnClickListener{
+        binding.bottomSheet.darkStyle.setOnClickListener{
             mapbox.setStyle(Style.DARK)
-            binding.mapLayerLayout.visibility = View.GONE
+            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
         binding.threeD.setOnClickListener{
             try {

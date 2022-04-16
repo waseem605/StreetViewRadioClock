@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.StreetViewMeetMeActivity">
 
-
     <include layout="@layout/custom_toolbar"
         android:id="@+id/toolbar"/>
 
@@ -168,8 +167,6 @@
 
     </androidx.cardview.widget.CardView>
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomMainLayout"
         android:layout_width="match_parent"
@@ -181,7 +178,7 @@
             android:id="@+id/distanceCardInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             android:paddingBottom="@dimen/_5sdp"
             android:background="@drawable/bottom_bar_background"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -234,7 +231,7 @@
                 android:layout_height="wrap_content"
                 app:cornerRadius="@dimen/_20sdp"
                 app:elevation="@dimen/_8sdp"
-                android:text="Navigate"
+                android:text="Route"
                 android:textAllCaps="false"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/appMainColor"
@@ -251,7 +248,7 @@
                 android:layout_height="wrap_content"
                 app:cornerRadius="@dimen/_20sdp"
                 app:elevation="@dimen/_8sdp"
-                android:text="Search"
+                android:text="Near By"
                 android:textAllCaps="false"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/appMainColor"

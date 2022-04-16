@@ -102,6 +102,9 @@ class StreetViewMainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         try {
+            binding.toolbarLt.backLink.setOnClickListener {
+                onBackPressed()
+            }
             binding.toolbarLt.titleTx.text = "Street View"
             val posIntent = intent.getIntExtra(ConstantsStreetView.StreetView_ID,0)
             val nameIntent = intent.getStringExtra(ConstantsStreetView.StreetView_Name)

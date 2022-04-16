@@ -7,7 +7,9 @@ import android.os.Environment
 import android.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.centurionnavigation.dialogs.ExitDialogueBoxStreetView
 import com.liveearth.streetview.navigation.map.worldradio.R
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityMainBinding
 import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
 import java.io.File
@@ -18,6 +20,8 @@ class MainActivity : BaseStreetViewActivity() {
     private val TAG = "MainActivity"
     private lateinit var navController: NavController
     var pos = 0
+    var count = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,15 +77,28 @@ class MainActivity : BaseStreetViewActivity() {
     override fun onBackPressed() {
         val fragmentId = navController.currentDestination!!.id
         if (fragmentId == R.id.homeFragment){
-            finish()
-            finishAffinity()
+            count++
+            if (count > 1){
+
+                finish()
+                finishAffinity()
+            }else {
+                val dialogExist = ExitDialogueBoxStreetView(this,object :ExistCallBackListener{
+                    override fun onExistClick() {
+
+                    }
+
+                })
+                dialogExist.show()
+            }
         }else{
             navController.navigate(R.id.homeFragment)
-            if (pos>0){
-
-            }
+            binding.bottomBar.itemActiveIndex = 0
         }
     }
+
+
+
 }
 
 

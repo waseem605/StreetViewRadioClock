@@ -133,8 +133,6 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         }
     }
 
-
-
     private fun requestLocationPermission() {
         ActivityCompat.requestPermissions(this, arrayOf(
             Manifest.permission.ACCESS_FINE_LOCATION,

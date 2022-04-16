@@ -21,7 +21,6 @@ class RepositoryWeather(val service: WeatherAPI) {
         val result = service.getWeatherDetailsMVVM(lat,long,appId)
         if (result?.body() !=null){
             weatherLiveData.postValue(result.body())
-
         }
     }
 
