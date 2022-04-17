@@ -1,9 +1,13 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +18,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.Favo
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModelFactory
@@ -26,6 +31,7 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
     private lateinit var mFavouriteLocationViewModel: FavouriteLocationViewModel
     private lateinit var mLocationRepository: LocationRepository
     private lateinit var mFavouriteAdapter: FavouriteLocationsAdapter
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
     private var mLatitude :Double = 0.0
     private var mLongitude :Double = 0.0
 
@@ -33,7 +39,8 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewFavouriteLocationsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         showProgressDialog(this)
         val factory = FavouriteLocationViewModelFactory(this)
         mFavouriteLocationViewModel = ViewModelProvider(this,factory).get(FavouriteLocationViewModel::class.java)
@@ -114,5 +121,20 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
             adapter = mFavouriteAdapter
         }
 
+    }
+
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backFavourite.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backOne.setColorFilter(Color.parseColor(backgroundSecondColor))
+        binding.nearByLocations.setCardBackgroundColor(Color.parseColor(backgroundColor))
     }
 }

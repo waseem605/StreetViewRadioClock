@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/premiumFragmentBack"
+    android:background="@color/appIconColor"
     tools:context=".streetViewFragments.PremiumFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="      PremiumFragment" />
 
-</FrameLayout>
+    <include layout="@layout/custom_toolbar"
+        android:id="@+id/toolbarLt"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieAnimationView"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/premium_gold" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/black"
+            android:layout_margin="@dimen/_20sdp"
+            android:text="Go premium to get rid of\n ads. Enjoy smooth experience"
+            app:layout_constraintTop_toBottomOf="@id/lottieAnimationView"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/removeAdsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remove Ads"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:layout_margin="@dimen/_20sdp"
+            android:padding="@dimen/_8sdp"
+            app:cornerRadius="@dimen/_20sdp"
+            android:backgroundTint="@color/appMainColor"
+            app:layout_constraintTop_toBottomOf="@id/text2"/>
+
+        <ImageView
+            android:id="@+id/contBack"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/_1sdp"
+            android:src="@drawable/line_border_green_2stroke"
+            app:layout_constraintStart_toStartOf="@id/continueBtn"
+            app:layout_constraintEnd_toEndOf="@id/continueBtn"
+            app:layout_constraintBottom_toBottomOf="@id/continueBtn"
+            app:layout_constraintTop_toTopOf="@id/continueBtn"/>
+
+        <TextView
+            android:id="@+id/continueBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Remove Ads"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:textSize="@dimen/_16ssp"
+            android:textColor="@color/appMainColor"
+            android:layout_margin="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@id/removeAdsBtn"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,17 +17,26 @@
         app:navGraph="@navigation/street_view_navigation_graph"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
-
+    <ImageView
+        android:id="@+id/bottomImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/bottom_bar_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/bottomBar"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/bottom_bar_background"
         app:backgroundColor="#00000000"
        app:indicatorRadius="@dimen/_6sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/street_bottom_menu" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

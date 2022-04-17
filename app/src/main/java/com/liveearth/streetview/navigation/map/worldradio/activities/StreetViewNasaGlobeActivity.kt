@@ -14,7 +14,6 @@ class StreetViewNasaGlobeActivity : AppCompatActivity() {
     val webUrlSkyScanner = "file:///android_asset/marsweather.html"
 
 
-
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

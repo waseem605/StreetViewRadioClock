@@ -1,8 +1,12 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -13,6 +17,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.Famo
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.CategoryStreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -23,6 +28,7 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
     private var mFamousStreetViewList = ArrayList<CategoryStreetViewModel>()
     private lateinit var mAdapter:CategoryStreetViewAdapter
     private lateinit var mAdapterFamous: FamousStreetViewAdapter
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
 
     @Inject
@@ -33,7 +39,7 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewFirstLookBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+ mPreferenceManagerClass = PreferenceManagerClass(this)
 
         binding.toolbarLt.titleTx.text = "Street View"
         binding.toolbarLt.backLink.setOnClickListener {
@@ -103,5 +109,19 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
             layoutManager =  LinearLayoutManager(this@StreetViewFirstLookActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = mAdapter
         }
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+//        binding.backFavourite.setBackgroundColor(Color.parseColor(backgroundSecondColor))
+        binding.backOne.setColorFilter(Color.parseColor(backgroundColor))
+//        binding.nearByLocations.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
     }
 }

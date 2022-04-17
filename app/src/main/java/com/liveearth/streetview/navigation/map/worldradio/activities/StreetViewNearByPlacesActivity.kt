@@ -2,11 +2,14 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -26,6 +29,7 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySt
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.NearMeLocationsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.NearLocationsModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModelFactory
@@ -58,6 +62,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     var zoom: Int = 16
     var flagMap: Boolean = true
     lateinit var animationDownToUp: Animation
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     private var mLocationsList: ArrayList<NearLocationsModel> = ArrayList()
     private lateinit var myRepository: LocationRepository
     private lateinit var adapterLocations:NearMeLocationsAdapter
@@ -68,7 +73,8 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
         Mapbox.getInstance(applicationContext, ConstantsStreetView.accessToken)
         binding = ActivityStreetViewNearByPlacesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         val factory = FavouriteLocationViewModelFactory(this)
         mFavouriteLocationViewModel = ViewModelProvider(this,factory).get(FavouriteLocationViewModel::class.java)
 
@@ -310,6 +316,18 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                 }
             }
         }
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.backOne.setColorFilter(Color.parseColor(backgroundColor))
+        //binding.backTwo.setColorFilter(Color.parseColor(backgroundColor))
     }
 
 }

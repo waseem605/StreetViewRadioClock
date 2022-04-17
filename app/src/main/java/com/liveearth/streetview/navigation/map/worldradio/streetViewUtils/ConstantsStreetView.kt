@@ -11,7 +11,9 @@ object ConstantsStreetView {
 
     const val RATE_APP = "rateApp"
     const val APP_COLOR = "appColor"
+    const val APP_COLOR_Second = "appColorSecond"
     var APP_SELECTED_COLOR = "#1E54B4"
+    var APP_SELECTED_SECOND_COLOR = "#1E54B4"
     const val WHITE_COLOR = "#FFFFFFFF"
 
 

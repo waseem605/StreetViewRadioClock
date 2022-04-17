@@ -1,10 +1,13 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
@@ -14,6 +17,7 @@ import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.Re
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,12 +29,15 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     val TAG = "RadioChannels"
     lateinit var countryName: String
     var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewRadioChannelsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         countryName = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
 
         """Trending in ${this.countryName}""".also { binding.radioCountryName.text = it }
@@ -109,6 +116,18 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
             layoutManager = GridLayoutManager(this@StreetViewRadioChannelsActivity, 2)
             adapter = radioAdapter
         }
+
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.background.setBackgroundColor(Color.parseColor(backgroundColor))
 
     }
 }

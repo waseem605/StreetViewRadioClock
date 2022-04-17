@@ -21,6 +21,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
     private lateinit var countryNameFlage:String
     private lateinit var mRadioChannelName:String
     private var mRadioPosition = 0
+
     var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
     var mPlaylist: ArrayList<JcAudio> = ArrayList()
 

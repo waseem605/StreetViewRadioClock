@@ -2,24 +2,23 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCallback
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.CurrentLatLngCoroutine
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewLiveEarthBinding
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.*
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.annotations.Marker
@@ -50,6 +49,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     var flagMap: Boolean = true
     private lateinit var myRepository: LocationRepository
     var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
 
 
 
@@ -60,7 +60,9 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         setContentView(binding.root)
         mapView = findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
+        mPreferenceManagerClass = PreferenceManagerClass(this)
 
+        setThemeColor()
         mapViewResult()
         clickListenersLiveEarth()
 
@@ -127,7 +129,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         })
 */
 
-        binding.backLink.setOnClickListener {
+        binding.toolbarLt.backLink.setOnClickListener {
             onBackPressed()
         }
 
@@ -296,6 +298,24 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
 
     }
 
-
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        //binding.backFavourite.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backOne.setColorFilter(Color.parseColor(backgroundColor))
+        binding.nearByLocations.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.threeD.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.mapStyleBtn.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.currentLocationBtn.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.ImgZoomIn.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.ImgZoomOut.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.nearByLocations.setCardBackgroundColor(Color.parseColor(backgroundColor))
+    }
 
 }

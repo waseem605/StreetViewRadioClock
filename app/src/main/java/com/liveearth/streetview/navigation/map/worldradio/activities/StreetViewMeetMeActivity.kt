@@ -3,6 +3,7 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.os.Handler
@@ -11,6 +12,8 @@ import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -30,6 +33,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.IconFactory
@@ -73,6 +77,7 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var animationTopToDown: Animation
     lateinit var animationPointToDown: Animation
 
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,6 +86,8 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
         mapView = findViewById(R.id.mapViewMeetMe)
         mapView.onCreate(savedInstanceState)
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         mapViewResultMeetMe()
         meetMeClickListener()
 
@@ -584,6 +591,22 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
         mLocationMarkerDestin = mapbox.addMarker(
             MarkerOptions().position(LatLng(mLatitudeDest, mLongitudeDest))
         )
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.cMeetMeBtn.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backOne.setColorFilter(Color.parseColor(backgroundColor))
+        binding.backTwo.setColorFilter(Color.parseColor(backgroundColor))
+        binding.meetNavigateBtn.setTextColor(Color.parseColor(backgroundColor))
+        binding.nearMeSearchBtn.setTextColor(Color.parseColor(backgroundColor))
     }
 
 

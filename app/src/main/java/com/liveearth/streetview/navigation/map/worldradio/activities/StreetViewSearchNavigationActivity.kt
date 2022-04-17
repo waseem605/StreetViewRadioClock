@@ -11,6 +11,8 @@ import android.speech.RecognizerIntent
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
@@ -26,6 +28,7 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySt
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
@@ -43,6 +46,7 @@ import com.streetview.map.navigation.live.earthmap.utils.StreetViewGeocoderFromA
 @SuppressLint("LogNotTimber")
 class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityStreetViewSearchNavigationBinding
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
     val TAG = "SearchNavigation"
     private var mLatitude: Double = 0.0
     private var mLongitude: Double = 0.0
@@ -73,9 +77,10 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         setContentView(binding.root)
         mMapView = findViewById(R.id.mapViewMainNavigation)
 
+        mPreferenceManagerClass = PreferenceManagerClass(this)
         searchNavigationClicks()
         mapViewResultAsync()
-
+        setThemeColor()
     }
 
 
@@ -571,6 +576,29 @@ mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDra
             mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
 
+    }
+
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR,"#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second," #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.bottomImage.setColorFilter( Color.parseColor(backgroundSecondColor) )
+        binding.locationOnBorderOne.setColorFilter( Color.parseColor(backgroundColor) )
+        binding.locationOnBorderTwo.setColorFilter( Color.parseColor(backgroundColor) )
+        binding.locationOnBorderThree.setColorFilter( Color.parseColor(backgroundColor) )
+        binding.locationOnBorderFour.setColorFilter( Color.parseColor(backgroundColor) )
+        binding.mapStyleOption.setCardBackgroundColor( Color.parseColor(backgroundColor))
+        binding.currentLocationImage.setCardBackgroundColor( Color.parseColor(backgroundColor))
+        binding.addMoreLocation.setCardBackgroundColor( Color.parseColor(backgroundColor))
+        binding.voiceDestinationBtn.setCardBackgroundColor( Color.parseColor(backgroundColor))
+        binding.voiceThreeLocation.setCardBackgroundColor( Color.parseColor(backgroundColor))
+        binding.voiceTwoLocation.setCardBackgroundColor( Color.parseColor(backgroundColor))
+        binding.navigationBtn.setBackgroundColor(Color.parseColor(backgroundColor))
     }
 
 }

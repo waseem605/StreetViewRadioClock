@@ -1,24 +1,35 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.PopupMenu
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.centurionnavigation.dialogs.ExitDialogueBoxStreetView
 import com.liveearth.streetview.navigation.map.worldradio.R
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ColorThemeCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityMainBinding
 import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
+import com.liveearth.streetview.navigation.map.worldradio.streetViewFragments.ThemeFragment
+import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ColorModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import java.io.File
 
 
-class MainActivity : BaseStreetViewActivity() {
+class MainActivity : BaseStreetViewActivity(), ColorThemeCallBackListener
+{
     private lateinit var binding: ActivityMainBinding
     private val TAG = "MainActivity"
     private lateinit var navController: NavController
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     var pos = 0
     var count = 0
 
@@ -28,6 +39,9 @@ class MainActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
@@ -95,6 +109,23 @@ class MainActivity : BaseStreetViewActivity() {
             navController.navigate(R.id.homeFragment)
             binding.bottomBar.itemActiveIndex = 0
         }
+    }
+
+    override fun onColorClick(colorModel: ColorModel) {
+        Log.d(TAG, "onColorClick: ===========main++++++++++++++")
+        setThemeColor()
+    }
+
+
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR,"#237157")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.bottomImage.setColorFilter( Color.parseColor(backgroundColor) )
     }
 
 
