@@ -9,9 +9,6 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -20,7 +17,6 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyL
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewLiveEarthBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.*
 import com.mapbox.mapboxsdk.Mapbox
-import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -38,6 +34,8 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     val TAG = "StreetViewLiveEarth"
 //    private var latitude: Double = 24.748257
 //    private var longitude: Double = 67.073477
+    private var latitudeTem: Double = 25.1124317
+    private var longitudeTrm: Double = 55.138978
     private var latitude: Double = 25.1124317
     private var longitude: Double = 55.138978
     private lateinit var mapView: MapView
@@ -74,14 +72,17 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
 
         binding.mapStyleBtn.setOnClickListener {
-            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_EXPANDED
+            if(mBottomSheetBehavior!!.state==BottomSheetBehavior.STATE_EXPANDED){
+                mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
+            }else {
+                mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
+            }
         }
 
-        binding.nearByLocations.setOnClickListener {
+    /*    binding.nearByLocations.setOnClickListener {
             val intent = Intent(this,StreetViewNearByPlacesActivity::class.java)
             startActivity(intent)
-        }
-
+        }*/
 
         binding.currentLocationBtn.setOnClickListener {
             getYourCurrentLocation()
@@ -241,6 +242,8 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                         if (feature.center() != null) {
                             if (feature.center()!!.coordinates().isNotEmpty()) {
                                 binding.searchLocationEt.text = feature.text()!!
+                                latitude = feature.center()?.coordinates()!!.get(1)
+                                longitude = feature.center()?.coordinates()!!.get(0)
                                 setLocationMarker(
                                     LatLng(feature.center()?.coordinates()!!.get(1), feature.center()?.coordinates()!!.get(0)),
                                     mapbox
@@ -306,6 +309,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.bottomSheet.viewTop.setCardBackgroundColor(Color.parseColor(backgroundColor))
         binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
         //binding.backFavourite.setBackgroundColor(Color.parseColor(backgroundColor))
         binding.backOne.setColorFilter(Color.parseColor(backgroundColor))

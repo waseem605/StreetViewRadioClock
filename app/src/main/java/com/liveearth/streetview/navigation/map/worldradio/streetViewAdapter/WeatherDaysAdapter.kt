@@ -5,23 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextClock
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WeatherCallBack
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
-import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper.Companion.getDateTimeFromDateInString
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper.Companion.getForWeekly
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper.Companion.setDate
 
 
 class WeatherDaysAdapter(
@@ -43,6 +38,7 @@ class WeatherDaysAdapter(
         try {
             mPreferenceManagerClass = PreferenceManagerClass(context)
             val model = modelArrayList[position]
+            holder.weatherItemBack.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
             holder.weatherDayItem.text = getForWeekly(model.dt.toLong())
             holder.weatherDateItem.text = StreetViewWeatherHelper.getWeatherDate(model.dt.toLong(), 1)
 
@@ -79,6 +75,7 @@ class WeatherDaysAdapter(
         var weatherDateItem = itemView.findViewById<TextView>(R.id.weatherDateItem)
         var weatherTempItem = itemView.findViewById<TextView>(R.id.weatherTempItem)
         var weatherUnitItem = itemView.findViewById<TextView>(R.id.weatherUnitItem)
+        var weatherItemBack = itemView.findViewById<CardView>(R.id.weatherItemBack)
 
 
     }

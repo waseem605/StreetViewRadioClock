@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.bumptech.glide.request.target.Target
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MainStreetViewCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 
 
 class StreetViewMainAdapter(
@@ -38,6 +40,10 @@ class StreetViewMainAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
+
+            holder.image87.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.navigateCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.shareLocationCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
 
             holder.categoryNameItem.text = model.name
             holder.categoryDescItem.text = model.description
@@ -84,6 +90,7 @@ class StreetViewMainAdapter(
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var categoryImageItem = itemView.findViewById<ImageView>(R.id.streetViewImageItem)
+        var image87 = itemView.findViewById<ImageView>(R.id.image87)
         var categoryNameItem = itemView.findViewById<TextView>(R.id.streetViewNameItem)
         var categoryDescItem = itemView.findViewById<TextView>(R.id.streetViewDescriptionItem)
         var progress_bar = itemView.findViewById<ProgressBar>(R.id.progress_bar)

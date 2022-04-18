@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
@@ -80,7 +82,7 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
         mapView = findViewById(R.id.mapViewNaviRoute)
         mapView.onCreate(savedInstanceState)
         mPreferenceManagerClass = PreferenceManagerClass(this)
-
+        setThemeColor()
 
         try {
             mMultiPointsRoute = intent.getBooleanExtra(ConstantsStreetView.MultiPointsRoute,false)
@@ -420,6 +422,17 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
             binding.timeTv.text = "$day D $hour H $minutes m"
         }
 
+    }
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.mapLayoutBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
     }
 
 

@@ -7,6 +7,7 @@
     android:layout_marginStart="@dimen/_7sdp"
     android:layout_marginBottom="@dimen/_8sdp"
     android:layout_marginEnd="@dimen/_7sdp"
+    android:id="@+id/cardBackItemLocations"
     app:cardBackgroundColor="@color/appSilverColor"
     app:cardCornerRadius="@dimen/_15sdp"
     app:cardElevation="@dimen/_6sdp">
@@ -71,6 +72,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
+                    android:id="@+id/shareImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/_3sdp"
@@ -145,6 +147,7 @@
             app:layout_constraintTop_toBottomOf="@id/itemDeleteBtn">
 
             <ImageView
+                android:id="@+id/navigateImage"
                 android:layout_width="@dimen/_45sdp"
                 android:layout_height="@dimen/_45sdp"
                 android:layout_gravity="center"

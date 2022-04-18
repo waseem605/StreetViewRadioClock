@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextClock
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -34,6 +36,8 @@ class WorldClockAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
+            holder.addTimeZone.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.worldClockBackItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
 
             if (mShowAddBtn.equals(ConstantsStreetView.Show_ADD_Btn)){
                 holder.addTimeZone.visibility = View.VISIBLE
@@ -65,7 +69,8 @@ class WorldClockAdapter(
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var countryFlagItemImg = itemView.findViewById<ImageView>(R.id.countryFlagItemImg)
-        var addTimeZone = itemView.findViewById<ImageView>(R.id.addTimeZone)
+        var addTimeZone = itemView.findViewById<CardView>(R.id.addTimeZone)
+        var worldClockBackItem = itemView.findViewById<CardView>(R.id.worldClockBackItem)
         var countryItemName = itemView.findViewById<TextView>(R.id.countryItemName)
         var countryTimeItem = itemView.findViewById<TextClock>(R.id.countryTimeItem)
         var countryTimeZoneItem = itemView.findViewById<TextView>(R.id.countryTimeZoneItem)

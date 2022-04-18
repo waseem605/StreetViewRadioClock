@@ -2,9 +2,12 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -16,6 +19,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.Worl
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -40,6 +44,7 @@ class WordTimeActivity : BaseStreetViewActivity() {
     var mCountryName = ConstantsStreetView.currentCountryName
     lateinit var mTimeZoneString: String
     lateinit var mShowAddBtn: String
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
 
     @Inject
@@ -53,7 +58,8 @@ class WordTimeActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWordTimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         Log.d("worldCloclres", "onCreate: =====world clock==="+mWorldClockListTwo.size)
         Log.d("worldCloclres", "onCreate: ===country name====="+mCountryNameListTwo.size)
 
@@ -71,7 +77,6 @@ class WordTimeActivity : BaseStreetViewActivity() {
           val adapterGender = ArrayAdapter(this, R.layout.simple_spinner_dropdown_item, arrayTimezone)
           binding.etGender.setAdapter(adapterGender)
   */
-
 
         worldClockListRecyclerView(mWorldClockListTwo)
 
@@ -219,6 +224,20 @@ class WordTimeActivity : BaseStreetViewActivity() {
         val intent = Intent(this,StreetViewWorldClockActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.addTimeZone.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backOne.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.allTimeZone.setTextColor(Color.parseColor(backgroundColor))
     }
 
 }

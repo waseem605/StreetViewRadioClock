@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/weatherDetailsBack"
     android:background="@color/appMainColor"
     tools:context=".activities.StreetViewWeatherMoreDetailsActivity">
 
@@ -20,6 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbarLt"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/bottom_bar_background"
@@ -171,7 +173,6 @@
             app:layout_constraintStart_toEndOf="@id/humidityCard"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/recyclerWeather">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

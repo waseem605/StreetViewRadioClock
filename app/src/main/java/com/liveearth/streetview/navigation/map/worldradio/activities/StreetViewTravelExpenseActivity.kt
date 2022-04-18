@@ -2,7 +2,11 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -12,6 +16,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.Expe
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModelFactory
@@ -34,6 +39,8 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
     private var mDate: String? = null
     private var mTotal: Int = 0
     private var mID: Int = 0
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,10 +48,11 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         binding = ActivityStreeViewTravelExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
         try {
+            mPreferenceManagerClass = PreferenceManagerClass(this)
             mID = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID, 0)
             val factory = ExpenseViewModelFactory(this)
             mExpenseViewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
-
+            setThemeColor()
             if (mID >-1){
                 showExpenseDetails(mID)
                 "Update".also { binding.addExpense.text = it }
@@ -165,6 +173,11 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                     override fun onRemoveItem(model: ExpenseItemModel, pos: Int) {
                         mExpenseList.removeAt(pos)
                         mExpenseAdapter.notifyDataSetChanged()
+                        for (i in 0 until  mExpenseList.size){
+                            mTotal+=mExpenseList[i].Price
+                        }
+                        binding.etTotalMoney.text = mTotal.toString()
+
                     }
 
                 })
@@ -184,7 +197,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             setToast(this, "please enter Fields")
         } else {
 
-            if (mID == null ||mID == 0) {
+            if (mID == null ||mID <0) {
                 mExpenseViewModel.insertExpense(
                     ExpenseModel(
                         id = null,
@@ -198,6 +211,10 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                 )
                 setToast(this, "Saved Expense")
             } else {
+                for (i in 0 until  mExpenseList.size){
+                    mTotal+=mExpenseList[i].Price
+                }
+
                 mExpenseViewModel.updateExpense(
                     ExpenseModel(
                         mID,
@@ -206,12 +223,12 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                         ConstantsStreetView.CURRENT_ADDRESS,
                         mExpenseList,
                         binding.etDescription.text.toString(),
-                        mTotal
+                       mTotal
                     )
                 )
                 setToast(this, "Updated Expense")
             }
-            val intent = Intent(this,StreetViewTravelExpenseActivity::class.java)
+            val intent = Intent(this,StreetViewTravelExpenseViewActivity::class.java)
             startActivity(intent)
         }
     }
@@ -314,6 +331,26 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             // binding.etDescription.setErrorEnabled(false)
             true
         }
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.addExpense.setBackgroundColor(Color.parseColor(backgroundColor))
+
+        binding.addNewItem.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.travelExpenseBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.etBackTotalMoney.setColorFilter(Color.parseColor(backgroundSecondColor))
+        binding.etBackCategory.setColorFilter(Color.parseColor(backgroundSecondColor))
+        binding.etBackCalender.setColorFilter(Color.parseColor(backgroundSecondColor))
+        binding.etBackLocations.setColorFilter(Color.parseColor(backgroundSecondColor))
+        binding.shareImage.setColorFilter(Color.parseColor(backgroundColor))
     }
 
 }

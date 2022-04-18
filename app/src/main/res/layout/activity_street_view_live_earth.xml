@@ -381,6 +381,7 @@
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginStart="@dimen/_10sdp"
+            android:visibility="gone"
             android:layout_marginBottom="@dimen/_100sdp"
             app:cardBackgroundColor="@color/appMainColor"
             app:cardCornerRadius="@dimen/_5sdp"

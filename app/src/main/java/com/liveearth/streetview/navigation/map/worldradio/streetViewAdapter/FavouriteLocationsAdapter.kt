@@ -1,14 +1,17 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.FavLocationListener
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +35,10 @@ class FavouriteLocationsAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
+
+            holder.cardBackItemLocations.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
+            holder.shareImage.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.navigateImage.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
 
             holder.timeFavouriteItem.text = "${model.time}  ${model.timeZone}"
             holder.NameFavouriteItem.text = model.name
@@ -64,6 +71,9 @@ class FavouriteLocationsAdapter(
         var shareItem: CardView = itemView.findViewById<CardView>(R.id.shareFavouriteItemCard)
         var navigateToItem: CardView = itemView.findViewById<CardView>(R.id.itemNavigationBtnCard)
         var deleteToItem: CardView = itemView.findViewById<CardView>(R.id.itemDeleteBtn)
+        var cardBackItemLocations: CardView = itemView.findViewById<CardView>(R.id.cardBackItemLocations)
+        var shareImage: ImageView = itemView.findViewById<ImageView>(R.id.shareImage)
+        var navigateImage: ImageView = itemView.findViewById<ImageView>(R.id.navigateImage)
 
     }
 }

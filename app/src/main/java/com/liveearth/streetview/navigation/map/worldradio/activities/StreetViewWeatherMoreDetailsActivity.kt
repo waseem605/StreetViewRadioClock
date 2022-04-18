@@ -1,7 +1,10 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,7 +37,7 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
 
         mPreferenceManagerClass = PreferenceManagerClass(this)
         mArrayListWeather = StreetViewWeatherHelper.arrayListWeather
-
+        setThemeColor()
         chartVewWeater(mArrayListWeather)
         forecastWeather(mArrayListWeather)
         clickListenerMoreDetails()
@@ -120,7 +123,9 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
             valueTextSize = 0f
             lineWidth = 3f
             mode = LineDataSet.Mode.HORIZONTAL_BEZIER
-            color = ContextCompat.getColor(this@StreetViewWeatherMoreDetailsActivity, R.color.appMainColor)
+            //color = ContextCompat.getColor(this@StreetViewWeatherMoreDetailsActivity, R.color.appMainColor)
+            color = Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR)
+
             setDrawFilled(true)
             fillColor = ContextCompat.getColor(this@StreetViewWeatherMoreDetailsActivity, R.color.colorYellow)
         }
@@ -172,4 +177,20 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
 
     }
 
+    private fun setThemeColor() {
+        val backgroundColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.weatherDetailsBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.humidityCard.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+        binding.precipitationCard.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+        binding.windCard.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+    }
 }

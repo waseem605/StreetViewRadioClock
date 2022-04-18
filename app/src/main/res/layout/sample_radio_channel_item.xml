@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_130sdp"
     android:layout_height="wrap_content"
+    android:id="@+id/cardBackItemRadio"
     app:cardBackgroundColor="@color/appSilverColor"
     android:layout_marginStart="@dimen/_3sdp"
     android:layout_marginTop="@dimen/_5sdp"
@@ -22,12 +23,19 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="@dimen/_20sdp"
             android:scaleType="fitCenter"/>
+        <ImageView
+            android:id="@+id/gradientImgBack"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/radio_back_gradient"
+            app:layout_constraintTop_toTopOf="@id/gradientImg"
+            app:layout_constraintBottom_toBottomOf="@id/gradientImg"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/gradientImg"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/radio_back_gradient"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.Guideline

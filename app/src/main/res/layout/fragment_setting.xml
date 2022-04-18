@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/settingFragmentBack"
     android:background="@color/appMainColor"
     tools:context=".streetViewFragments.SettingFragment">
 
@@ -86,6 +87,17 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/dSlash"
                         app:layout_constraintTop_toBottomOf="@id/temperatureTx" />
+
+                    <ImageView
+                        android:id="@+id/imageSwitchBack"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_margin="@dimen/_3sdp"
+                        android:src="@drawable/button_background_green"
+                        app:layout_constraintTop_toTopOf="@id/switchUnitTemp"
+                        app:layout_constraintStart_toStartOf="@id/switchUnitTemp"
+                        app:layout_constraintEnd_toEndOf="@id/switchUnitTemp"
+                        app:layout_constraintBottom_toBottomOf="@id/switchUnitTemp"/>
 
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -171,6 +183,17 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/dSlash1"
                         app:layout_constraintTop_toBottomOf="@id/distanceTx" />
+
+                    <ImageView
+                        android:id="@+id/imageSwitchBackUnit"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_margin="@dimen/_3sdp"
+                        android:src="@drawable/button_background_green"
+                        app:layout_constraintTop_toTopOf="@id/switchUnit"
+                        app:layout_constraintStart_toStartOf="@id/switchUnit"
+                        app:layout_constraintEnd_toEndOf="@id/switchUnit"
+                        app:layout_constraintBottom_toBottomOf="@id/switchUnit"/>
 
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/switchUnit"

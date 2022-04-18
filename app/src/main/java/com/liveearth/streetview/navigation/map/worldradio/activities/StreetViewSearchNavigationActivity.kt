@@ -87,46 +87,15 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
     private fun searchNavigationClicks() {
 
-/*
-        binding.locationOnBorder.drawable.sta
-        binding.locationOnBorder.stateColor!!.setColorFilter(
-            ContextCompat.getColor(
-                mContext,
-                R.color.purple_color
-            ), PorterDuff.Mode.MULTIPLY
-        )
-*/
-
-        //binding.locationDestination.background.setTint(resources.getColor(R.color.colorYellow))
-/*
-
-        val unwrappedDrawable: Drawable? =
-            AppCompatResources.getDrawable(this,R.drawable.line_border_green)
-        val wrappedDrawable: Drawable = DrawableCompat.wrap(unwrappedDrawable!!)
-        DrawableCompat.setTint(wrappedDrawable,resources.getColor(R.color.colorYellow))
-*/
-
-        val unwrappedDrawable2 = AppCompatResources.getDrawable(this, R.drawable.line_border_green)
-        val wrappedDrawable2 = DrawableCompat.wrap(unwrappedDrawable2!!)
-        DrawableCompat.setTint(wrappedDrawable2, Color.RED)
-
-        /*      DrawableCompat.setTint(
-            DrawableCompat.wrap(.getDrawable()),
-            ContextCompat.getColor(context, R.color.another_nice_color)
-        );*/
-
-
-
-//binding.locationOnBorder.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow))
-
-
-
-
-mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDrawer)
+        mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDrawer)
         mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
 
         binding.mapStyleOption.setOnClickListener {
-            mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_EXPANDED
+            if(mBottomSheetBehavior!!.state==BottomSheetBehavior.STATE_EXPANDED){
+                mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
+            }else {
+                mBottomSheetBehavior!!.state = BottomSheetBehavior.STATE_EXPANDED
+            }
         }
         binding.addMoreLocation.setOnClickListener {
             addMoreLocations()
@@ -587,6 +556,7 @@ mBottomSheetBehavior=BottomSheetBehavior.from(binding.bottomSheet.bottomSheetDra
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.bottomSheet.viewTop.setCardBackgroundColor(Color.parseColor(backgroundColor))
         binding.bottomImage.setColorFilter( Color.parseColor(backgroundSecondColor) )
         binding.locationOnBorderOne.setColorFilter( Color.parseColor(backgroundColor) )
         binding.locationOnBorderTwo.setColorFilter( Color.parseColor(backgroundColor) )

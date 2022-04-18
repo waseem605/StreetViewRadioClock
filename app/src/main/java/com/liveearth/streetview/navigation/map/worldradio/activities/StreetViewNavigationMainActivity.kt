@@ -122,9 +122,6 @@ class StreetViewNavigationMainActivity : AppCompatActivity(), NavigationListener
     }
 
 
-
-
-
     private fun fetchNavigationRoute() {
         Log.d(TAG, "fetchRoute: ")
         //   Log.d("searchNavigationRoute", "======coh========: ${LocationHelper.locationPointsList!!.size}")

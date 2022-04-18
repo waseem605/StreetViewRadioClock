@@ -17,8 +17,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import android.R
+import android.graphics.Color
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 
 
 class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
@@ -26,6 +30,7 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
     private val TAG = "TravelDetails"
     private lateinit var mExpenseViewModel: ExpenseViewModel
     private lateinit var mAdapter: ExpenseDetailsAdapter
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
 
     private var mID:Int=0
 
@@ -34,7 +39,8 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewExpenseTravelDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         try {
             mID  = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID,0)
             clickListenerExpenseDetails(mID)
@@ -131,4 +137,19 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
             }
         }
     }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.editExpenseBtn.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.expenseDetailsBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.shareImage.setColorFilter(Color.parseColor(backgroundColor))
+    }
+
 }

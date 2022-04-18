@@ -460,12 +460,13 @@ class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
 
     private fun parseJsonStringToNewsList(jsonString: String, mCountryName: String) {
         var nameCountry:String?=null
+        var isoCountry :String?=null
         val newsArray = JSONArray(jsonString)
         Log.i("fms", "SIZE : " + newsArray.length())
         for (i in 0 until newsArray.length()) {
             val objinside = JSONObject(newsArray.get(i).toString())
             val name = objinside.getString("name")
-            val iso = objinside.getString("iso")
+             val iso = objinside.getString("iso")
             try {
                 if (name.equals(mCountryName)){
                     Log.d("openViewData", "=============$iso======$name")
@@ -473,6 +474,7 @@ class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
                     Glide.with(this).load(flage).into(countryFlag!!)
                     nameCountry = name
                     countryNameTx!!.text = name
+                    isoCountry = iso
                     break
                 }
             } catch (e: Exception) {
@@ -483,6 +485,7 @@ class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
             nameCountry.let {
                 val intent = Intent(this,StreetViewRadioChannelsActivity::class.java)
                 intent.putExtra(ConstantsStreetView.Radio_Country_Name,it)
+                intent.putExtra(ConstantsStreetView.Radio_Country_Code,isoCountry)
                 startActivity(intent)
             }
         }

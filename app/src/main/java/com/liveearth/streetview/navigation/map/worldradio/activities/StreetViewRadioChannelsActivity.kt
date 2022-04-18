@@ -10,6 +10,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
+import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.FmLiveEarthMapFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
@@ -28,6 +29,7 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     private lateinit var binding: ActivityStreetViewRadioChannelsBinding
     val TAG = "RadioChannels"
     lateinit var countryName: String
+    lateinit var countryCode: String
     var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
@@ -38,14 +40,21 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
-        countryName = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
 
-        """Trending in ${this.countryName}""".also { binding.radioCountryName.text = it }
+        try {
+            countryName = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
+            countryCode = intent.getStringExtra(ConstantsStreetView.Radio_Country_Code)!!
 
-        showProgressDialog(this)
-        getAllCountryFMListFromApi(countryName)
-        binding.backLink.setOnClickListener {
-            onBackPressed()
+            """Trending in ${this.countryName}""".also { binding.radioCountryName.text = it }
+            val flage="https://flagpedia.net/data/flags/normal/${countryCode}.png"
+            Glide.with(this).load(flage).into(binding.countryFlagImage)
+
+            showProgressDialog(this)
+            getAllCountryFMListFromApi(countryName)
+            binding.backLink.setOnClickListener {
+                onBackPressed()
+            }
+        } catch (e: Exception) {
         }
     }
 
@@ -128,6 +137,8 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
         binding.background.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbarLt.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.countryFlagImageCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
 
     }
 }

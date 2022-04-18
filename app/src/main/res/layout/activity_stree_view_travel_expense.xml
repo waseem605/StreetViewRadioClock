@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/travelExpenseBack"
     android:background="@color/appMainColor"
     tools:context=".activities.StreetViewTravelExpenseActivity">
 
@@ -18,7 +19,8 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.13" />
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/backOneScroll"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/bottom_bar_background"
@@ -26,253 +28,308 @@
         app:layout_constraintBottom_toTopOf="@id/bottomLayout"
         app:layout_constraintTop_toBottomOf="@id/guide74">
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guide76"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.45" />
-
-            <TextView
-                android:id="@+id/moneyText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:text="Money Spend"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/etTotalMoney"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/line_background_border_silver"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:gravity="center"
-                android:paddingStart="@dimen/_8sdp"
-                android:paddingEnd="@dimen/_8sdp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@drawable/custom_edit_text_cut"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/moneyText"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guide76"
-                app:layout_constraintTop_toTopOf="@id/moneyText" />
-
-
-            <TextView
-                android:id="@+id/catTex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="Category"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/moneyText"/>
-
-            <EditText
-                android:id="@+id/etCategory"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/line_background_border_silver"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:gravity="center"
-                android:paddingStart="@dimen/_8sdp"
-                android:paddingEnd="@dimen/_8sdp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@drawable/custom_edit_text_cut"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/catTex"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guide76"
-                app:layout_constraintTop_toTopOf="@id/catTex" />
-
-            <TextView
-                android:id="@+id/dateTex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="Date of expense"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/catTex" />
-
-            <TextView
-                android:id="@+id/etCalender"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/line_background_border_silver"
-                android:ellipsize="end"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingStart="@dimen/_8sdp"
-                android:paddingEnd="@dimen/_8sdp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@drawable/custom_edit_text_cut"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/dateTex"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guide76"
-                app:layout_constraintTop_toTopOf="@id/dateTex"
-                app:drawableEndCompat="@drawable/ic_calendar_icon_focused" />
-
-            <TextView
-                android:id="@+id/locationTex"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:text="Location"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dateTex" />
-
-            <TextView
-                android:id="@+id/etLocations"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/line_background_border_silver"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:gravity="center"
-                android:paddingStart="@dimen/_12sdp"
-                android:paddingEnd="@dimen/_5sdp"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@id/locationTex"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guide76"
-                app:layout_constraintTop_toTopOf="@id/locationTex"
-                app:drawableEndCompat="@drawable/ic_baseline_location_on" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/addItemRecycler"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/locationTex" />
-
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/addItemDetailsLt"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:background="@drawable/line_border_black"
-                app:layout_constraintTop_toBottomOf="@id/addItemRecycler">
+                android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etNameItem"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide76"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@null"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:padding="@dimen/_3sdp"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <TextView
+                    android:id="@+id/moneyText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="Money Spend"
                     android:textColor="@color/black"
-                    android:textCursorDrawable="@drawable/custome_curser_style_color"
-                    android:textSize="@dimen/_14ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/view87"
+                    android:textSize="@dimen/_16ssp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:id="@+id/view87"
-                    android:layout_width="2dp"
+                <ImageView
+                    android:id="@+id/etBackTotalMoney"
+                    android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@color/appSilverDarkColor"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/etItemPrice"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:src="@drawable/line_background_border_silver"
+                    app:layout_constraintTop_toTopOf="@id/etTotalMoney"
+                    app:layout_constraintStart_toStartOf="@id/etTotalMoney"
+                    app:layout_constraintEnd_toEndOf="@id/etTotalMoney"
+                    app:layout_constraintBottom_toBottomOf="@id/etTotalMoney"/>
 
-                <EditText
-                    android:id="@+id/etItemPrice"
-                    android:layout_width="@dimen/_60sdp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@null"
+                <TextView
+                    android:id="@+id/etTotalMoney"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:ellipsize="end"
-                    android:inputType="number"
                     android:maxLines="1"
-                    android:padding="@dimen/_3sdp"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp"
                     android:textColor="@color/black"
                     android:textCursorDrawable="@drawable/custome_curser_style_color"
-                    android:textSize="@dimen/_14ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/addNewItem"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/moneyText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guide76"
+                    app:layout_constraintTop_toTopOf="@id/moneyText" />
+
+                <TextView
+                    android:id="@+id/catTex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Category"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/moneyText"/>
 
                 <ImageView
-                    android:id="@+id/addNewItem"
-                    android:layout_width="@dimen/_25sdp"
-                    android:layout_height="@dimen/_25sdp"
-                    android:layout_margin="@dimen/_5sdp"
-                    android:background="@drawable/button_background_green"
-                    android:padding="@dimen/_5sdp"
-                    android:src="@drawable/ic_add_time_zone_icon"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:id="@+id/etBackCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/line_background_border_silver"
+                    app:layout_constraintTop_toTopOf="@id/etCategory"
+                    app:layout_constraintStart_toStartOf="@id/etCategory"
+                    app:layout_constraintEnd_toEndOf="@id/etCategory"
+                    app:layout_constraintBottom_toBottomOf="@id/etCategory"/>
+
+                <EditText
+                    android:id="@+id/etCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:background="@null"
+                    android:textCursorDrawable="@drawable/custome_curser_style_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/catTex"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@id/guide76"
+                    app:layout_constraintTop_toTopOf="@id/catTex" />
+
+                <TextView
+                    android:id="@+id/dateTex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Date of expense"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/catTex" />
+
+                <ImageView
+                    android:id="@+id/etBackCalender"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/line_background_border_silver"
+                    app:layout_constraintTop_toTopOf="@id/etCalender"
+                    app:layout_constraintStart_toStartOf="@id/etCalender"
+                    app:layout_constraintEnd_toEndOf="@id/etCalender"
+                    app:layout_constraintBottom_toBottomOf="@id/etCalender"/>
+
+                <TextView
+                    android:id="@+id/etCalender"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/dateTex"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guide76"
+                    app:layout_constraintTop_toTopOf="@id/dateTex"
+                    app:drawableEndCompat="@drawable/ic_calendar_icon_focused" />
+
+                <TextView
+                    android:id="@+id/locationTex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="Location"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateTex" />
+
+
+                <ImageView
+                    android:id="@+id/etBackLocations"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/line_background_border_silver"
+                    app:layout_constraintTop_toTopOf="@id/etLocations"
+                    app:layout_constraintStart_toStartOf="@id/etLocations"
+                    app:layout_constraintEnd_toEndOf="@id/etLocations"
+                    app:layout_constraintBottom_toBottomOf="@id/etLocations"/>
+
+                <TextView
+                    android:id="@+id/etLocations"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@id/locationTex"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/guide76"
+                    app:layout_constraintTop_toTopOf="@id/locationTex"
+                    app:drawableEndCompat="@drawable/ic_baseline_location_on" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/addItemRecycler"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/locationTex" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addItemDetailsLt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/line_border_black"
+                    app:layout_constraintTop_toBottomOf="@id/addItemRecycler">
+
+                    <EditText
+                        android:id="@+id/etNameItem"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:padding="@dimen/_3sdp"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/custome_curser_style_color"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/view87"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view87"
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@color/appSilverDarkColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/etItemPrice"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/etItemPrice"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:padding="@dimen/_3sdp"
+                        android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/custome_curser_style_color"
+                        android:textSize="@dimen/_14ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/addNewItem"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/addNewItem"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:layout_margin="@dimen/_5sdp"
+                        app:cardBackgroundColor="@color/appMainColor"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:src="@drawable/ic_add_time_zone_icon"/>
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/descriptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Description"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintStart_toStartOf="@id/addItemDetailsLt"
+                    app:layout_constraintTop_toBottomOf="@id/addItemDetailsLt" />
+
+                <EditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/line_border_black"
+                    android:ellipsize="end"
+                    android:padding="@dimen/_8sdp"
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@drawable/custom_edit_text_cut"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintTop_toBottomOf="@id/descriptionText" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@id/etDescription"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/descriptionText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="Description"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                app:layout_constraintStart_toStartOf="@id/addItemDetailsLt"
-                app:layout_constraintTop_toBottomOf="@id/addItemDetailsLt" />
-
-            <EditText
-                android:id="@+id/etDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10sdp"
-                android:background="@drawable/line_border_black"
-                android:ellipsize="end"
-                android:padding="@dimen/_8sdp"
-                android:textColor="@color/black"
-                android:textCursorDrawable="@drawable/custom_edit_text_cut"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintTop_toBottomOf="@id/descriptionText" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottomLayout"
@@ -294,6 +351,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageView
+                android:id="@+id/shareImage"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_gravity="center"

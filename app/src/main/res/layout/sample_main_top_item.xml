@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/appMainColor"
+    android:id="@+id/mainTopCard"
     android:layout_marginStart="@dimen/_3sdp"
     android:layout_marginTop="@dimen/_5sdp"
     android:layout_marginEnd="@dimen/_3sdp"

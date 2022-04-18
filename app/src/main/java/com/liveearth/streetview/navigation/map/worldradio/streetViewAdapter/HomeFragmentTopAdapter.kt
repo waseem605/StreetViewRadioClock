@@ -1,11 +1,13 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -13,6 +15,8 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.Hom
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 
 
 class HomeFragmentTopAdapter(
@@ -38,6 +42,9 @@ class HomeFragmentTopAdapter(
             holder.itemView.setOnClickListener {
                 callBack.onItemClickListener(model)
             }
+
+
+            holder.cardView.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
         } catch (e: Exception) {
         }
     }
@@ -50,6 +57,7 @@ class HomeFragmentTopAdapter(
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView = itemView.findViewById<ImageView>(R.id.mainItemImage)
         var title = itemView.findViewById<TextView>(R.id.mainItemText)
+        var cardView = itemView.findViewById<CardView>(R.id.mainTopCard)
 
     }
 }

@@ -63,14 +63,15 @@ class NearMeLocationsAdapter(
                 callBack.onLocationInfo(model)
             }
 
-
-
             holder.itemFavouriteImg.setOnClickListener {
-               // Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+                Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
                 callBack.addToFavouriteLocation(model)
             }
             holder.itemShareImg.setOnClickListener {
                 callBack.shareLocation(model)
+            }
+            holder.itemView.setOnClickListener {
+                callBack.onClickOfItemLocation(model,position)
             }
 
         } catch (e: Exception) {

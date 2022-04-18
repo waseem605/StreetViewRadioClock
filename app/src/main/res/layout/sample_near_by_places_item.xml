@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_120sdp"
     android:layout_height="wrap_content"
+    android:id="@+id/nearByPlaceBack"
     app:cardBackgroundColor="@color/appSilverColor"
     android:layout_marginStart="@dimen/_3sdp"
     android:layout_marginTop="@dimen/_5sdp"
@@ -81,6 +82,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
+                android:id="@+id/navigateImage"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"

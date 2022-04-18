@@ -10,9 +10,10 @@
         android:id="@+id/toolbar"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/backOne"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/top_background"
+        android:background="@color/appMainColor"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toTopOf="@id/addLayout">
 

@@ -1,11 +1,13 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -32,8 +34,9 @@ class WeatherDetailsAdapter(
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-                    mPreferenceManagerClass = PreferenceManagerClass(context)
+        mPreferenceManagerClass = PreferenceManagerClass(context)
 
+        holder.weatherAllBack.setBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
         val model = modelArrayList[position]
         val weatherTime = StreetViewWeatherHelper.getTimeLongType(model.dt.toLong())
         val delimiter = " "
@@ -72,6 +75,7 @@ class WeatherDetailsAdapter(
         var weatherTime = itemView.findViewById<TextView>(R.id.weatherItemTime)
         var weatherItemTemp = itemView.findViewById<TextView>(R.id.weatherIteTemp)
         var degreeC = itemView.findViewById<TextView>(R.id.degreeC)
+        var weatherAllBack = itemView.findViewById<ConstraintLayout>(R.id.weatherAllBack)
 
     }
 }

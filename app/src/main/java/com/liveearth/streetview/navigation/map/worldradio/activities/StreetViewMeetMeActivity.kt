@@ -18,6 +18,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -34,6 +35,9 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.Consta
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModelFactory
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.IconFactory
@@ -51,7 +55,7 @@ import com.streetview.map.navigation.live.earthmap.utils.StreetViewGeocoderFromA
 import java.text.DecimalFormat
 
 @SuppressLint("LogNotTimber")
-class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
+class StreetViewMeetMeActivity : BaseStreetViewActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityStreetViewMeetMeBinding
     val TAG = "StreetViewMeetMe"
     private var mLatitude: Double = 0.0
@@ -76,6 +80,7 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
     lateinit var animationDownToUp: Animation
     lateinit var animationTopToDown: Animation
     lateinit var animationPointToDown: Animation
+    private lateinit var mFavouriteLocationViewModel: FavouriteLocationViewModel
 
     private lateinit var mPreferenceManagerClass:PreferenceManagerClass
 
@@ -451,16 +456,22 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     private fun showNearLocationsRecycler(nearLocationData: ArrayList<Result>) {
+        val factory =
+            FavouriteLocationViewModelFactory(this@StreetViewMeetMeActivity)
+        mFavouriteLocationViewModel = ViewModelProvider(
+            this@StreetViewMeetMeActivity,
+            factory
+        ).get(FavouriteLocationViewModel::class.java)
         val adapterLocations =
-            MeetMeLocationsAdapter(nearLocationData, this, object : StreetViewNearMeCallBack {
+            MeetMeLocationsAdapter(nearLocationData, this,mFavouriteLocationViewModel, object : StreetViewNearMeCallBack {
                 override fun onLocationInfo(model: Result) {
                     val intent =
                         Intent(this@StreetViewMeetMeActivity, StreetViewRouteActivity::class.java)
-                    /*        intent.putExtra(ConstantsStreetView.OriginLatitude, latitude)
-                            intent.putExtra(ConstantsStreetView.OriginLongitude, longitude)
+                            intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
+                            intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
                             intent.putExtra(ConstantsStreetView.DestinationLatitude, model.geocodes.main.latitude)
                             intent.putExtra(ConstantsStreetView.DestinationLongitude, model.geocodes.main.longitude)
-                            startActivity(intent)*/
+                            startActivity(intent)
                 }
 
                 override fun shareLocation(model: Result) {
@@ -474,7 +485,18 @@ class StreetViewMeetMeActivity : AppCompatActivity(), OnMapReadyCallback {
                 }
 
                 override fun addToFavouriteLocation(model: Result) {
-                    Log.d(TAG, "addToFavouriteLocation: --+-+-+-+-+-")
+                    try {
+
+
+                        val date = LocationHelper.getCurrentDateTime(this@StreetViewMeetMeActivity,2)
+                        val time = LocationHelper.getCurrentDateTime(this@StreetViewMeetMeActivity,3)
+
+                        val FvrtModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,date,time,model.geocodes.main.latitude,model.geocodes.main.longitude)
+                        mFavouriteLocationViewModel.insertFavouriteLocation(FvrtModel)
+                        setToast(this@StreetViewMeetMeActivity,"Saved to Favourite")
+                    } catch (e: Exception) {
+                    }
+
                 }
 
                 override fun onClickOfItemLocation(model: Result, pos: Int) {

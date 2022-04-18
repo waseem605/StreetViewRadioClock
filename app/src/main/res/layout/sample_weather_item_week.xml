@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/_7sdp"
     app:cardCornerRadius="@dimen/_12sdp"
+    android:id="@+id/weatherItemBack"
     app:cardBackgroundColor="@color/appSilverColor"
     app:cardElevation="@dimen/_4sdp"
     xmlns:app="http://schemas.android.com/apk/res-auto">

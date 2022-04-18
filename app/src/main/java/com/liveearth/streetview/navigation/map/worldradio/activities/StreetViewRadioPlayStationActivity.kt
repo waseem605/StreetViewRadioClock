@@ -1,8 +1,11 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import com.example.jean.jcplayer.model.JcAudio
 import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -11,6 +14,7 @@ import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.Ma
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioPlayChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
 
 class StreetViewRadioPlayStationActivity : AppCompatActivity() {
@@ -21,7 +25,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
     private lateinit var countryNameFlage:String
     private lateinit var mRadioChannelName:String
     private var mRadioPosition = 0
-
+    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
     var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
     var mPlaylist: ArrayList<JcAudio> = ArrayList()
 
@@ -30,7 +34,8 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewRadioPlayStationBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         try {
             mCountryNameSelected = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
             countryNameFlage = intent.getStringExtra(ConstantsStreetView.RADIO_FLAGE)!!
@@ -107,6 +112,20 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
         }
         binding.jcPlayerRadio.initPlaylist(mPlaylist)
         binding.jcPlayerRadio.createNotification(R.drawable.icon_radio)
+
+    }
+
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.background.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
 
     }
 }

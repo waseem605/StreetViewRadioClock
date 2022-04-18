@@ -1,8 +1,10 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewFragments
 
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +26,8 @@ class SettingFragment : Fragment() {
     ): View {
         binding = FragmentSettingBinding.inflate(layoutInflater,container,false)
         mPreferenceManagerClass = PreferenceManagerClass(requireContext())
-
+        binding.toolbarLt.backLink.visibility = View.INVISIBLE
+        setThemeColor()
         clickListenerSetting()
         centerClickListener()
 
@@ -44,11 +47,11 @@ class SettingFragment : Fragment() {
         //Distance Unit
         if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)){
             binding.milesTx.typeface = Typeface.DEFAULT_BOLD
-            binding.milesTx.setTextColor(resources.getColor(R.color.appMainColor))
+            binding.milesTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
             binding.switchUnit.isChecked = true
         }else{
             binding.meterTx.typeface = Typeface.DEFAULT_BOLD
-            binding.meterTx.setTextColor(resources.getColor(R.color.appMainColor))
+            binding.meterTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
             binding.switchUnit.isChecked = false
         }
 
@@ -56,13 +59,13 @@ class SettingFragment : Fragment() {
         binding.switchUnit.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 binding.milesTx.typeface = Typeface.DEFAULT_BOLD
-                binding.milesTx.setTextColor(resources.getColor(R.color.appMainColor))
+                binding.milesTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
                 binding.meterTx.typeface = Typeface.DEFAULT
                 binding.meterTx.setTextColor(resources.getColor(R.color.black))
                 mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,true)
             } else {
                 binding.meterTx.typeface = Typeface.DEFAULT_BOLD
-                binding.meterTx.setTextColor(resources.getColor(R.color.appMainColor))
+                binding.meterTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
                 binding.milesTx.typeface = Typeface.DEFAULT
                 binding.milesTx.setTextColor(resources.getColor(R.color.black))
                 mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,false)
@@ -72,11 +75,11 @@ class SettingFragment : Fragment() {
         //Temperature Unit
         if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)){
             binding.fahrenheitTx.typeface = Typeface.DEFAULT_BOLD
-            binding.fahrenheitTx.setTextColor(resources.getColor(R.color.appMainColor))
+            binding.fahrenheitTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
             binding.switchUnitTemp.isChecked = true
         }else{
             binding.celsiusTx.typeface = Typeface.DEFAULT_BOLD
-            binding.celsiusTx.setTextColor(resources.getColor(R.color.appMainColor))
+            binding.celsiusTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
             binding.switchUnitTemp.isChecked = false
         }
 
@@ -84,13 +87,13 @@ class SettingFragment : Fragment() {
         binding.switchUnitTemp.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
                 binding.fahrenheitTx.typeface = Typeface.DEFAULT_BOLD
-                binding.fahrenheitTx.setTextColor(resources.getColor(R.color.appMainColor))
+                binding.fahrenheitTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
                 binding.celsiusTx.typeface = Typeface.DEFAULT
                 binding.celsiusTx.setTextColor(resources.getColor(R.color.black))
                 mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,true)
             } else {
                 binding.celsiusTx.typeface = Typeface.DEFAULT_BOLD
-                binding.celsiusTx.setTextColor(resources.getColor(R.color.appMainColor))
+                binding.celsiusTx.setTextColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
                 binding.fahrenheitTx.typeface = Typeface.DEFAULT
                 binding.fahrenheitTx.setTextColor(resources.getColor(R.color.black))
                 mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
@@ -98,6 +101,22 @@ class SettingFragment : Fragment() {
         }
     }
 
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+
+        binding.settingFragmentBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.buyPremiumCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.temperatureCard.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+        binding.distanceCard.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+        binding.centerCard.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+        binding.imageSwitchBack.setColorFilter(Color.parseColor(backgroundColor))
+        binding.imageSwitchBackUnit.setColorFilter(Color.parseColor(backgroundColor))
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbarLt.titleTx.setTextColor(Color.WHITE)
+       //binding.switchUnitTemp.setBackgroundColor(Color.parseColor(backgroundColor))
+    }
 
 
 }

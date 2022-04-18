@@ -13,7 +13,7 @@
 
     <include
         android:id="@+id/back_speed"
-        layout="@layout/speed_back_layout" />
+        layout="@layout/speed_back_layout_two" />
 
     <TextView
         android:id="@+id/measuringTx"

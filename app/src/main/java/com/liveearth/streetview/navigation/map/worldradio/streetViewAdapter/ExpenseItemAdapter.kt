@@ -1,15 +1,18 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseItemCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 
 
 class ExpenseItemAdapter(
@@ -29,6 +32,7 @@ class ExpenseItemAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
+            holder.expenseItemBack.setBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
             holder.etNameItem.text = model.name
             holder.etItemPrice.text = model.Price.toString()
 
@@ -48,6 +52,7 @@ class ExpenseItemAdapter(
         var removeItem:ImageView = itemView.findViewById<ImageView>(R.id.removeItem)
         var etNameItem:TextView = itemView.findViewById<TextView>(R.id.itemExpenseName)
         var etItemPrice:TextView = itemView.findViewById<TextView>(R.id.itemExpensePrice)
+        var expenseItemBack:ConstraintLayout = itemView.findViewById<ConstraintLayout>(R.id.expenseItemBack)
 
     }
 }

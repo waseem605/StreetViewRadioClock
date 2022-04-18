@@ -3,7 +3,6 @@
 
     <item android:state_checked="true">
         <shape android:shape="rectangle">
-            <solid android:color="@color/appMainDarkColor"/>
             <corners android:radius="100dp"/>
             <stroke android:color="@color/white"
                 android:width="4dp"/>
@@ -13,7 +12,6 @@
 
     <item android:state_checked="false">
         <shape android:shape="rectangle">
-            <solid android:color="@color/appMainDarkColor"/>
             <corners android:radius="100dp"/>
             <stroke android:color="@color/white"
                 android:width="4dp"/>

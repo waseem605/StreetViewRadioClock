@@ -3,8 +3,11 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -53,7 +56,7 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
 
         mPreferenceManagerClass = PreferenceManagerClass(this)
-
+        setThemeColor()
         mLatitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,0.0)
         mLongitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,0.0)
 
@@ -220,6 +223,18 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
             }
         }
     }
-
+    private fun setThemeColor() {
+        val backgroundColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+        binding.backOne.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+    }
 
 }

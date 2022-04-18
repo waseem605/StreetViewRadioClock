@@ -208,6 +208,8 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
 
             override fun onClickOfItemLocation(model: Result, pos: Int) {
 
+                LocationHelper.setZoomMarker(model.geocodes.main.latitude, model.geocodes.main.longitude, mapbox, 18)
+
             }
 
         })

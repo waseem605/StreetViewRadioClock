@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +13,17 @@ import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MeetMeLocationsAdapter(
     private val modelArrayList: ArrayList<Result>,
     private val context: Context,
+    private val mFavouriteLocationViewModel: FavouriteLocationViewModel,
     val callBack: StreetViewNearMeCallBack
 
 ) : RecyclerView.Adapter<MeetMeLocationsAdapter.ListViewHolder>() {
@@ -32,8 +39,21 @@ class MeetMeLocationsAdapter(
         try {
             val model = modelArrayList[position]
 
+            holder.navigateImage.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.nearByPlaceBack.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
+            holder.imageCardItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
             holder.locationName.text = model.name
             holder.mainItemType.text = model.categories[0].name
+
+            GlobalScope.launch(Dispatchers.Main) {
+
+                val it = mFavouriteLocationViewModel.getDataById(model.fsq_id)
+                if (it != null) {
+                    Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+                }else{
+                    Glide.with(context).load(R.drawable.ic_favourite_icon).into(holder.itemFavouriteImg)
+                }
+            }
          /*   if (model.location.address !=null) {
                 holder.locationAddress.text = model.location.address
             }else if(model.location.formatted_address !=null){
@@ -49,7 +69,7 @@ class MeetMeLocationsAdapter(
             }
 
             holder.itemFavouriteImg.setOnClickListener {
-               // Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+                Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
                 callBack.addToFavouriteLocation(model)
             }
             holder.itemShareImg.setOnClickListener {
@@ -71,8 +91,11 @@ class MeetMeLocationsAdapter(
         var locationName: TextView = itemView.findViewById<TextView>(R.id.mainItemName)
         var mainItemType: TextView = itemView.findViewById<TextView>(R.id.mainItemType)
         var itemNavigationBtn: CardView = itemView.findViewById<CardView>(R.id.itemNavigationBtn)
+        var nearByPlaceBack: CardView = itemView.findViewById<CardView>(R.id.nearByPlaceBack)
+        var imageCardItem: CardView = itemView.findViewById<CardView>(R.id.imageCardItem)
         var itemShareImg: ImageView = itemView.findViewById<ImageView>(R.id.itemShareImg)
         var itemFavouriteImg: ImageView = itemView.findViewById<ImageView>(R.id.itemFavouriteImg)
+        var navigateImage: ImageView = itemView.findViewById<ImageView>(R.id.navigateImage)
 
     }
 }

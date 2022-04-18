@@ -43,6 +43,7 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/countryFlagImageCard"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_5sdp"
@@ -50,13 +51,14 @@
             app:cardBackgroundColor="@color/appMainColor"
             app:cardCornerRadius="@dimen/_20sdp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
 
             <ImageView
                 android:id="@+id/countryFlagImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitXY"/>
 
         </androidx.cardview.widget.CardView>
 

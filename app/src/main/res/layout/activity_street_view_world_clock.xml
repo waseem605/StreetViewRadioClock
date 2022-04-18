@@ -12,9 +12,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@drawable/top_background"
         app:layout_constraintTop_toBottomOf="@id/toolbarLt"
         app:layout_constraintBottom_toTopOf="@id/addLayout">
+
+        <ImageView
+            android:id="@+id/backOne"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:src="@drawable/top_background"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
             android:id="@+id/currentDate"

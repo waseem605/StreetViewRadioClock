@@ -1,15 +1,18 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseItemCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 
 
@@ -29,6 +32,7 @@ class ExpenseDetailsAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
+            holder.expenseItemBack.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
             holder.nameExpenseDetailsItem.text = model.name
             holder.priceExpenseDetailsItem.text = model.Price.toString()
 
@@ -44,6 +48,7 @@ class ExpenseDetailsAdapter(
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var nameExpenseDetailsItem:TextView = itemView.findViewById<TextView>(R.id.nameExpenseDetailsItem)
         var priceExpenseDetailsItem:TextView = itemView.findViewById<TextView>(R.id.priceExpenseDetailsItem)
+        var expenseItemBack:CardView = itemView.findViewById<CardView>(R.id.expenseItemBack)
 
     }
 }

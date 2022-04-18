@@ -1,11 +1,10 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewFragments
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ColorThemeCallBackListener
@@ -39,7 +38,10 @@ class ThemeFragment : Fragment() {
 
         mPreferenceManagerClass = PreferenceManagerClass(requireContext())
         themeRecyclerView()
+        setThemeColor()
 
+        binding.toolbarLt.titleTx.text = "Theme"
+        binding.toolbarLt.backLink.visibility = View.INVISIBLE
 
         return binding.root
     }
@@ -65,7 +67,7 @@ class ThemeFragment : Fragment() {
                 ConstantsStreetView.APP_SELECTED_COLOR = colorModel.color
                 ConstantsStreetView.APP_SELECTED_SECOND_COLOR = colorModel.secondColor
                 Log.d(TAG, "onColorClick: ===========++++++++++++++")
-
+                setThemeColor()
                 callBack.onColorClick(colorModel)
 
             }
@@ -83,4 +85,11 @@ class ThemeFragment : Fragment() {
         Log.d(TAG, "main: ==main main main main==============")
     }
 
+    private fun setThemeColor() {
+        val backgroundColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+    }
 }

@@ -128,10 +128,10 @@ class HomeFragment : Fragment() {
 
         mBottomList.add(HomeFragmentModel(R.drawable.icon_meet_me, "Meet Me", 0))
         mBottomList.add(HomeFragmentModel(R.drawable.favorite, "My favourite", 1))
-        mBottomList.add(HomeFragmentModel(R.drawable.location_tracker_icon, "Location Tracker", 2))
+        mBottomList.add(HomeFragmentModel(R.drawable.icon_nearby, "Near By", 2))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_clock, "World Clock", 3))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_radio, "Radio", 4))
-        mBottomList.add(HomeFragmentModel(R.drawable.speedo_meter, "Speedometer", 5))
+        mBottomList.add(HomeFragmentModel(R.drawable.speedometer, "Speedometer", 5))
         mBottomList.add(HomeFragmentModel(R.drawable.car_icon, "Travel Expense", 6))
         mBottomList.add(HomeFragmentModel(R.drawable.cloudy_icon, "Weather", 7))
 
@@ -160,7 +160,7 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             2->{
-                val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
+                val mainIntent = Intent(requireContext(), StreetViewNearByPlacesActivity::class.java)
                 startActivity(mainIntent)
             }
             3->{
@@ -199,105 +199,114 @@ class HomeFragment : Fragment() {
 
 
     private fun currentLocationWeather() {
-        mLocationRepository = LocationRepository(requireContext(), object : MyLocationListener {
-            override fun onLocationChanged(location: Location) {
-                location.let {
-                    mLocationRepository!!.stopLocation()
-                    lat = it.latitude
-                    lon = it.longitude
-                    //homeWeatherDetails(it)
-                    homeWeatherMVVMDetails(it)
+        try {
+            mLocationRepository = LocationRepository(requireContext(), object : MyLocationListener {
+                override fun onLocationChanged(location: Location) {
+                    location.let {
+                        mLocationRepository!!.stopLocation()
+                        lat = it.latitude
+                        lon = it.longitude
+                        //homeWeatherDetails(it)
+                        homeWeatherMVVMDetails(it)
 
-                    LiveEarthAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
-                        LiveEarthAddressFromLatLng.GeoTaskCallback{
-                        override fun onSuccessLocationFetched(fetchedAddress: String?) {
-                            binding.currentAddress.text = fetchedAddress
-                            ConstantsStreetView.CURRENT_ADDRESS = fetchedAddress!!
+                        LiveEarthAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
+                            LiveEarthAddressFromLatLng.GeoTaskCallback{
+                            override fun onSuccessLocationFetched(fetchedAddress: String?) {
+                                binding.currentAddress.text = fetchedAddress
+                                ConstantsStreetView.CURRENT_ADDRESS = fetchedAddress!!
 
-                        }
+                            }
 
-                        override fun onFailedLocationFetched() {
-                        }
-                    }).execute()
+                            override fun onFailedLocationFetched() {
+                            }
+                        }).execute()
 
+                    }
                 }
-            }
 
-        })
+            })
+        } catch (e: Exception) {
+        }
     }
 
     private fun homeWeatherMVVMDetails(location: Location) {
-        val services = RetrofitHelper.getInstance().create(WeatherAPI::class.java)
-        val repositoryWeather = RepositoryWeather(services)
-        viewModel = ViewModelProvider(this, ViewModelFactory(repositoryWeather,location.latitude.toString(),location.longitude.toString())).get(
-            WeatherViewModel::class.java)
+        try {
+            val services = RetrofitHelper.getInstance().create(WeatherAPI::class.java)
+            val repositoryWeather = RepositoryWeather(services)
+            viewModel = ViewModelProvider(this, ViewModelFactory(repositoryWeather,location.latitude.toString(),location.longitude.toString())).get(
+                WeatherViewModel::class.java)
 
-        viewModel.weather.observe(this, Observer {
+            viewModel.weather.observe(this, Observer {
 
-            try {
-                StreetViewWeatherHelper.arrayListWeather = it.list as ArrayList<WeatherList>
-
-                val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
-                if (temperatureUnit){
-                    binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(it.list[0].main.temp).toString()
-                    binding.weatherUnit.text = "F"
-                }else{
-                    binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
-                    binding.weatherUnit.text = "C"
-                }
-                //binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
-                Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString())
                 try {
-                    Glide.with(requireContext())
-                        .load(StreetViewWeatherHelper.getIcon(it.list[0].weather[0].icon))
-                        .into(binding.weatherTodayIcon)
-                }catch (e: Exception) {
-                    println(e)
-                }
-                binding.todayDate.text = StreetViewWeatherHelper.getWeatherDate(it.list[0].dt.toLong(), 1)
-                binding.weatherTodayType.text = it.list[0].weather[0].main.toString()
+                    StreetViewWeatherHelper.arrayListWeather = it.list as ArrayList<WeatherList>
 
-            } catch (e: Exception) {
-            }
-        })
+                    val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
+                    if (temperatureUnit){
+                        binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToForenHeat(it.list[0].main.temp).toString()
+                        binding.weatherUnit.text = "F"
+                    }else{
+                        binding.weatherTemp.text = StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
+                        binding.weatherUnit.text = "C"
+                    }
+                    //binding.weatherTemp.text = ""+StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString()
+                    Log.d("454545454","==========="+ StreetViewWeatherHelper.kalvinToCelsius(it.list[0].main.temp).toString())
+                    try {
+                        Glide.with(requireContext())
+                            .load(StreetViewWeatherHelper.getIcon(it.list[0].weather[0].icon))
+                            .into(binding.weatherTodayIcon)
+                    }catch (e: Exception) {
+                        println(e)
+                    }
+                    binding.todayDate.text = StreetViewWeatherHelper.getWeatherDate(it.list[0].dt.toLong(), 1)
+                    binding.weatherTodayType.text = it.list[0].weather[0].main.toString()
+
+                } catch (e: Exception) {
+                }
+            })
+        } catch (e: Exception) {
+        }
     }
 
     private fun homeWeatherDetails(location: Location) {
-        val weatherToday = WeatherAPIServices(object :StreetViewWeatherCallBack{
-            override fun onSuccess(data: StreetViewWeatherModel) {
-                StreetViewWeatherHelper.arrayListWeather=data.list as ArrayList<WeatherList>
-                setData(data)
-                try {
-                    Glide.with(this@HomeFragment).load(StreetViewWeatherHelper.getIcon(data.list[0].weather[0].icon)).into(binding.weatherTodayIcon)
-                    binding.todayDate.text =  StreetViewWeatherHelper.getWeatherDate(data.list[0].dt.toLong(), 1)
-                    binding.weatherTodayType.text = data.list[0].weather[0].main.toString()
-                } catch (e: Exception) {
-                }
-            }
-
-            override fun onFailure(userError: String) {
-                Log.d("weatherDetails", "onSuccess: ===$userError====onFailure=")
-            }
-
-            override fun onLoading(loading: Boolean) {
-                Log.d("weatherDetails", "onSuccess: =======onLoading=")
-            }
-        })
-
-        if (update<2) {
-            GlobalScope.launch {
-                Dispatchers.IO
-                try {
-                    if (location !=null) {
-                        weatherToday.getDataService(
-                            location.latitude.toString(), location.longitude.toString()
-                        )
+        try {
+            val weatherToday = WeatherAPIServices(object :StreetViewWeatherCallBack{
+                override fun onSuccess(data: StreetViewWeatherModel) {
+                    StreetViewWeatherHelper.arrayListWeather=data.list as ArrayList<WeatherList>
+                    setData(data)
+                    try {
+                        Glide.with(this@HomeFragment).load(StreetViewWeatherHelper.getIcon(data.list[0].weather[0].icon)).into(binding.weatherTodayIcon)
+                        binding.todayDate.text =  StreetViewWeatherHelper.getWeatherDate(data.list[0].dt.toLong(), 1)
+                        binding.weatherTodayType.text = data.list[0].weather[0].main.toString()
+                    } catch (e: Exception) {
                     }
-                } catch (e: Exception) {
-                    Log.d(TAG, "weatherDetails: $e")
                 }
+
+                override fun onFailure(userError: String) {
+                    Log.d("weatherDetails", "onSuccess: ===$userError====onFailure=")
+                }
+
+                override fun onLoading(loading: Boolean) {
+                    Log.d("weatherDetails", "onSuccess: =======onLoading=")
+                }
+            })
+
+            if (update<2) {
+                GlobalScope.launch {
+                    Dispatchers.IO
+                    try {
+                        if (location !=null) {
+                            weatherToday.getDataService(
+                                location.latitude.toString(), location.longitude.toString()
+                            )
+                        }
+                    } catch (e: Exception) {
+                        Log.d(TAG, "weatherDetails: $e")
+                    }
+                }
+                update++
             }
-            update++
+        } catch (e: Exception) {
         }
     }
 

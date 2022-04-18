@@ -39,8 +39,8 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewFirstLookBinding.inflate(layoutInflater)
         setContentView(binding.root)
- mPreferenceManagerClass = PreferenceManagerClass(this)
-
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+        setThemeColor()
         binding.toolbarLt.titleTx.text = "Street View"
         binding.toolbarLt.backLink.setOnClickListener {
             onBackPressed()

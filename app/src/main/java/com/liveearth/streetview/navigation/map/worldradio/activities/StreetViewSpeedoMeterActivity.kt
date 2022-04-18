@@ -1,9 +1,12 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.github.anastr.speedviewlib.ImageSpeedometer
@@ -44,7 +47,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         setContentView(binding.root)
         try {
             mPreferenceManagerClass = PreferenceManagerClass(this)
-
+            setThemeColor()
             Unit_Is_Miles = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)
             if (Unit_Is_Miles){
                 binding.imageSpeedometer.unit = "M/H"
@@ -159,11 +162,10 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         } else {
             binding.switchUnit.isEnabled = true
             flag = true
-            //binding.speedBtn.setBackgroundColor(Color.parseColor(AppConstants.APP_SELECTED_COLOR))
             binding.speedBtn.text = resources.getString(R.string.start)
-
+            locationRepository!!.stopLocation()
             try {
-                locationRepository!!.stopLocation()
+
                 val latLng = LatLng(myLocation!!.latitude, myLocation!!.longitude)
                 LiveEarthAddressFromLatLng(
                     this,
@@ -241,6 +243,25 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         Toast.makeText(this,"Saved record", Toast.LENGTH_SHORT).show()
         imageSpeedometer!!.speedTo((0.0).toFloat())
         */
+    }
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+
+        binding.backSpeed.backLayout.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backSpeed.imageCenter.setColorFilter(Color.parseColor(backgroundColor))
+        binding.backSpeed.imageBottom.setColorFilter(Color.parseColor(backgroundColor))
+        binding.backSpeed.imageTop.setColorFilter(Color.parseColor(backgroundColor))
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.maxSpeed.setTextColor(Color.parseColor(backgroundColor))
+        binding.avgSpeed.setTextColor(Color.parseColor(backgroundColor))
+        binding.minimumSpeed.setTextColor(Color.parseColor(backgroundColor))
     }
 
 }

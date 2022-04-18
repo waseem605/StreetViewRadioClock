@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextClock
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -43,6 +45,8 @@ class FamousStreetViewAdapter(
         try {
             val model = modelArrayList[position]
 
+            holder.cardBackItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
+
             holder.nameItem.text = model.name
            Glide.with(context).load(model.picture).into(holder.ImageItem)
             holder.itemView.setOnClickListener {
@@ -60,6 +64,7 @@ class FamousStreetViewAdapter(
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ImageItem = itemView.findViewById<ImageView>(R.id.streetViewImageFamousItem)
         var nameItem = itemView.findViewById<TextView>(R.id.nameFamousItem)
+        var cardBackItem = itemView.findViewById<CardView>(R.id.cardBackItem)
 
     }
 }

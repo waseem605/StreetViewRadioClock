@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/appSilverColor"
+    android:id="@+id/cardMoreBackground"
     android:layout_margin="@dimen/_5sdp"
     app:cardElevation="@dimen/_4sdp"
     app:cardCornerRadius="@dimen/_10sdp"

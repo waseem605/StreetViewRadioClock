@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/backLayout"
+    android:background="@color/appMainColor"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide66"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.4"
+        android:orientation="horizontal"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide77"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide88"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60"/>
+
+
+    <ImageView
+        android:id="@+id/imageBottom"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:layout_marginStart="-25dp"
+        android:layout_marginEnd="-10dp"
+        android:src="@drawable/speen_curve_two"
+        app:layout_constraintTop_toTopOf="@id/guide66"
+        app:layout_constraintBottom_toBottomOf="@id/guide85"
+        app:tint="@color/appMainColor" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:alpha="0.2"
+        android:layout_marginStart="-25dp"
+        android:layout_marginEnd="-10dp"
+        android:src="@drawable/speen_curve_two"
+        app:layout_constraintTop_toTopOf="@id/guide66"
+        app:layout_constraintBottom_toBottomOf="@id/guide85"
+        app:tint="@color/black" />
+
+
+    <ImageView
+        android:id="@+id/imageCenter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/speen_curve_two"
+        app:layout_constraintTop_toTopOf="@id/guide77"
+        app:layout_constraintBottom_toBottomOf="@id/guide88"
+        app:tint="@color/appMainColor" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:alpha="0.4"
+        android:src="@drawable/speen_curve_two"
+        app:layout_constraintTop_toTopOf="@id/guide77"
+        app:layout_constraintBottom_toBottomOf="@id/guide88"
+        app:tint="@color/black" />
+
+    <ImageView
+        android:id="@+id/imageTop"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@color/appMainColor"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf ="@id/guideCenter" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:alpha="0.4"
+        android:src="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf ="@id/guideCenter" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

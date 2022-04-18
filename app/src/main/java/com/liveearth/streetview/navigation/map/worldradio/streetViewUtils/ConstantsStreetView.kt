@@ -12,8 +12,8 @@ object ConstantsStreetView {
     const val RATE_APP = "rateApp"
     const val APP_COLOR = "appColor"
     const val APP_COLOR_Second = "appColorSecond"
-    var APP_SELECTED_COLOR = "#1E54B4"
-    var APP_SELECTED_SECOND_COLOR = "#1E54B4"
+    var APP_SELECTED_COLOR = "#237157"
+    var APP_SELECTED_SECOND_COLOR = "#CDE6DD"
     const val WHITE_COLOR = "#FFFFFFFF"
 
 
@@ -65,6 +65,7 @@ object ConstantsStreetView {
 
     //Radio Intent
     const val Radio_Country_Name = "RadioCountryName"
+    const val Radio_Country_Code = "RadioCountryCode"
     //Radio intents
     const val RADIO_FLAGE = "RadioFlage"
     const val RADIO_CHANNEL_NAME = "RadioChannelName"

@@ -6,6 +6,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".streetViewFragments.ThemeFragment">
 
+    <include layout="@layout/custom_toolbar"
+        android:id="@+id/toolbarLt"/>
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -15,6 +18,6 @@
         android:layout_margin="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
