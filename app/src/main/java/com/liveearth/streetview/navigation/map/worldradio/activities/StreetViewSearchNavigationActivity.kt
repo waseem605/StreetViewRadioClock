@@ -547,7 +547,6 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
     }
 
-
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR,"#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second," #CDE6DD")

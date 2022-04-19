@@ -1,17 +1,25 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.PopupMenu
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.centurionnavigation.dialogs.ExitDialogueBoxStreetView
+import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
 import com.google.android.material.navigation.NavigationBarView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ColorThemeCallBackListener
@@ -26,7 +34,7 @@ import me.ibrahimsn.lib.OnItemReselectedListener
 import java.io.File
 
 
-class MainActivity : BaseStreetViewActivity(), ColorThemeCallBackListener
+class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
 {
     private lateinit var binding: ActivityMainBinding
     private val TAG = "MainActivity"
@@ -160,6 +168,66 @@ class MainActivity : BaseStreetViewActivity(), ColorThemeCallBackListener
     override fun onResume() {
         super.onResume()
         setThemeColor()
+    }
+
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
+                //mainItemClickListener()
+            }
+        } else {
+            Toast.makeText(this, "permission denied", Toast.LENGTH_LONG).show()
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                startActivity(
+                    Intent(
+                        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                        Uri.fromParts("package", this.packageName, null),
+                    ),
+                )
+            }
+        }
+    }
+
+      fun checkLocationPermission() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                val permissionDialog = LocationRequestDialogueBox(this,object :ExistCallBackListener{
+                    override fun onExistClick() {
+                        requestLocationPermission()
+                    }
+                })
+                permissionDialog.show()
+
+            } else {
+                requestLocationPermission()
+            }
+        }else{
+            //mainItemClickListener()
+        }
+    }
+
+    private fun requestLocationPermission() {
+        ActivityCompat.requestPermissions(this, arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION), 1)
     }
 
 

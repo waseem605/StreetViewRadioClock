@@ -1,10 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.mapbox.mapboxsdk:mapbox-android-core:3.1.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/ae3724c8b31b98a760519667eb38f1c9/transformed/jetified-mapbox-android-core-3.1.1/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/91bac32f7bdd396a881bfb96669c44db/transformed/jetified-mapbox-android-core-3.1.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/91bac32f7bdd396a881bfb96669c44db/transformed/jetified-mapbox-android-core-3.1.1/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/91bac32f7bdd396a881bfb96669c44db/transformed/jetified-mapbox-android-core-3.1.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/91bac32f7bdd396a881bfb96669c44db/transformed/jetified-mapbox-android-core-3.1.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.mapbox.mapboxsdk/mapbox-android-core/3.1.1/712fdc856cc43fb908c7328570d02965b2a57a7c/mapbox-android-core-3.1.1-javadoc.jar!/" />

@@ -85,4 +85,9 @@ class StreetViewTravelExpenseViewActivity : AppCompatActivity() {
         binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
 
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this,MainActivity::class.java)
+        startActivity(intent)
+    }
 }

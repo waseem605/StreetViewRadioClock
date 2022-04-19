@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -32,7 +33,7 @@ class ExpenseItemAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
-            holder.expenseItemBack.setBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
+            holder.expenseItemBack.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
             holder.etNameItem.text = model.name
             holder.etItemPrice.text = model.Price.toString()
 
@@ -52,7 +53,7 @@ class ExpenseItemAdapter(
         var removeItem:ImageView = itemView.findViewById<ImageView>(R.id.removeItem)
         var etNameItem:TextView = itemView.findViewById<TextView>(R.id.itemExpenseName)
         var etItemPrice:TextView = itemView.findViewById<TextView>(R.id.itemExpensePrice)
-        var expenseItemBack:ConstraintLayout = itemView.findViewById<ConstraintLayout>(R.id.expenseItemBack)
+        var expenseItemBack:CardView = itemView.findViewById<CardView>(R.id.expenseItemBack)
 
     }
 }

@@ -53,12 +53,12 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             val factory = ExpenseViewModelFactory(this)
             mExpenseViewModel = ViewModelProvider(this, factory).get(ExpenseViewModel::class.java)
             setThemeColor()
-            if (mID >-1){
+            if (mID >0){
                 showExpenseDetails(mID)
                 "Update".also { binding.addExpense.text = it }
-            }else if(mID == -1){
+            }/*else if(mID == -1){
                 binding.addExpense.text = "Add Expense"
-            }
+            }*/
             else{
                 binding.addExpense.text = "Add Expense"
               //  "Add Expense".also { binding.addExpense.text = it }
@@ -211,10 +211,6 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                 )
                 setToast(this, "Saved Expense")
             } else {
-                for (i in 0 until  mExpenseList.size){
-                    mTotal+=mExpenseList[i].Price
-                }
-
                 mExpenseViewModel.updateExpense(
                     ExpenseModel(
                         mID,
@@ -240,7 +236,14 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             if (!validateItemName() || !validateItemPrice()) {
                 setToast(this@StreetViewTravelExpenseActivity, "Please fill item details")
             } else {
+                if (mID>-1) {
+                    for (i in 0 until mExpenseList.size) {
+                        mTotal += mExpenseList[i].Price
+                    }
+                }
+
                 mTotal += priceItem.toInt()
+
                 binding.etTotalMoney.text = mTotal.toString()
                 mExpenseList.add(ExpenseItemModel(nameItem, priceItem.toInt(), mExpenseList.size))
                 mExpenseAdapter.notifyDataSetChanged()

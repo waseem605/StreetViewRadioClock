@@ -39,7 +39,7 @@ class PremiumFragment : Fragment() {
         Log.d("setThemeColor", "setThemeColor: $backgroundColor")
         binding.removeAdsBtn.setBackgroundColor(Color.parseColor(backgroundColor))
         //binding.contBack.setColorFilter(Color.parseColor(backgroundColor))
-        binding.contBack.setColorFilter( Color.parseColor(backgroundColor) )
+        //binding.continueBtn.setBackgroundColor(Color.parseColor(backgroundColor))
         binding.toolbarLt.backLink.setColorFilter(Color.parseColor(backgroundColor))
 
     }

@@ -56,32 +56,21 @@
             android:backgroundTint="@color/appMainColor"
             app:layout_constraintTop_toBottomOf="@id/text2"/>
 
-        <ImageView
-            android:id="@+id/contBack"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_1sdp"
-            android:src="@drawable/line_border_green_2stroke"
-            app:layout_constraintStart_toStartOf="@id/continueBtn"
-            app:layout_constraintEnd_toEndOf="@id/continueBtn"
-            app:layout_constraintBottom_toBottomOf="@id/continueBtn"
-            app:layout_constraintTop_toTopOf="@id/continueBtn"/>
-
-        <TextView
+<!--
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/continueBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Remove Ads"
-            android:gravity="center"
-            android:padding="@dimen/_8sdp"
+            android:text="Continue with Ads"
             android:textSize="@dimen/_16ssp"
-            android:textColor="@color/appMainColor"
-            android:layout_margin="@dimen/_20sdp"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:textAllCaps="false"
-            app:layout_constraintTop_toBottomOf="@id/removeAdsBtn"/>
-
-
+            android:layout_margin="@dimen/_20sdp"
+            android:padding="@dimen/_8sdp"
+            app:cornerRadius="@dimen/_20sdp"
+            android:backgroundTint="@color/appMainColor"
+            app:layout_constraintTop_toBottomOf="@id/removeAdsBtn"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

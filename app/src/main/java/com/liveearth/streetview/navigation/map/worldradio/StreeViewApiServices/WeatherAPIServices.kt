@@ -14,7 +14,8 @@ import java.util.concurrent.TimeUnit
 
 class WeatherAPIServices(val callBackWeather: StreetViewWeatherCallBack) {
     private val BASE_URL = "https://api.openweathermap.org/"
-    private val appId = "5f3e8f117e64c70e303e1af7d02256e5"
+   // private val appId = "5f3e8f117e64c70e303e1af7d02256e5"
+    private val appId = "a1a7b213f6daca60e02d8b98f5dd32b1"
 
 
 
@@ -63,11 +64,6 @@ class WeatherAPIServices(val callBackWeather: StreetViewWeatherCallBack) {
 
         })
     }
-
-
-    //private val BASE_URL = "https://api.openweathermap.org/"
-   // private val appId = "fef304ef226153ff5a6553f569892a4e"
-
 
     //for MVVM
     fun getInstance(): Retrofit {

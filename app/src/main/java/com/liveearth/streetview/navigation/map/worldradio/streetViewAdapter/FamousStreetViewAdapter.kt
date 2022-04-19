@@ -46,6 +46,7 @@ class FamousStreetViewAdapter(
             val model = modelArrayList[position]
 
             holder.cardBackItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
+            holder.image87.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
 
             holder.nameItem.text = model.name
            Glide.with(context).load(model.picture).into(holder.ImageItem)
@@ -65,6 +66,7 @@ class FamousStreetViewAdapter(
         var ImageItem = itemView.findViewById<ImageView>(R.id.streetViewImageFamousItem)
         var nameItem = itemView.findViewById<TextView>(R.id.nameFamousItem)
         var cardBackItem = itemView.findViewById<CardView>(R.id.cardBackItem)
+        var image87 = itemView.findViewById<ImageView>(R.id.image87)
 
     }
 }

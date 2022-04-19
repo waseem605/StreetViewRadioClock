@@ -15,15 +15,12 @@ import java.util.concurrent.TimeUnit
 class StreetViewLocationAPIServices(val streetViewNearByCallBack: StreetViewNearByCallBack) {
     val TAG = "LocationAPIServices"
     private val BASE_URL = "https://api.foursquare.com/"
-    //private val client_id = "4P0LUACTHVE1KHGX3L5UYNYZ1CZ5XPU1QM0W5WMQ4BUO0WOU"
     private val client_id = "JQBDDFQMSZLM01T4DMB2BXUEPIWQDPAT3RIK1DFF3ZZ3XDAB"
-   // private val client_secret = "ASCOND0QVBRCDKGG3LXS1JEQWDFCUGZX40DUARGJLZVRHMSP"
     private val client_secret = "WVTNEI053XK1TZ5SYNOZ43BII4KZJRFUQKI5ID0KGKKULNPL"
     private val v = "20211231"
     private val redius = "10000"
     private val limit = "50"
     private val Authorization = "fsq3XOG8KKHZjBz8MAxSSYCyBsTWowCODOBWTGunZ4a28Cc="
-    //private val Authorization = "fsq3KSpuRyKKJwy1KNs2YVQUkUq5AzHeM43nwG9X3RC6lPg="
 
 
     fun getDataServiceNearPlaces(ll:String,category:String) {

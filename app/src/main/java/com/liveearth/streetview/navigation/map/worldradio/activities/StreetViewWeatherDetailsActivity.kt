@@ -60,9 +60,9 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
         mLatitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,0.0)
         mLongitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,0.0)
 
-        //mvvmWeatherDetails(mLatitude,mLongitude)
+        mvvmWeatherDetails(mLatitude,mLongitude)
 
-        mainWeatherDetails(mLatitude,mLongitude)
+        //mainWeatherDetails(mLatitude,mLongitude)
 
 
         binding.detailsMore.setOnClickListener {
@@ -83,9 +83,9 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
             startActivityForResult(intent, 1)
         }
 
-        binding.toolbar.titleTx.text = "Weather"
+        binding.titleTx.text = "Weather"
 
-        binding.toolbar.backLink.setOnClickListener {
+        binding.backLink.setOnClickListener {
             onBackPressed()
         }
     }
@@ -234,7 +234,6 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
         binding.backOne.setBackgroundColor(Color.parseColor(backgroundColor))
-        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
     }
 
 }

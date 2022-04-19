@@ -208,6 +208,7 @@ class HomeFragment : Fragment() {
                         lon = it.longitude
                         //homeWeatherDetails(it)
                         homeWeatherMVVMDetails(it)
+/*
 
                         LiveEarthAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
                             LiveEarthAddressFromLatLng.GeoTaskCallback{
@@ -220,6 +221,7 @@ class HomeFragment : Fragment() {
                             override fun onFailedLocationFetched() {
                             }
                         }).execute()
+*/
 
                     }
                 }
@@ -323,10 +325,10 @@ class HomeFragment : Fragment() {
     }
 
 
-    fun checkLocationPermission() {
+    private fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
+          /*  if (ActivityCompat.shouldShowRequestPermissionRationale(
                     requireActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
@@ -341,8 +343,9 @@ class HomeFragment : Fragment() {
             } else {
 
                 requestLocationPermission()
-            }
+            }*/
 
+            requestLocationPermission()
         }else{
             currentLocationWeather()
             //mainItemClickListener()
@@ -365,6 +368,7 @@ class HomeFragment : Fragment() {
                 //mainItemClickListener()
             }
         } else {
+           // requestLocationPermission()
             Toast.makeText(requireContext(), "permission denied", Toast.LENGTH_LONG).show()
             if (! ActivityCompat.shouldShowRequestPermissionRationale(
                     requireActivity(),
@@ -392,6 +396,8 @@ class HomeFragment : Fragment() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
         Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        ConstantsStreetView.APP_SELECTED_SECOND_COLOR = backgroundSecondColor
+        ConstantsStreetView.APP_SELECTED_COLOR = backgroundColor
      /*   val window: Window = requireActivity().window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)

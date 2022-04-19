@@ -270,5 +270,7 @@ class StreetViewMainActivity : AppCompatActivity() {
            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
            window.statusBarColor = Color.parseColor(backgroundColor)
         binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.navigateCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.shareLocationCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
     }
 }

@@ -16,6 +16,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.centurionnavigation.dialogs.EnableInternetConnectionRequestDialogueBox
 import com.example.centurionnavigation.dialogs.LocationEnableRequestDialogueBox
 import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -33,12 +34,37 @@ open class BaseStreetViewActivity : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        if (checkLiveEarthInternet(this)==false) {
+            val dialogueBox = EnableInternetConnectionRequestDialogueBox(this)
+            dialogueBox.show()
+        }
+
         if (checkStreetViewLocation(this)==false) {
             val dialogueBox = LocationEnableRequestDialogueBox(this)
             dialogueBox.show()
         }
 
     }
+
+    private fun checkLiveEarthInternet(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val network = connectivityManager.activeNetwork ?: return false
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+        } else {
+            // if the android version is below M
+            @Suppress("DEPRECATION") val networkInfo =
+                connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
+
 
     fun setToast(context: Context,message:String){
         Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
@@ -70,12 +96,13 @@ open class BaseStreetViewActivity : AppCompatActivity() {
             val dialogueBox = LocationEnableRequestDialogueBox(this)
             dialogueBox.show()
         }
-        checkLocationPermission()
+        //checkLocationPermission()
        // if (checkLocationPermission()){
 
        // }
     }
 
+/*
     fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
@@ -140,6 +167,7 @@ open class BaseStreetViewActivity : AppCompatActivity() {
     }
 
 
+*/
 
 
     fun showProgressDialog(mContext: Context){

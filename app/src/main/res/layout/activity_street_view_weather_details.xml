@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activities.StreetViewWeatherDetailsActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/custom_toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/backOne"
@@ -16,7 +13,41 @@
         android:layout_height="0dp"
         android:background="@color/appMainColor"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/toolbarLt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/backLink"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/back_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/titleTx"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center"
+                android:text="@string/live_earth_map"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/backLink"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/searchLocationLayout"
@@ -24,7 +55,7 @@
             android:layout_height="@dimen/_30sdp"
             android:layout_margin="@dimen/_25sdp"
             android:background="@drawable/line_border_silver"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/toolbarLt">
 
             <TextView
                 android:id="@+id/searchLocationEt"
@@ -199,10 +230,28 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:src="@drawable/clouds_back_two"
+            android:alpha="0.2"
+            android:scaleType="fitXY"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/guide87"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guide87"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintGuide_percent="0.65"
+            android:orientation="horizontal"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottomLt"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_25sdp"
             android:background="@drawable/bottom_bar_background"
             android:backgroundTint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -56,10 +56,10 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                 binding.avgSpeedUnit.text = "M/H"
                 binding.switchUnit.isChecked = true
             }else{
-                binding.imageSpeedometer.unit = "KP/H"
-                binding.maxSpeedUnit.text = "KP/H"
-                binding.minSpeedUnit.text = "KP/H"
-                binding.avgSpeedUnit.text = "KP/H"
+                binding.imageSpeedometer.unit = "Km/H"
+                binding.maxSpeedUnit.text = "Km/H"
+                binding.minSpeedUnit.text = "Km/H"
+                binding.avgSpeedUnit.text = "Km/H"
                 binding.switchUnit.isChecked = false
             }
 
@@ -83,10 +83,10 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                     mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,true)
                     // binding.switchUnit.isChecked = true
                 }else{
-                    binding.imageSpeedometer.unit = "KP/H"
-                    binding.maxSpeedUnit.text = "KP/H"
-                    binding.minSpeedUnit.text = "KP/H"
-                    binding.avgSpeedUnit.text = "KP/H"
+                    binding.imageSpeedometer.unit = "Km/H"
+                    binding.maxSpeedUnit.text = "Km/H"
+                    binding.minSpeedUnit.text = "Km/H"
+                    binding.avgSpeedUnit.text = "Km/H"
                     Unit_Is_Miles = false
                     mPreferenceManagerClass.putBoolean(ConstantsStreetView.Unit_Is_Miles,false)
                     //binding.switchUnit.isChecked = false
@@ -112,7 +112,6 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                         Log.d("myLocation", "onCreate:location $myLocation")
                         if (myLocation != null) {
                             binding.speedBtn.text = resources.getString(R.string.stop_text)
-                            //binding.speedBtn.setBackgroundColor(Color.parseColor("#F44336"))
                             mSpeedStart = myLocation!!.speed
                             imageSpeedometer!!.speedTo((mSpeedStart * 3.6).toFloat())
 
@@ -122,7 +121,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                                        imageSpeedometer!!.speedTo((mSpeedStart*2.23694).toFloat())
                                        mSpeedStart = (mSpeedStart*2.23694).toFloat()
                                    }else{
-                                       mSpeedUnit="KP/H"
+                                       mSpeedUnit="Km/H"
                                        imageSpeedometer!!.speedTo((mSpeedStart*3.6).toFloat())
                                        mSpeedStart = (mSpeedStart*3.6).toFloat()
                                    }
@@ -135,24 +134,6 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                             if (mSpeedStart<mMinSpeed){
                                 mMinSpeed = mSpeedStart
                             }
-                            val latLng = LatLng(myLocation!!.latitude, myLocation!!.longitude)
-                            LiveEarthAddressFromLatLng(
-                                this@StreetViewSpeedoMeterActivity,
-                                latLng,
-                                object : LiveEarthAddressFromLatLng.GeoTaskCallback {
-                                    override fun onSuccessLocationFetched(fetchedAddress: String?) {
-                                        startLocation = fetchedAddress!!
-                                    }
-
-                                    override fun onFailedLocationFetched() {
-                                    }
-                                }).execute()
-                            mStartLatLong =
-                                "${myLocation!!.latitude},${myLocation!!.longitude}"
-                            Log.d(
-                                "myLocation",
-                                "onCreate:speed =end===$mSpeedStart========${startLocation}=============="
-                            )
                         }
                     }
                 })
@@ -166,43 +147,20 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
             locationRepository!!.stopLocation()
             try {
 
-                val latLng = LatLng(myLocation!!.latitude, myLocation!!.longitude)
-                LiveEarthAddressFromLatLng(
-                    this,
-                    latLng,
-                    object : LiveEarthAddressFromLatLng.GeoTaskCallback {
-                        override fun onSuccessLocationFetched(fetchedAddress: String?) {
-                            stopLocation = fetchedAddress!!
-                        }
-
-                        override fun onFailedLocationFetched() {
-                        }
-                    }).execute()
-
                 mSpeedEnd = myLocation!!.speed
-
                 if (Unit_Is_Miles){
                     mSpeedUnit = "MP/H"
                     imageSpeedometer!!.speedTo((mSpeedStart*2.23694).toFloat())
                     mSpeedStart = (mSpeedStart*2.23694).toFloat()
                 }else{
-                    mSpeedUnit="KP/H"
+                    mSpeedUnit="Km/H"
                     imageSpeedometer!!.speedTo((mSpeedStart*3.6).toFloat())
                     mSpeedStart = (mSpeedStart*3.6).toFloat()
                 }
-
-                /*      if (binding.kiloMeterBtn.isChecked){
-                          imageSpeedometer!!.speedTo((mSpeedEnd*3.6).toFloat())
-                          mSpeedEnd = (mSpeedEnd*3.6).toFloat()
-                      }else{
-                          imageSpeedometer!!.speedTo((mSpeedEnd*2.23694).toFloat())
-                          mSpeedEnd = (mSpeedEnd*2.23694).toFloat()
-                      }*/
                 Log.d(
                     "myLocation",
                     "onCreate:speed =end===$mSpeedEnd========${stopLocation}=============="
                 )
-
                 mAverageSpeed = (mMinSpeed + mMaxSpeed)/2
 
                 if (Unit_Is_Miles){
@@ -214,7 +172,8 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                     mMinSpeed = (mMinSpeed*3.6).toFloat()
                     mMaxSpeed = (mMaxSpeed*3.6).toFloat()
                 }
-
+                binding.imageSpeedometer.withTremble = false
+                //imageSpeedometer!!.stop()
                 binding.avgSpeed.text = DecimalFormat("#.#").format(mAverageSpeed)
                 binding.minimumSpeed.text = DecimalFormat("#.#").format(mMinSpeed)
                 binding.maxSpeed.text = DecimalFormat("#.#").format(mMaxSpeed)
@@ -243,6 +202,40 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         Toast.makeText(this,"Saved record", Toast.LENGTH_SHORT).show()
         imageSpeedometer!!.speedTo((0.0).toFloat())
         */
+
+
+/*
+        val latLng = LatLng(myLocation!!.latitude, myLocation!!.longitude)
+        LiveEarthAddressFromLatLng(
+            this@StreetViewSpeedoMeterActivity,
+            latLng,
+            object : LiveEarthAddressFromLatLng.GeoTaskCallback {
+                override fun onSuccessLocationFetched(fetchedAddress: String?) {
+                    startLocation = fetchedAddress!!
+                }
+
+                override fun onFailedLocationFetched() {
+                }
+            }).execute()
+        mStartLatLong =
+            "${myLocation!!.latitude},${myLocation!!.longitude}"
+        Log.d(
+            "myLocation",
+            "onCreate:speed =end===$mSpeedStart========${startLocation}=============="
+        )*/
+
+   /*     val latLng = LatLng(myLocation!!.latitude, myLocation!!.longitude)
+        LiveEarthAddressFromLatLng(
+            this,
+            latLng,
+            object : LiveEarthAddressFromLatLng.GeoTaskCallback {
+                override fun onSuccessLocationFetched(fetchedAddress: String?) {
+                    stopLocation = fetchedAddress!!
+                }
+
+                override fun onFailedLocationFetched() {
+                }
+            }).execute()*/
     }
 
     private fun setThemeColor() {
@@ -263,5 +256,9 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         binding.avgSpeed.setTextColor(Color.parseColor(backgroundColor))
         binding.minimumSpeed.setTextColor(Color.parseColor(backgroundColor))
     }
+
+
+
+
 
 }

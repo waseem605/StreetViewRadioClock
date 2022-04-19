@@ -33,7 +33,7 @@ class ExpenseSavedAdapter(
         try {
             val model = modelArrayList[position]
 
-            holder.cardBackSavedExpense.setBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
+            holder.cardBackSavedExpense.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
 
             holder.categoryExpenseItem.text = model.category
             holder.dateExpenseItem.text = model.date

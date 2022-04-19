@@ -4,9 +4,9 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a44924759e76e8ba848fa9f18ddf400c/transformed/jetified-worldwind-0.8.0/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a44924759e76e8ba848fa9f18ddf400c/transformed/jetified-worldwind-0.8.0/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a44924759e76e8ba848fa9f18ddf400c/transformed/jetified-worldwind-0.8.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a44924759e76e8ba848fa9f18ddf400c/transformed/jetified-worldwind-0.8.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a44924759e76e8ba848fa9f18ddf400c/transformed/jetified-worldwind-0.8.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/gov.nasa.worldwind.android/worldwind/0.8.0/ff84f3aa79297ba4a32b13a3f14a787fe56e2d40/worldwind-0.8.0-javadoc.jar!/" />

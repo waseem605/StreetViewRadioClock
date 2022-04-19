@@ -8,6 +8,23 @@
     android:id="@+id/homeFragmentBack"
     tools:context=".streetViewFragments.HomeFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/clouds_back_two"
+        android:alpha="0.12"
+        android:scaleType="fitXY"
+        android:layout_marginTop="-35dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guide87"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guide87"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.65"
+        android:orientation="horizontal"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"

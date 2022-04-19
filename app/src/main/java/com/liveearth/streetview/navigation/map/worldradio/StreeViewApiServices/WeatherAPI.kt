@@ -23,7 +23,7 @@ interface WeatherAPI {
     suspend fun getWeatherDetailsMVVM(
         @Query("lat")ll: String,
         @Query("lon")long: String,
-        @Query("appid")appid: String): Response<StreetViewWeatherModel>
+        @Query("appid")appid: String): Call<StreetViewWeatherModel>
 
 
     /*   @GET("v2/venues/search?client_id=3VVMLJA0O4TSYWRU2JLSTHXC03LBKM0AUMZQRLWWW11ANSCL&client_secret=EXCT51N1YTRDUILYUIUAXH00YKAIZHXZIEFNZ1FE3HD1XHC4&v=20201114&radius=20000&limit=50&ll=33.52223922,73.1538862")

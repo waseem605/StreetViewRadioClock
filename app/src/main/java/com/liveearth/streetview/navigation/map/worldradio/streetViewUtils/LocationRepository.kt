@@ -23,7 +23,7 @@ class LocationRepository(context: Context, myListener: MyLocationListener) {
     val locationRequest: LocationRequest = LocationRequest.create().apply {
         interval = 1000
         fastestInterval = 1000
-        numUpdates = 2
+        //numUpdates = 2
        /* numUpdates = 100
         setNumUpdates(100)*/
         priority = LocationRequest.PRIORITY_HIGH_ACCURACY
