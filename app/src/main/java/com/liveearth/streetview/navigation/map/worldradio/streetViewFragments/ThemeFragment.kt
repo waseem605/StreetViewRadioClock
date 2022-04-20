@@ -80,7 +80,6 @@ class ThemeFragment : Fragment() {
         arrayList.add(ColorModel("#DB622D","#EBD3C8"))
         arrayList.add(ColorModel("#B96708","#ECDDCB"))
         arrayList.add(ColorModel("#0AC473","#B2DBC9"))
-        arrayList.add(ColorModel("#FCBA03","#EAD69F"))
         arrayList.add(ColorModel("#2C2B2B","#A7A5A5"))
 
 

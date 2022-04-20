@@ -10,12 +10,12 @@ import com.example.jean.jcplayer.model.JcAudio
 import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioPlayStationBinding
-import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioPlayChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 
 class StreetViewRadioPlayStationActivity : AppCompatActivity() {
     private lateinit var binding:ActivityStreetViewRadioPlayStationBinding
@@ -26,7 +26,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
     private lateinit var mRadioChannelName:String
     private var mRadioPosition = 0
     private lateinit var mPreferenceManagerClass:PreferenceManagerClass
-    var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
+    var mCountriesRadioChannelList = ArrayList<CountryMainFMModel>()
     var mPlaylist: ArrayList<JcAudio> = ArrayList()
 
 
@@ -60,7 +60,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
 
     }
 
-    private fun showRadioItemRecycler(mCountriesRadioChannelList: ArrayList<MainOneCountryFMModel>, mRadioPosition: Int) {
+    private fun showRadioItemRecycler(mCountriesRadioChannelList: ArrayList<CountryMainFMModel>, mRadioPosition: Int) {
 
         mCountriesRadioChannelList.let {
             val mRadioPlayAdapter = RadioPlayChannelsAdapter(it,this,object :ChanelPositionCallBack{

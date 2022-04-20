@@ -180,6 +180,10 @@ class StreetViewMainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.onLiveEarthCard.setOnClickListener {
+            navigateToLiveEarth(mGeneralStreetViewList[posIntent].lat.toDouble(), mGeneralStreetViewList[posIntent].long.toDouble())
+        }
+
 
 
     }
@@ -190,6 +194,7 @@ class StreetViewMainActivity : AppCompatActivity() {
                 location.let {
                     mLatitude = it.latitude
                     mLongitude = it.longitude
+                    mLocationRepository.stopLocation()
                 }
             }
 
@@ -240,6 +245,7 @@ class StreetViewMainActivity : AppCompatActivity() {
 
         mAdapter = StreetViewMainAdapter(mGeneralStreetViewList,this,object :
             MainStreetViewCallBackListener {
+
             override fun onClickShareCategory(model: StreetViewModel) {
                 LocationHelper.shareLocation(this@StreetViewMainActivity,model.lat.toDouble(),model.long.toDouble())
             }
@@ -254,11 +260,22 @@ class StreetViewMainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
+            override fun onClickNavigateLiveEarth(model: StreetViewModel) {
+                navigateToLiveEarth(model.lat.toDouble(),model.long.toDouble())
+            }
+
         })
 
         binding.streetViewViewPager.adapter = mAdapter
         binding.streetViewViewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
 
+    }
+
+    private fun navigateToLiveEarth(lat:Double, long:Double){
+        val intent = Intent(this@StreetViewMainActivity, StreetViewLiveEarthActivity::class.java)
+        intent.putExtra(ConstantsStreetView.OriginLatitude, lat)
+        intent.putExtra(ConstantsStreetView.OriginLongitude, long)
+        startActivity(intent)
     }
 
     private fun setThemeColor() {
@@ -272,5 +289,7 @@ class StreetViewMainActivity : AppCompatActivity() {
         binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
         binding.navigateCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
         binding.shareLocationCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.onLiveEarthCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+
     }
 }

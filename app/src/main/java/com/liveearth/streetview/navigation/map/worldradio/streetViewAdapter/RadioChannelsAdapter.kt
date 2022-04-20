@@ -12,13 +12,13 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
-import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 
 
 class RadioChannelsAdapter(
-    private val modelArrayList: ArrayList<MainOneCountryFMModel>,
+    private val modelArrayListMain: ArrayList<CountryMainFMModel>,
     private val mContext: Context,
     val callBack: ChanelPositionCallBack
 
@@ -32,7 +32,7 @@ class RadioChannelsAdapter(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
-            val model = modelArrayList[position]
+            val model = modelArrayListMain[position]
 
             holder.cardBackItemRadio.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
             holder.gradientImgBack.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
@@ -53,7 +53,7 @@ class RadioChannelsAdapter(
 
 
     override fun getItemCount(): Int {
-          return modelArrayList.size
+          return modelArrayListMain.size
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

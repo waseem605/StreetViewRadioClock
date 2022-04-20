@@ -36,14 +36,14 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
 //    private var longitude: Double = 67.073477
     private var latitudeTem: Double = 25.1124317
     private var longitudeTrm: Double = 55.138978
-    private var latitude: Double = 25.1124317
-    private var longitude: Double = 55.138978
+    private var latitude: Double = 51.50078
+    private var longitude: Double = -0.1245122
     private lateinit var mapView: MapView
     private lateinit var mBuildingPlugin: BuildingPlugin
     lateinit var mapbox: MapboxMap
     private var myStyle: Style? = null
     private var locationMarker: Marker? = null
-    var zoom: Int = 12
+    var zoom: Int = 16
     var flagMap: Boolean = true
     private lateinit var myRepository: LocationRepository
     var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
@@ -59,6 +59,15 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         mapView = findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
         mPreferenceManagerClass = PreferenceManagerClass(this)
+
+        try {
+            latitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,latitude)
+            longitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,longitude)
+
+            Log.d(TAG,"------------"+latitude+"=="+longitude)
+
+        } catch (e: Exception) {
+        }
 
         setThemeColor()
         mapViewResult()
@@ -133,7 +142,6 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         binding.toolbarLt.backLink.setOnClickListener {
             onBackPressed()
         }
-
     }
 
     private fun mapViewResult() {
@@ -150,8 +158,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         }
 //        mapboxMap.uiSettings.logoGravity = Gravity.TOP
 //        mapboxMap.uiSettings.attributionGravity = Gravity.TOP
-
-        LocationHelper.setZoomMarker(latitude, longitude, mapboxMap, 12)
+        //LocationHelper.setZoomMarker(latitude, longitude, mapboxMap, 12)
 
         setLocationMarker(LatLng(latitude, longitude), mapboxMap)
         mapOptionsListener()
@@ -169,13 +176,6 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                         if (locationMarker != null) {
                             locationMarker!!.remove()
                         }
-                        /*
-                        locationMarker = mapbox.addMarker(
-                            MarkerOptions().position(LatLng(latitude, longitude)).icon(
-                                IconFactory.getInstance(this@StreetViewLiveEarthActivity)
-                                    .fromResource(R.drawable.marker_green_new)
-                            )
-                        )*/
                         locationMarker = mapbox.addMarker(
                             MarkerOptions().position(LatLng(latitude, longitude)))
                         val latLng = LatLng(location.latitude, location.longitude)

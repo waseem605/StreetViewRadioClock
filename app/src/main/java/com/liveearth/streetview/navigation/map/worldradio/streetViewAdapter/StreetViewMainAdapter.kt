@@ -3,6 +3,7 @@ package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,10 +42,6 @@ class StreetViewMainAdapter(
         try {
             val model = modelArrayList[position]
 
-            holder.image87.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
-            holder.navigateCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
-            holder.shareLocationCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
-
             holder.categoryNameItem.text = model.name
             holder.categoryDescItem.text = model.description
             Glide.with(context).load(model.link).diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -79,6 +76,14 @@ class StreetViewMainAdapter(
               holder.shareLocationCard.setOnClickListener {
                   callBack.onClickShareCategory(model)
               }
+              holder.onLiveEarthCard.setOnClickListener {
+                  callBack.onClickNavigateLiveEarth(model)
+              }
+
+            holder.navigateCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.shareLocationCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.onLiveEarthCard.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+
         } catch (e: Exception) {
         }
     }
@@ -90,12 +95,13 @@ class StreetViewMainAdapter(
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var categoryImageItem = itemView.findViewById<ImageView>(R.id.streetViewImageItem)
-        var image87 = itemView.findViewById<ImageView>(R.id.image87)
+        //var image87 = itemView.findViewById<ImageView>(R.id.image87)
         var categoryNameItem = itemView.findViewById<TextView>(R.id.streetViewNameItem)
         var categoryDescItem = itemView.findViewById<TextView>(R.id.streetViewDescriptionItem)
         var progress_bar = itemView.findViewById<ProgressBar>(R.id.progress_bar)
         var navigateCard = itemView.findViewById<CardView>(R.id.navigateCard)
         var shareLocationCard = itemView.findViewById<CardView>(R.id.shareLocationCard)
+        var onLiveEarthCard = itemView.findViewById<CardView>(R.id.onLiveEarthCard)
 
     }
 }

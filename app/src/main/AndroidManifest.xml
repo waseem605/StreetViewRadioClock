@@ -109,15 +109,15 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".globe.AbstractMainLiveEarthMapFmActivity"
+            android:name=".StreetViewGlobe.StreetViewAbstractMainRadioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".globe.GeneralGlobeLiveEarthMapFmActivity"
+            android:name=".StreetViewGlobe.StreetViewGeneralGlobeRadioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".globe.BasicGlobeLiveEarthMapFmActivity"
+            android:name=".StreetViewGlobe.StreetViewBasicGlobeRadioActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

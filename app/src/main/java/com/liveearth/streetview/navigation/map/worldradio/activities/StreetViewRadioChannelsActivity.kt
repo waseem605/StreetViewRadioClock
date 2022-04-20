@@ -12,14 +12,14 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
-import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.FmLiveEarthMapFmInterface
-import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
-import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.RetrofitFMLiveEarthMapFm
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewFmInterface
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewRetrofitFM
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +30,7 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     val TAG = "RadioChannels"
     lateinit var countryName: String
     lateinit var countryCode: String
-    var mCountriesRadioChannelList = ArrayList<MainOneCountryFMModel>()
+    var mCountriesRadioChannelList = ArrayList<CountryMainFMModel>()
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
 
@@ -59,11 +59,11 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     }
 
     private fun getAllCountryFMListFromApi(mCountryName: String) {
-        val retrofitFM = RetrofitFMLiveEarthMapFm.getRetrofitFM(this)
-        val apiInterface = retrofitFM.create(FmLiveEarthMapFmInterface::class.java)
+        val retrofitFM = StreetViewRetrofitFM.getRetrofitFM(this)
+        val apiInterface = retrofitFM.create(StreetViewFmInterface::class.java)
         val callToApi = apiInterface.getOneCountryFM(mCountryName)
-        callToApi.enqueue(object : Callback<List<MainOneCountryFMModel>> {
-            override fun onFailure(call: Call<List<MainOneCountryFMModel>>, t: Throwable) {
+        callToApi.enqueue(object : Callback<List<CountryMainFMModel>> {
+            override fun onFailure(call: Call<List<CountryMainFMModel>>, t: Throwable) {
                 Toast.makeText(
                     this@StreetViewRadioChannelsActivity,
                     "Cannot get now.\nPlease Try again later.",
@@ -72,8 +72,8 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
             }
 
             override fun onResponse(
-                call: Call<List<MainOneCountryFMModel>>,
-                response: Response<List<MainOneCountryFMModel>>
+                call: Call<List<CountryMainFMModel>>,
+                response: Response<List<CountryMainFMModel>>
             ) {
                 if (response.isSuccessful) {
                     try {
@@ -102,11 +102,11 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
         })
     }
 
-    private fun showChannelListOfCountry(oneCountriesFM: ArrayList<MainOneCountryFMModel>) {
+    private fun showChannelListOfCountry(oneCountriesMainFM: ArrayList<CountryMainFMModel>) {
 
         Log.d(TAG, "showChannelListOfCountry: ========" + mCountriesRadioChannelList.size)
         val radioAdapter =
-            RadioChannelsAdapter(oneCountriesFM, this, object : ChanelPositionCallBack {
+            RadioChannelsAdapter(oneCountriesMainFM, this, object : ChanelPositionCallBack {
                 override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
                     val radioIntent = Intent(this@StreetViewRadioChannelsActivity,StreetViewRadioPlayStationActivity::class.java)
                     radioIntent.putExtra(ConstantsStreetView.RADIO_FLAGE,flage)

@@ -6,16 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.R
-import com.liveearth.streetview.navigation.map.worldradio.globe.fm_api_source.MainOneCountryFMModel
-import com.liveearthmap2021.fmnavigation.routefinder.my_interfaces.ChanelPositionCallBack
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 
 
 class RadioPlayChannelsAdapter(
-    private val modelArrayList: ArrayList<MainOneCountryFMModel>,
+    private val modelArrayListMain: ArrayList<CountryMainFMModel>,
     private val mContext: Context,
     val callBack: ChanelPositionCallBack
 
@@ -29,7 +28,7 @@ class RadioPlayChannelsAdapter(
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
-            val model = modelArrayList[position]
+            val model = modelArrayListMain[position]
             holder.channelNamePlay.text = model.name
             if (model.favicon == "") {
                 Glide.with(mContext).load(R.drawable.icon_radio).into(holder.channelItemImagePlay)
@@ -47,7 +46,7 @@ class RadioPlayChannelsAdapter(
 
 
     override fun getItemCount(): Int {
-          return modelArrayList.size
+          return modelArrayListMain.size
     }
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

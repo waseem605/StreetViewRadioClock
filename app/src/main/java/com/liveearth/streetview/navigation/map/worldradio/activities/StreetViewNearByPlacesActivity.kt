@@ -59,7 +59,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     private var nearLocationMarker: Marker? = null
     private var mOrigin: Point? = null
     private var mDestination: Point? = null
-    var zoom: Int = 16
+    var zoom: Int = 12
     var flagMap: Boolean = true
     lateinit var animationDownToUp: Animation
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
@@ -84,18 +84,9 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
         animationDownToUp = AnimationUtils.loadAnimation(this, R.anim.slide_point_up)
 
 
-        binding.searchCurrentLocation.setOnClickListener {
-            val placeOptions =
-                PlaceOptions.builder().backgroundColor(resources.getColor(R.color.white))
-                    .build(PlaceOptions.MODE_FULLSCREEN)
-            val intent = PlaceAutocomplete.IntentBuilder()
-                .placeOptions(placeOptions)
-                .accessToken(ConstantsStreetView.accessToken)
-                .build(this)
-            startActivityForResult(intent, 1)
-        }
         binding.bottomLayout.setOnClickListener {  }
-        binding.backLink.setOnClickListener {
+        binding.toolbarLt.titleTx.text = "Near By"
+        binding.toolbarLt.backLink.setOnClickListener {
             onBackPressed()
         }
 
@@ -246,7 +237,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                         mLocationMarker = mapbox.addMarker(
                             MarkerOptions().position(LatLng(it.latitude, it.longitude))
                         )
-                        val latLng = LatLng(it.latitude, it.longitude)
+/*                        val latLng = LatLng(it.latitude, it.longitude)
                         LiveEarthAddressFromLatLng(this@StreetViewNearByPlacesActivity,
                             latLng,
                             object : LiveEarthAddressFromLatLng.GeoTaskCallback {
@@ -256,7 +247,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
 
                                 override fun onFailedLocationFetched() {
                                 }
-                            }).execute()
+                            }).execute()*/
                         myRepository.stopLocation()
                     }
                 }
@@ -298,7 +289,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     }
 
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+/*    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             1 -> {
@@ -318,7 +309,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                 }
             }
         }
-    }
+    }*/
 
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
@@ -328,7 +319,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
-        binding.backOne.setColorFilter(Color.parseColor(backgroundColor))
+        binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
         //binding.backTwo.setColorFilter(Color.parseColor(backgroundColor))
     }
 

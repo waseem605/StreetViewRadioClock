@@ -20,10 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
-import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
 import com.example.dummy.apiServices.WeatherAPI
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import com.example.dummy.apiServices.WeatherAPIServices
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewWeatherCallBack
@@ -31,23 +28,18 @@ import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.m
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RetrofitHelper
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.ViewModelFactory
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.WeatherViewModel
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.HomeFragmentClickCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import com.liveearth.streetview.navigation.map.worldradio.activities.*
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentHomeBinding
-import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentMoreAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentTopAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.*
 import com.mapbox.mapboxsdk.geometry.LatLng
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -72,19 +64,32 @@ class HomeFragment : Fragment() {
         mPreferenceManagerClass = PreferenceManagerClass(requireContext())
 
         setThemeColor()
-        checkLocationPermission()
+        CoroutineScope(Dispatchers.IO).launch() {
+            LocationCTTruckHelper.isProviderCTTruckEnabled(requireContext())
+            val ispermissionDone = LocationCTTruckHelper.islocationCTTruckPerMisstionProvided(requireContext())
+            if (ispermissionDone) {
+                withContext(Dispatchers.Main) {
+                    //getLocationCTTruckFromRepository()
+
+                    currentLocationWeather()
+
+                    binding.forwardWeather.setOnClickListener {
+                        weatherIntentLatLng()
+                    }
+                }
+            }
+        }
+        topItemClickListeners()
         topItemManager()
         moreItemManager()
-        currentLocationWeather()
-        binding.forwardWeather.setOnClickListener {
-            weatherIntentLatLng()
-        }
+        //checkLocationPermission()
+
 
         return binding.root
     }
 
     private fun topItemManager() {
-
+/*
         mTopList.add(HomeFragmentModel(R.drawable.ic_live_earth_icon, "Live Earth Map", 0))
         mTopList.add(HomeFragmentModel(R.drawable.ic_street_map_icon, "Street View", 1))
         mTopList.add(HomeFragmentModel(R.drawable.ic_navigation_compass_icon, "Navigation", 2))
@@ -103,25 +108,27 @@ class HomeFragment : Fragment() {
                 LinearLayoutManager.HORIZONTAL, false
             )
             adapter = mHomeTopAdapter
-        }
+        }*/
     }
 
-    private fun topItemClickListeners(pos: Int) {
-        when(pos){
-            0->{
-                val mainIntent = Intent(requireContext(), StreetViewLiveEarthActivity::class.java)
-                startActivity(mainIntent)
-            }
-            1->{
-                //val mainIntent = Intent(requireContext(),StreetViewLiveEarthActivity::class.java)
-                val mainIntent = Intent(requireContext(),StreetViewFirstLookActivity::class.java)
-                startActivity(mainIntent)
-            }
-            2->{
-                val mainIntent = Intent(requireContext(),StreetViewSearchNavigationActivity::class.java)
-                startActivity(mainIntent)
-            }
+    private fun topItemClickListeners() {
+
+        binding.liveEarthCard.setOnClickListener {
+            val mainIntent = Intent(requireContext(), StreetViewLiveEarthActivity::class.java)
+            mainIntent.putExtra(ConstantsStreetView.OriginLatitude, 51.50078)
+            mainIntent.putExtra(ConstantsStreetView.OriginLongitude, -0.1245122)
+            startActivity(mainIntent)
         }
+
+        binding.streetViewCard.setOnClickListener {
+            val mainIntent = Intent(requireContext(),StreetViewFirstLookActivity::class.java)
+            startActivity(mainIntent)
+        }
+        binding.navigationCard.setOnClickListener {
+            val mainIntent = Intent(requireContext(),StreetViewSearchNavigationActivity::class.java)
+            startActivity(mainIntent)
+        }
+
     }
 
     private fun moreItemManager() {
@@ -208,7 +215,6 @@ class HomeFragment : Fragment() {
                         lon = it.longitude
                         //homeWeatherDetails(it)
                         homeWeatherMVVMDetails(it)
-/*
 
                         LiveEarthAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
                             LiveEarthAddressFromLatLng.GeoTaskCallback{
@@ -221,7 +227,7 @@ class HomeFragment : Fragment() {
                             override fun onFailedLocationFetched() {
                             }
                         }).execute()
-*/
+
 
                     }
                 }
@@ -403,6 +409,9 @@ class HomeFragment : Fragment() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)*/
         binding.homeFragmentBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.liveEarthCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.navigationCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.streetViewCard.setCardBackgroundColor(Color.parseColor(backgroundColor))
     }
 
 }

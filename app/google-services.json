@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "110231284101",
-    "project_id": "live-earth-map-e65eb",
-    "storage_bucket": "live-earth-map-e65eb.appspot.com"
+    "project_number": "927357304403",
+    "project_id": "street-view-clock",
+    "storage_bucket": "street-view-clock.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:110231284101:android:a43eecc010f3e631c6bcec",
+        "mobilesdk_app_id": "1:927357304403:android:25ba777ba10009d40bd0a6",
         "android_client_info": {
           "package_name": "com.liveearth.streetview.navigation.map.worldradio"
         }
       },
       "oauth_client": [
         {
-          "client_id": "110231284101-i5ml7iup9rm28pr1iicu96s6e5uk7cfu.apps.googleusercontent.com",
+          "client_id": "927357304403-jobcuh5b0mpmq8v6k220ikchd50kq5m8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDUyoGnwJuJalToRUBEp880ukNEIa4p_ZM"
+          "current_key": "AIzaSyAQ_seotmgTwR7D6i8pgPLpLculIVuxje8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "110231284101-i5ml7iup9rm28pr1iicu96s6e5uk7cfu.apps.googleusercontent.com",
+              "client_id": "927357304403-jobcuh5b0mpmq8v6k220ikchd50kq5m8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

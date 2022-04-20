@@ -2,7 +2,7 @@ package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
 import android.graphics.Color
-import com.liveearth.streetview.navigation.map.worldradio.globe.GeneralGlobeLiveEarthMapFmActivity
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.StreetViewGeneralGlobeRadioActivity
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import gov.nasa.worldwind.layer.RenderableLayer
@@ -11,23 +11,19 @@ import com.liveearth.streetview.navigation.map.worldradio.R
 import android.widget.FrameLayout
 import gov.nasa.worldwind.render.Renderable
 import gov.nasa.worldwind.WorldWind
-import gov.nasa.worldwind.globe.Globe
 import android.graphics.Typeface
 import android.os.AsyncTask
 import android.util.Log
+import android.view.*
 import gov.nasa.worldwind.geom.Offset
 import gov.nasa.worldwind.util.WWUtil
 import gov.nasa.worldwind.BasicWorldWindowController
-import android.view.GestureDetector
 import android.view.GestureDetector.SimpleOnGestureListener
-import android.view.MotionEvent
-import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import gov.nasa.worldwind.PickedObjectList
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import gov.nasa.worldwind.geom.Camera
 import gov.nasa.worldwind.geom.Position
 import gov.nasa.worldwind.shape.*
@@ -40,7 +36,7 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.*
 
-class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
+class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
     // A component for displaying the status of this activity
     protected var statusText: TextView? = null
     protected var country_name: TextView? = null
@@ -49,12 +45,16 @@ class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
     protected var progressBarCard: CardView? = null
     var countryFlag: ImageView?=null
     var countryNameTx: TextView?=null
-       protected var radioCard: CardView? = null
+       protected var radioCard: ConstraintLayout? = null
        protected var infoLayout: ConstraintLayout? = null
        protected var radioLayout: ConstraintLayout? = null
        protected var countryInfoLt: ConstraintLayout? = null
     var message = ""
     protected var shapesLayer = RenderableLayer("Shapes")
+        private lateinit var mPreferenceManagerClass: PreferenceManagerClass
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_paths_polygons_labels);
@@ -66,33 +66,18 @@ class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
     The name of the object(s) are displayed when picked.
     """.trimIndent()
         )
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+
         country_name = findViewById(R.id.country_name)
         //more=findViewById(R.id.more);
         progressBarCard = findViewById(R.id.progressBarCard)
-        radioCard = findViewById<CardView>(R.id.radioCard)
+        radioCard = findViewById<ConstraintLayout>(R.id.radioLayout)
         countryNameTx = findViewById<TextView>(R.id.country_nameText)
         infoLayout = findViewById<ConstraintLayout>(R.id.infoLayout)
         countryInfoLt = findViewById<ConstraintLayout>(R.id.countryInfoLt)
          countryFlag = findViewById<ImageView>(R.id.countryFlag)
 
-        /*
-
-        more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!message.isEmpty()) {
-//                    Intent intent = new Intent(PathsPolygonsLabelsLiveEarthMapFmActivity.this, MoreInfoMapLiveEarthFmActivity.class);
-//                    intent.putExtra("country",message);
-//                    startActivity(intent);
-//                    finish();
-                }else {
-                    Toast.makeText(PathsPolygonsLabelsLiveEarthMapFmActivity.this,"Select Country First",Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-*/
-
-        // Add a TextView on top of the globe to convey the status of this activity
+        setThemeColor()
         statusText = TextView(this)
         statusText!!.setTextColor(Color.YELLOW)
         val globeLayout = findViewById<View>(R.id.globe) as FrameLayout
@@ -495,9 +480,21 @@ class StreetViewMainGlobeViewActivity : GeneralGlobeLiveEarthMapFmActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        /*    ApplicationAdsLiveEarthMapFm.setHandlerForAdRequest(this);
-        Intent intent=new Intent(PathsPolygonsLabelsLiveEarthMapFmActivity.this, LiveEarthMapLandingActivity.class);
-        startActivity(intent);
-        finish();*/
     }
+
+
+    private fun setThemeColor() {
+        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        Log.d("setThemeColor", "setThemeColor: $backgroundColor")
+        val window: Window = this.window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.statusBarColor = Color.parseColor(backgroundColor)
+/*        binding.addTimeZone.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.backOne.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.allTimeZone.setTextColor(Color.parseColor(backgroundColor))*/
+    }
+
 }

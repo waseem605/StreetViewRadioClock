@@ -60,10 +60,12 @@
             android:id="@+id/weatherTemp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
             android:textColor="@color/white"
-            android:textSize="@dimen/_50ssp"
+            android:textSize="@dimen/_70ssp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/weatherTodayIcon"
+            app:layout_constraintBottom_toTopOf="@id/weatherTodayType"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/todayTx" />
 
@@ -72,6 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:textSize="@dimen/_20ssp"
             app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
             app:layout_constraintStart_toEndOf="@id/weatherDegree" />
@@ -81,7 +84,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_3sdp"
-            android:layout_marginBottom="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_27sdp"
             android:text="o"
             android:textColor="@color/white"
             android:textSize="@dimen/_16ssp"
@@ -92,7 +95,7 @@
             android:id="@+id/weatherTodayIcon"
             android:layout_width="@dimen/_120sdp"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_margin="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="@id/weatherTemp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/weatherUnit"
@@ -106,6 +109,7 @@
             android:layout_marginBottom="@dimen/_15sdp"
             android:textColor="@color/white"
             android:textSize="@dimen/_16ssp"
+            app:layout_constraintBottom_toTopOf="@id/locationMarker"
             app:layout_constraintStart_toStartOf="@id/weatherTemp"
             app:layout_constraintTop_toBottomOf="@id/weatherTemp" />
 
@@ -115,6 +119,7 @@
             android:layout_height="@dimen/_22sdp"
             android:src="@drawable/ic_location_marker"
             android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/weatherTodayType" />
@@ -154,7 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.35"/>
+        app:layout_constraintGuide_percent="0.37"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -180,14 +185,171 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/topRecyclerView"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/topButtons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                app:layout_constraintTop_toBottomOf="@id/popularTx"
-                tools:layout_editor_absoluteX="42dp" />
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintTop_toBottomOf="@id/popularTx">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/liveEarthCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/appMainColor"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_6sdp"
+                    app:cardCornerRadius="@dimen/_15sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/streetViewCard"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_15sdp">
+
+                        <ImageView
+                            android:id="@+id/imageLiveEarth"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/ic_live_earth_icon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toTopOf="@id/mainItemText1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/mainItemText1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textSize="@dimen/_9ssp"
+                            android:textColor="@color/white"
+                            android:text="Live Earth Map"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageLiveEarth" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/streetViewCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/appMainColor"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_6sdp"
+                    app:cardCornerRadius="@dimen/_15sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/navigationCard"
+                    app:layout_constraintStart_toEndOf="@id/liveEarthCard"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_15sdp">
+
+                        <ImageView
+                            android:id="@+id/mainItemImage2"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/ic_street_map_icon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toTopOf="@id/mainItemText2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/mainItemText2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textSize="@dimen/_9ssp"
+                            android:textColor="@color/white"
+                            android:text="Street View"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/mainItemImage2" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/navigationCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/appMainColor"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_6sdp"
+                    app:cardCornerRadius="@dimen/_15sdp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/streetViewCard"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_15sdp">
+
+                        <ImageView
+                            android:id="@+id/mainItemImage3"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/ic_navigation_compass_icon"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toTopOf="@id/mainItemText3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"/>
+
+                        <TextView
+                            android:id="@+id/mainItemText3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textSize="@dimen/_9ssp"
+                            android:textColor="@color/white"
+                            android:text="Navigation"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/mainItemImage3" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.STVTextViewBold
                 android:id="@+id/moreTx"
@@ -200,7 +362,7 @@
                 android:textSize="@dimen/_16ssp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topRecyclerView" />
+                app:layout_constraintTop_toBottomOf="@id/topButtons" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/moreRecyclerView"

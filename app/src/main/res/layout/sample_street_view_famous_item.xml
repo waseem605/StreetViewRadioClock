@@ -42,11 +42,11 @@
             android:layout_margin="@dimen/_5sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card45"
-            app:layout_constraintEnd_toStartOf="@id/image87"
+            app:layout_constraintEnd_toStartOf="@id/image877"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageView
-            android:id="@+id/image87"
+            android:id="@+id/image877"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_35sdp"
             android:padding="@dimen/_5sdp"

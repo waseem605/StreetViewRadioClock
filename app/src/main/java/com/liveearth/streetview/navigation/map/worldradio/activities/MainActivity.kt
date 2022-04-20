@@ -29,7 +29,12 @@ import com.liveearth.streetview.navigation.map.worldradio.locationTracking.Locat
 import com.liveearth.streetview.navigation.map.worldradio.streetViewFragments.ThemeFragment
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ColorModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationCTTruckHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.ibrahimsn.lib.OnItemReselectedListener
 import java.io.File
 
@@ -49,13 +54,17 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
+
+
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
-        checkLocationPermission()
+        //checkLocationPermission()
         buttonClickListener()
 
         setupSmoothBottomMenu()

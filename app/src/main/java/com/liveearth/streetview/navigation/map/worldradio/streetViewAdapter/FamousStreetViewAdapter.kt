@@ -66,7 +66,7 @@ class FamousStreetViewAdapter(
         var ImageItem = itemView.findViewById<ImageView>(R.id.streetViewImageFamousItem)
         var nameItem = itemView.findViewById<TextView>(R.id.nameFamousItem)
         var cardBackItem = itemView.findViewById<CardView>(R.id.cardBackItem)
-        var image87 = itemView.findViewById<ImageView>(R.id.image87)
+        var image87 = itemView.findViewById<ImageView>(R.id.image877)
 
     }
 }

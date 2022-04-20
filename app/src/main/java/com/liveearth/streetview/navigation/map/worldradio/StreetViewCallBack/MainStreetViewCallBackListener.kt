@@ -5,4 +5,5 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.Street
 interface MainStreetViewCallBackListener {
     fun onClickShareCategory(model:StreetViewModel)
     fun onClickNavigateCategory(model:StreetViewModel)
+    fun onClickNavigateLiveEarth(model:StreetViewModel)
 }
