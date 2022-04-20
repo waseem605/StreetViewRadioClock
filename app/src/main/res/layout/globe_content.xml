@@ -35,8 +35,7 @@
             android:layout_width="match_parent"
             android:visibility="visible"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/_8sdp"
-            android:background="@color/appSilverColor">
+            android:layout_margin="@dimen/_8sdp">
 
             <TextView
                 android:id="@+id/country_name"

@@ -135,6 +135,6 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
         binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
         binding.backFavourite.setBackgroundColor(Color.parseColor(backgroundColor))
        // binding.backOne.setColorFilter(Color.parseColor(backgroundSecondColor))
-        binding.nearByLocations.setCardBackgroundColor(Color.parseColor(backgroundColor))
+        binding.nearByLocations.setBackgroundColor(Color.parseColor(backgroundColor))
     }
 }

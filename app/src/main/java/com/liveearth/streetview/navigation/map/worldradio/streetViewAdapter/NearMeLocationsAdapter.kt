@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,21 +58,33 @@ class NearMeLocationsAdapter(
                 }else{
                     Glide.with(context).load(R.drawable.ic_favourite_icon).into(holder.itemFavouriteImg)
                 }
+
             }
 
             holder.itemNavigationBtn.setOnClickListener {
                 callBack.onLocationInfo(model)
             }
 
-            holder.itemFavouriteImg.setOnClickListener {
-                Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
-                callBack.addToFavouriteLocation(model)
-            }
             holder.itemShareImg.setOnClickListener {
                 callBack.shareLocation(model)
             }
             holder.itemView.setOnClickListener {
                 callBack.onClickOfItemLocation(model,position)
+            }
+
+            holder.itemFavouriteImg.setOnClickListener {
+                GlobalScope.launch(Dispatchers.Main) {
+                    val it = mFavouriteLocationViewModel.getDataById(model.fsq_id)
+                    if (it != null) {
+                        Log.d("onBindViewHolder", "onBindViewHolder: =======================================" + it)
+                        callBack.removeFromFavouriteLocation(model)
+                        Glide.with(context).load(R.drawable.ic_favourite_icon).into(holder.itemFavouriteImg)
+                    } else {
+                        Log.d("onBindViewHolder", "onBindViewHolder: =================itemFavouriteImg======================" + it)
+                        Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+                        callBack.addToFavouriteLocation(model)
+                    }
+                }
             }
 
         } catch (e: Exception) {

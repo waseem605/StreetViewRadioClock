@@ -35,8 +35,8 @@
                           <map>
                             <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="d30000" />
-                            <entry key="outputName" value="ic_border_one" />
-                            <entry key="sourceFile" value="D:\Centurion\UI UX\Street View Clock\border_one.svg" />
+                            <entry key="outputName" value="ic_locarion_s_marker" />
+                            <entry key="sourceFile" value="D:\Centurion\UI UX\Street View Clock\locarion_s_marker.svg" />
                           </map>
                         </option>
                       </PersistentState>

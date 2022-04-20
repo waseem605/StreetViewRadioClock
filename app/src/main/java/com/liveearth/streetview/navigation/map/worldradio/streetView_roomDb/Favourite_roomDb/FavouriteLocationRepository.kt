@@ -1,7 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb
 
 import androidx.lifecycle.LiveData
-import com.liveearth.streetview.navigation.map.worldradio.roomdatabase.StreetViewDatabase
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase.StreetViewDatabase
 
 class FavouriteLocationRepository(
     private val mDatabase: StreetViewDatabase
@@ -17,6 +17,9 @@ class FavouriteLocationRepository(
 
     suspend fun deleteFavouriteLocation(model: FavouriteLocationModel) =
         mDatabase.getFavouriteLocationDao().deleteFavouriteLocation(model)
+
+    suspend fun deleteFavouriteById(locationId: String) =
+        mDatabase.getFavouriteLocationDao().deleteFavouriteById(locationId)
 
     suspend fun clearSpeed() = mDatabase.getFavouriteLocationDao().clearNote()
 

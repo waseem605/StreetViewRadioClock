@@ -2,7 +2,7 @@ package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Exp
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.liveearth.streetview.navigation.map.worldradio.roomdatabase.StreetViewDatabase
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase.StreetViewDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

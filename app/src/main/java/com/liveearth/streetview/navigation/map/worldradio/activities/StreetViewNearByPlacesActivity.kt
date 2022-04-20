@@ -45,6 +45,9 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityStreetViewNearByPlacesBinding
@@ -170,40 +173,60 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
          binding.bottomLayout.visibility = View.VISIBLE
               binding.meetMeSearchBtn.visibility = View.GONE
 
-        adapterLocations = NearMeLocationsAdapter(nearLocationData, this,mFavouriteLocationViewModel, object : StreetViewNearMeCallBack {
-            override fun onLocationInfo(model: Result) {
+        try {
+            adapterLocations = NearMeLocationsAdapter(nearLocationData, this,mFavouriteLocationViewModel, object : StreetViewNearMeCallBack {
+                override fun onLocationInfo(model: Result) {
 
-                val intent =
-                    Intent(this@StreetViewNearByPlacesActivity, StreetViewRouteActivity::class.java)
-                intent.putExtra(ConstantsStreetView.OriginLatitude, latitude)
-                intent.putExtra(ConstantsStreetView.OriginLongitude, longitude)
-                intent.putExtra(ConstantsStreetView.DestinationLatitude, model.geocodes.main.latitude)
-                intent.putExtra(ConstantsStreetView.DestinationLongitude, model.geocodes.main.longitude)
-                startActivity(intent)
+                    val intent =
+                        Intent(this@StreetViewNearByPlacesActivity, StreetViewRouteActivity::class.java)
+                    intent.putExtra(ConstantsStreetView.OriginLatitude, latitude)
+                    intent.putExtra(ConstantsStreetView.OriginLongitude, longitude)
+                    intent.putExtra(ConstantsStreetView.DestinationLatitude, model.geocodes.main.latitude)
+                    intent.putExtra(ConstantsStreetView.DestinationLongitude, model.geocodes.main.longitude)
+                    startActivity(intent)
 
-            }
+                }
 
-            override fun shareLocation(model: Result) {
-                LocationHelper.shareLocation(this@StreetViewNearByPlacesActivity,model.geocodes.main.latitude,model.geocodes.main.longitude)
-            }
+                override fun shareLocation(model: Result) {
+                    LocationHelper.shareLocation(this@StreetViewNearByPlacesActivity,model.geocodes.main.latitude,model.geocodes.main.longitude)
+                }
 
-            override fun addToFavouriteLocation(model: Result) {
-                setToast(this@StreetViewNearByPlacesActivity,"Added to favourite")
-                val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
-                    LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
-                mFavouriteLocationViewModel.insertFavouriteLocation(fvrModel)
-                adapterLocations.notifyDataSetChanged()
+                override fun addToFavouriteLocation(model: Result) {
+                    setToast(this@StreetViewNearByPlacesActivity,"Added to favourite")
+                    val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
+                        LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
+                    mFavouriteLocationViewModel.insertFavouriteLocation(fvrModel)
+                    adapterLocations.notifyDataSetChanged()
 
-                savedLocationAsFavourite(model)
-            }
+                    savedLocationAsFavourite(model)
+                }
 
-            override fun onClickOfItemLocation(model: Result, pos: Int) {
+                override fun removeFromFavouriteLocation(model: Result) {
+                    val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
+                        LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
 
-                LocationHelper.setZoomMarker(model.geocodes.main.latitude, model.geocodes.main.longitude, mapbox, 18)
+             /*       GlobalScope.launch(Dispatchers.Main) {
+                       mFavouriteLocationViewModel.deleteFavouriteLocation(fvrModel)
+                        setToast(this@StreetViewNearByPlacesActivity,"Removed from Favourite")
+                    }*/
 
-            }
+                    GlobalScope.launch(Dispatchers.Main) {
+                        mFavouriteLocationViewModel.deleteFavouriteById(model.fsq_id)
+                        adapterLocations.notifyDataSetChanged()
+                        setToast(this@StreetViewNearByPlacesActivity,"Delete item successfully")
+                    }
 
-        })
+                }
+
+                override fun onClickOfItemLocation(model: Result, pos: Int) {
+
+                    LocationHelper.setZoomMarker(model.geocodes.main.latitude, model.geocodes.main.longitude, mapbox, 18)
+
+                }
+
+            })
+        } catch (e: Exception) {
+        }
 
         binding.locationRecycler.apply {
             setHasFixedSize(true)

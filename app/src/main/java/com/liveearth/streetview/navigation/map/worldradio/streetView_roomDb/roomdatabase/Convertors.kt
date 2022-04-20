@@ -1,4 +1,4 @@
-package com.liveearth.streetview.navigation.map.worldradio.roomdatabase
+package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase
 
 import androidx.room.TypeConverter
 import java.util.*

@@ -15,6 +15,9 @@ interface FavouriteLocationDao {
     @Delete
     suspend fun deleteFavouriteLocation(model: FavouriteLocationModel)
 
+    @Query("DELETE FROM FavouriteLocation_table WHERE locationId = :locationId")
+    suspend fun deleteFavouriteById(locationId:String)
+
     @Query("SELECT * FROM FavouriteLocation_table WHERE locationId = :locationId")
     suspend fun getDataById(locationId:String): FavouriteLocationModel?
 

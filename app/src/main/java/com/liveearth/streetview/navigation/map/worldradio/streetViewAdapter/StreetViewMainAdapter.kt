@@ -1,8 +1,10 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +22,10 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MainStreetViewCallBackListener
+import com.liveearth.streetview.navigation.map.worldradio.activities.MainActivity
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import java.util.logging.Handler
 
 
 class StreetViewMainAdapter(
@@ -63,6 +67,10 @@ class StreetViewMainAdapter(
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
+                        holder.lottieCardLayout.visibility = View.VISIBLE
+                        android.os.Handler(Looper.getMainLooper()).postDelayed({
+                            holder.lottieCardLayout.visibility = View.INVISIBLE
+                        },500)
                         holder.progress_bar.visibility = View.INVISIBLE
                         holder.categoryImageItem.setImageDrawable(resource)
                         return true
@@ -102,6 +110,7 @@ class StreetViewMainAdapter(
         var navigateCard = itemView.findViewById<CardView>(R.id.navigateCard)
         var shareLocationCard = itemView.findViewById<CardView>(R.id.shareLocationCard)
         var onLiveEarthCard = itemView.findViewById<CardView>(R.id.onLiveEarthCard)
+        var lottieCardLayout = itemView.findViewById<CardView>(R.id.lottieCardLayout)
 
     }
 }

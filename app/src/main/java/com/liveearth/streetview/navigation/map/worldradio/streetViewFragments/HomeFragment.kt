@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
+import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
 import com.example.dummy.apiServices.WeatherAPI
 import com.example.dummy.apiServices.WeatherAPIServices
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -28,6 +29,7 @@ import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.m
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RetrofitHelper
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.ViewModelFactory
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.WeatherViewModel
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.HomeFragmentClickCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.StreetViewWeatherModel
@@ -64,21 +66,7 @@ class HomeFragment : Fragment() {
         mPreferenceManagerClass = PreferenceManagerClass(requireContext())
 
         setThemeColor()
-        CoroutineScope(Dispatchers.IO).launch() {
-            LocationCTTruckHelper.isProviderCTTruckEnabled(requireContext())
-            val ispermissionDone = LocationCTTruckHelper.islocationCTTruckPerMisstionProvided(requireContext())
-            if (ispermissionDone) {
-                withContext(Dispatchers.Main) {
-                    //getLocationCTTruckFromRepository()
 
-                    currentLocationWeather()
-
-                    binding.forwardWeather.setOnClickListener {
-                        weatherIntentLatLng()
-                    }
-                }
-            }
-        }
         topItemClickListeners()
         topItemManager()
         moreItemManager()
@@ -86,6 +74,24 @@ class HomeFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CoroutineScope(Dispatchers.IO).launch() {
+            LocationCTTruckHelper.isProviderCTTruckEnabled(requireContext())
+            val ispermissionDone = LocationCTTruckHelper.islocationCTTruckPerMisstionProvided(requireContext())
+
+            if (ispermissionDone) {
+                withContext(Dispatchers.Main) {
+                    Log.d(TAG, "onCreateView: =====ispermissionDone=="+ispermissionDone)
+                    currentLocationWeather()
+                    binding.forwardWeather.setOnClickListener {
+                        weatherIntentLatLng()
+                    }
+                }
+            }
+        }
     }
 
     private fun topItemManager() {
@@ -334,7 +340,7 @@ class HomeFragment : Fragment() {
     private fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
             ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED) {
-          /*  if (ActivityCompat.shouldShowRequestPermissionRationale(
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
                     requireActivity(),
                     Manifest.permission.ACCESS_FINE_LOCATION
                 )
@@ -349,7 +355,7 @@ class HomeFragment : Fragment() {
             } else {
 
                 requestLocationPermission()
-            }*/
+            }
 
             requestLocationPermission()
         }else{

@@ -54,20 +54,28 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-
-
-
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+
+        CoroutineScope(Dispatchers.IO).launch() {
+            LocationCTTruckHelper.isProviderCTTruckEnabled(this@MainActivity)
+            val ispermissionDone = LocationCTTruckHelper.islocationCTTruckPerMisstionProvided(this@MainActivity)
+
+            if (ispermissionDone) {
+                withContext(Dispatchers.Main) {
+                    Log.d(TAG, "onCreateView: =====ispermissionDone=="+ispermissionDone)
+
+
+                }
+            }
+        }
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
 
         //checkLocationPermission()
-        buttonClickListener()
-
         setupSmoothBottomMenu()
+
         binding.bottomBar.setOnItemSelectedListener {
             pos = it
            when(it){
@@ -86,36 +94,6 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
                }
            }
         }
-
-
-
-    }
-
-    private fun buttonClickListener() {
-        val fragmentId = navController.currentDestination!!.id
-
-   /*     Log.d(TAG, "buttonClickListener:==== "+fragmentId)
-
-        when(fragmentId){
-            R.id.homeFragment->{
-                navController.navigate(R.id.homeFragment)
-                binding.bottomBar.itemActiveIndex = 0
-            }
-            R.id.themeFragment->{
-                navController.navigate(R.id.themeFragment)
-                binding.bottomBar.itemActiveIndex = 1
-            }
-            R.id.premiumFragment->{
-                navController.navigate(R.id.premiumFragment)
-                binding.bottomBar.itemActiveIndex = 2
-            }
-            R.id.settingFragment->{
-                navController.navigate(R.id.settingFragment)
-                binding.bottomBar.itemActiveIndex = 3
-            }
-        }
-*/
-
 
     }
 

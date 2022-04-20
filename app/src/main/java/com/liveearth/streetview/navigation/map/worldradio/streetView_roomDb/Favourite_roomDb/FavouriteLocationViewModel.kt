@@ -2,7 +2,7 @@ package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Fav
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.liveearth.streetview.navigation.map.worldradio.roomdatabase.StreetViewDatabase
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase.StreetViewDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -21,6 +21,8 @@ class FavouriteLocationViewModel(mContext: Context) : ViewModel() {
 
     suspend fun updateFavouriteLocation(model: FavouriteLocationModel) = repository.updateFavouriteLocation(model)
     suspend fun deleteFavouriteLocation(model: FavouriteLocationModel) = repository.deleteFavouriteLocation(model)
+
+    suspend fun deleteFavouriteById(locationId: String) = repository.deleteFavouriteById(locationId)
 
     suspend fun clearSpeed() = repository.clearSpeed()
 

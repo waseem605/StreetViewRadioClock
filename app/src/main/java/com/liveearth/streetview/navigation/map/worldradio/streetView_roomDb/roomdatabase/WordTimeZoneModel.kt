@@ -1,9 +1,8 @@
-package com.liveearth.streetview.navigation.map.worldradio.roomdatabase
+package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase
 
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import com.mapbox.mapboxsdk.geometry.LatLng
 
 @Entity(tableName = "timeZoneWorld_table")
 class WordTimeZoneModel(

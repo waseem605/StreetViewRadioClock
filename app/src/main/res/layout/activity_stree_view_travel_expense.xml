@@ -75,6 +75,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:gravity="center"
+                    android:hint="Total"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
                     android:textColor="@color/black"
@@ -115,6 +116,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:hint="Category"
                     android:gravity="center"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
@@ -158,6 +160,7 @@
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
+                    android:hint="Date"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
                     android:textColor="@color/black"
@@ -200,6 +203,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:hint="location"
                     android:gravity="center"
                     android:paddingStart="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_5sdp"
@@ -236,6 +240,7 @@
                         android:background="@null"
                         android:ellipsize="end"
                         android:maxLines="1"
+                        android:hint="Type item name"
                         android:padding="@dimen/_3sdp"
                         android:textColor="@color/black"
                         android:textCursorDrawable="@drawable/custome_curser_style_color"
@@ -264,6 +269,7 @@
                         android:ellipsize="end"
                         android:inputType="number"
                         android:maxLines="1"
+                        android:hint="Price"
                         android:padding="@dimen/_3sdp"
                         android:textColor="@color/black"
                         android:textCursorDrawable="@drawable/custome_curser_style_color"
@@ -311,6 +317,7 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:background="@drawable/line_border_black"
                     android:ellipsize="end"
+                    android:hint="Description"
                     android:padding="@dimen/_8sdp"
                     android:textColor="@color/black"
                     android:textCursorDrawable="@drawable/custom_edit_text_cut"
@@ -339,27 +346,6 @@
         android:paddingBottom="@dimen/_5sdp"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/shareExpenseCard"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_15sdp"
-            app:cardElevation="@dimen/_4sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageView
-                android:id="@+id/shareImage"
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_3sdp"
-                android:src="@drawable/ic_share_icon"
-                app:tint="@color/appMainColor" />
-
-        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/addExpense"
@@ -378,26 +364,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/deleteExpenseBtn"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/_15sdp"
-            app:cardElevation="@dimen/_4sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_gravity="center"
-                android:layout_margin="@dimen/_3sdp"
-                android:src="@drawable/ic_baseline_delete" />
-
-        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

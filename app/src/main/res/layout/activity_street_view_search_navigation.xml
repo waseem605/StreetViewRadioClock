@@ -328,7 +328,7 @@
                     android:layout_width="@dimen/_20sdp"
                     android:layout_height="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_6sdp"
-                    android:src="@drawable/list_location" />
+                    android:src="@drawable/ic_locarion_s_marker" />
 
             </LinearLayout>
 
@@ -585,7 +585,7 @@
                 android:backgroundTint="@color/appMainColor"
                 android:gravity="center"
                 android:padding="@dimen/_7sdp"
-                android:text="Navigate"
+                android:text="Route"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14ssp"

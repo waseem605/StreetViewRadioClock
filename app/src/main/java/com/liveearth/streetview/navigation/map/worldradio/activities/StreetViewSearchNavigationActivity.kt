@@ -105,8 +105,6 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
         binding.currentLocationImage.setOnClickListener {
             userCurrentLocation()
-            binding.locationOnBorderOne.setColorFilter(ContextCompat.getColor(this, R.color.colorYellow))
-
         }
 
         binding.locationOne.setOnClickListener {
@@ -561,6 +559,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         binding.locationOnBorderTwo.setColorFilter( Color.parseColor(backgroundColor) )
         binding.locationOnBorderThree.setColorFilter( Color.parseColor(backgroundColor) )
         binding.locationOnBorderFour.setColorFilter( Color.parseColor(backgroundColor) )
+        binding.img7.setColorFilter( Color.parseColor(backgroundColor) )
         binding.mapStyleOption.setCardBackgroundColor( Color.parseColor(backgroundColor))
         binding.currentLocationImage.setCardBackgroundColor( Color.parseColor(backgroundColor))
         binding.addMoreLocation.setCardBackgroundColor( Color.parseColor(backgroundColor))

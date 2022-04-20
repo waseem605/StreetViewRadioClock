@@ -22,6 +22,8 @@ import android.view.GestureDetector.SimpleOnGestureListener
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
+import com.liveearth.streetview.navigation.map.worldradio.hilt.CountryNameModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import gov.nasa.worldwind.geom.Camera
@@ -35,24 +37,30 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.*
+import javax.inject.Inject
+import javax.inject.Named
 
 class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
     // A component for displaying the status of this activity
     protected var statusText: TextView? = null
     protected var country_name: TextView? = null
+    protected var textWorldRadio: ConstraintLayout? = null
 
     // protected Button more;
     protected var progressBarCard: CardView? = null
     var countryFlag: ImageView?=null
     var countryNameTx: TextView?=null
-       protected var radioCard: ConstraintLayout? = null
-       protected var infoLayout: ConstraintLayout? = null
        protected var radioLayout: ConstraintLayout? = null
+       protected var mainCard: CardView? = null
+       protected var infoLayout: ConstraintLayout? = null
        protected var countryInfoLt: ConstraintLayout? = null
     var message = ""
     protected var shapesLayer = RenderableLayer("Shapes")
         private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
+    @Inject
+    @Named("countryNameListJson")
+    lateinit var mCountryNameList :ArrayList<CountryNameModel>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,11 +79,14 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
         country_name = findViewById(R.id.country_name)
         //more=findViewById(R.id.more);
         progressBarCard = findViewById(R.id.progressBarCard)
-        radioCard = findViewById<ConstraintLayout>(R.id.radioLayout)
+        radioLayout = findViewById<ConstraintLayout>(R.id.radioLayout)
         countryNameTx = findViewById<TextView>(R.id.country_nameText)
+        textWorldRadio = findViewById<ConstraintLayout>(R.id.textWorldRadio)
         infoLayout = findViewById<ConstraintLayout>(R.id.infoLayout)
         countryInfoLt = findViewById<ConstraintLayout>(R.id.countryInfoLt)
          countryFlag = findViewById<ImageView>(R.id.countryFlag)
+        mainCard = findViewById<CardView>(R.id.mainCard)
+
 
         setThemeColor()
         statusText = TextView(this)
@@ -99,7 +110,7 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
         private var numPlacesCreated = 0
         private val random = Random(22)
          override fun doInBackground(vararg params: Void?): Void? {
-            loadCountriesFile()
+             loadCountriesFileData()
             // loadHighways();
             // loadPlaceNames();
             return null
@@ -246,7 +257,7 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
             }
         }
 
-        private fun loadCountriesFile() {
+        private fun loadCountriesFileData() {
             // Define the normal shape attributes
             val commonAttrs = ShapeAttributes()
             commonAttrs.interiorColor[1.0f, 1.0f, 0.0f] = 0.5f
@@ -339,9 +350,6 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
     inner class PickController : BasicWorldWindowController() {
         protected var pickedObjects = ArrayList<Any>() // last picked objects from onDown events
 
-        /**
-         * Assign a subclassed SimpleOnGestureListener to a GestureDetector to handle the "pick" events.
-         */
         protected var pickGestureDetector =
             GestureDetector(applicationContext, object : SimpleOnGestureListener() {
                 override fun onSingleTapUp(event: MotionEvent): Boolean {
@@ -361,9 +369,6 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
             return consumed
         }
 
-        /**
-         * Performs a pick at the tap location.
-         */
         fun pick(event: MotionEvent) {
             val PICK_REGION_SIZE = 40 // pixels
 
@@ -378,9 +383,6 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
                 PICK_REGION_SIZE.toFloat(), PICK_REGION_SIZE.toFloat()
             )
 
-            // pickShapesInRect can return multiple objects, i.e., they're may be more that one 'top object'
-            // So we iterate through the list instead of calling pickList.topPickedObject which returns the
-            // arbitrary 'first' top object.
             for (i in 0 until pickList.count()) {
                 if (pickList.pickedObjectAt(i).isOnTop) {
                     pickedObjects.add(pickList.pickedObjectAt(i).userObject)
@@ -389,9 +391,6 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
             togglePickedObjectHighlights()
         }
 
-        /**
-         * Toggles the highlighted state of a picked object.
-         */
         fun togglePickedObjectHighlights() {
             for (pickedObject in pickedObjects) {
                 if (pickedObject is Highlightable) {
@@ -412,11 +411,8 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
                 countryInfoLt!!.visibility = View.VISIBLE
                 infoLayout !!.visibility = View.GONE
                 selectedCountryNameStreetView(message)
+
             } else {
-                // more.setVisibility(View.GONE);
-          /*      countryInfoLt!!.visibility = View.GONE
-                infoLayout !!.visibility = View.VISIBLE
-                radioLayout !!.visibility = View.GONE*/
                 country_name!!.text = "Click on Globe to Select the Country"
             }
             this.worldWindow.requestRedraw()
@@ -466,7 +462,7 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
             }
         }
 
-        radioCard!!.setOnClickListener {
+        radioLayout!!.setOnClickListener {
             nameCountry.let {
                 val intent = Intent(this,StreetViewRadioChannelsActivity::class.java)
                 intent.putExtra(ConstantsStreetView.Radio_Country_Name,it)
@@ -491,10 +487,10 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
-/*        binding.addTimeZone.setCardBackgroundColor(Color.parseColor(backgroundColor))
-        binding.backOne.setBackgroundColor(Color.parseColor(backgroundColor))
-        binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
-        binding.allTimeZone.setTextColor(Color.parseColor(backgroundColor))*/
+        mainCard!!.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
+        textWorldRadio!!.setBackgroundColor(Color.parseColor(backgroundColor))
+        countryInfoLt!!.setBackgroundColor(Color.parseColor(backgroundSecondColor))
+
     }
 
 }

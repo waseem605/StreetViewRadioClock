@@ -91,6 +91,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         }
 
 
+/*
         binding.deleteExpenseBtn.setOnClickListener {
             if (mID != 0 ||mID ==null) {
                 GlobalScope.launch(Dispatchers.IO) {
@@ -125,6 +126,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                 )
             }
         }
+*/
 
     }
 
@@ -353,7 +355,7 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         binding.etBackCategory.setColorFilter(Color.parseColor(backgroundSecondColor))
         binding.etBackCalender.setColorFilter(Color.parseColor(backgroundSecondColor))
         binding.etBackLocations.setColorFilter(Color.parseColor(backgroundSecondColor))
-        binding.shareImage.setColorFilter(Color.parseColor(backgroundColor))
+       // binding.shareImage.setColorFilter(Color.parseColor(backgroundColor))
     }
 
 }

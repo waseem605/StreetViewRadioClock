@@ -1,7 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb
 
 import androidx.lifecycle.LiveData
-import com.liveearth.streetview.navigation.map.worldradio.roomdatabase.StreetViewDatabase
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase.StreetViewDatabase
 
 class ExpenseRepository(
     private val mDatabase: StreetViewDatabase

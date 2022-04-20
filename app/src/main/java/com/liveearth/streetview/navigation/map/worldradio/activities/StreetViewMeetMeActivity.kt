@@ -486,8 +486,6 @@ class StreetViewMeetMeActivity : BaseStreetViewActivity(), OnMapReadyCallback {
 
                 override fun addToFavouriteLocation(model: Result) {
                     try {
-
-
                         val date = LocationHelper.getCurrentDateTime(this@StreetViewMeetMeActivity,2)
                         val time = LocationHelper.getCurrentDateTime(this@StreetViewMeetMeActivity,3)
 
@@ -496,6 +494,10 @@ class StreetViewMeetMeActivity : BaseStreetViewActivity(), OnMapReadyCallback {
                         setToast(this@StreetViewMeetMeActivity,"Saved to Favourite")
                     } catch (e: Exception) {
                     }
+
+                }
+
+                override fun removeFromFavouriteLocation(model: Result) {
 
                 }
 
