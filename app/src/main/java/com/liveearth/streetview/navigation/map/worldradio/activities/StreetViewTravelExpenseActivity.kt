@@ -154,14 +154,11 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         } catch (e: Exception) {
         }
 
-
-
      /*   binding.shareExpenseCard.setOnClickListener {
             model!!.let {
                 LocationHelper.shareExpenseData(this,it.category!!,it.date!!,it.description!!,it.location!!,it.itemList!! as ArrayList<ExpenseItemModel>)
             }
         }*/
-
     }
 
     private fun addExpenseItemRecycler() {
@@ -173,13 +170,11 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
                     }
 
                     override fun onRemoveItem(model: ExpenseItemModel, pos: Int) {
+                        mTotal -= model.Price
+
+                        binding.etTotalMoney.text = mTotal.toString()
                         mExpenseList.removeAt(pos)
                         mExpenseAdapter.notifyDataSetChanged()
-                        for (i in 0 until  mExpenseList.size){
-                            mTotal+=mExpenseList[i].Price
-                        }
-                        binding.etTotalMoney.text = mTotal.toString()
-
                     }
 
                 })
@@ -355,6 +350,8 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         binding.etBackCategory.setColorFilter(Color.parseColor(backgroundSecondColor))
         binding.etBackCalender.setColorFilter(Color.parseColor(backgroundSecondColor))
         binding.etBackLocations.setColorFilter(Color.parseColor(backgroundSecondColor))
+        binding.etIconCalender.setColorFilter(Color.parseColor(backgroundColor))
+        binding.etIconLocations.setColorFilter(Color.parseColor(backgroundColor))
        // binding.shareImage.setColorFilter(Color.parseColor(backgroundColor))
     }
 

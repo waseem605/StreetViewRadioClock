@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintTop_toBottomOf="@id/toolbarLt"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toTopOf="@id/helpingLayout"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/meetMeSearchBtn"
@@ -37,6 +37,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/helpingLayout"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@color/appMainColor"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomLayout"

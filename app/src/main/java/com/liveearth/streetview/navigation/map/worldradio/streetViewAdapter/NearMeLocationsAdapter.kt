@@ -1,18 +1,28 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.StreetViewNearMeCallBack
 import com.liveearth.streetview.navigation.map.worldradio.streetViewPlacesNearMe.Result
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +58,33 @@ class NearMeLocationsAdapter(
             }else{
                 holder.locationAddress.text = model.location.locality
             }*/
-            Glide.with(context).load(model.categories.get(0).icon.prefix+"64.png").into(holder.imageView)
+            Glide.with(context).load(model.categories.get(0).icon.prefix+"64.png").diskCacheStrategy(
+                DiskCacheStrategy.NONE)
+                .skipMemoryCache(true).listener(object : RequestListener<Drawable> {
+                    override fun onLoadFailed(
+                        e: GlideException?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+
+                        return false
+                    }
+
+                    override fun onResourceReady(
+                        resource: Drawable?,
+                        model: Any?,
+                        target: Target<Drawable>?,
+                        dataSource: DataSource?,
+                        isFirstResource: Boolean
+                    ): Boolean {
+
+                        holder.progress_barNearBy.visibility = View.INVISIBLE
+                        holder.imageView.setImageDrawable(resource)
+                        return true
+                    }
+
+                }).into(holder.imageView)
 
             GlobalScope.launch(Dispatchers.Main) {
 
@@ -87,6 +123,9 @@ class NearMeLocationsAdapter(
                 }
             }
 
+            holder.navigateImage.setColorFilter(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.imageCardItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.nearByPlaceBack.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
         } catch (e: Exception) {
         }
     }
@@ -99,11 +138,15 @@ class NearMeLocationsAdapter(
 
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView = itemView.findViewById<ImageView>(R.id.mainItemImage)
+        var navigateImage: ImageView = itemView.findViewById<ImageView>(R.id.navigateImage)
         var locationName: TextView = itemView.findViewById<TextView>(R.id.mainItemName)
         var mainItemType: TextView = itemView.findViewById<TextView>(R.id.mainItemType)
         var itemNavigationBtn: CardView = itemView.findViewById<CardView>(R.id.itemNavigationBtn)
+        var imageCardItem: CardView = itemView.findViewById<CardView>(R.id.imageCardItem)
+        var nearByPlaceBack: CardView = itemView.findViewById<CardView>(R.id.nearByPlaceBack)
         var itemShareImg: ImageView = itemView.findViewById<ImageView>(R.id.itemShareImg)
         var itemFavouriteImg: ImageView = itemView.findViewById<ImageView>(R.id.itemFavouriteImg)
+        var progress_barNearBy: ProgressBar = itemView.findViewById<ProgressBar>(R.id.progress_barNearBy)
 
     }
 }

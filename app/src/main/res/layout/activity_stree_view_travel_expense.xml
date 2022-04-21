@@ -48,8 +48,9 @@
                     android:id="@+id/moneyText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_30sdp"
+                    android:gravity="start"
                     android:text="Money Spend"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16ssp"
@@ -90,9 +91,10 @@
                     android:id="@+id/catTex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
-                    android:text="Category"
+                    android:gravity="start"
+                    android:text="Expense Name"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16ssp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,7 +118,7 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:hint="Category"
+                    android:hint="Expense Name"
                     android:gravity="center"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
@@ -131,13 +133,17 @@
 
                 <TextView
                     android:id="@+id/dateTex"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
+                    android:gravity="start"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:text="Date of expense"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toStartOf="@id/guide76"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/catTex" />
 
@@ -145,18 +151,18 @@
                     android:id="@+id/etBackCalender"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:src="@drawable/line_background_border_silver"
                     app:layout_constraintTop_toTopOf="@id/etCalender"
                     app:layout_constraintStart_toStartOf="@id/etCalender"
-                    app:layout_constraintEnd_toEndOf="@id/etCalender"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="@id/etCalender"/>
 
                 <TextView
                     android:id="@+id/etCalender"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_30sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
@@ -167,16 +173,30 @@
                     android:textCursorDrawable="@drawable/custom_edit_text_cut"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="@id/dateTex"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/etIconCalender"
                     app:layout_constraintStart_toEndOf="@id/guide76"
-                    app:layout_constraintTop_toTopOf="@id/dateTex"
-                    app:drawableEndCompat="@drawable/ic_calendar_icon_focused" />
+                    app:layout_constraintTop_toTopOf="@id/dateTex"/>
+
+                <!--
+                    app:drawableEndCompat="@drawable/ic_calendar_icon_focused"
+                    -->
+
+                <ImageView
+                    android:id="@+id/etIconCalender"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:src="@drawable/ic_calendar_icon_focused"
+                    app:layout_constraintTop_toTopOf="@id/etBackCalender"
+                    app:layout_constraintEnd_toEndOf="@id/etBackCalender"
+                    app:layout_constraintBottom_toBottomOf="@id/etBackCalender"/>
 
                 <TextView
                     android:id="@+id/locationTex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_20sdp"
+                    android:gravity="start"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:text="Location"
                     android:textColor="@color/black"
@@ -189,31 +209,44 @@
                     android:id="@+id/etBackLocations"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:src="@drawable/line_background_border_silver"
                     app:layout_constraintTop_toTopOf="@id/etLocations"
                     app:layout_constraintStart_toStartOf="@id/etLocations"
-                    app:layout_constraintEnd_toEndOf="@id/etLocations"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="@id/etLocations"/>
 
                 <TextView
                     android:id="@+id/etLocations"
                     android:layout_width="0dp"
                     android:layout_height="@dimen/_30sdp"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_8sdp"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:hint="location"
+                    android:hint="Location"
                     android:gravity="center"
                     android:paddingStart="@dimen/_12sdp"
                     android:paddingEnd="@dimen/_5sdp"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintBottom_toBottomOf="@id/locationTex"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/etIconLocations"
                     app:layout_constraintStart_toEndOf="@id/guide76"
-                    app:layout_constraintTop_toTopOf="@id/locationTex"
-                    app:drawableEndCompat="@drawable/ic_baseline_location_on" />
+                    app:layout_constraintTop_toTopOf="@id/locationTex"/>
+
+                <!--
+                    app:drawableEndCompat="@drawable/ic_baseline_location_on"
+                -->
+
+                <ImageView
+                    android:id="@+id/etIconLocations"
+                    android:layout_width="@dimen/_17sdp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:src="@drawable/ic_baseline_location_on"
+                    app:layout_constraintTop_toTopOf="@id/etBackLocations"
+                    app:layout_constraintEnd_toEndOf="@id/etBackLocations"
+                    app:layout_constraintBottom_toBottomOf="@id/etBackLocations"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/addItemRecycler"
@@ -358,6 +391,7 @@
             android:text="@string/add_expense"
             android:textAllCaps="false"
             android:textStyle="bold"
+            android:textColor="@color/white"
             app:cornerRadius="@dimen/_20sdp"
             app:elevation="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"

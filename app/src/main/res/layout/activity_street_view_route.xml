@@ -54,7 +54,7 @@
                 android:id="@+id/locationAddress"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:layout_marginStart="@dimen/_3sdp"

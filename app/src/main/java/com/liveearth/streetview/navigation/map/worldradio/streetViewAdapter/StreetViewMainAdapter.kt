@@ -35,6 +35,7 @@ class StreetViewMainAdapter(
 
 ) : RecyclerView.Adapter<StreetViewMainAdapter.ListViewHolder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view =
             LayoutInflater.from(context).inflate(R.layout.sample_street_view_item, parent, false)
@@ -67,10 +68,13 @@ class StreetViewMainAdapter(
                         dataSource: DataSource?,
                         isFirstResource: Boolean
                     ): Boolean {
-                        holder.lottieCardLayout.visibility = View.VISIBLE
-                        android.os.Handler(Looper.getMainLooper()).postDelayed({
-                            holder.lottieCardLayout.visibility = View.INVISIBLE
-                        },500)
+                        if (position == 0){
+                            holder.lottieCardLayout.visibility = View.VISIBLE
+                            android.os.Handler(Looper.getMainLooper()).postDelayed({
+                                holder.lottieCardLayout.visibility = View.INVISIBLE
+                            },4500)
+                        }
+
                         holder.progress_bar.visibility = View.INVISIBLE
                         holder.categoryImageItem.setImageDrawable(resource)
                         return true

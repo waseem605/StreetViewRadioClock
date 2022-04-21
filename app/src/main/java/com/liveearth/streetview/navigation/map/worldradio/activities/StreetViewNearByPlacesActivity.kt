@@ -35,6 +35,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favo
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModelFactory
 import com.mapbox.geojson.Point
 import com.mapbox.mapboxsdk.Mapbox
+import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
 import com.mapbox.mapboxsdk.geometry.LatLng
@@ -60,6 +61,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     private var myStyle: Style? = null
     private var mLocationMarker: Marker? = null
     private var nearLocationMarker: Marker? = null
+    private var nearLocationMarkerZoom: Marker? = null
     private var mOrigin: Point? = null
     private var mDestination: Point? = null
     var zoom: Int = 12
@@ -125,11 +127,6 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
             override fun onSuccess(data: StreetViewNearPlacesModel) {
                 val nearLocationData = data.results
                 hideProgressDialog(this@StreetViewNearByPlacesActivity)
-                /* Handler(Looper.getMainLooper()).postDelayed({
-                     binding.locationRecycler.visibility = View.VISIBLE
-                     binding.locationRecycler.startAnimation(animationDownToUp)
-                 }, 500)*/
-
                 if (nearLocationMarker != null) {
                     nearLocationMarker!!.remove()
                 }
@@ -143,7 +140,6 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                                 )
                             )
                         )
-                        //clickListenerOnMarker(nearLocationData[i].geocodes.main.latitude,nearLocationData[i].geocodes.main.longitude,nearLocationData[i].name)
                     }
                     showNearLocationsRecycler(data.results as ArrayList<Result>)
                 } catch (e: Exception) {
@@ -171,7 +167,8 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     private fun showNearLocationsRecycler(nearLocationData: ArrayList<Result>) {
          binding.bottomLayout.startAnimation(animationDownToUp)
          binding.bottomLayout.visibility = View.VISIBLE
-              binding.meetMeSearchBtn.visibility = View.GONE
+         binding.meetMeSearchBtn.visibility = View.GONE
+         binding.helpingLayout.visibility = View.VISIBLE
 
         try {
             adapterLocations = NearMeLocationsAdapter(nearLocationData, this,mFavouriteLocationViewModel, object : StreetViewNearMeCallBack {
@@ -221,7 +218,13 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                 override fun onClickOfItemLocation(model: Result, pos: Int) {
 
                     LocationHelper.setZoomMarker(model.geocodes.main.latitude, model.geocodes.main.longitude, mapbox, 18)
-
+                    if (nearLocationMarkerZoom!=null){
+                        nearLocationMarkerZoom!!.remove()
+                    }
+                    nearLocationMarkerZoom = mapbox.addMarker(
+                        MarkerOptions().position(LatLng(model.geocodes.main.latitude, model.geocodes.main.longitude)).title(model.name).icon( IconFactory.getInstance(this@StreetViewNearByPlacesActivity)
+                            .fromResource(R.drawable.circle_marker))
+                    )
                 }
 
             })

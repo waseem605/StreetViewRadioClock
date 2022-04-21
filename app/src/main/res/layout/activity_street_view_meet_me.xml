@@ -157,8 +157,8 @@
     <!--CurrentLocation-->
     <androidx.cardview.widget.CardView
         android:id="@+id/cMeetMeBtn"
-        android:layout_width="@dimen/_55sdp"
-        android:layout_height="@dimen/_55sdp"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
         android:layout_margin="@dimen/_15sdp"
         app:cardElevation="@dimen/_4sdp"
         app:cardCornerRadius="@dimen/_27sdp"

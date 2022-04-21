@@ -36,8 +36,6 @@ class WorldClockAdapter(
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         try {
             val model = modelArrayList[position]
-            holder.addTimeZone.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
-            holder.worldClockBackItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
 
             if (mShowAddBtn.equals(ConstantsStreetView.Show_ADD_Btn)){
                 holder.addTimeZone.visibility = View.VISIBLE
@@ -58,6 +56,9 @@ class WorldClockAdapter(
           /*  holder.itemView.setOnClickListener {
                 callBack.onLocationInfo(model)
             }*/
+
+            holder.addTimeZone.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR))
+            holder.worldClockBackItem.setCardBackgroundColor(Color.parseColor(ConstantsStreetView.APP_SELECTED_SECOND_COLOR))
         } catch (e: Exception) {
         }
     }

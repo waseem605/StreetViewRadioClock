@@ -4,7 +4,7 @@ import kotlin.properties.Delegates
 
 object ConstantsStreetView {
 
-    var accessToken = "pk.eyJ1IjoidWFlMDAwMSIsImEiOiJjbDB1aHc1bTAwZmRiM2JwZWYxMG85a2pvIn0.HaaaJlwnk7HFCS-eTR01ow"
+    var accessToken = "pk.eyJ1Ijoiam9objEyNzVyb2NrIiwiYSI6ImNsMjJ3YmdrdTBsOXczYm4wbWd5NW1oeXUifQ.tCMLx0I1Q3Nt5vOHkRHSvA"
 
     var accessToken1 = "pk.eyJ1Ijoiam9objEyNjlyb2NrIiwiYSI6ImNsMjJ1bnI3cjA2b3MzZXFla3czM3pkYnEifQ.WbVTBfNqxWhtshT_FSyTuw"
     var accessToken2 = "pk.eyJ1Ijoiam9obnJvY2sxMjE3IiwiYSI6ImNsMXl3NXFwNTBndGQzaW4zeG1jODJtZW8ifQ.vkQ_aT2e8wtWouiMP5uCng"
@@ -55,11 +55,10 @@ object ConstantsStreetView {
     val accessToken47 = "pk.eyJ1Ijoiam9objEyNzJyb2NrIiwiYSI6ImNsMjJ2eWtlNjEwMGozY254NWpoaWhyZTkifQ.NfZQ3c7myzFRtHaywILOsw"
     val accessToken48 = "pk.eyJ1Ijoiam9objEyNzNyb2NrIiwiYSI6ImNsMjJ3M292ZzE1NHoza21qMDZqenBpb20ifQ.j-lgsltCM937ASqEY7CSbg"
     val accessToken49 = "pk.eyJ1Ijoiam9objEyNzRyb2NrIiwiYSI6ImNsMjJ3Nng5czFrZzMzam4zajZjeTh4OHoifQ.LkDravlzcLaqLBzItXdUvA"
-    val accessToken50 = "pk.eyJ1Ijoiam9objEyNzVyb2NrIiwiYSI6ImNsMjJ3YmdrdTBsOXczYm4wbWd5NW1oeXUifQ.tCMLx0I1Q3Nt5vOHkRHSvA"
+    val accessToken50 = "pk.eyJ1IjoidWFlMDAwMSIsImEiOiJjbDB1aHc1bTAwZmRiM2JwZWYxMG85a2pvIn0.HaaaJlwnk7HFCS-eTR01ow"
 
 
     const val sharedPrefName = "StreetViewRadio"
-
 
 
     const val isFirstTime = "isFirstTime"

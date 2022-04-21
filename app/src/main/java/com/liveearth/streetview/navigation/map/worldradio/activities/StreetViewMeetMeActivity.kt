@@ -279,7 +279,6 @@ class StreetViewMeetMeActivity : BaseStreetViewActivity(), OnMapReadyCallback {
                     mOtherLocationMarker!!.remove()
                 }
                 try {
-
                     LocationHelper.setZoomMarker(
                         midLaLong.latitude,
                         midLaLong.longitude,

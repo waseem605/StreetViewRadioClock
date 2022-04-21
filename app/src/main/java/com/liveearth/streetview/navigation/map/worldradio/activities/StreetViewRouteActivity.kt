@@ -13,6 +13,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
+import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRouteBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
@@ -152,6 +153,7 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
             locationComponent.isLocationComponentEnabled = true
             locationComponent.renderMode = RenderMode.NORMAL
 
+            destinationAddress()
             if(mMultiPointsRoute){
                 getRouteList(mapboxMap,customRoutListPoints,origin!!)
                 //mapboxMap.addMarker(MarkerOptions().position(LatLng(origin!!.latitude(), origin!!.longitude())))
@@ -176,6 +178,19 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
 
         mapboxMap.uiSettings.logoGravity = Gravity.TOP
         mapboxMap.uiSettings.attributionGravity = Gravity.TOP
+    }
+
+    private fun destinationAddress() {
+        //locationAddress
+        LiveEarthAddressFromLatLng(this, LatLng(destinationlat,destinationLong),object :
+            LiveEarthAddressFromLatLng.GeoTaskCallback{
+            override fun onSuccessLocationFetched(fetchedAddress: String?) {
+                binding.locationAddress.text = fetchedAddress
+            }
+
+            override fun onFailedLocationFetched() {
+            }
+        }).execute()
     }
 
     private fun initSource(@NonNull loadedMapStyle: Style) {
@@ -347,18 +362,17 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 var distance = (currentRoute!!.distance().toDouble() / 1000)
                 binding.distanceRouteTv.text = distance.toString()
 
-//                val PreferenceManagerClass = PreferenceManagerClass(this@StreetViewRouteActivity)
-//                try {
-//                    if (PreferenceManagerClass.getBoolean(AppConstants.DISTANCE_UNIT)){
-//                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
-//                        binding.milesTv.text = "Km"
-//                    }else{
-//                        distance= distance*0.6214
-//                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
-//                        binding.milesTv.text = "Miles"
-//                    }
-//                } catch (e: Exception) {
-//                }
+                try {
+                    if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)){
+                        distance= distance*0.6214
+                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
+                        binding.milesTv.text = "Miles"
+                    }else{
+                        binding.distanceRouteTv.text = DecimalFormat("#.#").format(distance)
+                        binding.milesTv.text = "Km"
+                    }
+                } catch (e: Exception) {
+                }
 
                 mapboxMap.getStyle { style ->
                     val source =
@@ -431,8 +445,9 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
-        binding.mapLayoutBack.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.mapLayoutBack.setColorFilter(Color.parseColor(backgroundColor))
         binding.toolbarLt.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
+        binding.startNavBtn.setTextColor( Color.parseColor(backgroundColor))
     }
 
 
