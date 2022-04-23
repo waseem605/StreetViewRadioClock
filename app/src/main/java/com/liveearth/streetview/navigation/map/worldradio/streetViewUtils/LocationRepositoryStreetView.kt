@@ -15,7 +15,7 @@ import com.google.android.gms.location.LocationServices
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 
 
-class LocationRepository(context: Context, myListener: MyLocationListener) {
+class LocationRepositoryStreetView(context: Context, myListener: MyLocationListener) {
      var fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     private var mContext:Context?=null
     private var myListener: MyLocationListener? =null

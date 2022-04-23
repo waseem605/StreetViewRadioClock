@@ -19,13 +19,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class LocationHelper() {
+class LocationHelperAssistant() {
     companion object {
         val TAG = "LocationHelper"
 
         var oneCountriesRadioList = ArrayList<CountryMainFMModel>()
-
-
 
         fun setZoomMarker(latitude: Double, longitude: Double, mapbox: MapboxMap, zoom: Int) {
             val position = CameraPosition.Builder()

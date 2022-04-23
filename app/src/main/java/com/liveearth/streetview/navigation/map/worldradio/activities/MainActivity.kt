@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import android.view.Window
@@ -20,23 +19,18 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.centurionnavigation.dialogs.ExitDialogueBoxStreetView
 import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
-import com.google.android.material.navigation.NavigationBarView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ColorThemeCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityMainBinding
-import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
-import com.liveearth.streetview.navigation.map.worldradio.streetViewFragments.ThemeFragment
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ColorModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationCTTruckHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationStreetViewHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import me.ibrahimsn.lib.OnItemReselectedListener
-import java.io.File
 
 
 class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
@@ -58,8 +52,8 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
         setThemeColor()
 
         CoroutineScope(Dispatchers.IO).launch() {
-            LocationCTTruckHelper.isProviderCTTruckEnabled(this@MainActivity)
-            val ispermissionDone = LocationCTTruckHelper.islocationCTTruckPerMisstionProvided(this@MainActivity)
+            LocationStreetViewHelper.providerStreetViewEnabled(this@MainActivity)
+            val ispermissionDone = LocationStreetViewHelper.locationStreetViewProvided(this@MainActivity)
 
             if (ispermissionDone) {
                 withContext(Dispatchers.Main) {

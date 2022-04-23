@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.location.Location
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -14,21 +13,12 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.isVisible
-import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewSearchNavigationBinding
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.*
 import com.mapbox.mapboxsdk.Mapbox
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
@@ -40,7 +30,6 @@ import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
 import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
-import com.streetview.map.navigation.live.earthmap.utils.StreetViewGeocoderFromAddress
 
 
 @SuppressLint("LogNotTimber")
@@ -66,7 +55,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     private var mLocationMarkerDestination: Marker? = null
     var zoom: Int = 16
     private var customRoutList: ArrayList<LatLng> = ArrayList()
-    private lateinit var myRepository: LocationRepository
+    private lateinit var myRepositoryStreetView: LocationRepositoryStreetView
     var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
 
 
@@ -265,10 +254,10 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     }
 
     private fun userCurrentLocation() {
-        myRepository = LocationRepository(this, object : MyLocationListener {
+        myRepositoryStreetView = LocationRepositoryStreetView(this, object : MyLocationListener {
             override fun onLocationChanged(location: Location) {
                 location.let {
-                    myRepository.stopLocation()
+                    myRepositoryStreetView.stopLocation()
                     mLatitude = it.latitude
                     mLongitude = it.longitude
 
@@ -279,11 +268,11 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
                         MarkerOptions().position(LatLng(it.latitude, it.longitude))
                     )
                     //Zoom marker
-                    LocationHelper.setZoomMarker(it.latitude, it.longitude, mapbox, zoom)
+                    LocationHelperAssistant.setZoomMarker(it.latitude, it.longitude, mapbox, zoom)
                     //location name from lat long
-                    LiveEarthAddressFromLatLng(this@StreetViewSearchNavigationActivity,
+                    StreetViewAddressFromLatLng(this@StreetViewSearchNavigationActivity,
                         LatLng(it.latitude, it.longitude),
-                        object : LiveEarthAddressFromLatLng.GeoTaskCallback {
+                        object : StreetViewAddressFromLatLng.GeoTaskCallback {
                             override fun onSuccessLocationFetched(fetchedAddress: String?) {
                                 binding.locationOne.text = fetchedAddress
                             }
@@ -320,7 +309,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     private fun setLocationMarker(latLng: LatLng, mapbox: MapboxMap) {
         mLatitude = latLng.latitude
         //origin = Point.fromLngLat(latLng.longitude, latLng.latitude)
-        LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapbox, zoom)
+        LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapbox, zoom)
         mLongitude = latLng.longitude
         if (mLocationMarker != null) {
             mLocationMarker!!.remove()
@@ -333,7 +322,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     private fun setLocationMarkerDestination(latLng: LatLng, mapbox: MapboxMap) {
 
         //origin = Point.fromLngLat(latLng.longitude, latLng.latitude)
-        LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapbox, zoom)
+        LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapbox, zoom)
         if (mLocationMarkerDestination != null) {
             mLocationMarkerDestination!!.remove()
         }
@@ -455,7 +444,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
 
     private fun setLocationMarkerTwo(latLng: LatLng, mapbox: MapboxMap) {
 
-        LocationHelper.setZoomMarker(
+        LocationHelperAssistant.setZoomMarker(
             latLng.latitude,
             latLng.longitude,
             mapbox,
@@ -475,7 +464,7 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
     }
 
     private fun setLocationMarkerThree(latLng: LatLng, mapbox: MapboxMap) {
-        LocationHelper.setZoomMarker(
+        LocationHelperAssistant.setZoomMarker(
             latLng.latitude,
             latLng.longitude,
             mapbox,

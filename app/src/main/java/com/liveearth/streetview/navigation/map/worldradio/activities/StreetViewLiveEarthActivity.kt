@@ -10,7 +10,6 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.bumptech.glide.Glide
-import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
@@ -45,7 +44,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     private var locationMarker: Marker? = null
     var zoom: Int = 16
     var flagMap: Boolean = true
-    private lateinit var myRepository: LocationRepository
+    private lateinit var myRepositoryStreetView: LocationRepositoryStreetView
     var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
     private lateinit var mPreferenceManagerClass:PreferenceManagerClass
 
@@ -167,7 +166,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     private fun getYourCurrentLocation() {
         val tempMapbox = mapbox
         try {
-            myRepository = LocationRepository(this, object : MyLocationListener {
+            myRepositoryStreetView = LocationRepositoryStreetView(this, object : MyLocationListener {
                 override fun onLocationChanged(location: Location) {
                     if (location != null) {
                         latitude = location.latitude
@@ -179,10 +178,10 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                         locationMarker = mapbox.addMarker(
                             MarkerOptions().position(LatLng(latitude, longitude)))
                         val latLng = LatLng(location.latitude, location.longitude)
-                        LiveEarthAddressFromLatLng(
+                        StreetViewAddressFromLatLng(
                             this@StreetViewLiveEarthActivity,
                             latLng,
-                            object : LiveEarthAddressFromLatLng.GeoTaskCallback {
+                            object : StreetViewAddressFromLatLng.GeoTaskCallback {
                                 override fun onSuccessLocationFetched(fetchedAddress: String?) {
                                     binding.searchLocationEt.text = fetchedAddress
                                 }
@@ -190,9 +189,9 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                                 override fun onFailedLocationFetched() {
                                 }
                             }).execute()
-                        myRepository.stopLocation()
+                        myRepositoryStreetView.stopLocation()
                     } else {
-                        myRepository.startLocation()
+                        myRepositoryStreetView.startLocation()
                     }
                 }
             })
@@ -206,7 +205,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     private fun setLocationMarker(latLng: LatLng, mapboxMap: MapboxMap) {
 //        latitude = latLng.latitude
 //        longitude = latLng.longitude
-        LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
+        LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
         Log.d(TAG, "=============" + latLng.latitude)
         // add marker
         if (locationMarker != null) {
@@ -218,7 +217,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         binding.ImgZoomIn.setOnClickListener {
             if (zoom < 18) {
                 zoom++
-                LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
+                LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
             }
             binding.mapLayerLayout.visibility = View.GONE
         }
@@ -226,7 +225,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         binding.ImgZoomOut.setOnClickListener {
             if (zoom > 0) {
                 zoom--
-                LocationHelper.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
+                LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
             }
             binding.mapLayerLayout.visibility = View.GONE
         }
@@ -287,12 +286,12 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                     Glide.with(this).load(R.drawable.ic_two_d_icon).into(binding.imageThreeD)
                     flagMap=false
                     mBuildingPlugin.setVisibility(true)
-                    LocationHelper.set3dMap(latitude, longitude,mapbox)
+                    LocationHelperAssistant.set3dMap(latitude, longitude,mapbox)
                 }else{
                     Glide.with(this).load(R.drawable.ic_three_d_icon).into(binding.imageThreeD)
                     flagMap=true
                     mBuildingPlugin.setVisibility(false)
-                    LocationHelper.setZoomMarker(latitude, longitude,mapbox,zoom)
+                    LocationHelperAssistant.setZoomMarker(latitude, longitude,mapbox,zoom)
                 }
             } catch (e: Exception) {
             }

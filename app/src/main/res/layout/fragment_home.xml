@@ -20,7 +20,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:src="@drawable/snow13n"
+        android:src="@drawable/clouds_back_two"
         android:alpha="0.15"
         android:scaleType="fitXY"
         android:layout_marginTop="-35dp"

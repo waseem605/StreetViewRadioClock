@@ -15,7 +15,6 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySt
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.ExpenseItemAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseViewModel
@@ -23,7 +22,6 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expe
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.*
 import kotlin.collections.ArrayList
 

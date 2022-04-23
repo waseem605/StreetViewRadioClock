@@ -13,7 +13,7 @@ import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.S
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioPlayStationBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioPlayChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 
@@ -44,7 +44,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
 
             binding.nameStationRadio.text = mCountryNameSelected
 
-            mCountriesRadioChannelList = LocationHelper.oneCountriesRadioList
+            mCountriesRadioChannelList = LocationHelperAssistant.oneCountriesRadioList
             binding.toolbar.titleTx.text = getString(R.string.playing)
 
         } catch (e: Exception) {
@@ -89,7 +89,6 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
 
     private fun playRadioChannel(mRadioPosition: Int) {
 
-
         Log.i("jcPlayerRadiozzz", "Play: " + mCountriesRadioChannelList.size)
 
         if (binding.jcPlayerRadio.isPlaying) {
@@ -101,7 +100,6 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
             for (x in 0..mCountriesRadioChannelList.size - 1) {
                 mPlaylist.add(JcAudio.createFromURL(mCountriesRadioChannelList[x].name, mCountriesRadioChannelList[x].urlResolved))
             }
-
         }
 
         try {

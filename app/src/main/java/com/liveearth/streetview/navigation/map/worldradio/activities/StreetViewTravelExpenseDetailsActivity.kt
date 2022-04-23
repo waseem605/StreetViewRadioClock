@@ -1,7 +1,6 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,12 +15,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import android.R
 import android.graphics.Color
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 
 
@@ -87,7 +85,7 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
 
            binding.shareExpenseCard.setOnClickListener {
           model!!.let {
-              LocationHelper.shareExpenseData(this,it.category!!,it.date!!,it.description!!,it.location!!,it.itemList!! as ArrayList<ExpenseItemModel>)
+              LocationHelperAssistant.shareExpenseData(this,it.category!!,it.date!!,it.description!!,it.location!!,it.itemList!! as ArrayList<ExpenseItemModel>)
           }
       }
 

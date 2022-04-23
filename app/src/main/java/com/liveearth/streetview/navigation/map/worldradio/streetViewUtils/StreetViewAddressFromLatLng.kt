@@ -1,4 +1,4 @@
-package com.example.centurionnavigation.callBack
+package com.liveearth.streetview.navigation.map.worldradio.streetViewUtils
 
 import android.content.Context
 import android.location.Address
@@ -11,7 +11,7 @@ import com.mapbox.mapboxsdk.geometry.LatLng
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 
-class LiveEarthAddressFromLatLng : CoroutineScope {
+class StreetViewAddressFromLatLng : CoroutineScope {
 
     private val TAG = "CoroutineTask:"
     private var job: Job = Job()

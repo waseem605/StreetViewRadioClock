@@ -8,15 +8,13 @@ import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.github.anastr.speedviewlib.ImageSpeedometer
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewSpeedoMeterBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepositoryStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
-import com.mapbox.mapboxsdk.geometry.LatLng
 import java.text.DecimalFormat
 
 @SuppressLint("LogNotTimber")
@@ -26,7 +24,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
 
     private var Unit_Is_Miles:Boolean = false
     var myLocation: Location? = null
-    var locationRepository: LocationRepository? = null
+    var locationRepositoryStreetView: LocationRepositoryStreetView? = null
     var mStartLatLong: String = ""
     var mEndLatLong: String = ""
     var startLocation: String = ""
@@ -105,7 +103,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
             flag = false
             binding.switchUnit.isEnabled = false
             try {
-                locationRepository = LocationRepository(this, object : MyLocationListener {
+                locationRepositoryStreetView = LocationRepositoryStreetView(this, object : MyLocationListener {
 
                     override fun onLocationChanged(location: Location) {
                         myLocation = location
@@ -144,7 +142,7 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
             binding.switchUnit.isEnabled = true
             flag = true
             binding.speedBtn.text = resources.getString(R.string.start)
-            locationRepository!!.stopLocation()
+            locationRepositoryStreetView!!.stopLocation()
             try {
 
                 mSpeedEnd = myLocation!!.speed

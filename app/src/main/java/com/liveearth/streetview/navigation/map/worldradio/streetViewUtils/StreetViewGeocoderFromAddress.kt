@@ -1,4 +1,4 @@
-package com.streetview.map.navigation.live.earthmap.utils
+package com.liveearth.streetview.navigation.map.worldradio.streetViewUtils
 
 import android.content.Context
 import android.location.Address

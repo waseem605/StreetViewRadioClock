@@ -23,8 +23,8 @@ import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySt
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.StreetViewMainAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepositoryStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -38,7 +38,7 @@ class StreetViewMainActivity : AppCompatActivity() {
     private var mGeneralStreetViewList =ArrayList<StreetViewModel>()
     private var mLatitude:Double = 0.0
     private var mLongitude:Double = 0.0
-    private lateinit var mLocationRepository: LocationRepository
+    private lateinit var mLocationRepositoryStreetView: LocationRepositoryStreetView
 
 
     @Inject
@@ -167,7 +167,7 @@ class StreetViewMainActivity : AppCompatActivity() {
             }).into(binding.streetViewImageItem)
 
         binding.shareLocationCard.setOnClickListener {
-            LocationHelper.shareLocation(this@StreetViewMainActivity,mGeneralStreetViewList[posIntent].lat.toDouble(),mGeneralStreetViewList[posIntent].long.toDouble())
+            LocationHelperAssistant.shareLocation(this@StreetViewMainActivity,mGeneralStreetViewList[posIntent].lat.toDouble(),mGeneralStreetViewList[posIntent].long.toDouble())
         }
 
         binding.navigateCard.setOnClickListener {
@@ -189,12 +189,12 @@ class StreetViewMainActivity : AppCompatActivity() {
     }
 
     private fun getCurrentUserLocation() {
-        mLocationRepository = LocationRepository(this,object :MyLocationListener{
+        mLocationRepositoryStreetView = LocationRepositoryStreetView(this,object :MyLocationListener{
             override fun onLocationChanged(location: Location) {
                 location.let {
                     mLatitude = it.latitude
                     mLongitude = it.longitude
-                    mLocationRepository.stopLocation()
+                    mLocationRepositoryStreetView.stopLocation()
                 }
             }
 
@@ -247,7 +247,7 @@ class StreetViewMainActivity : AppCompatActivity() {
             MainStreetViewCallBackListener {
 
             override fun onClickShareCategory(model: StreetViewModel) {
-                LocationHelper.shareLocation(this@StreetViewMainActivity,model.lat.toDouble(),model.long.toDouble())
+                LocationHelperAssistant.shareLocation(this@StreetViewMainActivity,model.lat.toDouble(),model.long.toDouble())
             }
 
             override fun onClickNavigateCategory(model: StreetViewModel) {

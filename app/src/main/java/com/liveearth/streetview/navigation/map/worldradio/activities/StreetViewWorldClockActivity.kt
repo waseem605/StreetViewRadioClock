@@ -18,7 +18,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.room
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.SavedWorldTimeAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import org.json.JSONArray
 import org.json.JSONObject
@@ -123,8 +123,8 @@ class StreetViewWorldClockActivity : AppCompatActivity() {
             binding.clockView.setTimeZone(mTimeZoneString)
             binding.countryName.text = mCountryName
             binding.countryTimeZone.text = timezone
-            binding.currentIme.text = LocationHelper.getCurrentDateTime(this, 3)
-            binding.currentDate.text = LocationHelper.getCurrentDateTime(this, 2)
+            binding.currentIme.text = LocationHelperAssistant.getCurrentDateTime(this, 3)
+            binding.currentDate.text = LocationHelperAssistant.getCurrentDateTime(this, 2)
             Glide.with(this).load("https://flagpedia.net/data/flags/normal/${iso}.png")
                 .into(binding.currentCountryImage)
 

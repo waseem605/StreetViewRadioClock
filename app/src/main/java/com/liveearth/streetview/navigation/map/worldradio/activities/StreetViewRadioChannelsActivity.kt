@@ -17,7 +17,7 @@ import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.S
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewRetrofitFM
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 import retrofit2.Call
@@ -82,8 +82,8 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
                         mCountriesRadioChannelList = response.body() as ArrayList
                         showChannelListOfCountry(mCountriesRadioChannelList)
 
-                        LocationHelper.oneCountriesRadioList.clear()
-                        LocationHelper.oneCountriesRadioList = mCountriesRadioChannelList
+                        LocationHelperAssistant.oneCountriesRadioList.clear()
+                        LocationHelperAssistant.oneCountriesRadioList = mCountriesRadioChannelList
 
                     } catch (e: Exception) {
                     }

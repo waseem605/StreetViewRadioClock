@@ -64,7 +64,6 @@ class RepositoryWeather(val service: WeatherAPI) {
                 Log.d("454545454","========response.body()!!=========${t.message}====")
 
             }
-
         })
 
 

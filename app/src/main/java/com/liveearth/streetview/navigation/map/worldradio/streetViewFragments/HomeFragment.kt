@@ -17,9 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
 import com.example.dummy.apiServices.WeatherAPI
 import com.example.dummy.apiServices.WeatherAPIServices
@@ -50,7 +48,7 @@ class HomeFragment : Fragment() {
     private lateinit var mHomeMoreAdapter: HomeFragmentMoreAdapter
     private var mTopList: ArrayList<HomeFragmentModel> = ArrayList()
     private var mBottomList: ArrayList<HomeFragmentModel> = ArrayList()
-    var mLocationRepository: LocationRepository? = null
+    var mLocationRepositoryStreetView: LocationRepositoryStreetView? = null
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     private lateinit var viewModel: WeatherViewModel
     private var lat:Double = 0.0
@@ -79,8 +77,8 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         CoroutineScope(Dispatchers.IO).launch() {
-            LocationCTTruckHelper.isProviderCTTruckEnabled(requireContext())
-            val ispermissionDone = LocationCTTruckHelper.islocationCTTruckPerMisstionProvided(requireContext())
+            LocationStreetViewHelper.providerStreetViewEnabled(requireContext())
+            val ispermissionDone = LocationStreetViewHelper.locationStreetViewProvided(requireContext())
 
             if (ispermissionDone) {
                 withContext(Dispatchers.Main) {
@@ -213,17 +211,17 @@ class HomeFragment : Fragment() {
 
     private fun currentLocationWeather() {
         try {
-            mLocationRepository = LocationRepository(requireContext(), object : MyLocationListener {
+            mLocationRepositoryStreetView = LocationRepositoryStreetView(requireContext(), object : MyLocationListener {
                 override fun onLocationChanged(location: Location) {
                     location.let {
-                        mLocationRepository!!.stopLocation()
+                        mLocationRepositoryStreetView!!.stopLocation()
                         lat = it.latitude
                         lon = it.longitude
                         //homeWeatherDetails(it)
                         homeWeatherMVVMDetails(it)
 
-                        LiveEarthAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
-                            LiveEarthAddressFromLatLng.GeoTaskCallback{
+                        StreetViewAddressFromLatLng(requireContext(), LatLng(it.latitude,it.longitude),object :
+                            StreetViewAddressFromLatLng.GeoTaskCallback{
                             override fun onSuccessLocationFetched(fetchedAddress: String?) {
                                 binding.currentAddress.text = fetchedAddress
                                 ConstantsStreetView.CURRENT_ADDRESS = fetchedAddress!!

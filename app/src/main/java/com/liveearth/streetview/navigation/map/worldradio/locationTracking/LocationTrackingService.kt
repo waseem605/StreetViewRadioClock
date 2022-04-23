@@ -11,20 +11,19 @@ import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepositoryStreetView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView.ACTION_PLAY
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView.ACTION_STOP
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView.MY_TIMER_BROADCAST
-import java.text.DecimalFormat
 
 @SuppressLint("LogNotTimber")
 class LocationTrackingService : Service() {
 
     var walkSpeed:Float ?=null
 
-    private var locationRepository: LocationRepository? = null
+    private var locationRepositoryStreetView: LocationRepositoryStreetView? = null
     val CHANNEL_ID = "NotificationService"
     val NOTIFICATION_ID = 4321
     var manager: NotificationManager? = null
@@ -60,7 +59,7 @@ class LocationTrackingService : Service() {
     }
 
     private fun startLocation() {
-        locationRepository = LocationRepository(this,object :MyLocationListener{
+        locationRepositoryStreetView = LocationRepositoryStreetView(this,object :MyLocationListener{
 
             override fun onLocationChanged(location: Location) {
                 location.let {
@@ -97,7 +96,7 @@ class LocationTrackingService : Service() {
         super.onDestroy()
 
         try {
-            locationRepository!!.stopLocation()
+            locationRepositoryStreetView!!.stopLocation()
         } catch (e: Exception) {
         }
 

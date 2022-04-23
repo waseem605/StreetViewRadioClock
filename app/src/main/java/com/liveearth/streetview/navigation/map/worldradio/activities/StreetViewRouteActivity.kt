@@ -13,10 +13,10 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRouteBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewAddressFromLatLng
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.mapbox.api.directions.v5.DirectionsCriteria
 import com.mapbox.api.directions.v5.MapboxDirections
@@ -182,8 +182,8 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun destinationAddress() {
         //locationAddress
-        LiveEarthAddressFromLatLng(this, LatLng(destinationlat,destinationLong),object :
-            LiveEarthAddressFromLatLng.GeoTaskCallback{
+        StreetViewAddressFromLatLng(this, LatLng(destinationlat,destinationLong),object :
+            StreetViewAddressFromLatLng.GeoTaskCallback{
             override fun onSuccessLocationFetched(fetchedAddress: String?) {
                 binding.locationAddress.text = fetchedAddress
             }

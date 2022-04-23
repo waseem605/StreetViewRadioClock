@@ -1,6 +1,5 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.location.Location
@@ -15,9 +14,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.centurionnavigation.callBack.LiveEarthAddressFromLatLng
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepositoryStreetView
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewLocationAPIServices
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewNearByCallBack
@@ -44,8 +42,6 @@ import com.mapbox.mapboxsdk.maps.MapboxMap
 import com.mapbox.mapboxsdk.maps.OnMapReadyCallback
 import com.mapbox.mapboxsdk.maps.Style
 import com.mapbox.mapboxsdk.plugins.building.BuildingPlugin
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.PlaceAutocomplete
-import com.mapbox.mapboxsdk.plugins.places.autocomplete.model.PlaceOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -69,7 +65,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     lateinit var animationDownToUp: Animation
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     private var mLocationsList: ArrayList<NearLocationsModel> = ArrayList()
-    private lateinit var myRepository: LocationRepository
+    private lateinit var myRepositoryStreetView: LocationRepositoryStreetView
     private lateinit var adapterLocations:NearMeLocationsAdapter
     private lateinit var mFavouriteLocationViewModel: FavouriteLocationViewModel
 
@@ -185,13 +181,13 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                 }
 
                 override fun shareLocation(model: Result) {
-                    LocationHelper.shareLocation(this@StreetViewNearByPlacesActivity,model.geocodes.main.latitude,model.geocodes.main.longitude)
+                    LocationHelperAssistant.shareLocation(this@StreetViewNearByPlacesActivity,model.geocodes.main.latitude,model.geocodes.main.longitude)
                 }
 
                 override fun addToFavouriteLocation(model: Result) {
                     setToast(this@StreetViewNearByPlacesActivity,"Added to favourite")
-                    val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
-                        LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
+                    val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelperAssistant.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
+                        LocationHelperAssistant.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
                     mFavouriteLocationViewModel.insertFavouriteLocation(fvrModel)
                     adapterLocations.notifyDataSetChanged()
 
@@ -199,8 +195,8 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                 }
 
                 override fun removeFromFavouriteLocation(model: Result) {
-                    val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
-                        LocationHelper.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
+                    val fvrModel = FavouriteLocationModel(id = null,model.fsq_id,model.location.address,model.name,model.timezone,LocationHelperAssistant.getCurrentDateTime(this@StreetViewNearByPlacesActivity,2),
+                        LocationHelperAssistant.getCurrentDateTime(this@StreetViewNearByPlacesActivity,3),model.geocodes.main.latitude,model.geocodes.main.longitude)
 
              /*       GlobalScope.launch(Dispatchers.Main) {
                        mFavouriteLocationViewModel.deleteFavouriteLocation(fvrModel)
@@ -217,7 +213,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
 
                 override fun onClickOfItemLocation(model: Result, pos: Int) {
 
-                    LocationHelper.setZoomMarker(model.geocodes.main.latitude, model.geocodes.main.longitude, mapbox, 18)
+                    LocationHelperAssistant.setZoomMarker(model.geocodes.main.latitude, model.geocodes.main.longitude, mapbox, 18)
                     if (nearLocationMarkerZoom!=null){
                         nearLocationMarkerZoom!!.remove()
                     }
@@ -251,7 +247,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     private fun getYourCurrentLocation() {
         val tempMapbox = mapbox
         try {
-            myRepository = LocationRepository(this, object : MyLocationListener {
+            myRepositoryStreetView = LocationRepositoryStreetView(this, object : MyLocationListener {
                 override fun onLocationChanged(location: Location) {
                     location.let {
 
@@ -274,7 +270,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
                                 override fun onFailedLocationFetched() {
                                 }
                             }).execute()*/
-                        myRepository.stopLocation()
+                        myRepositoryStreetView.stopLocation()
                     }
                 }
             })
@@ -287,7 +283,7 @@ class StreetViewNearByPlacesActivity : BaseStreetViewActivity(), OnMapReadyCallb
     private fun setLocationMarker(latLng: LatLng, mapboxMap: MapboxMap) {
         latitude = latLng.latitude
         longitude = latLng.longitude
-        LocationHelper.setZoomMarker(latitude, longitude, mapboxMap, zoom)
+        LocationHelperAssistant.setZoomMarker(latitude, longitude, mapboxMap, zoom)
         // add marker
         if (mLocationMarker != null) {
             mLocationMarker!!.remove()

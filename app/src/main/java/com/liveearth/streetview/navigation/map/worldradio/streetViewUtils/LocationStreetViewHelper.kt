@@ -19,23 +19,24 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
-class LocationCTTruckHelper{
+class LocationStreetViewHelper{
 
     companion object{
 
-        suspend fun isProviderCTTruckEnabled(mContext: Context){
+        suspend fun providerStreetViewEnabled(mContext: Context){
             Log.i("getCTLocation","isProviderEnabled :")
             val locationManager = mContext.getSystemService(LOCATION_SERVICE) as LocationManager
             if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
-                islocationCTTruckPerMisstionProvided(mContext)
+                locationStreetViewProvided(mContext)
             }else{
                 withContext(Dispatchers.Main) {
-                    showGpsLocationCTTruckEnabledDialog(mContext)
+                    locationStreetViewEnabledDialog(mContext)
                 }
             }
         }
 
-        fun showGpsLocationCTTruckEnabledDialog(mContext:Context) {
+
+        private fun locationStreetViewEnabledDialog(mContext:Context) {
             Log.i("getCTLocation", "showGpsLocationEnabledDialog :")
             val gpsEnablerDialog = LocationRequestDialogueBox(mContext,object :ExistCallBackListener{
                 override fun onExistClick() {
@@ -46,8 +47,8 @@ class LocationCTTruckHelper{
             gpsEnablerDialog.show()
         }
 
-        suspend fun islocationCTTruckPerMisstionProvided(mContext: Context):Boolean {
-            Log.i("getCTLocation","islocationPerMisstionProvided :")
+        suspend fun locationStreetViewProvided(mContext: Context):Boolean {
+            Log.i("getCTLocation","locationStreetViewProvided :")
             if (Build.VERSION.SDK_INT >= 23) {
                 if (ActivityCompat.checkSelfPermission(
                         mContext,

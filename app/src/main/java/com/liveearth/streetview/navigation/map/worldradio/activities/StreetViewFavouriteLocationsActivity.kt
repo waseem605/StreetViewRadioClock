@@ -16,8 +16,8 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyL
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewFavouriteLocationsBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.FavouriteLocationsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepository
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepositoryStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
     private lateinit var binding:ActivityStreetViewFavouriteLocationsBinding
     private lateinit var mFavouriteLocationViewModel: FavouriteLocationViewModel
-    private lateinit var mLocationRepository: LocationRepository
+    private lateinit var mLocationRepositoryStreetView: LocationRepositoryStreetView
     private lateinit var mFavouriteAdapter: FavouriteLocationsAdapter
     private lateinit var mPreferenceManagerClass:PreferenceManagerClass
     private var mLatitude :Double = 0.0
@@ -67,14 +67,14 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
     }
 
     private fun getCurrentLocation() {
-        mLocationRepository = LocationRepository(this,object :MyLocationListener{
+        mLocationRepositoryStreetView = LocationRepositoryStreetView(this,object :MyLocationListener{
             override fun onLocationChanged(location: Location) {
                 location.run {
                     mLatitude = location.latitude
                     mLongitude = location.longitude
-                    mLocationRepository.stopLocation()
+                    mLocationRepositoryStreetView.stopLocation()
                 }?: Runnable {
-                    mLocationRepository.startLocation()
+                    mLocationRepositoryStreetView.startLocation()
                 }
             }
 
@@ -101,7 +101,7 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
             }
 
             override fun onShareFavLocation(model: FavouriteLocationModel) {
-                LocationHelper.shareLocation(this@StreetViewFavouriteLocationsActivity,model.latitude!!,model.longitude!!)
+                LocationHelperAssistant.shareLocation(this@StreetViewFavouriteLocationsActivity,model.latitude!!,model.longitude!!)
             }
 
             override fun onDeleteFavLocation(model: FavouriteLocationModel) {

@@ -18,7 +18,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.room
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.WorldClockAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
-import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelper
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
@@ -112,8 +112,8 @@ class WordTimeActivity : BaseStreetViewActivity() {
     }
 
     private fun dataSetTimes(mTimeZoneString: String, iso: String, timezone: String) {
-        binding.currentIme.text = LocationHelper.getCurrentDateTime(this, 3)
-        binding.currentDate.text = LocationHelper.getCurrentDateTime(this, 2)
+        binding.currentIme.text = LocationHelperAssistant.getCurrentDateTime(this, 3)
+        binding.currentDate.text = LocationHelperAssistant.getCurrentDateTime(this, 2)
         binding.toolbar.titleTx.text =
             getString(com.liveearth.streetview.navigation.map.worldradio.R.string.world_clock)
         binding.countryName.text = mCountryName
