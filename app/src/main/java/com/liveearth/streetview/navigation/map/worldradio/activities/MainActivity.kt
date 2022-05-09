@@ -53,12 +53,11 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
 
         CoroutineScope(Dispatchers.IO).launch() {
             LocationStreetViewHelper.providerStreetViewEnabled(this@MainActivity)
-            val ispermissionDone = LocationStreetViewHelper.locationStreetViewProvided(this@MainActivity)
+            val isPermissionDone = LocationStreetViewHelper.locationStreetViewProvided(this@MainActivity)
 
-            if (ispermissionDone) {
+            if (isPermissionDone) {
                 withContext(Dispatchers.Main) {
-                    Log.d(TAG, "onCreateView: =====ispermissionDone=="+ispermissionDone)
-
+                    Log.d(TAG, "onCreateView: =====ispermissionDone=="+isPermissionDone)
 
                 }
             }

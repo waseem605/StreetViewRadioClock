@@ -72,7 +72,7 @@
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/drawable/top_background_white.xml" value="0.2846153846153846" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_base_street_view.xml" value="0.27291666666666664" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_globe.xml" value="0.27291666666666664" />
-        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_location_tracking_main.xml" value="0.27291666666666664" />
+        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_location_tracking_main.xml" value="0.10092592592592593" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_main.xml" value="0.26875" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_splash_screen_street_view.xml" value="0.27239583333333334" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/activity_stree_view_travel_expense.xml" value="0.25" />
@@ -110,6 +110,7 @@
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/globe_content.xml" value="0.24259259259259258" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/main_content.xml" value="0.27291666666666664" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/one_fm_country_item.xml" value="0.27291666666666664" />
+        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/reminder_self_notification_small.xml" value="0.22" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_add_world_clock_item.xml" value="0.22685185185185186" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_category_street_view_item.xml" value="0.27291666666666664" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_color_theme_item.xml" value="0.27291666666666664" />
@@ -125,6 +126,7 @@
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_saved_expense_item_details.xml" value="0.27291666666666664" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_street_view_famous_item.xml" value="0.26875" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_street_view_item.xml" value="0.27291666666666664" />
+        <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_tracking_item_.xml" value="0.25" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_weather_all_item.xml" value="0.27291666666666664" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_weather_item_week.xml" value="0.2462962962962963" />
         <entry key="..\:/Centurion/Android Projects/StreetViewClock-master/app/src/main/res/layout/sample_world_clock_item.xml" value="0.27291666666666664" />

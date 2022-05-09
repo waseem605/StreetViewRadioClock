@@ -6,27 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".locationTracking.LocationTrackingMainActivity">
 
+    <include layout="@layout/custom_toolbar"
+        android:id="@+id/toolbarLt"/>
 
-    <TextView
-        android:id="@+id/speedTx"
+
+    <com.mapbox.mapboxsdk.maps.MapView
+        android:id="@+id/mapViewTracking"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLt"/>
+
+
+    <Button
+        android:id="@+id/startTrackingLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ss location"
+        android:text="start location"
         android:padding="@dimen/_5sdp"
-        android:textSize="@dimen/_20ssp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/_10ssp"
+        android:textSize="@dimen/_10ssp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/stopBtn"/>
 
-    <TextView
+
+    <Button
         android:id="@+id/stopBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Stop Background locations"
-        android:textSize="@dimen/_20ssp"
+        android:textSize="@dimen/_10ssp"
+        android:layout_margin="@dimen/_10ssp"
         android:padding="@dimen/_5sdp"
-        app:layout_constraintTop_toBottomOf="@id/speedTx"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

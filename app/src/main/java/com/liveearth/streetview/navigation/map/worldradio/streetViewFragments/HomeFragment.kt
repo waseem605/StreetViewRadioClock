@@ -34,6 +34,7 @@ import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.Stre
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
 import com.liveearth.streetview.navigation.map.worldradio.activities.*
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentHomeBinding
+import com.liveearth.streetview.navigation.map.worldradio.locationTracking.LocationTrackingMainActivity
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentMoreAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.HomeFragmentTopAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFragmentModel
@@ -69,7 +70,6 @@ class HomeFragment : Fragment() {
         topItemManager()
         moreItemManager()
         //checkLocationPermission()
-
 
         return binding.root
     }
@@ -187,7 +187,8 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             6->{
-                val mainIntent = Intent(requireContext(),StreetViewTravelExpenseViewActivity::class.java)
+                //val mainIntent = Intent(requireContext(),StreetViewTravelExpenseViewActivity::class.java)
+                val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
                 startActivity(mainIntent)
             }
             7->{
