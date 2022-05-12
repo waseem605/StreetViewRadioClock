@@ -9,13 +9,12 @@
     android:elevation="@dimen/_2sdp"
     android:layout_marginBottom="@dimen/_2sdp">
 
-
     <ImageView
         android:id="@+id/backLink"
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_margin="@dimen/_5sdp"
-        android:padding="@dimen/_5sdp"
+        android:padding="@dimen/_7sdp"
         android:src="@drawable/back_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -35,4 +34,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".locationTracking.LocationTrackingMainActivity">
 
     <include layout="@layout/custom_toolbar"
         android:id="@+id/toolbarLt"/>
-
 
     <com.mapbox.mapboxsdk.maps.MapView
         android:id="@+id/mapViewTracking"
@@ -17,33 +17,140 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbarLt"/>
 
-
-    <Button
-        android:id="@+id/startTrackingLocation"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start location"
-        android:padding="@dimen/_5sdp"
-        android:layout_margin="@dimen/_10ssp"
-        android:textSize="@dimen/_10ssp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/stopBtn"/>
+        app:layout_constraintBottom_toBottomOf="parent">
 
+        <ImageView
+            android:id="@+id/bottomImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bottom_bar_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/appSilverColor" />
 
-    <Button
-        android:id="@+id/stopBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop Background locations"
-        android:textSize="@dimen/_10ssp"
-        android:layout_margin="@dimen/_10ssp"
-        android:padding="@dimen/_5sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/locationDataLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:visibility="gone"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintBottom_toTopOf="@id/startTrackingLocation">
 
+            <TextView
+                android:id="@+id/distanceTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Distance : "
+                android:textStyle="bold"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
+            <TextView
+                android:id="@+id/distanceLocations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/distanceTx"
+                app:layout_constraintTop_toTopOf="@id/distanceTx"
+                app:layout_constraintBottom_toBottomOf="@id/distanceTx"/>
 
+            <TextView
+                android:id="@+id/distanceUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Km"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/distanceLocations"
+                app:layout_constraintTop_toTopOf="@id/distanceTx"
+                app:layout_constraintBottom_toBottomOf="@id/distanceTx"/>
+
+            <TextView
+                android:id="@+id/speedTx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Avg Speed : "
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/speedLocations"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/speedLocations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.0"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="@dimen/_3sdp"
+                app:layout_constraintEnd_toStartOf="@id/speedUnit"
+                app:layout_constraintTop_toTopOf="@id/speedTx"
+                app:layout_constraintBottom_toBottomOf="@id/speedTx"/>
+
+            <TextView
+                android:id="@+id/speedUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Km/h"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/speedTx"
+                app:layout_constraintBottom_toBottomOf="@id/speedTx"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/startTrackingLocation"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="Start Tracking"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/_8sdp"
+            android:backgroundTint="@color/appMainColor"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/locationDataLayout"
+            app:layout_constraintEnd_toStartOf="@id/showBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/showBtn"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:text="Tracked List"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            app:cornerRadius="@dimen/_8sdp"
+            android:backgroundTint="@color/appMainColor"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_10ssp"
+            android:layout_margin="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@id/locationDataLayout"
+            app:layout_constraintStart_toEndOf="@id/startTrackingLocation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

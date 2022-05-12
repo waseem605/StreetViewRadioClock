@@ -119,8 +119,8 @@ class HomeFragment : Fragment() {
 
         binding.liveEarthCard.setOnClickListener {
             val mainIntent = Intent(requireContext(), StreetViewLiveEarthActivity::class.java)
-            mainIntent.putExtra(ConstantsStreetView.OriginLatitude, 51.50078)
-            mainIntent.putExtra(ConstantsStreetView.OriginLongitude, -0.1245122)
+            mainIntent.putExtra(ConstantsStreetView.OriginLatitude, 41.037699)
+            mainIntent.putExtra(ConstantsStreetView.OriginLongitude, 28.9457313)
             startActivity(mainIntent)
         }
 
@@ -139,7 +139,7 @@ class HomeFragment : Fragment() {
 
         mBottomList.add(HomeFragmentModel(R.drawable.icon_meet_me, "Meet Me", 0))
         mBottomList.add(HomeFragmentModel(R.drawable.favorite, "My favourite", 1))
-        mBottomList.add(HomeFragmentModel(R.drawable.icon_nearby, "Near By", 2))
+        mBottomList.add(HomeFragmentModel(R.drawable.track, "Tracking", 2))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_clock, "World Clock", 3))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_radio, "Radio", 4))
         mBottomList.add(HomeFragmentModel(R.drawable.speedometer, "Speedometer", 5))
@@ -171,7 +171,10 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             2->{
-                val mainIntent = Intent(requireContext(), StreetViewNearByPlacesActivity::class.java)
+                //val mainIntent = Intent(requireContext(), StreetViewNearByPlacesActivity::class.java)
+                val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
+                mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
+                mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
                 startActivity(mainIntent)
             }
             3->{
@@ -187,8 +190,10 @@ class HomeFragment : Fragment() {
                 startActivity(mainIntent)
             }
             6->{
-                //val mainIntent = Intent(requireContext(),StreetViewTravelExpenseViewActivity::class.java)
-                val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
+                val mainIntent = Intent(requireContext(),StreetViewTravelExpenseViewActivity::class.java)
+                //val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
+                mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
+                mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
                 startActivity(mainIntent)
             }
             7->{

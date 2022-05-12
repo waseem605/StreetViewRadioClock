@@ -13,6 +13,9 @@ class TrackLocationRepository(
     suspend fun updateTrackingLocation(model: TrackLocationModel) =
         mDatabase.getTrackingDao().updateTrackingLocation(model)
 
+    suspend fun getDataByDate(date: String): TrackLocationModel? =
+        mDatabase.getTrackingDao().getDataByDate(date)
+
     suspend fun getDataById(id: Int): TrackLocationModel? =
         mDatabase.getTrackingDao().getDataById(id)
 

@@ -17,9 +17,15 @@ class TrackLocationViewModel(mContext: Context) : ViewModel() {
         }
     }
 
-    suspend fun getDataById(id: Int): TrackLocationModel? = repository.getDataById(id)
+    suspend fun getDataByDate(dateString: String): TrackLocationModel? = repository.getDataByDate(dateString)
+    suspend fun getDataById(id: Int): TrackLocationModel = repository.getDataById(id)!!
 
-    suspend fun updateTrackingLocation(model: TrackLocationModel) = repository.updateTrackingLocation(model)
+    fun updateTrackingLocation(model: TrackLocationModel){
+        viewModelScope.launch {
+            Dispatchers.IO
+            repository.updateTrackingLocation(model)
+        }
+    }
     suspend fun deleteTrackingLocation(model: TrackLocationModel) = repository.deleteTrackingLocation(model)
 
     suspend fun deleteTrackingById(id: Int) = repository.deleteTrackingById(id)

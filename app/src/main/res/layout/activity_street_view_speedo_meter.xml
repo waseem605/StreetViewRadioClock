@@ -109,6 +109,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/minSpeedTX"
+                app:layout_constraintStart_toEndOf="@id/maxSpeedTX"
+                app:layout_constraintTop_toTopOf="parent"/>
+
             <TextView
                 android:id="@+id/maxSpeed"
                 android:layout_width="wrap_content"
@@ -143,6 +152,14 @@
                 app:layout_constraintEnd_toStartOf="@id/avgSpeedTX"
                 app:layout_constraintStart_toEndOf="@id/maxSpeedTX"
                 app:layout_constraintTop_toTopOf="parent" />
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/black"
+                app:layout_constraintEnd_toStartOf="@id/avgSpeedTX"
+                app:layout_constraintStart_toEndOf="@id/minSpeedTX"
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/minimumSpeed"

@@ -5,9 +5,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
     <!-- <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" /> -->
+<!--
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+-->
 
     <application
         android:name=".hilt.MyApplication"
@@ -21,21 +22,27 @@
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activities.MainActivity"
-            android:screenOrientation="portrait"
+            android:name=".locationTracking.TrackedRouteLocationsActivity"
             android:exported="false" />
+        <activity
+            android:name=".locationTracking.LocationTrackingListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.StreetViewPrivacyPolicyActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.StreetViewFirstLookActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.StreetViewMainActivity"
-            android:screenOrientation="portrait"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.StreetViewMainGlobeViewActivity"
             android:exported="false"

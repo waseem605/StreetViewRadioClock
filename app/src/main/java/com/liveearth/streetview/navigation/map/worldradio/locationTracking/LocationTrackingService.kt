@@ -6,12 +6,15 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.location.Location
+import android.os.Binder
 import android.os.Build
+import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.RemoteViews
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.gson.Gson
 import com.liveearth.streetview.navigation.map.worldradio.R
@@ -22,13 +25,21 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.Consta
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView.ACTION_STOP
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView.MY_TIMER_BROADCAST
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationRepositoryStreetView
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationViewModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationViewModelFactory
 
 @SuppressLint("LogNotTimber")
 class LocationTrackingService : Service() {
 
     var walkSpeed:Float ?=null
+    var latitude:Double = 0.0
+    var longitude:Double = 0.0
+
     private lateinit var preferences:SharedPreferences
     val mTrackingList = ArrayList<TrackingLocationModel>()
+    private var callBack :TrackingLocationCallBackListener?=null
 
     private var locationRepositoryStreetView: LocationRepositoryStreetView? = null
     private val CHANNEL_ID = "NotificationService"
@@ -59,47 +70,52 @@ class LocationTrackingService : Service() {
     }
 
     private fun stopGettingLocation() {
-        saveLocationData()
+        //saveLocationData()
         stopForeground(true)
         manager!!.cancel(NOTIFICATION_ID)
     }
 
     private fun startLocation() {
+
         locationRepositoryStreetView = LocationRepositoryStreetView(this,object :MyLocationListener{
 
             override fun onLocationChanged(location: Location) {
                 location.let {
-                Log.d("LocationTracking","=============")
+                    latitude = it.latitude
+                    longitude = it.longitude
                     walkSpeed = it.speed
-                    Log.d("LocationTracking","============="+it.speed)
+                    Log.d("LocationTracking","==speed==========="+it.speed)
+                    try {
+                        if (it.speed >0.1){
+                            val intent = Intent(MY_TIMER_BROADCAST)
+                            intent.putExtra(ConstantsStreetView.speedLocation, walkSpeed)
+                            intent.putExtra(ConstantsStreetView.latitudeLocation, it.latitude)
+                            intent.putExtra(ConstantsStreetView.longitudeLocation, it.longitude)
+                            LocalBroadcastManager.getInstance(this@LocationTrackingService).sendBroadcast(intent)
 
-                    mTrackingList.add(TrackingLocationModel(it.latitude,it.longitude,it.speed.toString()))
-
+                           // callBack!!.onChangeLocation(TrackingLocationModel(it.latitude,it.longitude,it.speed.toString()))
+                           // mTrackingList.add(TrackingLocationModel(it.latitude,it.longitude,it.speed.toString()))
+                        }
+                    } catch (e: Exception) {
+                    }
                 }
             }
-
         })
-        val intent = Intent(MY_TIMER_BROADCAST)
+     /*   val intent = Intent(MY_TIMER_BROADCAST)
         intent.putExtra("speed", walkSpeed)
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)
-
-
-    }
-
-    private fun saveLocationData() {
-        preferences= getSharedPreferences(ConstantsStreetView.sharedPrefName, Context.MODE_PRIVATE)
-        val editor = preferences.edit()
-        val gson = Gson()
-        val jsonString = gson.toJson(mTrackingList)
-        editor.putString("mTrackingList",jsonString)
-        editor.apply()
+        LocalBroadcastManager.getInstance(this).sendBroadcast(intent)*/
 
     }
 
 
-    override fun onBind(intent: Intent?): IBinder? {
+/*    override fun onBind(intent: Intent?): IBinder? {
+        val mBinder: IBinder = LocalBinder()
+
         return null
-    }
+    }*/
+
+
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate() {
@@ -167,5 +183,15 @@ class LocationTrackingService : Service() {
         }
     }
 
+    class MyBinder(val service: LocationTrackingService): Binder()
 
+    private val binder = MyBinder(this)
+
+    override fun onBind(intent: Intent?): IBinder? = binder
+
+//    fun doSomething() :TrackingLocationModel {
+//        val model = TrackingLocationModel(latitude,longitude,walkSpeed)
+//        println("do something...")
+//        return model
+//    }
 }

@@ -8,6 +8,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expe
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationDao
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Favourite_roomDb.FavouriteLocationModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationDao
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationItemTypeConverters
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationModel
 
 @Database(
@@ -15,7 +16,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Trac
     version = 1,
     exportSchema = false
 )
-@TypeConverters(Convertors::class,ExpenseItemTypeConverters::class)
+@TypeConverters(Convertors::class,ExpenseItemTypeConverters::class, TrackLocationItemTypeConverters::class)
 abstract class StreetViewDatabase: RoomDatabase() {
 
     abstract fun getTimeZoneDao():WorldTimeZoneDao

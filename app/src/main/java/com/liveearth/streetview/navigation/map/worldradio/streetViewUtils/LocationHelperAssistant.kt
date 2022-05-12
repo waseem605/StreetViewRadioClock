@@ -29,7 +29,7 @@ class LocationHelperAssistant() {
             val position = CameraPosition.Builder()
                 .target(LatLng(latitude, longitude))
                 .zoom(zoom.toDouble())
-                .bearing(180.0)
+                .bearing(270.0)
                 .tilt(30.0)
                 .build()
             mapbox.animateCamera(
@@ -179,6 +179,8 @@ class LocationHelperAssistant() {
                     data = currentTime
                 4 ->
                     data = currentDay
+                5 ->
+                    data = currentDate
             }
             return data
         }

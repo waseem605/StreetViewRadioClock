@@ -18,6 +18,9 @@ interface TrackLocationDao {
     @Query("DELETE FROM TrackingLocation_table WHERE id = :id")
     suspend fun deleteTrackingById(id:Int)
 
+    @Query("SELECT * FROM TrackingLocation_table WHERE time = :time")
+    suspend fun getDataByDate(time:String): TrackLocationModel?
+
     @Query("SELECT * FROM TrackingLocation_table WHERE id = :id")
     suspend fun getDataById(id:Int): TrackLocationModel?
 

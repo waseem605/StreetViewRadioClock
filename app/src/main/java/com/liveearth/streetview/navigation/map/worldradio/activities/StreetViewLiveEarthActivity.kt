@@ -35,8 +35,8 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
 //    private var longitude: Double = 67.073477
     private var latitudeTem: Double = 25.1124317
     private var longitudeTrm: Double = 55.138978
-    private var latitude: Double = 51.50078
-    private var longitude: Double = -0.1245122
+    private var latitude: Double = 41.037699
+    private var longitude: Double = 28.9457313
     private lateinit var mapView: MapView
     private lateinit var mBuildingPlugin: BuildingPlugin
     lateinit var mapbox: MapboxMap
@@ -45,7 +45,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
     var zoom: Int = 16
     var flagMap: Boolean = true
     private lateinit var myRepositoryStreetView: LocationRepositoryStreetView
-    var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
+    private var mBottomSheetBehavior: BottomSheetBehavior<View>?=null
     private lateinit var mPreferenceManagerClass:PreferenceManagerClass
 
 
@@ -87,10 +87,10 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
             }
         }
 
-    /*    binding.nearByLocations.setOnClickListener {
+        binding.nearByLocations.setOnClickListener {
             val intent = Intent(this,StreetViewNearByPlacesActivity::class.java)
             startActivity(intent)
-        }*/
+        }
 
         binding.currentLocationBtn.setOnClickListener {
             getYourCurrentLocation()

@@ -3,6 +3,10 @@ package com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tra
 import androidx.room.PrimaryKey
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.TypeConverters
+import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.ExpenseItemModel
+import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.TrackingLocationModel
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Expense_roomDb.ExpenseItemTypeConverters
 import com.mapbox.mapboxsdk.geometry.LatLng
 
 @Entity(tableName = "TrackingLocation_table")
@@ -11,10 +15,15 @@ class TrackLocationModel(
     var id: Int? = null,
     @ColumnInfo(name = "date")
     var date: String?,
+    @ColumnInfo(name = "startTime")
+    var startTime: String?,
     @ColumnInfo(name = "time")
     var time: String?,
-    @ColumnInfo(name = "latitude")
-    var latitude: Double?,
-    @ColumnInfo(name = "longitude")
-    var longitude: Double?
+    @ColumnInfo(name = "avgSpeed")
+    var avgSpeed: Float?,
+    @ColumnInfo(name = "distance")
+    var distance: Double?,
+    @TypeConverters(TrackLocationItemTypeConverters::class)
+    @ColumnInfo(name = "locationsList")
+    var locationsList: List<TrackingLocationModel>?,
 )

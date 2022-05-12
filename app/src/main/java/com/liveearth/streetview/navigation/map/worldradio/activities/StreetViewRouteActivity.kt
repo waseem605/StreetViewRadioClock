@@ -274,7 +274,7 @@ class StreetViewRouteActivity : AppCompatActivity(), OnMapReadyCallback {
                 val durationDistance = currentRoute!!.duration().toInt()
                 ConvertSectoDay(durationDistance)
                 var distance = (currentRoute!!.distance().toDouble() / 1000)
-                binding.distanceRouteTv.text = distance.toString()
+                //binding.distanceRouteTv.text = distance.toString()
 
                 try {
                     if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)){

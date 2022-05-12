@@ -108,12 +108,19 @@ object ConstantsStreetView {
     //CurrentAddress
     var CURRENT_ADDRESS = "CurrentAddress"
 
-    //background Services
+    //background Services location
     const val MY_TIMER_BROADCAST = "MY_TIMER_BROADCAST"
     const val ACTION_PLAY = "ACTION_PLAY"
     const val ACTION_PAUSE = "ACTION_PAUSE"
     const val ACTION_RESUME = "ACTION_RESUME"
     const val ACTION_STOP = "ACTION_STOP"
+
+    const val speedLocation = "speedLocation"
+    const val latitudeLocation = "latitudeLocation"
+    const val longitudeLocation = "longitudeLocation"
+
+    const val dataIdSaved = "dataIdSaved"
+
 
     //Radio Intent
     const val Radio_Country_Name = "RadioCountryName"
