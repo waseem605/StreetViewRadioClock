@@ -10,6 +10,8 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.google.firebase.database.FirebaseDatabase
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapLoadAds
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySplashScreenStreetViewBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
@@ -29,7 +31,7 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
         binding = ActivitySplashScreenStreetViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         mPreferenceManagerClass = PreferenceManagerClass(this)
-        //setThemeColor()
+        setThemeColor()
 
         isFirstTime = mPreferenceManagerClass.getBoolean(ConstantsStreetView.isFirstTime,true)
 
@@ -41,6 +43,10 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
             mPreferenceManagerClass.putString(ConstantsStreetView.APP_COLOR_Second,"#CDE6DD")
             ConstantsStreetView.APP_SELECTED_COLOR ="#237157"
             ConstantsStreetView.APP_SELECTED_SECOND_COLOR ="#CDE6DD"
+
+            fillMyList()
+            mPreferenceManagerClass.putString(ConstantsStreetView.KEY_MAPBOX, getKeyFromCounterCheck())
+            updateCounterFromFirebase()
 
             binding.letsGoBtn.setOnClickListener {
                 startActivity(Intent(this,MainActivity::class.java))
@@ -119,7 +125,7 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
         listOfKeys.add(ConstantsStreetView.accessToken49)
         listOfKeys.add(ConstantsStreetView.accessToken50)
     }
-/*
+
 
     private fun getKeyFromCounterCheck(): String {
         var myKey: String? = null
@@ -280,9 +286,22 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
         }
         return myKey
     }
-*/
 
-
+    private fun updateCounterFromFirebase() {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("LiveEarthStreetView")
+        if (EarthLiveMapLoadAds.haveGotSnapshot) {
+            if (EarthLiveMapLoadAds.current_counter >= 50.0) {
+                EarthLiveMapLoadAds.current_counter = 1.0
+            } else {
+                EarthLiveMapLoadAds.current_counter++
+            }
+            //Log.d("MYTOKENNEW: ", " Counter Updated " + LoadAds.current_counter)
+            EarthLiveMapLoadAds.haveGotSnapshot = false
+            databaseReference.child("ADS_IDS").child("current_counter").setValue(
+                EarthLiveMapLoadAds.current_counter
+            )
+        }
+    }
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")

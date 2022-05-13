@@ -5,4 +5,5 @@ import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Trac
 
 interface TrackingLocationCallBackClick {
     fun onClickItemLocation(model:TrackLocationModel,pos :Int)
+    fun onClickDeleteLocation(model:TrackLocationModel,pos :Int)
 }

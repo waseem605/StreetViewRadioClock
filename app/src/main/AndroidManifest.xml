@@ -11,7 +11,7 @@
 -->
 
     <application
-        android:name=".hilt.MyApplication"
+        android:name=".AdsStreetViewAds.StreetViewMyApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -149,7 +149,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- Location Service ! -->
-        <service android:name=".locationTracking.LocationTrackingService" />
+      <!--  <service android:name=".locationTracking.LocationTrackingService" />-->
+
+        <meta-data
+            android:name="applovin.sdk.key"
+            android:value="@string/max_ad_id" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_ad_id" />
     </application>
 
 </manifest>

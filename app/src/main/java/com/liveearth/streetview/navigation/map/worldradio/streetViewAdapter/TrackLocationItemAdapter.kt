@@ -66,6 +66,10 @@ class TrackLocationItemAdapter(
                 holder.trackLocationSpeedUnit.text = "Km/h"
             }
 
+
+            holder.deleteTrackLocationItem.setOnClickListener {
+                callBack.onClickDeleteLocation(model,position)
+            }
             holder.itemView.setOnClickListener {
                 callBack.onClickItemLocation(model,position)
             }
@@ -87,6 +91,7 @@ class TrackLocationItemAdapter(
         var trackLocationDistanceItem = itemView.findViewById<TextView>(R.id.trackLocationDistanceItem)
         var trackLocationSpeedUnit = itemView.findViewById<TextView>(R.id.trackLocationSpeedUnit)
         var trackLocationDistanceUnit = itemView.findViewById<TextView>(R.id.trackLocationDistanceUnit)
+        var deleteTrackLocationItem = itemView.findViewById<ImageView>(R.id.deleteTrackLocationItem)
 
     }
 }

@@ -21,6 +21,9 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.Prefer
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.Tracking_roomDb.TrackLocationViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class LocationTrackingListActivity : AppCompatActivity() {
     private lateinit var binding:ActivityLocationTrackingListBinding
@@ -30,6 +33,7 @@ class LocationTrackingListActivity : AppCompatActivity() {
     private var mLocationTrackedList = ArrayList<TrackLocationModel>()
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
+    private lateinit var mAdapter :TrackLocationItemAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,12 +64,24 @@ class LocationTrackingListActivity : AppCompatActivity() {
 
     private fun showItemTrackedLocationItem(arrayList: ArrayList<TrackLocationModel>) {
 
-        val mAdapter = TrackLocationItemAdapter(arrayList,this,object :TrackingLocationCallBackClick{
+         mAdapter = TrackLocationItemAdapter(arrayList,this,object :TrackingLocationCallBackClick{
             override fun onClickItemLocation(model: TrackLocationModel, pos: Int) {
                 val intentRoute = Intent(this@LocationTrackingListActivity,TrackedRouteLocationsActivity::class.java)
                 intentRoute.putExtra(ConstantsStreetView.dataIdSaved,model.id)
                 startActivity(intentRoute)
             //getSelectedDateData(model.date)
+            }
+
+            override fun onClickDeleteLocation(model: TrackLocationModel,pos: Int) {
+
+                try {
+                    GlobalScope.launch {
+                        Dispatchers.IO
+                        mTrackLocationViewModel.deleteTrackingById(model.id!!)
+                    }
+                    mAdapter.notifyDataSetChanged()
+                } catch (e: Exception) {
+                }
             }
         })
 

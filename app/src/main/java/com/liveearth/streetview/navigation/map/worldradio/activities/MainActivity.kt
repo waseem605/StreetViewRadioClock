@@ -50,6 +50,7 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
 
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        ConstantsStreetView.accessToken = mPreferenceManagerClass.getString(ConstantsStreetView.KEY_MAPBOX, ConstantsStreetView.accessToken)!!
 
         CoroutineScope(Dispatchers.IO).launch() {
             LocationStreetViewHelper.providerStreetViewEnabled(this@MainActivity)

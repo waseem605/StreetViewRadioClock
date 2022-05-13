@@ -41,6 +41,7 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.HomeFr
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.*
 import com.mapbox.mapboxsdk.geometry.LatLng
 import kotlinx.coroutines.*
+import okio.ByteString.Companion.toByteString
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
@@ -143,8 +144,8 @@ class HomeFragment : Fragment() {
         mBottomList.add(HomeFragmentModel(R.drawable.icon_clock, "World Clock", 3))
         mBottomList.add(HomeFragmentModel(R.drawable.icon_radio, "Radio", 4))
         mBottomList.add(HomeFragmentModel(R.drawable.speedometer, "Speedometer", 5))
-        mBottomList.add(HomeFragmentModel(R.drawable.car_icon, "Travel Expense", 6))
-        mBottomList.add(HomeFragmentModel(R.drawable.cloudy_icon, "Weather", 7))
+        mBottomList.add(HomeFragmentModel(R.drawable.budget_travel, "Travel Expense", 6))
+        mBottomList.add(HomeFragmentModel(R.drawable.cloudy_day, "Weather", 7))
 
         mHomeMoreAdapter = HomeFragmentMoreAdapter(mBottomList, requireContext(), object :
             HomeFragmentClickCallBack {
