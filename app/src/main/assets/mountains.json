@@ -1,72 +1,72 @@
 [
-{
-  "name": "mount everest",
-  "lat": "27.9881388",
-  "long": "86.9074655",
-  "description": "Mount Everest stretches across the lands of Nepal, China and the Tibetan border in southern Asia. Mt. Everest measures in at 8,848.86 meters or 29,031.7 Ft. Everest is part of the Himalayan Mountains which is home to a handful of the highest mountain peaks in the world above sea level.",
-  "links": "https://drive.google.com/uc?export=download&id=13Dg3Dz0r5KDvcPu2Tv8UsNkJbIgtRSCD"
-},
-{
-"name": "k2",
-"lat": "35.8800041",
-"long": "76.5063453",
-"description": "K2 is also known as Qogir Feng or Mount Godwin Austen, named after the mountain’s first surveyor and English geographer Colonel H.H. Godwin Austen.  K2 is the second tallest mountain in the world measured above sea level reaching 28,252 Ft or 8,611 meters.",
-"links": "https://drive.google.com/uc?export=download&id=1EME_IGtQ5XGV2mF31YFZAIqBpk5qp7FV"
-},
-{
-"name": "kanchenjunga",
-"lat": "27.7025097",
-"long": "88.1387802",
-"description": "Kangchenjuna is one of the massive, towering mountain peaks in the Himalayas where Everest resides. Kangchenjunga measures in at 8586 meters or 28169 Ft.",
-"links": "https://drive.google.com/uc?export=download&id=1eYQ6j8XEPurFQIQ6fXRi_9iObHyUl_I4"
-},
-{
-"name": "lhotse",
-"lat": "27.9642429",
-"long": "86.9299651",
-"description": "Lhotse is the 4th highest mountain in the world above sea level measuring at 8,516 meters and 27940 ft. Lhoste is located in China on the border of Nepal and Tibet and is part of the same mountain range as the infamous Mt. Everest. Lhotse means “South Peak” in Tibetan.",
-"links": "https://drive.google.com/uc?export=download&id=1h0XE9hk-beQPSx-Hcf62yhKzDIzzcP3O"
-},
-{
-"name": "makalu",
-"lat": "27.8857644",
-"long": "87.0788944",
-"description": "Makalu is the 5th tallest mountain above sea level measuring at 8485 meters or 27838 ft, located in the mahalangun, a section in the Himalayas on NE Nepal and South central Tibet, China. Makalu lies just east of Everest. Makalu is more isolated and is recognizable by its four sided pyramid like faces.",
-"links": "https://drive.google.com/uc?export=download&id=1GPiO6574YvszkbPKMAIn6JjcwEMcbW1z"
-},
-{
-"name": "cho oyu",
-"lat": "28.0960504",
-"long": "86.6527387",
-"description": "Cho Oyu is the 6th tallest mountain above sea level measuring at an elevation of 8188 meters or 26864 ft. This is another massive formation of the mighty Himalayas and lies on the west side of the Khumba (Everest) region.",
-"links": "https://drive.google.com/uc?export=download&id=1qFWUpRkvARdn_NI0ZuMDhoI-RY5V-AHJ"
-},
-{
-"name": "dhaulagiri",
-"lat": "28.6984833",
-"long": "83.4785948",
-"description": "Dhaulagiri is the 7th tallest mountain in the world above sea level with an elevation of 8167 meters or 267795 ft and another prominent formation of the Himalayas. Dhaulagiri does not share a country like many of the himalayan peaks but is completely inside the borders of Nepal.",
-"links": "https://drive.google.com/uc?export=download&id=1QeVTbY6Be3xMgy40D2MQr6ESo5KXKSr3"
-},
-{
-"name": "manaslu",
-"lat": "28.5497288",
-"long": "84.550922",
-"description": "Manaslu is the 8th tallest mountain above sea level. Manaslu measures at an elevation of 8163 meters or 26,781 ft. It belongs to the Mansiri Himal of the western Nepalese Himalayas. Manaslu derives from the Sanskrit word “manasa” (spirit) so is known as  “mountain of the spirit.”",
-"links": "https://drive.google.com/uc?export=download&id=1kMX-17svIaAZtPp7f5P3nI62F7bafDwc"
-},
-{
-"name": "nanga parbat",
-"lat": "35.2375205",
-"long": "74.5803898",
-"description": "Nanga Parbat is the 9th tallest mountain peak measuring at 8126 meters or 26660 ft above sea level. It is located in the Damer District of Gilgit-Baltistan, Pakistan on the western Himalayas.",
-"links": "https://drive.google.com/uc?export=download&id=1eRqVywuGtMXIKWXU7bZIxyfbu1d8H--l"
-},
-{
-"name": "annapurna",
-"lat": "28.6049307",
-"long": "83.8119249",
-"description": "Annapurna is the 10th tallest mountain measuring at 8,091 meters or 26,545 ft. This magnificent mountain is also located in the Himalayan Mountains of Nepal.",
-"links": "https://drive.google.com/uc?export=download&id=1ROSzkcH9l_RuVojdXiYW75lHyz3EURmN"
-}
+  {
+    "name": "mount everest",
+    "lat": "27.9881388",
+    "long": "86.9074655",
+    "description": "Mount Everest stretches across the lands of Nepal, China and the Tibetan border in southern Asia. Mt. Everest measures in at 8,848.86 meters or 29,031.7 Ft. Everest is part of the Himalayan Mountains which is home to a handful of the highest mountain peaks in the world above sea level.",
+    "links": "https://drive.google.com/uc?export=download&id=1EPHyNtCRhmF7RpQX8eaVgOjdOR4pClsB"
+  },
+  {
+    "name": "k2",
+    "lat": "35.8800041",
+    "long": "76.5063453",
+    "description": "K2 is also known as Qogir Feng or Mount Godwin Austen, named after the mountain’s first surveyor and English geographer Colonel H.H. Godwin Austen.  K2 is the second tallest mountain in the world measured above sea level reaching 28,252 Ft or 8,611 meters.",
+    "links": "https://drive.google.com/uc?export=download&id=1ke0HLS8dOKtFRXaRAVeMLyNti1p4aKOl"
+  },
+  {
+    "name": "kanchenjunga",
+    "lat": "27.7025097",
+    "long": "88.1387802",
+    "description": "Kangchenjuna is one of the massive, towering mountain peaks in the Himalayas where Everest resides. Kangchenjunga measures in at 8586 meters or 28169 Ft.",
+    "links": "https://drive.google.com/uc?export=download&id=1lzcBd8atYyCBytF3bC0myKkXm8RCXiaQ"
+  },
+  {
+    "name": "lhotse",
+    "lat": "27.9642429",
+    "long": "86.9299651",
+    "description": "Lhotse is the 4th highest mountain in the world above sea level measuring at 8,516 meters and 27940 ft. Lhoste is located in China on the border of Nepal and Tibet and is part of the same mountain range as the infamous Mt. Everest. Lhotse means “South Peak” in Tibetan.",
+    "links": "https://drive.google.com/uc?export=download&id=1lrPq-0pFLVKyxqlJckdZ0L-fTuMLH87G"
+  },
+  {
+    "name": "makalu",
+    "lat": "27.8857644",
+    "long": "87.0788944",
+    "description": "Makalu is the 5th tallest mountain above sea level measuring at 8485 meters or 27838 ft, located in the mahalangun, a section in the Himalayas on NE Nepal and South central Tibet, China. Makalu lies just east of Everest. Makalu is more isolated and is recognizable by its four sided pyramid like faces.",
+    "links": "https://drive.google.com/uc?export=download&id=1uxJangzR9Jz-SfrVvuSAlUAcZl09xBSq"
+  },
+  {
+    "name": "cho oyu",
+    "lat": "28.0960504",
+    "long": "86.6527387",
+    "description": "Cho Oyu is the 6th tallest mountain above sea level measuring at an elevation of 8188 meters or 26864 ft. This is another massive formation of the mighty Himalayas and lies on the west side of the Khumba (Everest) region.",
+    "links": "https://drive.google.com/uc?export=download&id=1CHV-HZIaUOwShKCB3SobFOKwZOsQr9Ed"
+  },
+  {
+    "name": "dhaulagiri",
+    "lat": "28.6984833",
+    "long": "83.4785948",
+    "description": "Dhaulagiri is the 7th tallest mountain in the world above sea level with an elevation of 8167 meters or 267795 ft and another prominent formation of the Himalayas. Dhaulagiri does not share a country like many of the himalayan peaks but is completely inside the borders of Nepal.",
+    "links": "https://drive.google.com/uc?export=download&id=1XlodiLMO-0eeoUmW1kRCIIylbzHlQmsf"
+  },
+  {
+    "name": "manaslu",
+    "lat": "28.5497288",
+    "long": "84.550922",
+    "description": "Manaslu is the 8th tallest mountain above sea level. Manaslu measures at an elevation of 8163 meters or 26,781 ft. It belongs to the Mansiri Himal of the western Nepalese Himalayas. Manaslu derives from the Sanskrit word “manasa” (spirit) so is known as  “mountain of the spirit.”",
+    "links": "https://drive.google.com/uc?export=download&id=1IXJinmg5PoLa6mtr6sL3LJTiD6tP7OKL"
+  },
+  {
+    "name": "nanga parbat",
+    "lat": "35.2375205",
+    "long": "74.5803898",
+    "description": "Nanga Parbat is the 9th tallest mountain peak measuring at 8126 meters or 26660 ft above sea level. It is located in the Damer District of Gilgit-Baltistan, Pakistan on the western Himalayas.",
+    "links": "https://drive.google.com/uc?export=download&id=16eZoNsiw2ZSpoQyDRUTRs7mWlLO4XzI8"
+  },
+  {
+    "name": "annapurna",
+    "lat": "28.6049307",
+    "long": "83.8119249",
+    "description": "Annapurna is the 10th tallest mountain measuring at 8,091 meters or 26,545 ft. This magnificent mountain is also located in the Himalayan Mountains of Nepal.",
+    "links": "https://drive.google.com/uc?export=download&id=1tjQ0AGHP0A3IR8pzQtgs0rKtiXqPWlCP"
+  }
 ]

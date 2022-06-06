@@ -76,7 +76,6 @@ class LocationTrackingService : Service() {
     }
 
     private fun startLocation() {
-
         locationRepositoryStreetView = LocationRepositoryStreetView(this,object :MyLocationListener{
 
             override fun onLocationChanged(location: Location) {

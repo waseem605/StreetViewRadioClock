@@ -11,6 +11,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
@@ -40,6 +41,7 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
 
         try {
             countryName = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
@@ -125,7 +127,14 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
             layoutManager = GridLayoutManager(this@StreetViewRadioChannelsActivity, 2)
             adapter = radioAdapter
         }
+    }
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
     private fun setThemeColor() {

@@ -19,6 +19,7 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewLocationAPIServices
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewNearByCallBack
@@ -88,6 +89,7 @@ class StreetViewMeetMeActivity : BaseStreetViewActivity(), OnMapReadyCallback {
         setThemeColor()
         mapViewResultMeetMe()
         meetMeClickListener()
+        initBannerAd()
 
     }
 
@@ -606,6 +608,14 @@ class StreetViewMeetMeActivity : BaseStreetViewActivity(), OnMapReadyCallback {
         }
         mLocationMarkerDestin = mapbox.addMarker(
             MarkerOptions().position(LatLng(mLatitudeDest, mLongitudeDest))
+        )
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
         )
     }
 

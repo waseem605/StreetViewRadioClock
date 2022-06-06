@@ -9,6 +9,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseItemCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreeViewTravelExpenseBinding
@@ -45,7 +46,9 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreeViewTravelExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         try {
+            initBannerAd()
             mPreferenceManagerClass = PreferenceManagerClass(this)
             mID = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID, 0)
             val factory = ExpenseViewModelFactory(this)
@@ -330,6 +333,15 @@ class StreetViewTravelExpenseActivity : BaseStreetViewActivity() {
             true
         }
     }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
+
 
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")

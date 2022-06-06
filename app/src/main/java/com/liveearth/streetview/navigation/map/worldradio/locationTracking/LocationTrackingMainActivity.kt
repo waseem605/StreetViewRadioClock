@@ -41,6 +41,7 @@ import android.graphics.Color
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.mapbox.mapboxsdk.annotations.IconFactory
 import com.mapbox.mapboxsdk.annotations.Marker
 import com.mapbox.mapboxsdk.annotations.MarkerOptions
@@ -101,7 +102,7 @@ class LocationTrackingMainActivity : AppCompatActivity(), OnMapReadyCallback {
         mapViewResult()
         clickListenerTracking()
         setThemeColor()
-
+        initBannerAd()
     }
 
     private fun mapViewResult() {
@@ -359,6 +360,13 @@ class LocationTrackingMainActivity : AppCompatActivity(), OnMapReadyCallback {
         }
     }*/
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
 
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")

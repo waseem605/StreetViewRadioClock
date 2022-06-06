@@ -10,6 +10,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityWordTimeBinding
@@ -45,7 +46,6 @@ class WordTimeActivity : BaseStreetViewActivity() {
     lateinit var mShowAddBtn: String
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
-
     @Inject
     @Named("WorldClockModel_list")
     lateinit var mWorldClockListTwo :ArrayList<WorldClockModel>
@@ -59,6 +59,7 @@ class WordTimeActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
         Log.d("worldCloclres", "onCreate: =====world clock==="+mWorldClockListTwo.size)
         Log.d("worldCloclres", "onCreate: ===country name====="+mCountryNameListTwo.size)
 
@@ -225,6 +226,14 @@ class WordTimeActivity : BaseStreetViewActivity() {
         finish()
     }
 
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")

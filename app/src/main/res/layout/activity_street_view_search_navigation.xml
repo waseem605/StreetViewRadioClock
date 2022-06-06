@@ -69,8 +69,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/currentLocationImage"
-            android:layout_width="@dimen/_45sdp"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_margin="@dimen/_15sdp"
             app:cardBackgroundColor="@color/appMainColor"
             app:cardCornerRadius="@dimen/_27sdp"
@@ -90,7 +90,7 @@
             android:id="@+id/searchLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toTopOf="@id/addView">
 
             <ImageView
                 android:id="@+id/bottomImage"
@@ -454,6 +454,26 @@
                             app:tint="@color/appMainColor" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/addView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/bannerID" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bannerID"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+            <include
+                android:id="@+id/bannerAd"
+                layout="@layout/earth_live_map_my_bannar_small"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

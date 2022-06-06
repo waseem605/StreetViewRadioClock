@@ -10,6 +10,7 @@ import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExpenseCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewTravelExpenseViewBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.ExpenseSavedAdapter
@@ -32,6 +33,7 @@ class StreetViewTravelExpenseViewActivity : AppCompatActivity() {
         setContentView(binding.root)
             mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
         val factory = ExpenseViewModelFactory(this)
         mExpenseViewModel = ViewModelProvider(this,factory).get(ExpenseViewModel::class.java)
         mExpenseViewModel.getAllData().observe(this, Observer {
@@ -69,6 +71,14 @@ class StreetViewTravelExpenseViewActivity : AppCompatActivity() {
             adapter = mExpenseAdapter
         }
 
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
 

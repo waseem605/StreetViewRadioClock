@@ -18,26 +18,54 @@
         app:navGraph="@navigation/street_view_navigation_graph"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
+
     <ImageView
         android:id="@+id/bottomImage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="70dp"
         android:src="@drawable/bottom_bar_background"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/addView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/bottomBar"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <me.ibrahimsn.lib.SmoothBottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:backgroundColor="#00000000"
-       app:indicatorRadius="@dimen/_6sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:indicatorRadius="@dimen/_6sdp"
+        app:layout_constraintBottom_toTopOf="@id/addView"
         app:menu="@menu/street_bottom_menu" />
 
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/bottomBarPremium"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:backgroundColor="#00000000"
+        android:visibility="gone"
+        app:indicatorRadius="@dimen/_6sdp"
+        app:layout_constraintBottom_toTopOf="@id/addView"
+        app:menu="@menu/street_bottom_menu_premium" />
 
+    <View
+        android:id="@+id/addView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bannerID" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bannerID"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <include
+            android:id="@+id/bannerAd"
+            layout="@layout/earth_live_map_my_bannar_small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

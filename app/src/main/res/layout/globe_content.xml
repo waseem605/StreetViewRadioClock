@@ -8,247 +8,256 @@
     android:layout_gravity="left|top"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/globe"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="match_parent">
 
-    </FrameLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/mainCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        app:cardBackgroundColor="@color/appSilverColor"
-        app:cardCornerRadius="@dimen/_7sdp"
-        app:cardElevation="@dimen/_10sdp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/infoLayout"
-            android:layout_width="match_parent"
-            android:visibility="visible"
-            android:layout_height="match_parent"
-            android:layout_margin="@dimen/_8sdp">
-
-            <TextView
-                android:id="@+id/country_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Click on Globe to Select the Country"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--countryInfoLt-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/countryInfoLt"
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/globe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </FrameLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mainCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/countryNameTx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center"
-                android:text="Country Name"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_16ssp"
-                android:textStyle="bold"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:cardBackgroundColor="@color/appSilverColor"
+            app:cardCornerRadius="@dimen/_7sdp"
+            app:cardElevation="@dimen/_4sdp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/radioLayout"
+                android:id="@+id/infoLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/button_background_white_rounded"
-                app:layout_constraintTop_toBottomOf="@id/countryNameTx">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/nameCard"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_17sdp"
-                    app:cardElevation="@dimen/_2sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:id="@+id/countryFlag"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="fitXY" />
-
-                </androidx.cardview.widget.CardView>
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/_8sdp"
+                android:visibility="visible">
 
                 <TextView
-                    android:id="@+id/country_nameText"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:gravity="center"
+                    android:id="@+id/country_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Click on Globe to Select the Country"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_16ssp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/radioCard"
-                    app:layout_constraintStart_toEndOf="@id/nameCard"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/radioCard"
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_margin="@dimen/_3sdp"
-                    app:cardBackgroundColor="@color/white"
-                    app:cardCornerRadius="@dimen/_17sdp"
-                    app:cardElevation="@dimen/_2sdp"
+                    android:textSize="@dimen/_13ssp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="@dimen/_3sdp"
-                        android:src="@drawable/icon_radio" />
-
-                </androidx.cardview.widget.CardView>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--countryInfoLt-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/countryInfoLt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:visibility="gone">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/countryNameTx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Country Name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/radioLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:background="@drawable/button_background_white_rounded"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/countryNameTx">
 
-    <LinearLayout
-        android:id="@+id/globe_status"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/mainCard"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginEnd="@dimen/_5sdp"
-        android:background="@android:color/transparent"
-        android:gravity="center"
-        android:measureWithLargestChild="false"
-        android:orientation="horizontal"
-        android:showDividers="middle"
-        android:visibility="visible">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/nameCard"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_3sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_17sdp"
+                        app:cardElevation="@dimen/_2sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/lat_value"
+                        <ImageView
+                            android:id="@+id/countryFlag"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/country_nameText"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16ssp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/radioCard"
+                        app:layout_constraintStart_toEndOf="@id/nameCard"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/radioCard"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_margin="@dimen/_3sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="@dimen/_17sdp"
+                        app:cardElevation="@dimen/_2sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_3sdp"
+                            android:src="@drawable/icon_radio" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/globe_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mainCard"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:measureWithLargestChild="false"
+            android:orientation="horizontal"
+            android:showDividers="middle"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/lat_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000000"
+                android:shadowRadius="2"
+                android:singleLine="true"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/spacer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="spacer" />
+
+            <TextView
+                android:id="@+id/lon_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="2"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/spacer2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="spacer" />
+
+            <TextView
+                android:id="@+id/alt_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:shadowColor="#000000"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="2"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/globe_crosshairs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:shadowColor="#000000"
-            android:shadowRadius="2"
-            android:singleLine="true"
-            android:textSize="16sp" />
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:src="@drawable/crosshairs"
+            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/spacer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="spacer" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/progressBarCard"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentBottom="false"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:visibility="visible"
+            app:cardBackgroundColor="@color/appSilverColor"
+            app:cardCornerRadius="@dimen/_10sdp">
 
-        <TextView
-            android:id="@+id/lon_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:shadowColor="#000000"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="2"
-            android:singleLine="true" />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/progressbar_color"
+                android:progress="0"
+                android:progressDrawable="@drawable/progressbar_color" />
 
-        <TextView
-            android:id="@+id/spacer2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:text="spacer" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:text="Loading..."
+                android:textColor="@color/appMainColor"
+                android:textSize="@dimen/_10ssp" />
 
-        <TextView
-            android:id="@+id/alt_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:shadowColor="#000000"
-            android:shadowDx="0"
-            android:shadowDy="0"
-            android:shadowRadius="2"
-            android:singleLine="true" />
-    </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/globe_crosshairs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentBottom="false"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:src="@drawable/crosshairs"
-        android:visibility="gone" />
+    </RelativeLayout>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/progressBarCard"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_70sdp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentBottom="false"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:visibility="visible"
-        app:cardBackgroundColor="@color/appSilverColor"
-        app:cardCornerRadius="@dimen/_10sdp">
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminate="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:indeterminateDrawable="@drawable/progressbar_color"
-            android:progress="0"
-            android:progressDrawable="@drawable/progressbar_color"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="@dimen/_5sdp"
-            android:text="Loading..."
-            android:textColor="@color/appMainColor"
-            android:textSize="@dimen/_10ssp" />
-
-    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

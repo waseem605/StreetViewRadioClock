@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MainStreetViewCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewMainBinding
@@ -107,6 +108,7 @@ class StreetViewMainActivity : AppCompatActivity() {
         setContentView(binding.root)
          mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
         try {
             binding.toolbarLt.backLink.setOnClickListener {
                 onBackPressed()
@@ -160,7 +162,7 @@ class StreetViewMainActivity : AppCompatActivity() {
                     isFirstResource: Boolean
                 ): Boolean {
                     binding.progressBar.visibility = View.INVISIBLE
-                   // binding.streetViewImageItem.setImageDrawable(resource)
+                    binding.streetViewImageItem.setImageDrawable(resource)
                     return true
                 }
 
@@ -278,6 +280,13 @@ class StreetViewMainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")

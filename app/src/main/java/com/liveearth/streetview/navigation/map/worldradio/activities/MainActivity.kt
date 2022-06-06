@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.PopupMenu
@@ -19,6 +20,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.centurionnavigation.dialogs.ExitDialogueBoxStreetView
 import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.AppPurchaseHelperStreetViewClock
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ColorThemeCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.ExistCallBackListener
@@ -42,7 +45,6 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
     var pos = 0
     var count = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -50,8 +52,10 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
 
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
-        ConstantsStreetView.accessToken = mPreferenceManagerClass.getString(ConstantsStreetView.KEY_MAPBOX, ConstantsStreetView.accessToken)!!
 
+        initBannerAd()
+        ConstantsStreetView.accessToken = mPreferenceManagerClass.getString(ConstantsStreetView.KEY_MAPBOX, ConstantsStreetView.accessToken)!!
+        Log.d(TAG, "onCreate: mapbox id"+ ConstantsStreetView.accessToken)
         CoroutineScope(Dispatchers.IO).launch() {
             LocationStreetViewHelper.providerStreetViewEnabled(this@MainActivity)
             val isPermissionDone = LocationStreetViewHelper.locationStreetViewProvided(this@MainActivity)
@@ -59,7 +63,6 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
             if (isPermissionDone) {
                 withContext(Dispatchers.Main) {
                     Log.d(TAG, "onCreateView: =====ispermissionDone=="+isPermissionDone)
-
                 }
             }
         }
@@ -68,32 +71,84 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
         navController = navHostFragment.navController
 
         //checkLocationPermission()
-        setupSmoothBottomMenu()
+       // setupSmoothBottomMenu()
 
-        binding.bottomBar.setOnItemSelectedListener {
-            pos = it
-           when(it){
-               0->{
-                   navController.navigate(R.id.homeFragment)
-                   //binding.bottomBar.itemActiveIndex = 0
-               }
-               1->{
-                   navController.navigate(R.id.themeFragment)
-               }
-               2->{
-                   navController.navigate(R.id.premiumFragment)
-               }
-               3->{
-                   navController.navigate(R.id.settingFragment)
-               }
-           }
+        bottomBarClickListener()
+
+       /* navController.addOnDestinationChangedListener { _, destination, _ ->
+            val billingHelper = AppPurchaseHelperStreetViewClock(this)
+            if (!billingHelper.shouldShowAds()){
+
+            }else{
+
+            }
+        }*/
+
+    }
+
+    private fun bottomBarClickListener() {
+        val billingHelper = AppPurchaseHelperStreetViewClock(this)
+        if (billingHelper.shouldShowAds()){
+            setupSmoothBottomMenu()
+            binding.bottomBar.setOnItemSelectedListener {
+                pos = it
+                when(it){
+                    0->{
+                        navController.navigate(R.id.homeFragment)
+                        //binding.bottomBar.itemActiveIndex = 0
+                    }
+                    1->{
+                        navController.navigate(R.id.themeFragment)
+                    }
+                    2->{
+                        navController.navigate(R.id.premiumFragment)
+                    }
+                    3->{
+                        navController.navigate(R.id.settingFragment)
+                    }
+                }
+            }
+
+        }else{
+            binding.bottomBarPremium.visibility = View.VISIBLE
+            binding.bottomBar.visibility = View.GONE
+            setupSmoothBottomMenuPremium()
+
+            binding.bottomBarPremium.setOnItemSelectedListener {
+                pos = it
+                when(it){
+                    0->{
+                        navController.navigate(R.id.homeFragment)
+                    }
+                    1->{
+                        navController.navigate(R.id.themeFragment)
+                    }
+                    2->{
+                        navController.navigate(R.id.settingFragment)
+                    }
+                }
+            }
         }
-
     }
 
     private fun setupSmoothBottomMenu() {
         val popupMenu = PopupMenu(this, null)
+
+//        val billingHelper = AppPurchaseHelperStreetViewClock(this)
+//        if (!billingHelper.shouldShowAds()){
+//            popupMenu.inflate(R.menu.street_bottom_menu_premium)
+//            Log.d("setupSmoothBottomMenu", "setupSmoothBottomMenu: ******hide premium******")
+//        }else{
+//            popupMenu.inflate(R.menu.street_bottom_menu)
+//            Log.d("setupSmoothBottomMenu", "setupSmoothBottomMenu: ******show premium******")
+//        }
         popupMenu.inflate(R.menu.street_bottom_menu)
+        val menu = popupMenu.menu
+        binding.bottomBar.setupWithNavController(menu, navController)
+    }
+    private fun setupSmoothBottomMenuPremium() {
+        val popupMenu = PopupMenu(this, null)
+        popupMenu.inflate(R.menu.street_bottom_menu_premium)
         val menu = popupMenu.menu
         binding.bottomBar.setupWithNavController(menu, navController)
     }
@@ -108,7 +163,6 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
         if (fragmentId == R.id.homeFragment){
             count++
             if (count > 1){
-
                 finish()
                 finishAffinity()
             }else {
@@ -116,7 +170,6 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
                     override fun onExistClick() {
 
                     }
-
                 })
                 dialogExist.show()
             }
@@ -143,7 +196,7 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.statusBarColor = Color.parseColor(backgroundColor)
-        binding.bottomImage.setColorFilter( Color.parseColor(backgroundColor) )
+        binding.bottomImage.setColorFilter( Color.parseColor(backgroundColor))
     }
 
     override fun onResume() {
@@ -211,6 +264,13 @@ class MainActivity : AppCompatActivity(), ColorThemeCallBackListener
             Manifest.permission.ACCESS_COARSE_LOCATION), 1)
     }
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
 
 }
 

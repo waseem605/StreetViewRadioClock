@@ -20,8 +20,10 @@ import gov.nasa.worldwind.util.WWUtil
 import gov.nasa.worldwind.BasicWorldWindowController
 import android.view.GestureDetector.SimpleOnGestureListener
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.hilt.CountryNameModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.StreetViewModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
@@ -54,6 +56,9 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
        protected var mainCard: CardView? = null
        protected var infoLayout: ConstraintLayout? = null
        protected var countryInfoLt: ConstraintLayout? = null
+       protected var mBannerAdContainer: ConstraintLayout? = null
+       protected var mHeadingBack: ConstraintLayout? = null
+       protected var mBannerAdLinear: LinearLayout? = null
     var message = ""
     protected var shapesLayer = RenderableLayer("Shapes")
         private lateinit var mPreferenceManagerClass: PreferenceManagerClass
@@ -87,8 +92,13 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
          countryFlag = findViewById<ImageView>(R.id.countryFlag)
         mainCard = findViewById<CardView>(R.id.mainCard)
 
+        mBannerAdContainer = findViewById<ConstraintLayout>(R.id.bannerID)
+        mHeadingBack = findViewById<ConstraintLayout>(R.id.textWorldRadio)
+        mBannerAdLinear = findViewById<LinearLayout>(R.id.adContainer)
+
 
         setThemeColor()
+        initBannerAd()
         statusText = TextView(this)
         statusText!!.setTextColor(Color.YELLOW)
         val globeLayout = findViewById<View>(R.id.globe) as FrameLayout
@@ -479,6 +489,15 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
     }
 
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            mBannerAdLinear,
+            mBannerAdContainer,
+            this
+        )
+    }
+
+
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
@@ -489,6 +508,7 @@ class StreetViewMainGlobeViewActivity : StreetViewGeneralGlobeRadioActivity() {
         window.statusBarColor = Color.parseColor(backgroundColor)
         mainCard!!.setCardBackgroundColor(Color.parseColor(backgroundSecondColor))
         textWorldRadio!!.setBackgroundColor(Color.parseColor(backgroundColor))
+        mHeadingBack!!.setBackgroundColor(Color.parseColor(backgroundColor))
         countryInfoLt!!.setBackgroundColor(Color.parseColor(backgroundSecondColor))
 
     }

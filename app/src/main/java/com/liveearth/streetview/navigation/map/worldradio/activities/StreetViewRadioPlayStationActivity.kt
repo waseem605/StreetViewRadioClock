@@ -8,6 +8,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.example.jean.jcplayer.model.JcAudio
 import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioPlayStationBinding
@@ -36,6 +37,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
         setContentView(binding.root)
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
         try {
             mCountryNameSelected = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
             countryNameFlage = intent.getStringExtra(ConstantsStreetView.RADIO_FLAGE)!!
@@ -113,7 +115,13 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
 
     }
 
-
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")

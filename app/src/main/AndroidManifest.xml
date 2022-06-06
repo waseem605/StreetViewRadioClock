@@ -148,6 +148,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity> <!-- Location Service ! -->
       <!--  <service android:name=".locationTracking.LocationTrackingService" />-->
 

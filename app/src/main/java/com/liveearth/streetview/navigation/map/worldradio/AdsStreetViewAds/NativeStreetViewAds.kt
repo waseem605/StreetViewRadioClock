@@ -18,11 +18,11 @@ import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapAppPurchaseHelper
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapLoadAds
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.AppPurchaseHelperStreetViewClock
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 
-class EarthLiveMapMyAppNativeAds {
+class NativeStreetViewAds {
 
     companion object {
 
@@ -31,7 +31,7 @@ class EarthLiveMapMyAppNativeAds {
          var nativeAdLoader: MaxNativeAdLoader? = null
          var loadedNativeAd: MaxAd? = null
 
-        nativeAdLoader = MaxNativeAdLoader(EarthLiveMapLoadAds.max_native_id, mContext)
+        nativeAdLoader = MaxNativeAdLoader(LoadAdsStreetViewClock.max_native_id, mContext)
         nativeAdLoader!!.setNativeAdListener(object : MaxNativeAdListener() {
 
             override fun onNativeAdLoaded(p0: MaxNativeAdView?, p1: MaxAd?) {
@@ -82,7 +82,7 @@ class EarthLiveMapMyAppNativeAds {
             val inflater = LayoutInflater.from(mContext)
             val builder = AdLoader.Builder(
                 mContext,
-                EarthLiveMapLoadAds.native_admob_inApp
+                LoadAdsStreetViewClock.native_admob_inApp
             )
             var admobNativeAd: NativeAd? = null
             builder.forNativeAd { unifiedNativeAd ->
@@ -120,7 +120,7 @@ class EarthLiveMapMyAppNativeAds {
                 }
             }).build()
             val billingHelper =
-                EarthLiveMapAppPurchaseHelper(
+                AppPurchaseHelperStreetViewClock(
                     mContext
                 )
             if (billingHelper.shouldShowAds()) {

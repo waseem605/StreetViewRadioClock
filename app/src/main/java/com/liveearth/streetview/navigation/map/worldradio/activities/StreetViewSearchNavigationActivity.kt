@@ -15,6 +15,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewSearchNavigationBinding
@@ -70,6 +71,8 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
         searchNavigationClicks()
         mapViewResultAsync()
         setThemeColor()
+        initBannerAd()
+
     }
 
 
@@ -233,6 +236,10 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
             }
 
             customRoutList.add(LatLng(mLatitudeDestination, mLongitudeDestination))
+
+            for (i in 0 until customRoutList.size){
+                Log.d(TAG, "*******************: ===== ${customRoutList[i].latitude} ====== ${customRoutList[i].longitude} ====")
+            }
 
             val intentRoute = Intent(this, StreetViewRouteActivity::class.java)
             intentRoute.putParcelableArrayListExtra(ConstantsStreetView.MultiPointsRouteList, customRoutList)
@@ -531,7 +538,14 @@ class StreetViewSearchNavigationActivity : BaseStreetViewActivity(), OnMapReadyC
             mapbox.setStyle(Style.DARK)
             mBottomSheetBehavior!!.state=BottomSheetBehavior.STATE_COLLAPSED
         }
+    }
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
     private fun setThemeColor() {

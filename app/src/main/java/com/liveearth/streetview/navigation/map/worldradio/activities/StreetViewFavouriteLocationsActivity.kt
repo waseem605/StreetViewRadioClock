@@ -11,6 +11,7 @@ import android.view.WindowManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.FavLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewFavouriteLocationsBinding
@@ -63,7 +64,7 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
             startActivity(intent)
         }
         getCurrentLocation()
-
+        initBannerAd()
     }
 
     private fun getCurrentLocation() {
@@ -121,6 +122,14 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
             adapter = mFavouriteAdapter
         }
 
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
 

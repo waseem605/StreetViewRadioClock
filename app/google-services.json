@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "927357304403",
-    "project_id": "street-view-clock",
-    "storage_bucket": "street-view-clock.appspot.com"
+    "project_number": "1098707403097",
+    "firebase_url": "https://satellite-map-e2e5c-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "satellite-map-e2e5c",
+    "storage_bucket": "satellite-map-e2e5c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:927357304403:android:25ba777ba10009d40bd0a6",
+        "mobilesdk_app_id": "1:1098707403097:android:2df0b698349f2180be0c48",
         "android_client_info": {
           "package_name": "com.liveearth.streetview.navigation.map.worldradio"
         }
       },
       "oauth_client": [
         {
-          "client_id": "927357304403-jobcuh5b0mpmq8v6k220ikchd50kq5m8.apps.googleusercontent.com",
+          "client_id": "1098707403097-q1m9he1ndg3hd2jvad8jfjcud7pgqdfl.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAQ_seotmgTwR7D6i8pgPLpLculIVuxje8"
+          "current_key": "AIzaSyDylm0qUFpG6f2_86fhrT8pfVWtq0nT5vs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "927357304403-jobcuh5b0mpmq8v6k220ikchd50kq5m8.apps.googleusercontent.com",
+              "client_id": "1098707403097-q1m9he1ndg3hd2jvad8jfjcud7pgqdfl.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

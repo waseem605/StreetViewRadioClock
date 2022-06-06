@@ -14,8 +14,8 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapAppPurchaseHelper
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapLoadAds
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.AppPurchaseHelperStreetViewClock
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.activities.SplashScreenStreetViewActivity
 import java.util.*
 
@@ -44,7 +44,7 @@ class AppOpenSplashAdManagerLiveEarth(private val streetViewMyApplication: Stree
                         override fun onAdDismissedFullScreenContent() {
                             startOpenAd = null
                             isDisplayingAd = false
-                            if (EarthLiveMapLoadAds.should_show_app_open) {
+                            if (LoadAdsStreetViewClock.should_show_app_open) {
                                 //loadLiveEarthStartAppOpenAd()
                             }
 
@@ -64,7 +64,7 @@ class AppOpenSplashAdManagerLiveEarth(private val streetViewMyApplication: Stree
                 startOpenAd!!.fullScreenContentCallback = fullScreenContentCallback
             } else {
                 Log.d(TAG, "Can not show ad.")
-                if (EarthLiveMapLoadAds.should_show_app_open) {
+                if (LoadAdsStreetViewClock.should_show_app_open) {
                     //loadLiveEarthStartAppOpenAd()
                 }
                 callBack.onAdFailedToShowFullScreenContent()
@@ -73,7 +73,7 @@ class AppOpenSplashAdManagerLiveEarth(private val streetViewMyApplication: Stree
     }
 
     fun loadStartAppOpenAdLiveEarth(callBack:SplashLoadAppOpenCallback) {
-        if (isStartAdAvailable) {
+       /* if (isStartAdAvailable) {
             callBack.onAdCallBack()
             Log.d(TAG, "Ad is available App Open Ad ")
         } else {
@@ -94,19 +94,19 @@ class AppOpenSplashAdManagerLiveEarth(private val streetViewMyApplication: Stree
                 }
             }
             val purchaseHelper =
-                EarthLiveMapAppPurchaseHelper(
+                AppPurchaseHelperStreetViewClock(
                     streetViewMyApplication
                 )
             if (purchaseHelper.shouldShowAds()) {
                 Log.d(TAG, "loadStartAppOpenAd: Not Purchased")
                 try {
-                    AppOpenAd.load(streetViewMyApplication, EarthLiveMapLoadAds.app_open_splash_ad_id_admob, AdRequest.Builder().build(), AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, callBackLoading!!)
+                    AppOpenAd.load(streetViewMyApplication, LoadAdsStreetViewClock.app_open_splash_ad_id_admob, AdRequest.Builder().build(), AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, callBackLoading!!)
                 } catch (e: Exception) {
                 }
             }else{
                 callBack.onAdCallBack()
             }
-        }
+        }*/
     }
 
     private fun callForLoadingTime(hours: Long): Boolean {

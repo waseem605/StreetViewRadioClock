@@ -1,6 +1,7 @@
 package com.liveearth.streetview.navigation.map.worldradio.streetViewFragments
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -21,6 +22,8 @@ import com.bumptech.glide.Glide
 import com.example.centurionnavigation.dialogs.LocationRequestDialogueBox
 import com.example.dummy.apiServices.WeatherAPI
 import com.example.dummy.apiServices.WeatherAPIServices
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.ShowStreetViewClockAds
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewWeatherCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RepositoryWeather
@@ -122,16 +125,35 @@ class HomeFragment : Fragment() {
             val mainIntent = Intent(requireContext(), StreetViewLiveEarthActivity::class.java)
             mainIntent.putExtra(ConstantsStreetView.OriginLatitude, 41.037699)
             mainIntent.putExtra(ConstantsStreetView.OriginLongitude, 28.9457313)
-            startActivity(mainIntent)
+            //startActivity(mainIntent)
+
+            ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                requireContext() as Activity?,
+                LoadAdsStreetViewClock.admobInterstitialAd,
+                LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                mainIntent
+            )
         }
 
         binding.streetViewCard.setOnClickListener {
             val mainIntent = Intent(requireContext(),StreetViewFirstLookActivity::class.java)
-            startActivity(mainIntent)
+            //startActivity(mainIntent)
+            ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                requireContext() as Activity?,
+                LoadAdsStreetViewClock.admobInterstitialAd,
+                LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                mainIntent
+            )
         }
         binding.navigationCard.setOnClickListener {
             val mainIntent = Intent(requireContext(),StreetViewSearchNavigationActivity::class.java)
-            startActivity(mainIntent)
+            //startActivity(mainIntent)
+            ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                requireContext() as Activity?,
+                LoadAdsStreetViewClock.admobInterstitialAd,
+                LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                mainIntent
+            )
         }
 
     }
@@ -165,45 +187,86 @@ class HomeFragment : Fragment() {
         when(pos){
             0->{
                 val mainIntent = Intent(requireContext(),StreetViewMeetMeActivity::class.java)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             1->{
                 val mainIntent = Intent(requireContext(),StreetViewFavouriteLocationsActivity::class.java)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             2->{
                 //val mainIntent = Intent(requireContext(), StreetViewNearByPlacesActivity::class.java)
                 val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
                 mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
                 mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             3->{
                 val mainIntent = Intent(requireContext(),StreetViewWorldClockActivity::class.java)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             4->{
+
+                //pending Banner ad
                 val mainIntent = Intent(requireContext(),StreetViewMainGlobeViewActivity::class.java)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             5->{
                 val mainIntent = Intent(requireContext(),StreetViewSpeedoMeterActivity::class.java)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             6->{
                 val mainIntent = Intent(requireContext(),StreetViewTravelExpenseViewActivity::class.java)
                 //val mainIntent = Intent(requireContext(), LocationTrackingMainActivity::class.java)
                 mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
                 mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
-                startActivity(mainIntent)
+                //startActivity(mainIntent)
+                ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+                    requireContext() as Activity?,
+                    LoadAdsStreetViewClock.admobInterstitialAd,
+                    LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+                    mainIntent
+                )
             }
             7->{
                 weatherIntentLatLng()
             }
-
         }
-
-
     }
 
     private fun weatherIntentLatLng() {
@@ -211,7 +274,13 @@ class HomeFragment : Fragment() {
         val mainIntent = Intent(requireContext(),StreetViewWeatherDetailsActivity::class.java)
         mainIntent.putExtra(ConstantsStreetView.OriginLatitude,lat)
         mainIntent.putExtra(ConstantsStreetView.OriginLongitude,lon)
-        startActivity(mainIntent)
+        //startActivity(mainIntent)
+        ShowStreetViewClockAds.simpleAdsStreetViewClockAdmobActivity(
+            requireContext() as Activity?,
+            LoadAdsStreetViewClock.admobInterstitialAd,
+            LoadAdsStreetViewClock.maxInterstitialAdLiveEarth,
+            mainIntent
+        )
     }
 
 

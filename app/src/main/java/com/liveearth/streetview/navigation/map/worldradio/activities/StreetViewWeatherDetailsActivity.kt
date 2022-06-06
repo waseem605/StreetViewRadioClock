@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide
 import com.example.dummy.apiServices.WeatherAPI
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewWeatherHelper
 import com.example.dummy.apiServices.WeatherAPIServices
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewWeatherCallBack
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.mvvm.RepositoryWeather
@@ -57,6 +58,7 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
 
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
         mLatitude = intent.getDoubleExtra(ConstantsStreetView.OriginLatitude,0.0)
         mLongitude = intent.getDoubleExtra(ConstantsStreetView.OriginLongitude,0.0)
 
@@ -222,6 +224,14 @@ class StreetViewWeatherDetailsActivity : BaseStreetViewActivity() {
                 }
             }
         }
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
     private fun setThemeColor() {
         val backgroundColor =

@@ -33,7 +33,8 @@ class StreetViewPrivacyPolicyActivity : AppCompatActivity() {
 
             cookieManager.removeAllCookies(object :ValueCallback<Boolean>{
                 override fun onReceiveValue(value: Boolean?) {
-                    binding.webView.loadUrl("https://zain22213.blogspot.com/2022/04/there-welcome-to-privacy-policy-of.html")
+//                    binding.webView.loadUrl("https://zain22213.blogspot.com/2022/04/there-welcome-to-privacy-policy-of.html")
+                    binding.webView.loadUrl("https://farhannabi240.blogspot.com/2022/06/satellite-map.html")
 
                 }
 

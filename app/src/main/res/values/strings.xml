@@ -8,23 +8,33 @@
     <string name="admob_ad_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_banner_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_interstitial_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="admob_interstitial_id_two" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     <string name="admob_native_id" translatable="false">ca-app-pub-3940256099942544/2247696110</string>
     <string name="app_open_ad_id_admob" translatable="false">ca-app-pub-3940256099942544/3419835294</string>
-    <string name="app_open_splash_ad_id_admob">ca-app-pub-3940256099942544/3419835294</string>
 
     <string name="max_ad_id" translatable="false">your_test_ids</string>
     <string name="max_banner_id" translatable="false">your_test_ids</string>
     <string name="max_interstitial_id" translatable="false">your_test_ids</string>
     <string name="max_native_id" translatable="false">your_test_ids</string>
 
+<!--
+    &lt;!&ndash;Final ids&ndash;&gt;
+    <string name="admob_ad_id" translatable="false">ca-app-pub-9329223921347885~5315061733</string>
+    <string name="admob_banner_id" translatable="false">ca-app-pub-9329223921347885/3147514655</string>
+    <string name="admob_interstitial_id" translatable="false">ca-app-pub-9329223921347885/9521351317</string>
+    <string name="admob_native_id" translatable="false">ca-app-pub-9329223921347885/9329779628</string>
+    <string name="app_open_ad_id_admob" translatable="false">ca-app-pub-9329223921347885/2764371278</string>
+
+    <string name="max_ad_id" translatable="false">your_test_ids</string>
+    <string name="max_banner_id" translatable="false">your_test_ids</string>
+    <string name="max_interstitial_id" translatable="false">your_test_ids</string>
+    <string name="max_native_id" translatable="false">your_test_ids</string>-->
 
 
     <string name="rate_app" translatable="false">https://play.google.com/store/apps/details?id=com.liveearth.streetview.navigation.map.worldradio</string>
-    <string name="feed_back" translatable="false">thevissionstudio@gmail.com</string>
+    <string name="feed_back" translatable="false">farhannabi240@gmail.com</string>
     <string name="share_app_link" translatable="false">https://play.google.com/store/apps/details?id=com.liveearth.streetview.navigation.map.worldradio</string>
     <string name="more_app" translatable="false">https://play.google.com/store/apps/developer?id=Vission+Studio</string>
-    <string name="privacy_policy_link" translatable="false">https://zain22213.blogspot.com/2022/04/there-welcome-to-privacy-policy-of.html</string>
+    <string name="privacy_policy_link" translatable="false">https://farhannabi240.blogspot.com/2022/06/satellite-map.html</string>
 
 
     <string name="ok_text">OK</string>

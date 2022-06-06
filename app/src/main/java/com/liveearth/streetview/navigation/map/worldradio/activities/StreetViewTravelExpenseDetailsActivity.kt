@@ -19,6 +19,7 @@ import android.graphics.Color
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
 
@@ -39,6 +40,7 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
         setContentView(binding.root)
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
+        initBannerAd()
         try {
             mID  = intent.getIntExtra(ConstantsStreetView.EXPENSE_ID,0)
             clickListenerExpenseDetails(mID)
@@ -135,6 +137,15 @@ class StreetViewTravelExpenseDetailsActivity : BaseStreetViewActivity() {
             }
         }
     }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
+
 
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")

@@ -10,8 +10,10 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
+import com.google.firebase.FirebaseApp
 import com.google.firebase.database.FirebaseDatabase
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapLoadAds
+import com.google.firebase.messaging.FirebaseMessaging
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivitySplashScreenStreetViewBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
@@ -30,10 +32,18 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenStreetViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
 
+
         isFirstTime = mPreferenceManagerClass.getBoolean(ConstantsStreetView.isFirstTime,true)
+
+        FirebaseApp.initializeApp(this)
+        FirebaseMessaging.getInstance().subscribeToTopic("com.liveearth.streetview.navigation.map.worldradio")
+
+        LoadAdsStreetViewClock.preLoadAdsEarthLiveMap(this)
+
 
         if (isFirstTime){
             binding.acceptedLayout.visibility = View.VISIBLE
@@ -44,12 +54,13 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
             ConstantsStreetView.APP_SELECTED_COLOR ="#237157"
             ConstantsStreetView.APP_SELECTED_SECOND_COLOR ="#CDE6DD"
 
-            fillMyList()
+            fillMapBoxIdList()
             mPreferenceManagerClass.putString(ConstantsStreetView.KEY_MAPBOX, getKeyFromCounterCheck())
             updateCounterFromFirebase()
 
             binding.letsGoBtn.setOnClickListener {
                 startActivity(Intent(this,MainActivity::class.java))
+                finish()
             }
 
         }else{
@@ -57,6 +68,7 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
             setThemeColor()
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this,MainActivity::class.java))
+                finish()
             },3000)
         }
 
@@ -70,7 +82,7 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
     }
 
 
-    private fun fillMyList() {
+    private fun fillMapBoxIdList() {
         listOfKeys.add(ConstantsStreetView.accessToken1)
         listOfKeys.add(ConstantsStreetView.accessToken2)
         listOfKeys.add(ConstantsStreetView.accessToken3)
@@ -129,7 +141,7 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
 
     private fun getKeyFromCounterCheck(): String {
         var myKey: String? = null
-        when (EarthLiveMapLoadAds.current_counter) {
+        when (LoadAdsStreetViewClock.current_counter) {
             1.0 -> {
                 myKey = ConstantsStreetView.accessToken1
             }
@@ -289,16 +301,16 @@ class SplashScreenStreetViewActivity : AppCompatActivity() {
 
     private fun updateCounterFromFirebase() {
         val databaseReference = FirebaseDatabase.getInstance().getReference("LiveEarthStreetView")
-        if (EarthLiveMapLoadAds.haveGotSnapshot) {
-            if (EarthLiveMapLoadAds.current_counter >= 50.0) {
-                EarthLiveMapLoadAds.current_counter = 1.0
+        if (LoadAdsStreetViewClock.haveGotSnapshot) {
+            if (LoadAdsStreetViewClock.current_counter >= 50.0) {
+                LoadAdsStreetViewClock.current_counter = 1.0
             } else {
-                EarthLiveMapLoadAds.current_counter++
+                LoadAdsStreetViewClock.current_counter++
             }
             //Log.d("MYTOKENNEW: ", " Counter Updated " + LoadAds.current_counter)
-            EarthLiveMapLoadAds.haveGotSnapshot = false
+            LoadAdsStreetViewClock.haveGotSnapshot = false
             databaseReference.child("ADS_IDS").child("current_counter").setValue(
-                EarthLiveMapLoadAds.current_counter
+                LoadAdsStreetViewClock.current_counter
             )
         }
     }

@@ -9,6 +9,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.github.anastr.speedviewlib.ImageSpeedometer
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewSpeedoMeterBinding
@@ -43,9 +44,13 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityStreetViewSpeedoMeterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        mPreferenceManagerClass = PreferenceManagerClass(this)
+
+        setThemeColor()
+        initBannerAd()
+
         try {
-            mPreferenceManagerClass = PreferenceManagerClass(this)
-            setThemeColor()
             Unit_Is_Miles = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)
             if (Unit_Is_Miles){
                 binding.imageSpeedometer.unit = "M/H"
@@ -234,6 +239,14 @@ class StreetViewSpeedoMeterActivity : AppCompatActivity() {
                 override fun onFailedLocationFetched() {
                 }
             }).execute()*/
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
     private fun setThemeColor() {

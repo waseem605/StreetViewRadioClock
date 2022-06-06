@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.all.documents.files.reader.documentfiles.viewer.ads.PurchaseHelperStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentPremiumBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
@@ -29,6 +30,12 @@ class PremiumFragment : Fragment() {
         binding.toolbarLt.titleTx.text = "Premium"
         binding.toolbarLt.backLink.visibility = View.INVISIBLE
         setThemeColor()
+
+
+        binding.removeAdsBtn.setOnClickListener {
+            PurchaseHelperStreetViewClock(requireContext()).purchaseStreetViewClockAdsPackage()
+        }
+
 
         return binding.root
     }

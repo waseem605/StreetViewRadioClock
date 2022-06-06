@@ -11,6 +11,7 @@ import android.view.WindowManager
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewWorldClockBinding
@@ -47,6 +48,7 @@ class StreetViewWorldClockActivity : AppCompatActivity() {
         val jsonString: String = getdataFromJson()
         parseJsonStringToNewsList(jsonString)
         clickListenerClock()
+        initBannerAd()
         getCurrentLocationTimeZone()
         showSavedTimeZones()
 
@@ -195,6 +197,13 @@ class StreetViewWorldClockActivity : AppCompatActivity() {
         finish()
     }
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
     private fun setThemeColor() {
         val backgroundColor =
             mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")

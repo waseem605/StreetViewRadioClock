@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.android.billingclient.api.*
 
 
-class EarthLiveMapPurchaseHelper(private val activityContext: Context) :
+class PurchaseHelperStreetViewClock(private val activityContext: Context) :
     PurchasesUpdatedListener {
 
     private lateinit var googleBillingEarthLiveMapClient: BillingClient
@@ -125,7 +125,7 @@ class EarthLiveMapPurchaseHelper(private val activityContext: Context) :
 
     }
 
-    fun purchaseEarthLiveMapAdsPackage() {
+    fun purchaseStreetViewClockAdsPackage() {
         Log.d(TAG, "Going to purchase ads_purchase")
         if (listAvailEarthLiveMapPurchases.size > 0) {
             try {

@@ -12,6 +12,7 @@ import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WeatherMoreDetailsCallback
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewWeather.WeatherList
@@ -23,8 +24,8 @@ import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.Street
 import java.text.DecimalFormat
 
 
-class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
-    private lateinit var binding:ActivityStreetViewWeatherMoreDetailsBinding
+class StreetViewWeatherMoreDetailsActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityStreetViewWeatherMoreDetailsBinding
     private val TAG = "WeatherMoreDetails"
     var mArrayListWeather = ArrayList<WeatherList>()
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
@@ -41,7 +42,7 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
         chartVewWeater(mArrayListWeather)
         forecastWeather(mArrayListWeather)
         clickListenerMoreDetails()
-
+        initBannerAd()
     }
 
     private fun clickListenerMoreDetails() {
@@ -53,22 +54,95 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
 
     private fun chartVewWeater(mArrayListWeather: ArrayList<WeatherList>) {
         try {
-        val mYValue = ArrayList<Entry>()
-            val temperatureUnit = mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit,false)
-            if (temperatureUnit){
-                mYValue.add(Entry(0f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[0].main.temp).toFloat())))
-                mYValue.add(Entry(1f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[7].main.temp).toFloat())))
-                mYValue.add(Entry(2f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[14].main.temp).toFloat())))
-                mYValue.add(Entry(3f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[23].main.temp).toFloat())))
-                mYValue.add(Entry(4f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[31].main.temp).toFloat())))
-                mYValue.add(Entry(5f,(StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[39].main.temp).toFloat())))
-            }else{
-                mYValue.add(Entry(0f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[0].main.temp).toFloat())))
-                mYValue.add(Entry(1f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[7].main.temp).toFloat())))
-                mYValue.add(Entry(2f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[14].main.temp).toFloat())))
-                mYValue.add(Entry(3f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[23].main.temp).toFloat())))
-                mYValue.add(Entry(4f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[31].main.temp).toFloat())))
-                mYValue.add(Entry(5f,(StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[39].main.temp).toFloat())))
+            val mYValue = ArrayList<Entry>()
+            val temperatureUnit =
+                mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Fahrenheit, false)
+            if (temperatureUnit) {
+                mYValue.add(
+                    Entry(
+                        0f,
+                        (StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[0].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        1f,
+                        (StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[7].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        2f,
+                        (StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[14].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        3f,
+                        (StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[23].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        4f,
+                        (StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[31].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        5f,
+                        (StreetViewWeatherHelper.kalvinToForenHeat(mArrayListWeather[39].main.temp)
+                            .toFloat())
+                    )
+                )
+            } else {
+                mYValue.add(
+                    Entry(
+                        0f,
+                        (StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[0].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        1f,
+                        (StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[7].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        2f,
+                        (StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[14].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        3f,
+                        (StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[23].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        4f,
+                        (StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[31].main.temp)
+                            .toFloat())
+                    )
+                )
+                mYValue.add(
+                    Entry(
+                        5f,
+                        (StreetViewWeatherHelper.kalvinToCelsius(mArrayListWeather[39].main.temp)
+                            .toFloat())
+                    )
+                )
             }
 
             setUpLineChart(mYValue)
@@ -127,19 +201,24 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
             color = Color.parseColor(ConstantsStreetView.APP_SELECTED_COLOR)
 
             setDrawFilled(true)
-            fillColor = ContextCompat.getColor(this@StreetViewWeatherMoreDetailsActivity, R.color.colorYellow)
+            fillColor = ContextCompat.getColor(
+                this@StreetViewWeatherMoreDetailsActivity,
+                R.color.colorYellow
+            )
         }
         return LineData(dataSet)
     }
 
     private fun forecastWeather(list: ArrayList<WeatherList>) {
-        if (list.size >0) {
+        if (list.size > 0) {
             weatherMoreDetails(list[0])
             binding.recyclerWeather.setHasFixedSize(true)
-            binding.recyclerWeather.layoutManager = LinearLayoutManager(this,
-                LinearLayoutManager.HORIZONTAL,false)
+            binding.recyclerWeather.layoutManager = LinearLayoutManager(
+                this,
+                LinearLayoutManager.HORIZONTAL, false
+            )
 
-            val adapter = WeatherDetailsAdapter(list,this, object : WeatherMoreDetailsCallback {
+            val adapter = WeatherDetailsAdapter(list, this, object : WeatherMoreDetailsCallback {
                 override fun onItemClickWeather(weatherList: WeatherList) {
                     weatherMoreDetails(weatherList)
                 }
@@ -152,13 +231,13 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
 
     private fun weatherMoreDetails(weatherList: WeatherList) {
         try {
-            val distance = (Math.round(((weatherList.wind.speed)*3.6) * 10.0) / 10.0)
+            val distance = (Math.round(((weatherList.wind.speed) * 3.6) * 10.0) / 10.0)
 
-            if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles,false)) {
+            if (mPreferenceManagerClass.getBoolean(ConstantsStreetView.Unit_Is_Miles, false)) {
                 val number2digits: Double = String.format("%.1f", distance).toDouble()
                 binding.windTx.text = DecimalFormat("#.#").format(distance)
                 binding.percentTx3.text = "Miles/h"
-            }else{
+            } else {
                 binding.windTx.text = DecimalFormat("#.#").format(distance)
                 binding.percentTx3.text = "Km/h"
             }
@@ -168,13 +247,21 @@ class StreetViewWeatherMoreDetailsActivity : AppCompatActivity(){
             binding.pressureTx.text = (weatherList.main.pressure*0.1).toString()
             Log.d(TAG, "weatherMoreDetails: "+ DecimalFormat("#.#").format(distance))
 */
-            binding.precipitationTx.text = "${((weatherList.pop)*100).toInt()}"
+            binding.precipitationTx.text = "${((weatherList.pop) * 100).toInt()}"
             binding.humidityTx.text = (weatherList.main.humidity.toString())
 
         } catch (e: Exception) {
             Log.d("weatherMoreDetails", "weatherMoreDetails: $e")
         }
 
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
     private fun setThemeColor() {

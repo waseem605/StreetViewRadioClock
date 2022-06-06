@@ -231,6 +231,7 @@
                     android:orientation="vertical">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/shareAppLt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -323,6 +324,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/rateUsLt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -368,6 +370,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/feedBackLt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -413,6 +416,7 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/moreAppsLt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -453,8 +457,6 @@
 
             </androidx.cardview.widget.CardView>
 
-
-            <!--Temperature-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/buyPremiumCard"
                 android:layout_width="match_parent"

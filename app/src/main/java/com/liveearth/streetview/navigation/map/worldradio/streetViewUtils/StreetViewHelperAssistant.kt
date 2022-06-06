@@ -61,7 +61,7 @@ class StreetViewHelperAssistant {
                 val myIntentFeedBack = Intent(Intent.ACTION_SEND)
                 myIntentFeedBack.type = "message/rfc822"
                 myIntentFeedBack.setPackage("com.google.android.gm")
-                myIntentFeedBack.putExtra(Intent.EXTRA_EMAIL, "thevissionstudio@gmail.com")
+                myIntentFeedBack.putExtra(Intent.EXTRA_EMAIL, "farhannabi240@gmail.com")
                 myIntentFeedBack.putExtra(Intent.EXTRA_SUBJECT, "All Document Reader")
                 context.startActivity(myIntentFeedBack)
             } catch (e: Exception) {

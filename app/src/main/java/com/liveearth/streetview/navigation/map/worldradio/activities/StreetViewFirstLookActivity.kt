@@ -9,6 +9,7 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.CategoryStreetViewCallBackListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewFirstLookBinding
@@ -48,6 +49,7 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
         categoryRecyclerView()
 
         famousPlaces()
+        initBannerAd()
 
     }
 
@@ -111,6 +113,13 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
         }
     }
 
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
+    }
     private fun setThemeColor() {
         val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
         val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")

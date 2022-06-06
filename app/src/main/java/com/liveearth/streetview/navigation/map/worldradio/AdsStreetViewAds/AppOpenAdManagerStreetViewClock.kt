@@ -13,12 +13,10 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapAppPurchaseHelper
-import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.EarthLiveMapLoadAds
 import com.liveearth.streetview.navigation.map.worldradio.activities.SplashScreenStreetViewActivity
 import java.util.*
 
-class EarthLiveMapAppOpenAdManager(private val streetViewMyApplication: StreetViewMyApp) : LifecycleObserver,
+class AppOpenAdManagerStreetViewClock(private val streetViewMyApplication: StreetViewMyApp) : LifecycleObserver,
     Application.ActivityLifecycleCallbacks {
 
 
@@ -47,7 +45,7 @@ class EarthLiveMapAppOpenAdManager(private val streetViewMyApplication: StreetVi
                     override fun onAdDismissedFullScreenContent() {
                         startOpenAd = null
                         isDisplayingAd = false
-                        if (EarthLiveMapLoadAds.should_show_app_open) {
+                        if (LoadAdsStreetViewClock.should_show_app_open) {
                             loadEarthLiveMapStartAppOpenAd()
                         }
                     }
@@ -64,7 +62,7 @@ class EarthLiveMapAppOpenAdManager(private val streetViewMyApplication: StreetVi
             startOpenAd!!.fullScreenContentCallback = fullScreenContentCallback
         } else {
             Log.d(TAG, "Can not show ad.")
-            if (EarthLiveMapLoadAds.should_show_app_open) {
+            if (LoadAdsStreetViewClock.should_show_app_open) {
                 loadEarthLiveMapStartAppOpenAd()
             }
         }
@@ -79,7 +77,7 @@ class EarthLiveMapAppOpenAdManager(private val streetViewMyApplication: StreetVi
                 override fun onAdLoaded(p0: AppOpenAd) {
                     super.onAdLoaded(p0)
                     Log.d(TAG, "onAppOpenAdLoaded")
-                    this@EarthLiveMapAppOpenAdManager.startOpenAd = p0
+                    this@AppOpenAdManagerStreetViewClock.startOpenAd = p0
                     adLoadingTime = Date().time
                 }
 
@@ -89,14 +87,14 @@ class EarthLiveMapAppOpenAdManager(private val streetViewMyApplication: StreetVi
                 }
             }
             val purchaseHelper =
-                EarthLiveMapAppPurchaseHelper(
+                AppPurchaseHelperStreetViewClock(
                     streetViewMyApplication
                 )
             if (purchaseHelper.shouldShowAds()) {
                 try {
                     AppOpenAd.load(
                         streetViewMyApplication,
-                        EarthLiveMapLoadAds.app_open_ad_id_admob,
+                        LoadAdsStreetViewClock.app_open_ad_id_admob,
                         AdRequest.Builder().build(),
                         AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
                         callBackLoading!!
@@ -151,7 +149,7 @@ class EarthLiveMapAppOpenAdManager(private val streetViewMyApplication: StreetVi
         Log.d(TAG, "OnLifecycleEvent onStart")
         //showEarthLiveMapStartAppOpenAd()
         Log.d(TAG, "OnLifecycleEvent onStart")
-        if (EarthLiveMapLoadAds.canShowAppOpen && EarthLiveMapLoadAds.should_show_app_open && runningActivity !is SplashScreenStreetViewActivity) {
+        if (LoadAdsStreetViewClock.canShowAppOpen && LoadAdsStreetViewClock.should_show_app_open && runningActivity !is SplashScreenStreetViewActivity) {
             Log.d(TAG, "onStart: Showing App open Resume AD")
             showEarthLiveMapStartAppOpenAd()
         }else{

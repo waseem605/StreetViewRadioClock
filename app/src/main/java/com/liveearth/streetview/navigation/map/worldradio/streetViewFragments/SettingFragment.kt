@@ -9,11 +9,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.all.documents.files.reader.documentfiles.viewer.ads.PurchaseHelperStreetViewClock
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.AppPurchaseHelperStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.activities.StreetViewPrivacyPolicyActivity
 import com.liveearth.streetview.navigation.map.worldradio.databinding.FragmentSettingBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
+import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.StreetViewHelperAssistant
 
 class SettingFragment : Fragment() {
     private lateinit var binding:FragmentSettingBinding
@@ -35,10 +38,35 @@ class SettingFragment : Fragment() {
     }
 
     private fun centerClickListener() {
+
+        val billingHelper = AppPurchaseHelperStreetViewClock(requireContext())
+        if (!billingHelper.shouldShowAds()){
+            binding.buyPremiumCard.visibility = View.INVISIBLE
+        }
+
         binding.privacyLT.setOnClickListener {
             val intent = Intent(requireContext(),StreetViewPrivacyPolicyActivity::class.java)
             startActivity(intent)
         }
+
+        binding.feedBackLt.setOnClickListener {
+            StreetViewHelperAssistant.appFeedbackFun(requireContext())
+        }
+        binding.moreAppsLt.setOnClickListener {
+            StreetViewHelperAssistant.moreOurApp(requireContext())
+
+        }
+        binding.rateUsLt.setOnClickListener {
+            StreetViewHelperAssistant.rateUsApp(requireContext())
+
+        }
+        binding.shareAppLt.setOnClickListener {
+            StreetViewHelperAssistant.shareUsApp(requireContext())
+        }
+        binding.buyPremiumCard.setOnClickListener {
+            PurchaseHelperStreetViewClock(requireContext()).purchaseStreetViewClockAdsPackage()
+        }
+
     }
 
     private fun clickListenerSetting() {

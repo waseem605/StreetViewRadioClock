@@ -11,6 +11,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.MyLocationListener
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewLiveEarthBinding
@@ -57,6 +58,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         setContentView(binding.root)
         mapView = findViewById(R.id.mapView)
         mapView.onCreate(savedInstanceState)
+
         mPreferenceManagerClass = PreferenceManagerClass(this)
 
         try {
@@ -71,7 +73,7 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
         setThemeColor()
         mapViewResult()
         clickListenersLiveEarth()
-
+        initBannerAd()
     }
 
     private fun clickListenersLiveEarth() {
@@ -195,7 +197,6 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                     }
                 }
             })
-            binding.mapLayerLayout.visibility = View.GONE
         } catch (e: Exception) {
             Log.d(TAG, "Exception$e")
         }
@@ -219,7 +220,6 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                 zoom++
                 LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
             }
-            binding.mapLayerLayout.visibility = View.GONE
         }
 
         binding.ImgZoomOut.setOnClickListener {
@@ -227,7 +227,6 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                 zoom--
                 LocationHelperAssistant.setZoomMarker(latLng.latitude, latLng.longitude, mapboxMap, zoom)
             }
-            binding.mapLayerLayout.visibility = View.GONE
         }
     }
 
@@ -295,9 +294,16 @@ class StreetViewLiveEarthActivity : BaseStreetViewActivity(), OnMapReadyCallback
                 }
             } catch (e: Exception) {
             }
-            binding.mapLayerLayout.visibility = View.GONE
         }
 
+    }
+
+    private fun initBannerAd() {
+        LoadAdsStreetViewClock.loadEarthLiveMapBannerAdMob(
+            binding.bannerAd.adContainer,
+            binding.bannerID,
+            this
+        )
     }
 
     private fun setThemeColor() {
