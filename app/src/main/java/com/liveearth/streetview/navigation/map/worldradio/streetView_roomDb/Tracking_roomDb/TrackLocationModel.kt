@@ -25,5 +25,5 @@ class TrackLocationModel(
     var distance: Double?,
     @TypeConverters(TrackLocationItemTypeConverters::class)
     @ColumnInfo(name = "locationsList")
-    var locationsList: List<TrackingLocationModel>?,
+    var locationsList: List<TrackingLocationModel>,
 )

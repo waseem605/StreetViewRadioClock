@@ -21,6 +21,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StreetViewClock"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name=".locationTracking.TrackedRouteLocationsActivity"
             android:exported="false" />

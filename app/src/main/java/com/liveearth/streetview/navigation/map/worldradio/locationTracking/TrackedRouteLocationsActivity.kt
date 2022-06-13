@@ -135,10 +135,17 @@ class TrackedRouteLocationsActivity : AppCompatActivity(), OnMapReadyCallback {
             GlobalScope.launch {
                 Dispatchers.IO
                 mTrackedLocationModel = mTrackLocationViewModel.getDataById(mIdData)
-                origin = Point.fromLngLat(mTrackedLocationModel.locationsList!![0].longi, mTrackedLocationModel.locationsList!![0].lati)
-                destination = Point.fromLngLat(mTrackedLocationModel.locationsList!![mTrackedLocationModel.locationsList!!.size-1].longi,
-                    mTrackedLocationModel.locationsList!![mTrackedLocationModel.locationsList!!.size-1].lati)
-                //setData(mTrackLocationViewModel.getDataById(mIdData))
+                if (mTrackedLocationModel.locationsList.isNotEmpty()) {
+                    origin = Point.fromLngLat(
+                        mTrackedLocationModel.locationsList[0].longi,
+                        mTrackedLocationModel.locationsList[0].lati
+                    )
+                    destination = Point.fromLngLat(
+                        mTrackedLocationModel.locationsList[mTrackedLocationModel.locationsList.size - 1].longi,
+                        mTrackedLocationModel.locationsList[mTrackedLocationModel.locationsList.size - 1].lati
+                    )
+                    //setData(mTrackLocationViewModel.getDataById(mIdData))
+                }
             }
 
 
@@ -147,8 +154,9 @@ class TrackedRouteLocationsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun setData(dataById: TrackLocationModel) {
-        for (i in 0 until dataById.locationsList!!.size){
-            customRoutListPoints.add(Point.fromLngLat(dataById.locationsList!![i].longi,dataById.locationsList!![i].lati))
+        for (i in 0 until dataById.locationsList.size){
+            customRoutListPoints.add(Point.fromLngLat(dataById.locationsList[i].longi,
+                dataById.locationsList[i].lati))
         }
         getRouteList(mapbox!!,customRoutListPoints,origin!!)
 

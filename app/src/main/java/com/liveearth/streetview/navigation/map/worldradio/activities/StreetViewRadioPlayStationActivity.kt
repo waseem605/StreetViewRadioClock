@@ -49,11 +49,12 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
             mCountriesRadioChannelList = LocationHelperAssistant.oneCountriesRadioList
             binding.toolbar.titleTx.text = getString(R.string.playing)
 
+
+            showRadioItemRecycler(mCountriesRadioChannelList,mRadioPosition)
+            playRadioChannel(mRadioPosition)
+
         } catch (e: Exception) {
         }
-
-        showRadioItemRecycler(mCountriesRadioChannelList,mRadioPosition)
-        playRadioChannel(mRadioPosition)
 
         binding.toolbar.backLink.setOnClickListener {
             onBackPressed()
@@ -108,10 +109,13 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
             if (mPlaylist[mRadioPosition].path!=null && mPlaylist[mRadioPosition].path!="") {
                 binding.jcPlayerRadio.playAudio(mPlaylist[mRadioPosition])
             }
+
+            binding.jcPlayerRadio.initPlaylist(mPlaylist)
+            binding.jcPlayerRadio.createNotification(R.drawable.icon_radio)
         } catch (e: Exception) {
+            Log.d(TAG, "playRadioChannel: ${e.message}")
         }
-        binding.jcPlayerRadio.initPlaylist(mPlaylist)
-        binding.jcPlayerRadio.createNotification(R.drawable.icon_radio)
+    
 
     }
 

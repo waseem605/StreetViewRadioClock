@@ -11,6 +11,6 @@ public class AppPurchaseHelperStreetViewClock {
     }
 
     public boolean shouldShowAds() {
-       return !(billingPreferences.getBoolean("ads_purchase", false));
+       return (billingPreferences.getBoolean("ads_purchase", false));
     }
 }
