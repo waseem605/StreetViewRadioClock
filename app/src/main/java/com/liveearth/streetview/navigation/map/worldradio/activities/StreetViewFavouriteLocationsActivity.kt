@@ -48,7 +48,6 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
 
         mFavouriteLocationViewModel.getAllData().observe(this, Observer {
             it.let {
-                binding.emptyListLt.visibility = View.GONE
                 showRecyclerItemLocations(it as ArrayList)
                 hideProgressDialog(this)
             }
@@ -74,54 +73,68 @@ class StreetViewFavouriteLocationsActivity : BaseStreetViewActivity() {
                     mLatitude = location.latitude
                     mLongitude = location.longitude
                     mLocationRepositoryStreetView.stopLocation()
-                }?: Runnable {
-                    mLocationRepositoryStreetView.startLocation()
                 }
             }
-
         })
     }
 
     private fun showRecyclerItemLocations(arrayList: ArrayList<FavouriteLocationModel>) {
-
-        mFavouriteAdapter = FavouriteLocationsAdapter(arrayList,this,object :FavLocationListener{
-            override fun onNavigateToLocation(model: FavouriteLocationModel) {
-                if (mLongitude !=0.0 && model.latitude !=0.0) {
-                    val intent = Intent(
-                        this@StreetViewFavouriteLocationsActivity,
-                        StreetViewRouteActivity::class.java
-                    )
-                    intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
-                    intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
-                    intent.putExtra(ConstantsStreetView.DestinationLatitude, model.latitude)
-                    intent.putExtra(ConstantsStreetView.DestinationLongitude, model.longitude)
-                    startActivity(intent)
-                }else{
-                    setToast(this@StreetViewFavouriteLocationsActivity,"Your Location not found")
-                }
-            }
-
-            override fun onShareFavLocation(model: FavouriteLocationModel) {
-                LocationHelperAssistant.shareLocation(this@StreetViewFavouriteLocationsActivity,model.latitude!!,model.longitude!!)
-            }
-
-            override fun onDeleteFavLocation(model: FavouriteLocationModel) {
-                try {
-                    GlobalScope.launch(Dispatchers.Main) {
-                        mFavouriteLocationViewModel.deleteFavouriteLocation(model)
-                        setToast(this@StreetViewFavouriteLocationsActivity,"Delete item successfully")
+        if (arrayList.size>0) {
+            binding.emptyListLt.visibility = View.GONE
+            mFavouriteAdapter =
+                FavouriteLocationsAdapter(arrayList, this, object : FavLocationListener {
+                    override fun onNavigateToLocation(model: FavouriteLocationModel) {
+                        if (mLongitude != 0.0 && model.latitude != 0.0) {
+                            val intent = Intent(
+                                this@StreetViewFavouriteLocationsActivity,
+                                StreetViewRouteActivity::class.java
+                            )
+                            intent.putExtra(ConstantsStreetView.OriginLatitude, mLatitude)
+                            intent.putExtra(ConstantsStreetView.OriginLongitude, mLongitude)
+                            intent.putExtra(ConstantsStreetView.DestinationLatitude, model.latitude)
+                            intent.putExtra(
+                                ConstantsStreetView.DestinationLongitude,
+                                model.longitude
+                            )
+                            startActivity(intent)
+                        } else {
+                            setToast(
+                                this@StreetViewFavouriteLocationsActivity,
+                                "Your Location not found"
+                            )
+                        }
                     }
-                } catch (e: Exception) {
-                }
+
+                    override fun onShareFavLocation(model: FavouriteLocationModel) {
+                        LocationHelperAssistant.shareLocation(
+                            this@StreetViewFavouriteLocationsActivity,
+                            model.latitude!!,
+                            model.longitude!!
+                        )
+                    }
+
+                    override fun onDeleteFavLocation(model: FavouriteLocationModel) {
+                        try {
+                            GlobalScope.launch(Dispatchers.Main) {
+                                mFavouriteLocationViewModel.deleteFavouriteLocation(model)
+                                setToast(
+                                    this@StreetViewFavouriteLocationsActivity,
+                                    "Delete item successfully"
+                                )
+                            }
+                        } catch (e: Exception) {
+                        }
+                    }
+
+                })
+            binding.savedLocationRecycler.apply {
+                setHasFixedSize(true)
+                layoutManager = LinearLayoutManager(this@StreetViewFavouriteLocationsActivity)
+                adapter = mFavouriteAdapter
             }
-
-        })
-        binding.savedLocationRecycler.apply {
-            setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(this@StreetViewFavouriteLocationsActivity)
-            adapter = mFavouriteAdapter
+        }else{
+            binding.emptyListLt.visibility = View.VISIBLE
         }
-
     }
 
     private fun initBannerAd() {

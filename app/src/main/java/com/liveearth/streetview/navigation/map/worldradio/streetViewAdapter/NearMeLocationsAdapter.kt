@@ -86,15 +86,16 @@ class NearMeLocationsAdapter(
 
                 }).into(holder.imageView)
 
-            GlobalScope.launch(Dispatchers.Main) {
-
-                val it = mFavouriteLocationViewModel.getDataById(model.fsq_id)
-                if (it != null) {
-                    Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
-                }else{
-                    Glide.with(context).load(R.drawable.ic_favourite_icon).into(holder.itemFavouriteImg)
+            try {
+                GlobalScope.launch(Dispatchers.Main) {
+                    val it = mFavouriteLocationViewModel.getDataById(model.fsq_id)
+                    if (it != null) {
+                        Glide.with(context).load(R.drawable.ic_favourite_icon_filled).into(holder.itemFavouriteImg)
+                    }else{
+                        Glide.with(context).load(R.drawable.ic_favourite_icon).into(holder.itemFavouriteImg)
+                    }
                 }
-
+            } catch (e: Exception) {
             }
 
             holder.itemNavigationBtn.setOnClickListener {

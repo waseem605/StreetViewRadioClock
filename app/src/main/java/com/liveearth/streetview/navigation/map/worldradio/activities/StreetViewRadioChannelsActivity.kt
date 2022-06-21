@@ -12,15 +12,15 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
-import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
-import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
+import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewFmInterface
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.StreetViewRetrofitFM
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
+import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioChannelsBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +31,7 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     val TAG = "RadioChannels"
     lateinit var countryName: String
     lateinit var countryCode: String
+    private lateinit var radioAdapter: RadioChannelsAdapter
     var mCountriesRadioChannelList = ArrayList<CountryMainFMModel>()
     private lateinit var mPreferenceManagerClass: PreferenceManagerClass
 
@@ -48,7 +49,7 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
             countryCode = intent.getStringExtra(ConstantsStreetView.Radio_Country_Code)!!
 
             """Trending in ${this.countryName}""".also { binding.radioCountryName.text = it }
-            val flage="https://flagpedia.net/data/flags/normal/${countryCode}.png"
+            val flage = "https://flagpedia.net/data/flags/normal/${countryCode}.png"
             Glide.with(this).load(flage).into(binding.countryFlagImage)
 
             showProgressDialog(this)
@@ -105,26 +106,39 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     }
 
     private fun showChannelListOfCountry(oneCountriesMainFM: ArrayList<CountryMainFMModel>) {
-
-        Log.d(TAG, "showChannelListOfCountry: ========" + mCountriesRadioChannelList.size)
-        val radioAdapter =
+        val gridLayoutManager = GridLayoutManager(this, 2)
+        binding.channelRecyclerView.layoutManager = gridLayoutManager
+        radioAdapter =
             RadioChannelsAdapter(oneCountriesMainFM, this, object : ChanelPositionCallBack {
                 override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
-                    val radioIntent = Intent(this@StreetViewRadioChannelsActivity,StreetViewRadioPlayStationActivity::class.java)
-                    radioIntent.putExtra(ConstantsStreetView.RADIO_FLAGE,flage)
-                    radioIntent.putExtra(ConstantsStreetView.Radio_Country_Name,countryName)
-                    radioIntent.putExtra(ConstantsStreetView.RADIO_CHANNEL_NAME,nameCh)
-                    radioIntent.putExtra("RADIO_POSITION",pos)
+                    val radioIntent = Intent(
+                        this@StreetViewRadioChannelsActivity,
+                        StreetViewRadioPlayStationActivity::class.java
+                    )
+                    radioIntent.putExtra(ConstantsStreetView.RADIO_FLAGE, flage)
+                    radioIntent.putExtra(ConstantsStreetView.Radio_Country_Name, countryName)
+                    radioIntent.putExtra(ConstantsStreetView.RADIO_CHANNEL_NAME, nameCh)
+                    radioIntent.putExtra("RADIO_POSITION", pos)
                     startActivity(radioIntent)
-
                 }
 
             })
 
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+
+                return when (radioAdapter.getItemViewType(position)) {
+                    0 -> gridLayoutManager.spanCount
+                    1 -> 1
+                    2 -> gridLayoutManager.spanCount
+                    else -> -1
+                }
+            }
+        }
+
         binding.channelRecyclerView.apply {
             setHasFixedSize(true)
-            Log.d(TAG, "showChannelListOfCountry: ====recycler====")
-            layoutManager = GridLayoutManager(this@StreetViewRadioChannelsActivity, 2)
+           // layoutManager = gridLayoutManager
             adapter = radioAdapter
         }
     }
@@ -138,8 +152,10 @@ class StreetViewRadioChannelsActivity : BaseStreetViewActivity() {
     }
 
     private fun setThemeColor() {
-        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
-        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        val backgroundColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
         Log.d("setThemeColor", "setThemeColor: $backgroundColor")
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)

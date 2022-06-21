@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 public class AppPurchaseHelperStreetViewClock {
-    private SharedPreferences billingPreferences;
+    private final SharedPreferences billingPreferences;
 
     public AppPurchaseHelperStreetViewClock(Context content) {
         billingPreferences = content.getSharedPreferences("PurchasePrefs", Context.MODE_PRIVATE);
     }
 
     public boolean shouldShowAds() {
-       return (billingPreferences.getBoolean("ads_purchase", false));
+       return !(billingPreferences.getBoolean("ads_purchase", false));
     }
 }

@@ -38,7 +38,6 @@
             android:src="@drawable/bottom_bar_background"
             app:tint="@color/white" />
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/emptyListLt"
             android:layout_width="wrap_content"
@@ -52,7 +51,7 @@
                 android:id="@+id/dataNot"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                android:src="@drawable/ic_baseline_speaker_notes"
+                android:src="@drawable/icon_data_not_found"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"/>
@@ -116,6 +115,5 @@
             android:layout_height="match_parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

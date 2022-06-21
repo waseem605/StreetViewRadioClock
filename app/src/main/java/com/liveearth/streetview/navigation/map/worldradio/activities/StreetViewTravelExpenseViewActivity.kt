@@ -5,6 +5,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.lifecycle.Observer
@@ -38,6 +39,7 @@ class StreetViewTravelExpenseViewActivity : AppCompatActivity() {
         mExpenseViewModel = ViewModelProvider(this,factory).get(ExpenseViewModel::class.java)
         mExpenseViewModel.getAllData().observe(this, Observer {
             it?.let {
+
                 showExpenseList(it as ArrayList<ExpenseModel>)
             }
         })
@@ -56,21 +58,29 @@ class StreetViewTravelExpenseViewActivity : AppCompatActivity() {
     }
 
     private fun showExpenseList(arrayList: ArrayList<ExpenseModel>) {
-        mExpenseAdapter = ExpenseSavedAdapter(arrayList,this,object :ExpenseCallBackListener{
-            override fun onExpenseView(model: ExpenseModel) {
-                val intent = Intent(this@StreetViewTravelExpenseViewActivity,StreetViewTravelExpenseDetailsActivity::class.java)
-                intent.putExtra(ConstantsStreetView.EXPENSE_ID,model.id)
-                startActivity(intent)
+        if (arrayList.size>0) {
+            binding.emptyListLt.visibility = View.GONE
+            mExpenseAdapter =
+                ExpenseSavedAdapter(arrayList, this, object : ExpenseCallBackListener {
+                    override fun onExpenseView(model: ExpenseModel) {
+                        val intent = Intent(
+                            this@StreetViewTravelExpenseViewActivity,
+                            StreetViewTravelExpenseDetailsActivity::class.java
+                        )
+                        intent.putExtra(ConstantsStreetView.EXPENSE_ID, model.id)
+                        startActivity(intent)
+                    }
+
+                })
+
+            binding.addExpenseRecycler.apply {
+                layoutManager = LinearLayoutManager(this@StreetViewTravelExpenseViewActivity)
+                setHasFixedSize(true)
+                adapter = mExpenseAdapter
             }
-
-        })
-
-        binding.addExpenseRecycler.apply {
-            layoutManager = LinearLayoutManager(this@StreetViewTravelExpenseViewActivity)
-            setHasFixedSize(true)
-            adapter = mExpenseAdapter
+        }else{
+            binding.emptyListLt.visibility = View.VISIBLE
         }
-
     }
 
     private fun initBannerAd() {

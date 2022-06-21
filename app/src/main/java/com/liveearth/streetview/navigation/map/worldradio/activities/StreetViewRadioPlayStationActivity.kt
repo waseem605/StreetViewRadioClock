@@ -1,32 +1,32 @@
 package com.liveearth.streetview.navigation.map.worldradio.activities
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.jean.jcplayer.model.JcAudio
 import com.jackandphantom.carouselrecyclerview.CarouselLayoutManager
 import com.liveearth.streetview.navigation.map.worldradio.AdsStreetViewAds.LoadAdsStreetViewClock
 import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreeViewApiServices.StreetViewRadioService.CountryMainFMModel
+import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityStreetViewRadioPlayStationBinding
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.RadioPlayChannelsAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
-import com.liveearth.streetview.navigation.map.worldradio.StreetViewGlobe.ChanelPositionCallBack
 
 class StreetViewRadioPlayStationActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityStreetViewRadioPlayStationBinding
+    private lateinit var binding: ActivityStreetViewRadioPlayStationBinding
     private val TAG = "RadioPlayStation"
 
-    private lateinit var mCountryNameSelected:String
-    private lateinit var countryNameFlage:String
-    private lateinit var mRadioChannelName:String
+    private lateinit var mCountryNameSelected: String
+    private lateinit var countryNameFlage: String
+    private lateinit var mRadioChannelName: String
     private var mRadioPosition = 0
-    private lateinit var mPreferenceManagerClass:PreferenceManagerClass
+    private lateinit var mPreferenceManagerClass: PreferenceManagerClass
     var mCountriesRadioChannelList = ArrayList<CountryMainFMModel>()
     var mPlaylist: ArrayList<JcAudio> = ArrayList()
 
@@ -42,7 +42,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
             mCountryNameSelected = intent.getStringExtra(ConstantsStreetView.Radio_Country_Name)!!
             countryNameFlage = intent.getStringExtra(ConstantsStreetView.RADIO_FLAGE)!!
             mRadioChannelName = intent.getStringExtra(ConstantsStreetView.RADIO_CHANNEL_NAME)!!
-            mRadioPosition = intent.getIntExtra("RADIO_POSITION",0)
+            mRadioPosition = intent.getIntExtra("RADIO_POSITION", 0)
 
             binding.nameStationRadio.text = mCountryNameSelected
 
@@ -50,7 +50,7 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
             binding.toolbar.titleTx.text = getString(R.string.playing)
 
 
-            showRadioItemRecycler(mCountriesRadioChannelList,mRadioPosition)
+            showRadioItemRecycler(mCountriesRadioChannelList, mRadioPosition)
             playRadioChannel(mRadioPosition)
 
         } catch (e: Exception) {
@@ -59,19 +59,19 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
         binding.toolbar.backLink.setOnClickListener {
             onBackPressed()
         }
-
-
     }
 
-    private fun showRadioItemRecycler(mCountriesRadioChannelList: ArrayList<CountryMainFMModel>, mRadioPosition: Int) {
-
+    private fun showRadioItemRecycler(
+        mCountriesRadioChannelList: ArrayList<CountryMainFMModel>,
+        mRadioPosition: Int
+    ) {
         mCountriesRadioChannelList.let {
-            val mRadioPlayAdapter = RadioPlayChannelsAdapter(it,this,object :ChanelPositionCallBack{
-                override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
-                    playRadioChannel(pos)
-                }
-
-            })
+            val mRadioPlayAdapter =
+                RadioPlayChannelsAdapter(it, this, object : ChanelPositionCallBack {
+                    override fun onChanelClick(flage: String, nameCh: String, pos: Int) {
+                        playRadioChannel(pos)
+                    }
+                })
 
             val carouselLayoutManager: CarouselLayoutManager =
                 binding.carouselRecyclerview.getCarouselLayoutManager()
@@ -86,14 +86,11 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
 
             }
         }
-
     }
 
 
     private fun playRadioChannel(mRadioPosition: Int) {
-
         Log.i("jcPlayerRadiozzz", "Play: " + mCountriesRadioChannelList.size)
-
         if (binding.jcPlayerRadio.isPlaying) {
             binding.jcPlayerRadio.pause()
             Log.i("jcPlayerRadiozzz", ": " + binding.jcPlayerRadio.currentAudio)
@@ -101,22 +98,23 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
         mPlaylist.clear()
         if (mCountriesRadioChannelList.size > 0) {
             for (x in 0..mCountriesRadioChannelList.size - 1) {
-                mPlaylist.add(JcAudio.createFromURL(mCountriesRadioChannelList[x].name, mCountriesRadioChannelList[x].urlResolved))
+                mPlaylist.add(
+                    JcAudio.createFromURL(
+                        mCountriesRadioChannelList[x].name,
+                        mCountriesRadioChannelList[x].urlResolved
+                    )
+                )
             }
         }
-
         try {
-            if (mPlaylist[mRadioPosition].path!=null && mPlaylist[mRadioPosition].path!="") {
+            if (mPlaylist[mRadioPosition].path != null && mPlaylist[mRadioPosition].path != "") {
                 binding.jcPlayerRadio.playAudio(mPlaylist[mRadioPosition])
             }
-
             binding.jcPlayerRadio.initPlaylist(mPlaylist)
             binding.jcPlayerRadio.createNotification(R.drawable.icon_radio)
         } catch (e: Exception) {
             Log.d(TAG, "playRadioChannel: ${e.message}")
         }
-    
-
     }
 
     private fun initBannerAd() {
@@ -126,9 +124,12 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
             this
         )
     }
+
     private fun setThemeColor() {
-        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
-        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        val backgroundColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
         Log.d("setThemeColor", "setThemeColor: $backgroundColor")
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -136,6 +137,5 @@ class StreetViewRadioPlayStationActivity : AppCompatActivity() {
         window.statusBarColor = Color.parseColor(backgroundColor)
         binding.background.setBackgroundColor(Color.parseColor(backgroundColor))
         binding.toolbar.backBtnToolbar.setBackgroundColor(Color.parseColor(backgroundColor))
-
     }
 }

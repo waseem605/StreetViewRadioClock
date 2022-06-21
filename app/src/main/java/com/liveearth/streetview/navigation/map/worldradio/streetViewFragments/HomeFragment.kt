@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        CoroutineScope(Dispatchers.IO).launch() {
+        CoroutineScope(Dispatchers.IO).launch {
             LocationStreetViewHelper.providerStreetViewEnabled(requireContext())
             val ispermissionDone = LocationStreetViewHelper.locationStreetViewProvided(requireContext())
 
@@ -301,7 +301,6 @@ class HomeFragment : Fragment() {
                             override fun onSuccessLocationFetched(fetchedAddress: String?) {
                                 binding.currentAddress.text = fetchedAddress
                                 ConstantsStreetView.CURRENT_ADDRESS = fetchedAddress!!
-
                             }
 
                             override fun onFailedLocationFetched() {

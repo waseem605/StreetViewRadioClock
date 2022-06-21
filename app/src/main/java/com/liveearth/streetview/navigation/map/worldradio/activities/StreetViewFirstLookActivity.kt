@@ -73,10 +73,22 @@ class StreetViewFirstLookActivity : AppCompatActivity() {
             }
 
         })
+        val gridLayoutManager = GridLayoutManager(this,2)
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+
+                return when (mAdapterFamous.getItemViewType(position)) {
+                    0 -> gridLayoutManager.spanCount
+                    1 -> 1
+                    2 -> gridLayoutManager.spanCount
+                    else -> -1
+                }
+            }
+        }
 
         binding.famousRecycler.apply {
             setHasFixedSize(true)
-            layoutManager =  GridLayoutManager(this@StreetViewFirstLookActivity,2)
+            layoutManager =  gridLayoutManager
             adapter = mAdapterFamous
         }
 

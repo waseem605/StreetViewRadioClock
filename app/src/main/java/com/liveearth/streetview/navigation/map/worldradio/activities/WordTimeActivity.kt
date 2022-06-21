@@ -15,12 +15,12 @@ import com.liveearth.streetview.navigation.map.worldradio.R
 import com.liveearth.streetview.navigation.map.worldradio.StreetViewCallBack.WorldClockCallBack
 import com.liveearth.streetview.navigation.map.worldradio.databinding.ActivityWordTimeBinding
 import com.liveearth.streetview.navigation.map.worldradio.hilt.CountryNameModel
-import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase.*
 import com.liveearth.streetview.navigation.map.worldradio.streetViewAdapter.WorldClockAdapter
 import com.liveearth.streetview.navigation.map.worldradio.streetViewModel.WorldClockModel
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.ConstantsStreetView
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.LocationHelperAssistant
 import com.liveearth.streetview.navigation.map.worldradio.streetViewUtils.PreferenceManagerClass
+import com.liveearth.streetview.navigation.map.worldradio.streetView_roomDb.roomdatabase.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -48,11 +48,11 @@ class WordTimeActivity : BaseStreetViewActivity() {
 
     @Inject
     @Named("WorldClockModel_list")
-    lateinit var mWorldClockListTwo :ArrayList<WorldClockModel>
+    lateinit var mWorldClockListTwo: ArrayList<WorldClockModel>
 
     @Inject
     @Named("countryNameListJson")
-    lateinit var mCountryNameListTwo :ArrayList<CountryNameModel>
+    lateinit var mCountryNameListTwo: ArrayList<CountryNameModel>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityWordTimeBinding.inflate(layoutInflater)
@@ -60,8 +60,8 @@ class WordTimeActivity : BaseStreetViewActivity() {
         mPreferenceManagerClass = PreferenceManagerClass(this)
         setThemeColor()
         initBannerAd()
-        Log.d("worldCloclres", "onCreate: =====world clock==="+mWorldClockListTwo.size)
-        Log.d("worldCloclres", "onCreate: ===country name====="+mCountryNameListTwo.size)
+        Log.d("worldCloclres", "onCreate: =====world clock===" + mWorldClockListTwo.size)
+        Log.d("worldCloclres", "onCreate: ===country name=====" + mCountryNameListTwo.size)
 
         try {
             mShowAddBtn = intent.getStringExtra(ConstantsStreetView.All_TIME_INTENT)!!
@@ -160,26 +160,38 @@ class WordTimeActivity : BaseStreetViewActivity() {
 
     private fun worldClockListRecyclerView(mWorldClockList: ArrayList<WorldClockModel>) {
 
-        mWorldClockList?.let {
+        mWorldClockList.let {
             Log.d("onBindViewHolder", "size: " + it.size)
 
+            adapterTimeZones = WorldClockAdapter(
+                it,
+                this@WordTimeActivity,
+                mShowAddBtn,
+                object : WorldClockCallBack {
+                    override fun onItemWorldClock(time: String) {
+
+                    }
+
+                    override fun onClickAddTimeZone(model: WorldClockModel) {
+                        addToMyTimeZone(model)
+                    }
+
+                })
+            val gridLayoutManager = GridLayoutManager(this, 2)
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+
+                    return when (adapterTimeZones.getItemViewType(position)) {
+                        0 -> gridLayoutManager.spanCount
+                        1 -> 1
+                        2 -> gridLayoutManager.spanCount
+                        else -> -1
+                    }
+                }
+            }
+
             binding.wordClockRecycler.apply {
-                adapterTimeZones = WorldClockAdapter(
-                    it,
-                    this@WordTimeActivity,
-                    mShowAddBtn,
-                    object : WorldClockCallBack {
-                        override fun onItemWorldClock(time: String) {
-
-                        }
-
-
-                        override fun onClickAddTimeZone(model: WorldClockModel) {
-                            addToMyTimeZone(model)
-                        }
-
-                    })
-                layoutManager = GridLayoutManager(this@WordTimeActivity, 2)
+                layoutManager = gridLayoutManager
                 setHasFixedSize(true)
                 adapter = adapterTimeZones
             }
@@ -196,13 +208,13 @@ class WordTimeActivity : BaseStreetViewActivity() {
 
         try {
             GlobalScope.launch {
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
 
 
-                    if (viewModel.getDataByTimeZone(model.timezone!!) !=null){
+                    if (viewModel.getDataByTimeZone(model.timezone!!) != null) {
                         setToast(this@WordTimeActivity, "Already Exist ")
 
-                    }else{
+                    } else {
                         viewModel.insertTimeZone(
                             WordTimeZoneModel(
                                 id = null,
@@ -221,7 +233,7 @@ class WordTimeActivity : BaseStreetViewActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this,StreetViewWorldClockActivity::class.java)
+        val intent = Intent(this, StreetViewWorldClockActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -234,9 +246,12 @@ class WordTimeActivity : BaseStreetViewActivity() {
             this
         )
     }
+
     private fun setThemeColor() {
-        val backgroundColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
-        val backgroundSecondColor = mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
+        val backgroundColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR, "#237157")
+        val backgroundSecondColor =
+            mPreferenceManagerClass.getString(ConstantsStreetView.APP_COLOR_Second, " #CDE6DD")
         Log.d("setThemeColor", "setThemeColor: $backgroundColor")
         val window: Window = this.window
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
